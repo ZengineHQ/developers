@@ -1,0 +1,104 @@
+<?php
+require_once("../../../header.php");
+require_once("../../header.php");
+?>
+
+<h1>Conventions</h1>
+
+<h2>Querying Options</h2>
+
+<p>Query string parameters can be used to filter down a result set and generally format API responses.</p>
+
+<p>In general, most complex querying & formatting is difficult to cache and therefor a burden on both 
+client bandwidth and server processing. For this reason, we encourage biasing your decisions in favor of 
+avoiding these features where possible. As we begin to enforce rate limiting in the future, you may find 
+that complex queries & formatting requests count against your limit in a way that more basic requests 
+do not.</p>
+
+<h3 id="pagination">Pagination</h3>
+
+<p><code>?limit</code> (integer): Limit the number of results returned on a <strong>GET</strong> 
+query. The default limit is <strong>20</strong>, and can be overridden up to <strong>100</strong>.</p>
+
+<p><code>?page</code> (integer): Specify the page number for results returned on a <strong>GET </strong> 
+query. The default page number is <strong>1</strong>.</p>
+
+<h3 id="sorting">Sorting</h3>
+
+<p><code>?sort</code> (string): Specify an API attribute to sort results by when performing a 
+<strong>GET</strong> query. Optionally, an array of attributes to sort by can be defined like so: 
+<code>?sort[]=attribute1&sort[]=attribute2</code>. By default, all result sets are sorted by a 
+resource's primary ID.</p>
+
+<p><code>?direction</code> (string): Specify a direction to sort results by: <strong>asc</strong> 
+or <strong>desc</strong>. This direction should corresponding to the attribute name provided in 
+<strong>sort</strong> and can also take the form of an array. By default, all result sets are 
+sorted ascending.</p>
+
+<h3 id="operator-prefixes">Operator Prefixes</h3>
+
+<p>Operators may be used when performing a <strong>GET</strong> query, providing an ample amount of 
+search & filtering capability.</p>
+
+<ul>
+	<li><code>?attribute=value</code>: <strong>attribute 
+	<span style="font-style: italic">equals</span> value</strong></li>
+	<li><code>?not-attribute=value</code>: <strong>attribute 
+	<span style="font-style: italic">does not equal</span> value</strong></li>
+	<li><code>?contains-attribute=value</code>: <strong>attribute 
+	<span style="font-style: italic">contains</span> value</strong></li>
+	<li><code>?not-contains-attribute=value</code>: <strong>attribute 
+	<span style="font-style: italic">does not contain</span> value</strong></li>
+	<li><code>?starts-with-attribute=value</code>: <strong>attribute 
+	<span style="font-style: italic">starts with</span> value</strong></li>
+	<li><code>?ends-with-attribute=value</code>: <strong>attribute 
+	<span style="font-style: italic">ends with</span> value</strong></li>
+	<li><code>?min-attribute=5</code>: <strong>attribute 
+	<span style="font-style: italic">is at least</span> 5</strong></li>
+	<li><code>?max-attribute=10</code>: <strong>attribute 
+	<span style="font-style: italic">is no more than</span> 10</strong></li>
+</ul>
+
+<h3 id="multiple-conditions">Multiple Conditions</h3>
+
+<p>Multiple conditions are assumed to be joined by <strong>AND</strong>. For example: 
+<code>?attribute1=1&attribute2=999</code> is the equivalent of asking the API 
+to give you all results where <strong>attribute1</strong> equals <strong>1</strong> AND 
+<strong>attribute2</strong> equals <strong>999</strong>. There is currently no way to 
+create <strong>OR</strong> conditions across attributes when querying the API dynamically.</p>
+
+<p>Within one attribute, multiple values can be separated by a pipe to create <strong>OR</strong> conditions.
+For example: <code>?attribute1=1|2</code> is the equivalent of asking the API 
+to give you all results where <strong>attribute1</strong> equals <strong>1</strong> OR <strong>2</strong>.</p>
+
+<p>Combining these concepts, you can pass a query such as <code>?attribute1=1|2&attribute2=999</code> to
+ask the API for all results where (<strong>attribute1</strong> equals <strong>1</strong> OR 
+<strong>2</strong>) AND (<strong>attribute2</strong> equals <strong>999</strong>).</p>
+
+<h3 id="limiting-returned-attributes">Limiting Returned Attributes</h3>
+
+<p><code>?attributes</code> can be used to limit the attributes returned in a <strong>GET</strong> request, 
+usually to help save network bandwidth and/or simplify caching. For example: 
+<code>?attributes=first,second</code> will ensure that only the attributes named <strong>first</strong> 
+and <strong>second</strong>, respectively, are returned in the result set.</p>
+
+<h3 id="relational-data">Relational Data</h3>
+
+<p><code>?related</code> allows for querying resources which are related to the current <strong>GET</strong> 
+request. For example: <code>?related=RelatedResource</code> will join in the <strong>RelatedResource</strong> 
+object. It is strongly encouraged to avoid using this option unless absolutely necessary. It is not easy 
+to cache and is therefore a burden on both bandwidth and processing.</p>
+
+<h3 id="timezone-conversion">Timezone Conversion</h3>
+
+<p>By default, all user-centric datetimes are output in <strong>UTC</strong>. It is possible to ask the 
+API for these datetimes in the timezone of the current user. To do so, specify a <code>?timezone</code> 
+with either a numerical offset or a string value from the 
+<a href="https://en.wikipedia.org/wiki/Tz_database">Olson database</a>. For example: 
+<code>?timezone=America/New_York</code>.  To use datetimes in the timezone of the current authenticated
+you would use: <code>?timezone=user</code>.</p>
+
+<?php
+require_once("../../footer.php");
+require_once("../../../footer.php");
+?>
