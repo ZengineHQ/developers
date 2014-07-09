@@ -8,4 +8,5 @@ defaults:
         authDomain: "https://auth.wizehive.com"
         demoClientId: "rest-api-quick-start-demo"
 baseurl: '/sandy-docs'
+exclude: [README.md, Gemfile, Gemfile.lock]
 github: [Repository metadata]

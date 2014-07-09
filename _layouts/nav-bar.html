@@ -1,14 +1,15 @@
 ---
 layout: default
+apiDomain: "https://api.wizehive.com"
+authDomain: "https://auth.wizehive.com"
+demoClientId: "rest-api-quick-start-demo"
 ---
-
-{{page.apiDomain}}
 
 <div class="row">
 	<div class="large-2 columns">			
 		<ul class="side-nav">
 			<li>
-				<a href="{{site.url}}/rest-api">Introduction</a>
+				<a href="{{site.baseurl}}/rest-api">Introduction</a>
 			</li>
 			<li class="divider"></li>
 			{% if {{page.url | strip}} === '/rest-api/auth/index.html' %}
@@ -16,74 +17,74 @@ layout: default
 			{% else %}
 				<li>
 			{% endif %}
-				<a href="{{site.url}}/rest-api/quick-start">Quick Start</a>
+				<a href="{{site.baseurl}}/rest-api/quick-start">Quick Start</a>
 				<ul>
 					<a href="/rest-api/quick-start"></a>
 					<li>
-						<a href="{{site.url}}/rest-api/quick-start"></a>
-						<a href="{{site.url}}/rest-api/quick-start/#basics">Basics</a>
+						<a href="{{site.baseurl}}/rest-api/quick-start"></a>
+						<a href="{{site.baseurl}}/rest-api/quick-start/#basics">Basics</a>
 					</li>
 					<li>
-						<a href="{{site.url}}/rest-api/quick-start/#auth">Auth</a>
+						<a href="{{site.baseurl}}/rest-api/quick-start/#auth">Auth</a>
 					</li>
 					<li>
-						<a href="{{site.url}}/rest-api/quick-start/#getting-an-api-key">Getting an API Key</a>
+						<a href="{{site.baseurl}}/rest-api/quick-start/#getting-an-api-key">Getting an API Key</a>
 					</li>
 					<li>
-						<a href="{{site.url}}/rest-api/quick-start/#getting-an-access-token">Getting an Access Token</a>
+						<a href="{{site.baseurl}}/rest-api/quick-start/#getting-an-access-token">Getting an Access Token</a>
 					</li>
 					<li>
-						<a href="{{site.url}}/rest-api/quick-start/#example-request">Example Request</a>
+						<a href="{{site.baseurl}}/rest-api/quick-start/#example-request">Example Request</a>
 					</li>
 				</ul>
 			</li>
 			<li class="divider"></li>
 			<li>
-				<a href="{{site.url}}/rest-api/resources">Resources</a>
+				<a href="{{site.baseurl}}/rest-api/resources">Resources</a>
 			</li>
 			<li class="divider"></li>
 			<li>
-				<a href="{{site.url}}/rest-api/conventions">Conventions</a>
+				<a href="{{site.baseurl}}/rest-api/conventions">Conventions</a>
 				<ul>
-					<a href="{{site.url}}/rest-api/conventions">
+					<a href="{{site.baseurl}}/rest-api/conventions">
 						<li class="divider"></li>
 					</a>
 					<li>
-						<a href="{{site.url}}/rest-api/conventions"></a>
-						<a href="{{site.url}}/rest-api/conventions/general">General</a>
+						<a href="{{site.baseurl}}/rest-api/conventions"></a>
+						<a href="{{site.baseurl}}/rest-api/conventions/general">General</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="{{site.url}}/rest-api/conventions/passing-parameters">Passing Parameters</a>
+						<a href="{{site.baseurl}}/rest-api/conventions/passing-parameters">Passing Parameters</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="{{site.url}}/rest-api/conventions/querying-options">Querying Options</a>
+						<a href="{{site.baseurl}}/rest-api/conventions/querying-options">Querying Options</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="{{site.url}}/rest-api/conventions/response-format">Response Format</a>
+						<a href="{{site.baseurl}}/rest-api/conventions/response-format">Response Format</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="{{site.url}}/rest-api/conventions/http-verbs">HTTP Verbs</a>
+						<a href="{{site.baseurl}}/rest-api/conventions/http-verbs">HTTP Verbs</a>
 						<ul>
 							<a href="/rest-api/conventions/http-verbs"></a>
 							<li>
-								<a href="{{site.url}}/rest-api/conventions/http-verbs"></a>
-								<a href="{{site.url}}/rest-api/conventions/http-verbs/#get">GET</a>
+								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs"></a>
+								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#get">GET</a>
 							</li>
 							<li>
-								<a href="{{site.url}}/rest-api/conventions/http-verbs/#post">POST</a>
+								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#post">POST</a>
 							</li>
 							<li>
-								<a href="{{site.url}}/rest-api/conventions/http-verbs/#put">PUT</a>
+								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#put">PUT</a>
 							</li>
 							<li>
-								<a href="{{site.url}}/rest-api/conventions/http-verbs/#delete">DELETE</a>
+								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#delete">DELETE</a>
 							</li>
 							<li>
-								<a href="{{site.url}}/rest-api/conventions/http-verbs/#options">OPTIONS</a>
+								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#options">OPTIONS</a>
 							</li>
 						</ul>
 					</li>
@@ -91,50 +92,50 @@ layout: default
 			</li>
 			<li class="divider"></li>
 			<li>
-				<a href="{{site.url}}/rest-api/auth">Auth</a>
+				<a href="{{site.baseurl}}/rest-api/auth">Auth</a>
 				<ul>
-					<a href="{{site.url}}/rest-api/auth"></a>
+					<a href="{{site.baseurl}}/rest-api/auth"></a>
 					<li>
-						<a href="{{site.url}}/rest-api/auth"></a>
-						<a href="{{site.url}}/rest-api/auth/#oauth2-overview">OAuth 2 Overview</a>
+						<a href="{{site.baseurl}}/rest-api/auth"></a>
+						<a href="{{site.baseurl}}/rest-api/auth/#oauth2-overview">OAuth 2 Overview</a>
 					</li>
 					<li>
-						<a href="{{site.url}}/rest-api/auth/#registering-an-application">Registering an Application</a>
+						<a href="{{site.baseurl}}/rest-api/auth/#registering-an-application">Registering an Application</a>
 						<ul>
-							<a href="{{site.url}}/rest-api/auth/#registering-an-application"></a>
+							<a href="{{site.baseurl}}/rest-api/auth/#registering-an-application"></a>
 							<li>
-								<a href="{{site.url}}/rest-api/auth/#registering-an-application"></a>
+								<a href="{{site.baseurl}}/rest-api/auth/#registering-an-application"></a>
 								<a href="/rest-api/auth/#registering-an-application-redirect-uri">Redirect URI</a>
 							</li>
 						</ul>
 					</li>
 					<li>
-						<a href="{{site.url}}/rest-api/auth/#public-vs-private-resources">Public vs. Private Resources</a>
+						<a href="{{site.baseurl}}/rest-api/auth/#public-vs-private-resources">Public vs. Private Resources</a>
 					</li>
 					<li>
-						<a href="{{site.url}}/rest-api/auth/#passing-credentials">Passing Credentials</a>
+						<a href="{{site.baseurl}}/rest-api/auth/#passing-credentials">Passing Credentials</a>
 					</li>
 					<li>
-						<a href="{{site.url}}/rest-api/auth/#3-legged-flows">3-Legged Flows</a>
+						<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows">3-Legged Flows</a>
 						<ul>
-							<a href="{{site.url}}/rest-api/auth/#3-legged-flows"></a>
+							<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows"></a>
 							<li>
-								<a href="{{site.url}}/rest-api/auth/#3-legged-flows"></a>
-								<a href="{{site.url}}/rest-api/auth/#3-legged-flows-server">Server</a>
+								<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows"></a>
+								<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows-server">Server</a>
 							</li>
 							<li>
-								<a href="{{site.url}}/rest-api/auth/#3-legged-flows-client">Client</a>
+								<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows-client">Client</a>
 							</li>
 						</ul>
 					</li>
 					<li>
-						<a href="{{site.url}}/rest-api/auth/#authorizations-api">Authorizations API</a>
+						<a href="{{site.baseurl}}/rest-api/auth/#authorizations-api">Authorizations API</a>
 					</li>
 				</ul>
 			</li>
 			<li class="divider"></li>
 			<li>
-				<a href="{{site.url}}/rest-api/cross-origin-resource-sharing">Cross-Origin Resource Sharing (CORS)</a>
+				<a href="{{site.baseurl}}/rest-api/cross-origin-resource-sharing">Cross-Origin Resource Sharing (CORS)</a>
 			</li>
 		</ul>
 	</div>
