@@ -1,121 +1,117 @@
 ---
 layout: nav-bar
-apiDomain: "https://api.wizehive.com"
 ---
 
-		<h1>Conventions</h1>
+<h1>Conventions</h1>
 
-		<h2>General</h2>
+<h2>General</h2>
 
-		<h3 id="base-path">Base Path</h3>
+<h3 id="base-path">Base Path</h3>
 
-		<p>The Version 1 REST API base path is:</p>
+<p>The Version 1 REST API base path is:</p>
 
-		<p><pre>{{page.apiDomain}}/v1</pre></p>
+<p><pre>{{page.apiDomain}}/v1</pre></p>
 
-		<h3 id="https-required">HTTPS Required</h3>
+<h3 id="https-required">HTTPS Required</h3>
 
-		<p>For security reasons, the API is only open on HTTPS (Port 443). All other traffic will be blackholed.</p>
+<p>For security reasons, the API is only open on HTTPS (Port 443). All other traffic will be blackholed.</p>
 
-		<h3 id="timestamp-format">Timestamp Format</h3>
+<h3 id="timestamp-format">Timestamp Format</h3>
 
-		<p>All timestamps are returned in ISO 8601 format:</p>
+<p>All timestamps are returned in ISO 8601 format:</p>
 
-		<p><pre>
-		YYYY-MM-DDTHH:MM:SSZ
-		</pre></p>
+<p><pre>
+YYYY-MM-DDTHH:MM:SSZ
+</pre></p>
 
-		For example:
+For example:
 
-		<p><pre>
-		2013-05-01T14:00:00Z
-		</pre></p>
+<p><pre>
+2013-05-01T14:00:00Z
+</pre></p>
 
-		<h3 id="default-timezone">Default Timezone</h3>
+<h3 id="default-timezone">Default Timezone</h3>
 
-		The default timezone for all requests is <strong>UTC</strong>.
+The default timezone for all requests is <strong>UTC</strong>.
 
-		<h3 id="media-type-support">Media Type Support</h3>
+<h3 id="media-type-support">Media Type Support</h3>
 
-		<p><code>POST</code> and <code>PUT</code> data can be received in the following formats:</p>
+<p><code>POST</code> and <code>PUT</code> data can be received in the following formats:</p>
 
-		<ul>
-			<li><code>application/json</code></li>
-			<li><code>application/xml</code></li>
-			<li><code>application/x-www-form-urlencoded</code></li>
-			<li><code>multipart/form-data</code> (required and only applicable on requests including file uploads)</li>
-		</ul>
+<ul>
+	<li><code>application/json</code></li>
+	<li><code>application/xml</code></li>
+	<li><code>application/x-www-form-urlencoded</code></li>
+	<li><code>multipart/form-data</code> (required and only applicable on requests including file uploads)</li>
+</ul>
 
-		<p>You must specify your preference using the <code>Content-Type</code> header. For example:</p>
+<p>You must specify your preference using the <code>Content-Type</code> header. For example:</p>
 
-		<p><pre>Content-Type: application/json</pre></p>
+<p><pre>Content-Type: application/json</pre></p>
 
-		<p>Media can be returned in JSON, XML and CSV formats:</p>
+<p>Media can be returned in JSON, XML and CSV formats:</p>
 
-		<ul>
-			<li><code>application/json</code></li>
-			<li><code>application/xml</code></li>
-			<li><code>text/csv</code></li>
-		</ul>
+<ul>
+	<li><code>application/json</code></li>
+	<li><code>application/xml</code></li>
+	<li><code>text/csv</code></li>
+</ul>
 
-		<p>You can specify your preference as a URL extension 
-		or by using the <code>Accept</code> header. The URL extension takes precedence. For example:</p>
+<p>You can specify your preference as a URL extension 
+or by using the <code>Accept</code> header. The URL extension takes precedence. For example:</p>
 
-		<p><pre>{{page.apiDomain}}/v1/{resource}.json
-		Accept: application/xml
-		</pre></p>
+<p><pre>{{page.apiDomain}}/v1/{resource}.json
+Accept: application/xml
+</pre></p>
 
-		<p>... will return a JSON-formatted response</p>
+<p>... will return a JSON-formatted response</p>
 
-		<h4 id="media-type-support-jsonp">JSONP</h4>
+<h4 id="media-type-support-jsonp">JSONP</h4>
 
-		<p>A <code>?callback</code> parameter can be used with any <code>GET</code> request to have the 
-		results wrapped in a JavaScript function. This is typically required for client-side applications which 
-		needs to make cross-domain requests to the WizeHive API without using a proxy or the more modern 
-		<a href="/rest-api/cross-origin-resource-sharing">Cross-Origin Resource Sharing (CORS)</a> strategy.</p>
+<p>A <code>?callback</code> parameter can be used with any <code>GET</code> request to have the 
+results wrapped in a JavaScript function. This is typically required for client-side applications which 
+needs to make cross-domain requests to the WizeHive API without using a proxy or the more modern 
+<a href="{{site.baseurl}}/rest-api/cross-origin-resource-sharing">Cross-Origin Resource Sharing (CORS)</a> strategy.</p>
 
-		<p>Example:</p>
+<p>Example:</p>
 
-		<p><pre>
-		{{page.apiDomain}}/v1/{resource}.json?callback=foo
+<p><pre>
+{{page.apiDomain}}/v1/{resource}.json?callback=foo
 
-		foo({
-			"status": 200,
-			"code": 2000,
-			// etc
-		});
-		</pre></p>
+foo({
+	"status": 200,
+	"code": 2000,
+	// etc
+});
+</pre></p>
 
-		<p>The JavaScript to handle the callback might look something like this:</p>
+<p>The JavaScript to handle the callback might look something like this:</p>
 
-		{% highlight js %}
-		function foo(response){
-			console.log('Status: ' + response.status);
-		}
-		{% endhighlight %}
+{% highlight js %}
+function foo(response){
+	console.log('Status: ' + response.status);
+}
+{% endhighlight %}
 
-		<h4 id="media-type-support-json-pretty-printing">JSON Pretty Printing</h4>
+<h4 id="media-type-support-json-pretty-printing">JSON Pretty Printing</h4>
 
-		<p>Typically, a JSON response will be served without any whitespace, saving bandwidth. For example:</p>
+<p>Typically, a JSON response will be served without any whitespace, saving bandwidth. For example:</p>
 
-		<p><pre>
-		{{page.apiDomain}}/v1/{resource}.json
+<p><pre>
+{{page.apiDomain}}/v1/{resource}.json
 
-		{"status":200,"code":2000,...}
-		</pre></p>
+{"status":200,"code":2000,...}
+</pre></p>
 
-		<p>It is often helpful to make this more readable for the purposes of API discovery and debugging. 
-		You may use the <code>?pretty=1</code> parameter to return data in "pretty print" format:</p>
+<p>It is often helpful to make this more readable for the purposes of API discovery and debugging. 
+You may use the <code>?pretty=1</code> parameter to return data in "pretty print" format:</p>
 
-		<p><pre>
-		{{page.apiDomain}}/v1/{resource}.json
+<p><pre>
+{{page.apiDomain}}/v1/{resource}.json
 
-		{
-			"status": 200,
-			"code": 2000,
-			...
-		}
-		</pre></p>
-
-	</div>
-</div>
+{
+	"status": 200,
+	"code": 2000,
+	...
+}
+</pre></p>

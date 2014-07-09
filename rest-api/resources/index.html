@@ -1,3 +1,9 @@
+---
+layout: nav-bar
+discoveryUrl: 'https://api.wizehive.com/api-docs/resources.json'
+apiKey: false
+---
+
 <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
 <link href='css/smoothness/jquery-ui-1.10.3.custom.min.css' media='screen' rel='stylesheet' type='text/css'/>
 <script src='lib/jquery-1.8.0.min.js' type='text/javascript'></script>
@@ -88,8 +94,8 @@
         });
         
 		window.swaggerUi = new SwaggerUi({
-			discoveryUrl:"<?php echo $discoveryUrl; ?>",
-			apiKey:"<?php echo (empty($apiKey)) ? 'access_token' : $apiKey;?>",
+			discoveryUrl: "{{page.discoveryUrl}}",
+			apiKey:"access_token",
 			apiKeyName:"access_token",
 			dom_id:"swagger-ui-container",
 			supportHeaderParams: false,
