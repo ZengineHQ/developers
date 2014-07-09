@@ -1,7 +1,6 @@
-<?php
-require_once("../../header.php");
-require_once("../header.php");
-?>
+---
+layout: nav-bar
+---
 
 <h1>Quick Start</h1>
 
@@ -20,7 +19,8 @@ require_once("../header.php");
 <p>The <a href="/rest-api/auth/#oauth2-overview">OAuth 2 protocol</a> is used to authenticate and authorize 
 every API request.</p>
 
-<?php require_once("__auth_breakdown.php"); ?>
+{% include public_vs_private_resources.html %}
+{% include passing_credentials.html %}
 
 <h2 id="getting-an-api-key">Getting an API Key</h2>
 
@@ -123,7 +123,5 @@ because you'll need them!). As
 you want or need, the rest of the documentation is here to help you learn more about general API 
 conventions, tools and details that may prove useful for specific application requirements.</p>
 
-<?php
-require_once("../footer.php");
-require_once("../../footer.php");
-?>
+</div>
+</div>

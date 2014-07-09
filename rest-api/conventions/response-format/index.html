@@ -1,0 +1,125 @@
+---
+layout: nav-bar
+---
+		<h1>Conventions</h1>
+
+		<h2>Response Format</h2>
+
+		<p>At a high level, there are two possible response formats you will encounter. One for success conditions 
+		and one for failure conditions. Within those paths, parameters may vary depending on the 
+		<a href="/rest-api/conventions/http-verbs">verb</a> used and the 
+		<a href="/rest-api/conventions/response-format/#http-status">status</a> range returned.</p>
+
+		<h3 id="http-status">HTTP Status</h3>
+
+		<p>The HTTP <strong>Status</strong> header is always used to indicate success or failure at a high level. 
+		Statuses are used appropriately and consistently:</p>
+
+		<ul>
+			<li><code>200</code> range indicates success.</li>
+			<li><code>400</code> range indicates errors fixable by the API consumer: authentication, bad formatting, 
+			data validation issues, etc.</li>
+			<li><code>500</code> range indicates errors on our end: server issues, maintenance downtime, etc.</li>
+		</ul>
+
+		<h3 id="success">Success</h3>
+
+		{% highlight json %}
+		{
+			"status": 200,
+			"code": 2000
+		}
+		{% endhighlight %}
+
+		<p>In a successful response, you will always receive a <code>status</code> in the 200 range. This is a 
+		duplicate of the HTTP status code. You will also receive a <code>code</code> in the 2000 range. This is 
+		a WizeHive-specific code that can be used for more context.</p>
+
+		<h4 id="success-get-post-put">GET, POST and PUT</h4>
+
+		{% highlight json %}
+		{
+			"status": 200,
+			"code": 2000,
+			"totalCount": 2,
+			"limit": 20,
+			"offset": 0,
+			"data": [
+				{
+					"id": 1,
+					"attributeOne": "some value"
+				},
+				{
+					"id": 2,
+					"attributeOne": "some other value"
+				}
+			]
+		}
+		{% endhighlight %}
+			
+		<p>A <code>totalCount</code>, <code>limit</code>, and <code>offset</code> is provided for all 
+		<strong>GET</strong>, <strong>POST</strong> and <strong>PUT</strong> requests.</p>
+
+		<p><code>data</code> holds information about the object(s) being fetched, created or modified. 
+		<code>data</code> is an array, as shown above, when representing lists of objects. In single-object 
+		scenarios, <code>data</code> itself becomes the object. For example:</p> 
+
+		{% highlight json %}
+		{
+			"status": 200,
+			"code": 2000,
+			"totalCount": 2,
+			"limit": 20,
+			"offset": 0,
+			"data": {
+				"id": 1,
+				"attributeOne": "some value"
+			}
+		}
+		{% endhighlight %}
+
+		<h3 id="failure">Failure</h3>
+
+		{% highlight json %}
+		{
+			"status": 404,
+			"code": 4004,
+			"userMessage": "Error viewing data",
+			"developerMessage": "No data was found"
+		}
+		{% endhighlight %}
+
+		<p>In a failure response, you will always receive a <code>status</code> in the 
+		400 or 500 range. This is a duplicate of the HTTP status code. You will also receive a 
+		WizeHive-specific <code>code</code> in the 4000 range. This code can be used for better context.</p>
+
+		<p>The <code>userMessage</code> is a string containing friendly text that you can pass directly on 
+		to an end user. The <code>developerMessage</code> is geared towards the developer.</p>
+
+		<h4 id="failure-post-and-put-user-error">POST and PUT: User Error</h4>
+
+		{% highlight json %}
+		{
+			"status": 403,
+			"code": 4012,
+			"userMessage": "Error saving data",
+			"developerMessage": "Validation errors",
+			"validationErrors": {
+				"attributeOne": [
+					"Some error message"
+				],
+				"attributeTwo": [
+					"Some error message",
+					"Some other error message"
+				]
+			}
+		}
+		{% endhighlight %}
+
+		<p>When invalid data has been <strong>POST</strong>ed or <strong>PUT</strong>, 
+		<code>validationErrors</code> will also be returned. These errors will be returned in the same keyed format 
+		they were provided tot he API, which means they can be programmatically passed back to an end user with 
+		ease. Note that each attribute contains an array with one or more errors that are associated with that 
+		attribute.</p>
+	</div>
+</div>
