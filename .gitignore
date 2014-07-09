@@ -9,6 +9,7 @@
 .DS_Store
 .cache
 .sass-cache/
+_site
 .project
 .buildpath
 .idea
@@ -23,3 +24,4 @@ nbproject
 .elasticbeanstalk/
 logs/access_log
 logs/error_log
+Gemfile.lock

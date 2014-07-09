@@ -2,6 +2,8 @@
 layout: default
 ---
 
+{{page.apiDomain}}
+
 <div class="row">
 	<div class="large-2 columns">			
 		<ul class="side-nav">
@@ -9,7 +11,11 @@ layout: default
 				<a href="{{site.url}}/rest-api">Introduction</a>
 			</li>
 			<li class="divider"></li>
-			<li class="active">
+			{% if {{page.url | strip}} === '/rest-api/auth/index.html' %}
+				<li class="active">
+			{% else %}
+				<li>
+			{% endif %}
 				<a href="{{site.url}}/rest-api/quick-start">Quick Start</a>
 				<ul>
 					<a href="/rest-api/quick-start"></a>
@@ -61,12 +67,71 @@ layout: default
 					<li class="divider"></li>
 					<li>
 						<a href="{{site.url}}/rest-api/conventions/http-verbs">HTTP Verbs</a>
+						<ul>
+							<a href="/rest-api/conventions/http-verbs"></a>
+							<li>
+								<a href="{{site.url}}/rest-api/conventions/http-verbs"></a>
+								<a href="{{site.url}}/rest-api/conventions/http-verbs/#get">GET</a>
+							</li>
+							<li>
+								<a href="{{site.url}}/rest-api/conventions/http-verbs/#post">POST</a>
+							</li>
+							<li>
+								<a href="{{site.url}}/rest-api/conventions/http-verbs/#put">PUT</a>
+							</li>
+							<li>
+								<a href="{{site.url}}/rest-api/conventions/http-verbs/#delete">DELETE</a>
+							</li>
+							<li>
+								<a href="{{site.url}}/rest-api/conventions/http-verbs/#options">OPTIONS</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</li>
 			<li class="divider"></li>
 			<li>
-				<a href="{{site.url}}/rest-api/auth">Auth</a></li>
+				<a href="{{site.url}}/rest-api/auth">Auth</a>
+				<ul>
+					<a href="{{site.url}}/rest-api/auth"></a>
+					<li>
+						<a href="{{site.url}}/rest-api/auth"></a>
+						<a href="{{site.url}}/rest-api/auth/#oauth2-overview">OAuth 2 Overview</a>
+					</li>
+					<li>
+						<a href="{{site.url}}/rest-api/auth/#registering-an-application">Registering an Application</a>
+						<ul>
+							<a href="{{site.url}}/rest-api/auth/#registering-an-application"></a>
+							<li>
+								<a href="{{site.url}}/rest-api/auth/#registering-an-application"></a>
+								<a href="/rest-api/auth/#registering-an-application-redirect-uri">Redirect URI</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="{{site.url}}/rest-api/auth/#public-vs-private-resources">Public vs. Private Resources</a>
+					</li>
+					<li>
+						<a href="{{site.url}}/rest-api/auth/#passing-credentials">Passing Credentials</a>
+					</li>
+					<li>
+						<a href="{{site.url}}/rest-api/auth/#3-legged-flows">3-Legged Flows</a>
+						<ul>
+							<a href="{{site.url}}/rest-api/auth/#3-legged-flows"></a>
+							<li>
+								<a href="{{site.url}}/rest-api/auth/#3-legged-flows"></a>
+								<a href="{{site.url}}/rest-api/auth/#3-legged-flows-server">Server</a>
+							</li>
+							<li>
+								<a href="{{site.url}}/rest-api/auth/#3-legged-flows-client">Client</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="{{site.url}}/rest-api/auth/#authorizations-api">Authorizations API</a>
+					</li>
+				</ul>
+			</li>
 			<li class="divider"></li>
 			<li>
 				<a href="{{site.url}}/rest-api/cross-origin-resource-sharing">Cross-Origin Resource Sharing (CORS)</a>

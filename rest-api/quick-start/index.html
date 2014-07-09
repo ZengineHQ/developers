@@ -9,7 +9,7 @@ layout: nav-bar
 <p>The base API is accessible at:</p>
 
 <p><pre>
-<?php echo $apiDomain; ?>/v1/
+{{page.apiDomain}}/v1/
 </pre></p>
 
 <p>Data can be both sent & received in JSON & XML formats.</p>
@@ -37,7 +37,7 @@ more about the API's <a href="/rest-api/auth">Auth</a> process at large.</p>
 <p>For now, to get you started with a sample request, we will assume that you are trying to access data 
 from your own account with a token that you manually acquire for the purposes of this demo. 
 <span id="getting-an-access-token-login">When you are ready, 
-<a href="<?php echo $authDomain; ?>/oauth2/v1/authorize?client_id=<?php echo $demoClientId; ?>&response_type=token&state=demo">proceed to login and retrieve your demo token</a>.</span></p>
+<a href="{{page.authDomain}}/oauth2/v1/authorize?client_id={{page.demoClientId}}&response_type=token&state=demo">proceed to login and retrieve your demo token</a>.</span></p>
 
 <div id="getting-an-access-token-success" data-alert class="alert-box success round" style="display: none">
 	Your token was successfully generated and will be valid for the next 1 hour: <br />
@@ -106,14 +106,14 @@ requests.</p>
 <strong>Workspaces </strong>you are associated with in JSON format:</p>
 
 <p><pre>
-<?php echo $apiDomain; ?>/v1/workspaces.json?access_token=<span id="access-token-example">{your demo access token}</span>
+{{page.$apiDomain}}/v1/workspaces.json?access_token=<span id="access-token-example">{your demo access token}</span>
 </pre></p>
 
 <p>For public requests, such as retrieving a list of <strong>AppTemplates</strong> from 
 the marketplace, you must instead supply your API key. Simply point your browser to:</p>
 
 <p><pre>
-<?php echo $apiDomain; ?>/v1/app_templates.json?client_id={your API key}
+{{page.$apiDomain}}/v1/app_templates.json?client_id={your API key}
 </pre></p>
 
 <p>That's all there is to it! From here on out, we suggest learning by doing. The 

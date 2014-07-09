@@ -7,14 +7,14 @@ layout: nav-bar
 <!-- TODO: Is all the CORS information here accurate? -->
 
 <p>The API supports Cross Origin Resource Sharing (CORS) for AJAX requests. You can read the 
-<a href="http://www.w3.org/TR/cors">CORS W3C working draft</a>, or 
-<a href="http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity">this intro</a> 
+<a href="http://www.w3.org/TR/cors" target="_blank">CORS W3C working draft</a>, or 
+<a href="http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity" target="_blank">this intro</a> 
 from the HTML 5 Security Guide.</p>
 
 <p>Here's a sample request sent from a browser hitting <strong>http://example.org</strong>:</p>
 
 <p><pre>
-<?php echo $apiDomain; ?>/v1/workspaces -H "Origin: http://example.org"
+{{page.apiDomain}}/v1/workspaces -H "Origin: http://example.org"
 Origin: http://example.org
 Access-Control-Request-Header: X-Custom-Header
 </pre></p>

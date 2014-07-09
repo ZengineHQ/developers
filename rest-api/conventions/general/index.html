@@ -2,6 +2,8 @@
 layout: nav-bar
 ---
 
+{{page.apiDomain}}
+
 		<h1>Conventions</h1>
 
 		<h2>General</h2>
@@ -10,7 +12,7 @@ layout: nav-bar
 
 		<p>The Version 1 REST API base path is:</p>
 
-		<p><pre><?php echo $apiDomain; ?>/v1/</pre></p>
+		<p><pre>{{page.apiDomain}}/v1</pre></p>
 
 		<h3 id="https-required">HTTPS Required</h3>
 
@@ -60,8 +62,7 @@ layout: nav-bar
 		<p>You can specify your preference as a URL extension 
 		or by using the <code>Accept</code> header. The URL extension takes precedence. For example:</p>
 
-		<p><pre>
-		<?php echo $apiDomain; ?>/v1/{resource}.json
+		<p><pre>{{page.apiDomain}}/v1/{resource}.json
 		Accept: application/xml
 		</pre></p>
 
@@ -77,7 +78,7 @@ layout: nav-bar
 		<p>Example:</p>
 
 		<p><pre>
-		<?php echo $apiDomain; ?>/v1/{resource}.json?callback=foo
+		{{page.apiDomain}}/v1/{resource}.json?callback=foo
 
 		foo({
 			"status": 200,
@@ -88,18 +89,18 @@ layout: nav-bar
 
 		<p>The JavaScript to handle the callback might look something like this:</p>
 
-		<p><pre>
+		{% highlight js %}
 		function foo(response){
 			console.log('Status: ' + response.status);
 		}
-		</pre></p>
+		{% endhighlight %}
 
 		<h4 id="media-type-support-json-pretty-printing">JSON Pretty Printing</h4>
 
 		<p>Typically, a JSON response will be served without any whitespace, saving bandwidth. For example:</p>
 
 		<p><pre>
-		<?php echo $apiDomain; ?>/v1/{resource}.json
+		{{page.apiDomain}}/v1/{resource}.json
 
 		{"status":200,"code":2000,...}
 		</pre></p>
@@ -108,7 +109,7 @@ layout: nav-bar
 		You may use the <code>?pretty=1</code> parameter to return data in "pretty print" format:</p>
 
 		<p><pre>
-		<?php echo $apiDomain; ?>/v1/{resource}.json
+		{{page.apiDomain}}/v1/{resource}.json
 
 		{
 			"status": 200,

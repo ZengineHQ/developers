@@ -1,3 +1,11 @@
-url: https://aparks.github.io/sandy-docs
-pygments: true
+defaults:
+-
+    scope:
+        path: "" # an empty string here means all files in the project
+    values:
+        layout: default
+        apiDomain: "https://api.wizehive.com"
+        authDomain: "https://auth.wizehive.com"
+        demoClientId: "rest-api-quick-start-demo"
+baseurl: '/sandy-docs'
 github: [Repository metadata]

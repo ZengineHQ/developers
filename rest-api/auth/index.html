@@ -6,7 +6,7 @@ layout: nav-bar
 
 		<h2 id="oauth2-overview">OAuth 2 Overview</h2>
 
-		<p>The <a href="http://oauth.net/2/">OAuth 2 protocol</a> is used to authenticate and authorize every 
+		<p>The <a href="http://oauth.net/2/" target="_blank">OAuth 2 protocol</a> is used to authenticate and authorize every 
 		API request. OAuth makes it possible for you to act on behalf of WizeHive users without those users needing 
 		to share their credentials (username/password). This is made possible via a flow where the end user is 
 		redirected from your application to WizeHive and grants your application permission to an access 
@@ -54,9 +54,20 @@ layout: nav-bar
 			<strong>?code={a code which lasts for 30 seconds}&state={the session-based string you passed to prevent CSRF}</strong></li>
 			<li>The <strong>state</strong> parameter is checked to ensure it matches the one you passed.</li>
 			<li>A <strong>GET</strong> request is made to: <strong><?=$authDomain; ?>/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=authorization_code&code={the code you just received back from WizeHive}</strong></li>
-			<li>Assuming the code is valid, you will receive a JSON response back with an access token in it: <pre>{"access_token": "the token", "refresh_token": "a refresh token"}</pre></li>
+			<li>Assuming the code is valid, you will receive a JSON response back with an access token in it: 
+				{% highlight json %}
+					{
+						"access_token": "the token",
+						"refresh_token": "a refresh token"
+					}
+				{% endhighlight %}
+			</li>
 			<li>A <strong>GET</strong> request is made to: <strong><?=$authDomain; ?>/oauth2/v1/token?access_token={the token}</strong></li>
-			<li>Assuming the token is valid, you will receive a JSON response back with an API key in it: <pre>{"client_id": "your API key"}</pre></li>
+			<li>Assuming the token is valid, you will receive a JSON response back with an API key in it: 
+				{% highlight json %}
+					{"client_id": "your API key"}
+				{% endhighlight %}
+			</li>
 			<li>The <strong>client_id</strong> (API key) is checked to ensure it is your own.</li>
 		</ol>
 
@@ -73,92 +84,7 @@ layout: nav-bar
 
 		<p>A sample server-side script, written in PHP, is provided below:</p>
 
-		{% highlight php linenos %}
-
-		require_once 'curl' . DIRECTORY_SEPARATOR . 'curl.php';
-		 
-		$Curl = new Curl();
-		 
-		// This is called once, after we get a code back
-		if (!empty($_GET['code'])) {
-		 
-			// Make sure there wasn't an error authenticating
-			if (!empty($_GET['error'])) {
-				die('Error: ' . $_GET['error']);
-			}
-			
-			// CSRF check
-			if ($_GET['state'] !== 'something') {
-				die('Naughty, naughty');
-			}
-			
-			// Exchange code for token
-			$url = '/oauth2/v1/grant';
-			$result = $Curl->post($url, array(
-				'code' => $_GET['code'],
-				'grant_type' => 'authorization_code',
-				'client_id' => 'demo-server-flow-key',
-				'client_secret' => 'secret',
-				'redirect_uri' => 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']
-			));
-			
-			$body = $result->body;
-			$data = json_decode($body, true);
-			
-			if (empty($data)) {
-				die('Error retrieving token data');
-			}
-			
-			$access_token = $data['access_token'];
-			
-			echo 'Token data from auth endpoint ' . $url . ':<br />';
-			echo '<pre>' . print_r($data, true) . '</pre>';
-			
-			echo '<br /><br />';
-			
-			// Verify token
-			$url = '/oauth2/v1/token';
-			$result = $Curl->get($url, array(
-				'access_token' => $access_token
-			));
-			
-			$body = $result->body;
-			$data = json_decode($body, true);
-			
-			if (empty($data)) {
-				die('Error verifying token');
-			}
-			
-			if ($data['client_id'] !== 'demo-server-flow-key') {
-				die('Naughty, naughty');
-			}
-			
-			echo 'Token verification from auth endpoint ' . $url . ':<br />';
-			echo '<pre>' . print_r($data, true) . '</pre>';
-			
-			// Access a resource which gives back data about the authorized User ID
-			$url = '/v1/users/me';
-			$result = $Curl->get($url, array(
-				'access_token' => $access_token
-			));
-			
-			$body = $result->body;
-			$data = json_decode($body, true);
-			
-			if (empty($data)) {
-				die('Error accessing resource');
-			}
-			
-			echo 'User data from API resource ' . $url . ':<br />';
-			echo '<pre>' . print_r($data, true) . '</pre>';
-			
-			die();
-			
-			echo '<a href="/oauth2/v1/authorize?client_id=demo-server-flow-key&response_type=code&state=something">Log in</a>';
-		
-		}
-
-		{% endhighlight %}
+		{% gist /AParks/113ce501ee18e6f590f4 %}
 
 		<h3 id="3-legged-flows-client">Client</h3>
 
@@ -173,7 +99,11 @@ layout: nav-bar
 			<li>JavaScript is used to parse the parameters after the # hashbang.</li>
 			<li>The <strong>state</strong> parameter is checked to ensure it matches the one you passed.</li>
 			<li>A <strong>GET</strong> request is made to: <strong><?=$authDomain; ?>/oauth2/v1/token?access_token={the token}</strong></li>
-			<li>Assuming the token is valid, you will receive a JSON response back with an API key in it: <pre>{"client_id": "your API key"}</pre></li>
+			<li>Assuming the token is valid, you will receive a JSON response back with an API key in it: 
+				{% highlight json %}
+					{"client_id": "your API key"}
+				{% endhighlight %}
+			</li>
 			<li>The <strong>client_id</strong> (API key) is checked to ensure it is your own.</li>
 		</ol>
 
