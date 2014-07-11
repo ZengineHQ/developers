@@ -1,5 +1,6 @@
 ---
 layout: nav-bar
+group: cors
 ---
 
 <h1>Cross-Origin Resource Sharing (CORS)</h1>
@@ -14,7 +15,7 @@ from the HTML 5 Security Guide.</p>
 <p>Here's a sample request sent from a browser hitting <strong>http://example.org</strong>:</p>
 
 <p><pre>
-{{page.apiDomain}}/v1/workspaces -H "Origin: http://example.org"
+{{site.apiDomain}}/v1/workspaces -H "Origin: http://example.org"
 Origin: http://example.org
 Access-Control-Request-Header: X-Custom-Header
 </pre></p>

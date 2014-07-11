@@ -1,5 +1,6 @@
 ---
 layout: nav-bar
+group: auth
 ---
 
 <h1>Auth</h1>
@@ -48,12 +49,12 @@ clients, these two scenarios require different flows.</p>
 
 <ol>
 	<li>Your app needs to acquire a token for a user, and sends that user to: 
-	<strong><?=$authDomain; ?>/oauth2/v1/authorize?client_id={your API key}&response_type=code&state={a session-based string you use to prevent CSRF}</strong></li>
+	<strong>{{site.authDomain}}/oauth2/v1/authorize?client_id={your API key}&response_type=code&state={a session-based string you use to prevent CSRF}</strong></li>
 	<li>The user authenticates with WizeHive and returns to the redirect URI you set up for your 
 	application with the following query string appended: 
 	<strong>?code={a code which lasts for 30 seconds}&state={the session-based string you passed to prevent CSRF}</strong></li>
 	<li>The <strong>state</strong> parameter is checked to ensure it matches the one you passed.</li>
-	<li>A <strong>GET</strong> request is made to: <strong><?=$authDomain; ?>/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=authorization_code&code={the code you just received back from WizeHive}</strong></li>
+	<li>A <strong>GET</strong> request is made to: <strong>{{site.authDomain}}/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=authorization_code&code={the code you just received back from WizeHive}</strong></li>
 	<li>Assuming the code is valid, you will receive a JSON response back with an access token in it: 
 		{% highlight json %}
 			{
@@ -62,7 +63,7 @@ clients, these two scenarios require different flows.</p>
 			}
 		{% endhighlight %}
 	</li>
-	<li>A <strong>GET</strong> request is made to: <strong><?=$authDomain; ?>/oauth2/v1/token?access_token={the token}</strong></li>
+	<li>A <strong>GET</strong> request is made to: <strong>{{site.authDomain}}/oauth2/v1/token?access_token={the token}</strong></li>
 	<li>Assuming the token is valid, you will receive a JSON response back with an API key in it: 
 		{% highlight json %}
 			{"client_id": "your API key"}
@@ -79,7 +80,7 @@ access token:</p>
 
 <!-- TODO: Is the info on refresh tokens here accurate? -->
 <p><pre>
-GET <?=$authDomain; ?>/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=refresh_token&refresh_token={the refresh token you previously received from WizeHive}
+GET {{site.authDomain}}/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=refresh_token&refresh_token={the refresh token you previously received from WizeHive}
 </pre></p>
 
 <p>A sample server-side script, written in PHP, is provided below:</p>
@@ -92,13 +93,13 @@ GET <?=$authDomain; ?>/oauth2/v1/grant?client_id={your API key}&client_secret={y
 
 <ol>
 	<li>Your app needs to acquire a token for a user, and sends that user to: 
-	<strong><?=$authDomain; ?>/oauth2/v1/authorize?client_id={your API key}&response_type=token&state={a session-based string you use to prevent CSRF}</strong></li>
+	<strong>{{site.authDomain}}/oauth2/v1/authorize?client_id={your API key}&response_type=token&state={a session-based string you use to prevent CSRF}</strong></li>
 	<li>The user authenticates with WizeHive and returns to the redirect URI you set up for your 
 	application with the following string appended after a # hashbang: 
 	<strong>?access_token={the token}&state={the session-based string you passed to prevent CSRF}</strong></li>
 	<li>JavaScript is used to parse the parameters after the # hashbang.</li>
 	<li>The <strong>state</strong> parameter is checked to ensure it matches the one you passed.</li>
-	<li>A <strong>GET</strong> request is made to: <strong><?=$authDomain; ?>/oauth2/v1/token?access_token={the token}</strong></li>
+	<li>A <strong>GET</strong> request is made to: <strong>{{site.authDomain}}/oauth2/v1/token?access_token={the token}</strong></li>
 	<li>Assuming the token is valid, you will receive a JSON response back with an API key in it: 
 		{% highlight json %}
 			{"client_id": "your API key"}

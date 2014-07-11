@@ -1,5 +1,7 @@
 ---
 layout: nav-bar
+group: conventions
+subgroup: general
 ---
 
 <h1>Conventions</h1>
@@ -10,7 +12,7 @@ layout: nav-bar
 
 <p>The Version 1 REST API base path is:</p>
 
-<p><pre>{{page.apiDomain}}/v1</pre></p>
+<p><pre>{{site.apiDomain}}/v1</pre></p>
 
 <h3 id="https-required">HTTPS Required</h3>
 
@@ -60,7 +62,7 @@ The default timezone for all requests is <strong>UTC</strong>.
 <p>You can specify your preference as a URL extension 
 or by using the <code>Accept</code> header. The URL extension takes precedence. For example:</p>
 
-<p><pre>{{page.apiDomain}}/v1/{resource}.json
+<p><pre>{{site.apiDomain}}/v1/{resource}.json
 Accept: application/xml
 </pre></p>
 
@@ -76,7 +78,7 @@ needs to make cross-domain requests to the WizeHive API without using a proxy or
 <p>Example:</p>
 
 <p><pre>
-{{page.apiDomain}}/v1/{resource}.json?callback=foo
+{{site.apiDomain}}/v1/{resource}.json?callback=foo
 
 foo({
 	"status": 200,
@@ -98,7 +100,7 @@ function foo(response){
 <p>Typically, a JSON response will be served without any whitespace, saving bandwidth. For example:</p>
 
 <p><pre>
-{{page.apiDomain}}/v1/{resource}.json
+{{site.apiDomain}}/v1/{resource}.json
 
 {"status":200,"code":2000,...}
 </pre></p>
@@ -107,7 +109,7 @@ function foo(response){
 You may use the <code>?pretty=1</code> parameter to return data in "pretty print" format:</p>
 
 <p><pre>
-{{page.apiDomain}}/v1/{resource}.json
+{{site.apiDomain}}/v1/{resource}.json
 
 {
 	"status": 200,

@@ -14,9 +14,7 @@ body {
 	border-radius: 2px;
 }
 
-.side-nav li, ul {
-	list-style-type: none;
-}
+
 
 pre {
 	display: block;

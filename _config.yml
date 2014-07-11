@@ -1,12 +1,6 @@
-defaults:
--
-    scope:
-        path: "" # an empty string here means all files in the project
-    values:
-        layout: default
-        apiDomain: "https://api.wizehive.com"
-        authDomain: "https://auth.wizehive.com"
-        demoClientId: "rest-api-quick-start-demo"
 baseurl: '/sandy-docs'
-exclude: [README.md, Gemfile, Gemfile.lock]
+exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 github: [Repository metadata]
+apiDomain: "https://stage-api.wizehive.com"
+authDomain: "https://stage-auth.wizehive.com"
+demoClientId: "rest-api-quick-start-demo"

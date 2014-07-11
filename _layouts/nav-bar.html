@@ -1,27 +1,18 @@
 ---
 layout: default
-apiDomain: "https://api.wizehive.com"
-authDomain: "https://auth.wizehive.com"
-demoClientId: "rest-api-quick-start-demo"
 ---
 
 <div class="row">
 	<div class="large-2 columns">			
 		<ul class="side-nav">
-			<li>
+			<li {% if page.group == 'intro' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api">Introduction</a>
 			</li>
 			<li class="divider"></li>
-			{% if {{page.url | strip}} === '/rest-api/auth/index.html' %}
-				<li class="active">
-			{% else %}
-				<li>
-			{% endif %}
+			<li {% if page.group == 'quick-start' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api/quick-start">Quick Start</a>
 				<ul>
-					<a href="/rest-api/quick-start"></a>
 					<li>
-						<a href="{{site.baseurl}}/rest-api/quick-start"></a>
 						<a href="{{site.baseurl}}/rest-api/quick-start/#basics">Basics</a>
 					</li>
 					<li>
@@ -39,39 +30,117 @@ demoClientId: "rest-api-quick-start-demo"
 				</ul>
 			</li>
 			<li class="divider"></li>
-			<li>
+			<li {% if page.group == 'resources' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api/resources">Resources</a>
 			</li>
 			<li class="divider"></li>
-			<li>
+			<li {% if page.group == 'conventions' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api/conventions">Conventions</a>
 				<ul>
 					<a href="{{site.baseurl}}/rest-api/conventions">
 						<li class="divider"></li>
 					</a>
-					<li>
-						<a href="{{site.baseurl}}/rest-api/conventions"></a>
+					<li {% if page.subgroup == 'general' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/general">General</a>
+						<ul>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/general/#base-path">Base Path</a>
+							</li>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/general/#https-required">HTTPS Required</a>
+							</li>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/general/#timestamp-format">Timestamp Format</a>
+							</li>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/general/#default-timezone">Default Timezone</a>
+							</li>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/general/#media-type-support">Media Type Support</a>
+								<ul>
+									<a href="{{site.baseurl}}/rest-api/conventions/general/#media-type-support"></a>
+									<li>
+										<a href="{{site.baseurl}}/rest-api/conventions/general/#media-type-support-jsonp">JSONP</a>
+									</li>
+									<li>
+										<a href="{{site.baseurl}}/rest-api/conventions/general/#media-type-support-json-pretty-printing">JSON Pretty Printing</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
 					<li class="divider"></li>
-					<li>
+					<li {% if page.subgroup == 'passing-parameters' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/passing-parameters">Passing Parameters</a>
+						<ul>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/passing-parameters/#uri-based">URI-based</a>
+							</li>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/passing-parameters/#query-string">Query String</a>
+							</li>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/passing-parameters/#post-put">POST, PUT</a>
+							</li>
+						</ul>
 					</li>
 					<li class="divider"></li>
-					<li>
+					<li {% if page.subgroup == 'querying-options' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/querying-options">Querying Options</a>
+						<ul>
+							<li>
+								<a href="/rest-api/conventions/querying-options/#pagination">Pagination</a>
+							</li>
+							<li>
+								<a href="/rest-api/conventions/querying-options/#sorting">Sorting</a>
+							</li>
+							<li>
+								<a href="/rest-api/conventions/querying-options/#operator-prefixes">Operator Prefixes</a>
+							</li>
+							<li>
+								<a href="/rest-api/conventions/querying-options/#multiple-conditions">Multiple Conditions</a>
+							</li>
+							<li>
+								<a href="/rest-api/conventions/querying-options/#limiting-returned-attributes">Limiting Returned Attributes</a>
+							</li>
+							<li>
+								<a href="/rest-api/conventions/querying-options/#relational-data">Relational Data</a>
+							</li>
+							<li>
+								<a href="/rest-api/conventions/querying-options/#timezone-conversion">Timezone Conversion</a>
+							</li>
+						</ul>
 					</li>
 					<li class="divider"></li>
-					<li>
+					<li {% if page.subgroup == 'response-format' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/response-format">Response Format</a>
+						<ul>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/response-format/#http-status">HTTP Status</a>
+							</li>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/response-format/#success">Success</a>
+								<ul>
+									<li>
+										<a href="{{site.baseurl}}/rest-api/conventions/response-format/#success-get-post-put">GET, POST and PUT</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="{{site.baseurl}}/rest-api/conventions/response-format/#failure">Failure</a>
+								<ul>
+									<li>
+										<a href="{{site.baseurl}}/rest-api/conventions/response-format/#failure-post-and-put-user-error">POST and PUT: User Error</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
 					<li class="divider"></li>
-					<li>
+					<li {% if page.subgroup == 'http-verbs' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/http-verbs">HTTP Verbs</a>
 						<ul>
-							<a href="/rest-api/conventions/http-verbs"></a>
 							<li>
-								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs"></a>
 								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#get">GET</a>
 							</li>
 							<li>
@@ -91,21 +160,17 @@ demoClientId: "rest-api-quick-start-demo"
 				</ul>
 			</li>
 			<li class="divider"></li>
-			<li>
+			<li {% if page.group == 'auth' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api/auth">Auth</a>
 				<ul>
-					<a href="{{site.baseurl}}/rest-api/auth"></a>
 					<li>
-						<a href="{{site.baseurl}}/rest-api/auth"></a>
 						<a href="{{site.baseurl}}/rest-api/auth/#oauth2-overview">OAuth 2 Overview</a>
 					</li>
 					<li>
 						<a href="{{site.baseurl}}/rest-api/auth/#registering-an-application">Registering an Application</a>
 						<ul>
-							<a href="{{site.baseurl}}/rest-api/auth/#registering-an-application"></a>
 							<li>
-								<a href="{{site.baseurl}}/rest-api/auth/#registering-an-application"></a>
-								<a href="/rest-api/auth/#registering-an-application-redirect-uri">Redirect URI</a>
+								<a href="{{site.baseurl}}/rest-api/auth/#registering-an-application-redirect-uri">Redirect URI</a>
 							</li>
 						</ul>
 					</li>
@@ -118,9 +183,7 @@ demoClientId: "rest-api-quick-start-demo"
 					<li>
 						<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows">3-Legged Flows</a>
 						<ul>
-							<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows"></a>
 							<li>
-								<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows"></a>
 								<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows-server">Server</a>
 							</li>
 							<li>
@@ -134,7 +197,7 @@ demoClientId: "rest-api-quick-start-demo"
 				</ul>
 			</li>
 			<li class="divider"></li>
-			<li>
+			<li {% if page.group == 'cors' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api/cross-origin-resource-sharing">Cross-Origin Resource Sharing (CORS)</a>
 			</li>
 		</ul>

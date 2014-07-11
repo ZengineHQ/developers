@@ -1,7 +1,8 @@
 ---
 layout: nav-bar
-discoveryUrl: 'https://api.wizehive.com/api-docs/resources.json'
+discoveryUrl: '/api-docs/resources.json'
 apiKey: false
+group: resources
 ---
 
 <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
@@ -94,7 +95,7 @@ apiKey: false
         });
         
 		window.swaggerUi = new SwaggerUi({
-			discoveryUrl: "{{page.discoveryUrl}}",
+			discoveryUrl: "{{site.apiDomain}}{{page.discoveryUrl}}",
 			apiKey:"access_token",
 			apiKeyName:"access_token",
 			dom_id:"swagger-ui-container",

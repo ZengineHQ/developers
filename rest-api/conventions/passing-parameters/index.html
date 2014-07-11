@@ -1,6 +1,9 @@
 ---
 layout: nav-bar
+group: conventions
+subgroup: passing-parameters
 ---
+
 <h1>Conventions</h1>
 
 <h2>Passing Parameters</h2>
@@ -12,13 +15,13 @@ layout: nav-bar
 the resource name:</p>
 
 <p><pre>
-<?php echo $apiDomain; ?>/v1/{resource}/{RESOURCE_ID}
+{{site.apiDomain}}/v1/{resource}/{RESOURCE_ID}
 </pre></p>
 
 <p>Sub-resource paths are also built using one or more URI parameters:</p>
 
 <p><pre>
-<?php echo $apiDomain; ?>/v1/{resource}/{RESOURCE_ID}/{sub-resource}
+{{site.apiDomain}}/v1/{resource}/{RESOURCE_ID}/{sub-resource}
 </pre></p>
 
 <h3 id="query-string">Query String</h3>

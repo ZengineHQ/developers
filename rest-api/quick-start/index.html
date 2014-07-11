@@ -1,5 +1,6 @@
 ---
 layout: nav-bar
+group: quick-start
 ---
 
 <h1>Quick Start</h1>
@@ -9,14 +10,14 @@ layout: nav-bar
 <p>The base API is accessible at:</p>
 
 <p><pre>
-{{page.apiDomain}}/v1/
+{{site.apiDomain}}/v1/
 </pre></p>
 
 <p>Data can be both sent & received in JSON & XML formats.</p>
 
 <h2 id="auth">Auth</h2>
 
-<p>The <a href="/rest-api/auth/#oauth2-overview">OAuth 2 protocol</a> is used to authenticate and authorize 
+<p>The <a href="{{site.baseurl}}/rest-api/auth/#oauth2-overview">OAuth 2 protocol</a> is used to authenticate and authorize 
 every API request.</p>
 
 {% include public_vs_private_resources.html %}
@@ -32,12 +33,12 @@ every API request.</p>
 interacts with that user, and other nuanced requirements.</p>
 
 <p>To fully understand which flows apply to your use case and how to implement them, we suggest reading 
-more about the API's <a href="/rest-api/auth">Auth</a> process at large.</p>
+more about the API's <a href="{{site.baseurl}}/rest-api/auth">Auth</a> process at large.</p>
 
 <p>For now, to get you started with a sample request, we will assume that you are trying to access data 
 from your own account with a token that you manually acquire for the purposes of this demo. 
 <span id="getting-an-access-token-login">When you are ready, 
-<a href="{{page.authDomain}}/oauth2/v1/authorize?client_id={{page.demoClientId}}&response_type=token&state=demo">proceed to login and retrieve your demo token</a>.</span></p>
+<a href="{{site.authDomain}}/oauth2/v1/authorize?client_id={{site.demoClientId}}&response_type=token&state=demo">proceed to login and retrieve your demo token</a>.</span></p>
 
 <div id="getting-an-access-token-success" data-alert class="alert-box success round" style="display: none">
 	Your token was successfully generated and will be valid for the next 1 hour: <br />
@@ -49,9 +50,9 @@ from your own account with a token that you manually acquire for the purposes of
 
 <script type="text/javascript">
 
-	<?php if (!empty($_GET['error'])) { ?>
-		alert('There was an error. Please try again.');
-	<?php } ?>
+//	<?php if (!empty($_GET['error'])) { ?>
+//		alert('There was an error. Please try again.');
+//	<?php } ?>
 
 	var params = {}, queryString = location.hash.substring(1),
 		regex = /([^&=]+)=([^&]*)/g, m;
@@ -69,7 +70,7 @@ from your own account with a token that you manually acquire for the purposes of
 
 			var req = new XMLHttpRequest();
 
-			req.open('GET', '<?php echo $authDomain; ?>/oauth2/v1/token?access_token=' + params['access_token']);
+			req.open('GET', '{{site.authDomain}}/oauth2/v1/token?access_token=' + params['access_token']);
 
 			req.onreadystatechange = function (e) {
 				if (req.readyState == 4) {
@@ -106,18 +107,18 @@ requests.</p>
 <strong>Workspaces </strong>you are associated with in JSON format:</p>
 
 <p><pre>
-{{page.$apiDomain}}/v1/workspaces.json?access_token=<span id="access-token-example">{your demo access token}</span>
+{{site.apiDomain}}/v1/workspaces.json?access_token=<span id="access-token-example">{your demo access token}</span>
 </pre></p>
 
 <p>For public requests, such as retrieving a list of <strong>AppTemplates</strong> from 
 the marketplace, you must instead supply your API key. Simply point your browser to:</p>
 
 <p><pre>
-{{page.$apiDomain}}/v1/app_templates.json?client_id={your API key}
+{{site.apiDomain}}/v1/app_templates.json?client_id={your API key}
 </pre></p>
 
 <p>That's all there is to it! From here on out, we suggest learning by doing. The 
-<a href="/rest-api/resources">resources</a> are not only documented, but also interactive. You can peruse 
+<a href="{{site.baseurl}}/rest-api/resources">resources</a> are not only documented, but also interactive. You can peruse 
 them to learn the API semantics and make real requests (take note of your API key and access token, 
 because you'll need them!). As 
 you want or need, the rest of the documentation is here to help you learn more about general API 

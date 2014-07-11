@@ -1,11 +1,12 @@
 ---
 layout: nav-bar
+group: intro
 ---
 
 <h1>Introduction</h1>
 
 <p>WizeHive provides a <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">RESTful</a> 
-API which maps virtually every <a href="/rest-api/resources">resource</a> in the platform to a list of 
+API which maps virtually every <a href="{{site.baseurl}}/rest-api/resources">resource</a> in the platform to a list of 
 URIs. These URIs can be retrieved and manipulated with 
 <a href="{{site.baseurl}}/rest-api/conventions/http-verbs">HTTP verbs</a>.</p>
 
@@ -29,8 +30,7 @@ more about the API's conventions and resources.</p>
 
 <p>The WizeHive API is in beta, which means it is still rapidly maturing. While we do not 
 expect the conventions or resources to change in a way that prove destructive to third party integrations, 
-we cannot makes any promises. A Release Candidate is expected by late 2013, at which point Version 1 of the
-API will be "locked".</p>
+we cannot makes any promises.</p>
 
 <p>Because the API is still in beta, we have no rate limiting or abuse negation techniques in place.
 We expect you to be kind - only make requests which are necessary, use caching techniques whenever 
