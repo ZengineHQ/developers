@@ -3422,8 +3422,7 @@ kbd {
 /* Side Nav */
 .side-nav {
   display: block;
-  margin: 0;
-  padding: 0.875em 0;
+  margin-top: 1.875em;
   list-style-type: none;
   list-style-position: inside; 
 }
@@ -3447,11 +3446,13 @@ kbd {
 .side-nav li.active > ul > li.active > ul{
   display: block;
 }
-.side-nav li a {
+.side-nav li a{
   display: block;
   color: #4f6d8c;
 }
-.side-nav li.active > a {
+
+.side-nav li.active > a,
+.side-nav li > a:hover  {
   display: block;
   color: #4d4d4d;
   font-weight: bold; 

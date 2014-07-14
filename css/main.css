@@ -2,6 +2,27 @@ body {
 	font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
 }
 
+@media (max-width: 767px) {
+	.side-nav.affix {
+		position: relative !important;
+		top: 0px !important;
+	}
+}
+@media (max-width: 991px) and (min-width: 768px) {
+	.side-nav.affix {
+		width: 100px;
+	}
+}
+@media (min-width: 768px) {
+	.side-nav.affix {
+		width: 145px;
+	}
+}
+
+.side-nav.affix {
+	top: 45px;
+}
+
 .code {
 	margin-bottom: 1.3em;
 	padding: 0.8em;

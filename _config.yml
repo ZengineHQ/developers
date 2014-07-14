@@ -4,3 +4,4 @@ github: [Repository metadata]
 apiDomain: "https://stage-api.wizehive.com"
 authDomain: "https://stage-auth.wizehive.com"
 demoClientId: "rest-api-quick-start-demo"
+apiKey: false

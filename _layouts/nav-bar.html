@@ -2,29 +2,54 @@
 layout: default
 ---
 
+<script type="text/javascript">
+
+$(function(){
+
+	updateActiveHashLink();
+
+	// wait until html is loaded to fix the nav bar position
+	$('.side-nav.affix').css('position', 'fixed');
+
+	$(window).on('hashchange', function() {
+		updateActiveHashLink();
+	});
+
+	function updateActiveHashLink() {
+
+		var fragIdentifier = location.hash.substring(1);
+
+		if (fragIdentifier) {
+			$('.' + fragIdentifier).siblings().removeClass("active");
+			$('.' + fragIdentifier).addClass("active");
+		}
+	}
+});
+
+</script>
 <div class="row">
-	<div class="large-2 columns">			
-		<ul class="side-nav">
+	<div class="large-2 columns">
+		<ul class="side-nav affix">
 			<li {% if page.group == 'intro' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api">Introduction</a>
 			</li>
 			<li class="divider"></li>
 			<li {% if page.group == 'quick-start' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/rest-api/quick-start">Quick Start</a>
+				<a data-target="#quick-start" href="{{site.baseurl}}/rest-api/quick-start">Quick Start</a>
 				<ul>
-					<li>
-						<a href="{{site.baseurl}}/rest-api/quick-start/#basics">Basics</a>
+					<li class="basics">
+						<a data-target="#quick-start-basics" href="{{site.baseurl}}/rest-api/quick-start/#basics">Basics</a>
 					</li>
-					<li>
+					<li class="auth">
 						<a href="{{site.baseurl}}/rest-api/quick-start/#auth">Auth</a>
 					</li>
-					<li>
+					<li class="getting-an-api-key">
 						<a href="{{site.baseurl}}/rest-api/quick-start/#getting-an-api-key">Getting an API Key</a>
 					</li>
-					<li>
+					<li class="getting-an-access-token">
 						<a href="{{site.baseurl}}/rest-api/quick-start/#getting-an-access-token">Getting an Access Token</a>
 					</li>
-					<li>
+					<li class="example-request">
 						<a href="{{site.baseurl}}/rest-api/quick-start/#example-request">Example Request</a>
 					</li>
 				</ul>
@@ -43,26 +68,25 @@ layout: default
 					<li {% if page.subgroup == 'general' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/general">General</a>
 						<ul>
-							<li>
+							<li class="base-path">
 								<a href="{{site.baseurl}}/rest-api/conventions/general/#base-path">Base Path</a>
 							</li>
-							<li>
+							<li class="https-required">
 								<a href="{{site.baseurl}}/rest-api/conventions/general/#https-required">HTTPS Required</a>
 							</li>
-							<li>
+							<li class="timestamp-format">
 								<a href="{{site.baseurl}}/rest-api/conventions/general/#timestamp-format">Timestamp Format</a>
 							</li>
-							<li>
+							<li class="default-timezone">
 								<a href="{{site.baseurl}}/rest-api/conventions/general/#default-timezone">Default Timezone</a>
 							</li>
-							<li>
+							<li class="media-type-support">
 								<a href="{{site.baseurl}}/rest-api/conventions/general/#media-type-support">Media Type Support</a>
 								<ul>
-									<a href="{{site.baseurl}}/rest-api/conventions/general/#media-type-support"></a>
-									<li>
+									<li class="media-type-support-jsonp">
 										<a href="{{site.baseurl}}/rest-api/conventions/general/#media-type-support-jsonp">JSONP</a>
 									</li>
-									<li>
+									<li class="media-type-support-json-pretty-printing">
 										<a href="{{site.baseurl}}/rest-api/conventions/general/#media-type-support-json-pretty-printing">JSON Pretty Printing</a>
 									</li>
 								</ul>
@@ -73,13 +97,13 @@ layout: default
 					<li {% if page.subgroup == 'passing-parameters' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/passing-parameters">Passing Parameters</a>
 						<ul>
-							<li>
+							<li class="uri-based">
 								<a href="{{site.baseurl}}/rest-api/conventions/passing-parameters/#uri-based">URI-based</a>
 							</li>
-							<li>
+							<li class="query-string">
 								<a href="{{site.baseurl}}/rest-api/conventions/passing-parameters/#query-string">Query String</a>
 							</li>
-							<li>
+							<li class="post-put">
 								<a href="{{site.baseurl}}/rest-api/conventions/passing-parameters/#post-put">POST, PUT</a>
 							</li>
 						</ul>
@@ -88,25 +112,25 @@ layout: default
 					<li {% if page.subgroup == 'querying-options' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/querying-options">Querying Options</a>
 						<ul>
-							<li>
+							<li class="pagination">
 								<a href="/rest-api/conventions/querying-options/#pagination">Pagination</a>
 							</li>
-							<li>
+							<li class="sorting">
 								<a href="/rest-api/conventions/querying-options/#sorting">Sorting</a>
 							</li>
-							<li>
+							<li class="operator-prefixes">
 								<a href="/rest-api/conventions/querying-options/#operator-prefixes">Operator Prefixes</a>
 							</li>
-							<li>
+							<li class="multiple-conditions">
 								<a href="/rest-api/conventions/querying-options/#multiple-conditions">Multiple Conditions</a>
 							</li>
-							<li>
+							<li class="limiting-returned-attributes">
 								<a href="/rest-api/conventions/querying-options/#limiting-returned-attributes">Limiting Returned Attributes</a>
 							</li>
-							<li>
+							<li class="relational-data">
 								<a href="/rest-api/conventions/querying-options/#relational-data">Relational Data</a>
 							</li>
-							<li>
+							<li class="timezone-conversion">
 								<a href="/rest-api/conventions/querying-options/#timezone-conversion">Timezone Conversion</a>
 							</li>
 						</ul>
@@ -115,21 +139,21 @@ layout: default
 					<li {% if page.subgroup == 'response-format' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/response-format">Response Format</a>
 						<ul>
-							<li>
+							<li class="http-status">
 								<a href="{{site.baseurl}}/rest-api/conventions/response-format/#http-status">HTTP Status</a>
 							</li>
-							<li>
+							<li class="success">
 								<a href="{{site.baseurl}}/rest-api/conventions/response-format/#success">Success</a>
 								<ul>
-									<li>
+									<li class="success-get-post-put">
 										<a href="{{site.baseurl}}/rest-api/conventions/response-format/#success-get-post-put">GET, POST and PUT</a>
 									</li>
 								</ul>
 							</li>
-							<li>
+							<li class="failure">
 								<a href="{{site.baseurl}}/rest-api/conventions/response-format/#failure">Failure</a>
 								<ul>
-									<li>
+									<li class="failure-post-and-put-user-error">
 										<a href="{{site.baseurl}}/rest-api/conventions/response-format/#failure-post-and-put-user-error">POST and PUT: User Error</a>
 									</li>
 								</ul>
@@ -140,19 +164,19 @@ layout: default
 					<li {% if page.subgroup == 'http-verbs' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/rest-api/conventions/http-verbs">HTTP Verbs</a>
 						<ul>
-							<li>
+							<li class="get">
 								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#get">GET</a>
 							</li>
-							<li>
+							<li class="post">
 								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#post">POST</a>
 							</li>
-							<li>
+							<li class="put">
 								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#put">PUT</a>
 							</li>
-							<li>
+							<li class="delete">
 								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#delete">DELETE</a>
 							</li>
-							<li>
+							<li class="options">
 								<a href="{{site.baseurl}}/rest-api/conventions/http-verbs/#options">OPTIONS</a>
 							</li>
 						</ul>
@@ -163,35 +187,35 @@ layout: default
 			<li {% if page.group == 'auth' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api/auth">Auth</a>
 				<ul>
-					<li>
+					<li class="oauth2-overview">
 						<a href="{{site.baseurl}}/rest-api/auth/#oauth2-overview">OAuth 2 Overview</a>
 					</li>
-					<li>
+					<li class="registering-an-application">
 						<a href="{{site.baseurl}}/rest-api/auth/#registering-an-application">Registering an Application</a>
 						<ul>
-							<li>
+							<li class="registering-an-application-redirect-uri">
 								<a href="{{site.baseurl}}/rest-api/auth/#registering-an-application-redirect-uri">Redirect URI</a>
 							</li>
 						</ul>
 					</li>
-					<li>
+					<li class="public-vs-private-resources">
 						<a href="{{site.baseurl}}/rest-api/auth/#public-vs-private-resources">Public vs. Private Resources</a>
 					</li>
-					<li>
+					<li class="passing-credentials">
 						<a href="{{site.baseurl}}/rest-api/auth/#passing-credentials">Passing Credentials</a>
 					</li>
-					<li>
+					<li class="3-legged-flows">
 						<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows">3-Legged Flows</a>
 						<ul>
-							<li>
+							<li class="3-legged-flows-server">
 								<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows-server">Server</a>
 							</li>
-							<li>
+							<li class="3-legged-flows-client">
 								<a href="{{site.baseurl}}/rest-api/auth/#3-legged-flows-client">Client</a>
 							</li>
 						</ul>
 					</li>
-					<li>
+					<li class="authorizations-api">
 						<a href="{{site.baseurl}}/rest-api/auth/#authorizations-api">Authorizations API</a>
 					</li>
 				</ul>
