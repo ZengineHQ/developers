@@ -8,7 +8,6 @@
 *~
 .DS_Store
 .cache
-.sass-cache/
 _site
 .project
 .buildpath
@@ -17,11 +16,7 @@ _site
 .svn
 errors.err
 nbproject
-*.local.php
 *.local
 *.tmp
 *.local.rb
-.elasticbeanstalk/
-logs/access_log
-logs/error_log
 Gemfile.lock

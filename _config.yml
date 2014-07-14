@@ -1,6 +1,5 @@
 baseurl: '/sandy-docs'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
-github: [Repository metadata]
 apiDomain: "https://stage-api.wizehive.com"
 authDomain: "https://stage-auth.wizehive.com"
 demoClientId: "rest-api-quick-start-demo"
