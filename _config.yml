@@ -1,4 +1,4 @@
-baseurl: '/sandy-docs'
+baseurl: '/documentation-stage'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://stage-api.wizehive.com"
 authDomain: "https://stage-auth.wizehive.com"
