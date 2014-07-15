@@ -1,4 +1,4 @@
-sandy-docs
+stage-documentation
 ==========
 To run locally in a way that matches the GitHub Pages:
 
