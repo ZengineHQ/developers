@@ -1,0 +1,47 @@
+---
+layout: nav-bar
+group: conventions
+subgroup: http-verbs
+---
+
+<h1>Conventions</h1>
+
+<h2>HTTP Verbs</h2>
+
+<p>Standard HTTP Verbs are used in relation to an API resource to communicate a desired action.</p>
+
+<p>Note that because not all clients/browsers support all HTTP verbs, there are various priority orders 
+by which the applicable verb is determined:</p>
+
+<ol>
+	<li>The <code>_method</code> <strong>POST</strong> variable: Issue any request as a 
+	<strong>POST</strong> and it will be interpreted as another verb so long as that verb is specified in 
+	<code>_method</code>.</li>
+	<li>The <code>X_HTTP_METHOD_OVERRIDE</code> request header</li>
+	<li>The <code>REQUEST_METHOD header</code> request header</li>
+</ol>
+
+<h3 id="get">GET</h3>
+
+<p>Fetch a single object or list of objects for a resource. For example, <strong>GET</strong>ting 
+<code>/v1/workspaces</code> will retrieve a list of all workspace objects, while 
+<code>/v1/workspaces/1</code> will retrieve the workspace object with an ID of <strong>1</strong>.</p>
+
+<h3 id="post">POST</h3>
+
+<p>Create a new object. For example, <strong>POST</strong>ing to 
+<code>/v1/workspaces</code> will create a new workspace object.</p>
+
+<h3 id="put">PUT</h3>
+
+<p>Update an existing object. For example, <strong>PUT</strong>ting to 
+<code>/v1/workspaces/1</code> will updating the existing workspace object with an ID of <strong>1</strong>.</p>
+
+<h4 id="delete">DELETE</h4>
+
+<p>Delete an existing object. For example, <strong>DELETE</strong>ing 
+<code>/v1/workspaces/1</code> will delete the workspace object with an ID of <strong>1</strong>.</p>
+
+<h4 id="options">OPTIONS</h4>
+
+<p>Used for <a href="{{site.baseurl}}/rest-api/cross-origin-resource-sharing">Cross-Origin Resource Sharing</a>.</p>
