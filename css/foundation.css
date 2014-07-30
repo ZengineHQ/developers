@@ -957,7 +957,6 @@ blockquote,
 th,
 td {
   margin: 0;
-  padding: 0;
   direction: ltr; }
 
 /* Default Link Styles */
@@ -3425,6 +3424,7 @@ kbd {
   margin-top: 1.875em;
   list-style-type: none;
   list-style-position: inside; 
+  padding: 0;
 }
 .side-nav li {
   margin: 0 0 0.4375em 0;
@@ -3432,6 +3432,7 @@ kbd {
 }
 .side-nav li, .side-nav ul {
   list-style-type: none;
+  padding: 0;
 }
 .side-nav li.active ul{
   display: block;

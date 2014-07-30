@@ -27,6 +27,7 @@ $(function(){
 });
 
 </script>
+<div class="container-fluid">
 <div class="row">
 	<div class="large-2 columns">
 		<ul class="side-nav affix">
@@ -35,10 +36,10 @@ $(function(){
 			</li>
 			<li class="divider"></li>
 			<li {% if page.group == 'quick-start' %}class="active"{% endif %}>
-				<a data-target="#quick-start" href="{{site.baseurl}}/rest-api/quick-start">Quick Start</a>
+				<a href="{{site.baseurl}}/rest-api/quick-start">Quick Start</a>
 				<ul>
 					<li class="basics">
-						<a data-target="#quick-start-basics" href="{{site.baseurl}}/rest-api/quick-start/#basics">Basics</a>
+						<a href="{{site.baseurl}}/rest-api/quick-start/#basics">Basics</a>
 					</li>
 					<li class="auth">
 						<a href="{{site.baseurl}}/rest-api/quick-start/#auth">Auth</a>
@@ -229,4 +230,5 @@ $(function(){
 	<div class="large-10 columns">
 		{{content}}
 	</div>
+</div>
 </div>
