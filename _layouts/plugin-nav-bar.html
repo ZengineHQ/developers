@@ -91,6 +91,10 @@ $(function(){
 			<li {% if page.group == 'tutorials' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/js-api/tutorials">Tutorials</a>
 				<ul>
+					<li {% if page.subgroup == 'record-board' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/js-api/tutorials/record-board.html">Trello</a>
+					</li>
+					<li class="divider"></li>
 					<li {% if page.subgroup == 'chat' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html">Chat Room</a>
 						<ul>
@@ -116,10 +120,6 @@ $(function(){
 								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#code">Code</a>
 							</li>
 						</ul>
-					</li>
-					<li class="divider"></li>
-					<li {% if page.subgroup == 'record-board' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/js-api/tutorials/record-board.html">Trello</a>
 					</li>
 				</ul>
 			</li>
