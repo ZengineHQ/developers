@@ -12,7 +12,7 @@ If you haven't yet done so, we recommended first reading about [data access]({{s
 
 ## Get API data
 
- The first thing you need to do is get some data from the API. Using the Data factory, we can get the currently logged-in user, metadata about this plugin (namely firebase authentication info), and the members of the workspace. 
+ The first thing you need to do is get some data from the API. Using the Data factory, we can get the currently logged-in user, metadata about this plugin (namely Firebase authentication info), and the members of the workspace. 
 
 {% highlight js %}
 
@@ -98,7 +98,7 @@ You can also add a call to `console.log(res)` in each request success function t
 
 ## Wait for API responses
 
-After making the API requests, we need to wait for the success callbacks to finish before connecting to firebase. Depending on how familiar you are with AngularJS, you may know the concept of <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watchCollection" target="_blank">watchers</a>. In short, you can set a watcher for one or more properties on an object and be notified when a change occurs. In this use case, we want to know when the following properties are loaded: `$scope.members`, `$scope.plugin` and `$scope.me`.
+After making the API requests, we need to wait for the success callbacks to finish before connecting to Firebase. Depending on how familiar you are with AngularJS, you may know the concept of <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watchCollection" target="_blank">watchers</a>. In short, you can set a watcher for one or more properties on an object and be notified when a change occurs. In this use case, we want to know when the following properties are loaded: `$scope.members`, `$scope.plugin` and `$scope.me`.
 
 
 {% highlight js %}
@@ -140,9 +140,9 @@ The method `$watchCollection` returns a function that can be called to dispose/r
 
 ## Connecting to Firebase
 
-We want to restrict the Firebase data to Wizehive authenticated users, so we take advantage of the `firebaseAuthToken` returned from the plugin API response to connect to firebase. After sucessful authentication, the `$scope.connect()` method will set presence using the Firebase low level API, and then assign a few scope properties for convenience and turn off the loading indicator.
+We want to restrict the Firebase data to Wizehive authenticated users, so we take advantage of the `firebaseAuthToken` returned from the plugin API response to connect to Firebase. After sucessful authentication, the `$scope.connect()` method will set presence using the Firebase low level API, and then assign a few scope properties for convenience and turn off the loading indicator.
 
-Note that you need to inject the `$firebase` module in your controller signature.
+Note that you need to inject the `$firebase` service in your controller signature.
 
 {% highlight js %}
 
@@ -240,7 +240,7 @@ Note that you need to inject the `$firebase` module in your controller signature
 
 ## Adding chat messages to Firebase
 
-This methods adds a new message to the chat room with three properties:
+This method adds a new message to the chat room with three properties:
 
 * `userId`: the user ID of the current logged in user
 * `text`: the message text
