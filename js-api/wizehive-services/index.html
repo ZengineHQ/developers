@@ -5,46 +5,46 @@ group: wizehive-services
 
 <h1 id="message">Message</h1>
 <p>Displays a temporary alert message at the top of the page.</p>
-<samp><h4>message(message, type, duration)</h4></samp>
+<samp><h4>message(message, [type], [duration])</h4></samp>
 {% highlight javascript %}
 // Example controller including the 'message' service.
 plugin.controller('MyCntl', ['$scope', 'message', function($scope, message) {
-	$scope.onSubmit = function() {
-		message('Your data was saved!', 'saved');
-	};
+  $scope.onSubmit = function() {
+    message('Your data was saved!', 'saved');
+  };
 }]);
 {% endhighlight %}
 <table class="table table-striped table-bordered">
-	<thead>
-		<tr>
-			<th>Param</th>
-			<th>Type</th>
-			<th>Details</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>message</td>
-			<td><code>string</code></td>
-			<td>
-				The message to display.
-			</td>
-		</tr>
-		<tr>
-			<td>type (optional)</td>
-			<td><code>string</code></td>
-			<td>
-				Determines the background color of the message. Valid types: 'info', 'saved', 'error', 'warning'. Default is 'info'.
-			</td>
-		</tr>
-		<tr>
-			<td>duration (optional)</td>
-			<td><code>integer</code></td>
-			<td>
-				If defined, will add a 'Yes' button to the dialog, which when clicked, will execute the callback. Default is 4 seconds.
-			</td>
-		</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>message</td>
+      <td><code>string</code></td>
+      <td>
+        The message to display.
+      </td>
+    </tr>
+    <tr>
+      <td>type (optional)</td>
+      <td><code>string</code></td>
+      <td>
+        Determines the background color of the message. Valid types: 'info', 'saved', 'error', 'warning'. Default is 'info'.
+      </td>
+    </tr>
+    <tr>
+      <td>duration (optional)</td>
+      <td><code>integer</code></td>
+      <td>
+        How long the message is displayed in milliseconds. Default is 4000.
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 Forces any open messages to close.
@@ -56,90 +56,90 @@ Forces any open messages to close.
 <samp><h4>confirm(message, [callback])</h4></samp>
 {% highlight javascript %}
 var close = function() {
-	console.log('Closed');
+  console.log('Closed');
 };
 confirm('Are you sure you want to close?', close);
 {% endhighlight %}
 <table class="table table-striped table-bordered">
-	<thead>
-		<tr>
-			<th>Param</th>
-			<th>Type</th>
-			<th>Details</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>message</td>
-			<td><code>string</code></td>
-			<td>
-				The message to display in the dialog.
-			</td>
-		</tr>
-		<tr>
-			<td>callback (optional)</td>
-			<td><code>function</code></td>
-			<td>
-				If defined, will add a 'Yes' button to the dialog, which when clicked, will execute the callback.
-			</td>
-		</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>message</td>
+      <td><code>string</code></td>
+      <td>
+        The message to display in the dialog.
+      </td>
+    </tr>
+    <tr>
+      <td>callback (optional)</td>
+      <td><code>function</code></td>
+      <td>
+        If defined, will add a 'Yes' button to the dialog, which when clicked, will execute the callback.
+      </td>
+    </tr>
+  </tbody>
 </table>
 <h1 id="modal">Modal</h1>
 <p>Displays modal dialog.</p>
 <samp><h4>modal(options)</h4></samp>
 {% highlight javascript %}
 wizehive.controller('MyCntl', ['$scope', 'modal', function($scope, modal) {
-	$scope.onSubmit = function() {
-		modal({
-			title: 'My Modal Dialog',
-			template: '<div>Here\'s my dialog content</div>',
-			classes: 'my-dialog',
-			btns: {
-				'Save': {
-					primary: true,
-					action: function() {
-						// on Save click
-					}
-				},
-				'Delete': {
-					danger: true,
-					action: function() {
-						// on Delete click
-					}
-				}
-			}
-		});
-	};
+  $scope.onSubmit = function() {
+    modal({
+      title: 'My Modal Dialog',
+      template: '<div>Here\'s my dialog content</div>',
+      classes: 'my-dialog',
+      btns: {
+        'Save': {
+          primary: true,
+          action: function() {
+            // on Save click
+          }
+        },
+        'Delete': {
+          danger: true,
+          action: function() {
+            // on Delete click
+          }
+        }
+      }
+    });
+  };
 }]);
 {% endhighlight %}
 <table class="table table-striped table-bordered">
-	<thead>
-		<tr>
-			<th>Param</th>
-			<th>Type</th>
-			<th>Details</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>options</td>
-			<td><code>object</code></td>
-			<td>
-				<p>The object has following properties:</p>
-				<ul>
-					<li><strong>title</strong> (string) The dialog title. </li>
-					<li><strong>template</strong> (string) Raw HTML to display as the dialog body. </li>
-					<li><strong>templateUrl</strong> (string) Script tag id of template</li>
-					<li><strong>classes</strong> (string) One or more (space-separated) CSS classes to add to the dialog. </li>
-					<li><strong>closeButton</strong> (bool) - A close button is included by default. Passing <code>false</code> won't include it. </li>
-					<li><strong>unique</strong> (bool | string) Whether to close any other open dialogs. <code>true</code> means close any other dialogs. Alternatively, a CSS class name can be passed to close related dialogs. </li>
-					<li><strong>scope</strong> (object) The modal by default creates a new isolate scope. If an object of properties</li>
-					<li><strong>btns</strong> (object) An object hash of buttons to include. Each property name is used for the button text. Each button can include an <code>action</code> callback to run and one of three possible style keys: <code>success</code>, <code>danger</code>, or <code>primary</code>.</li>
-				</ul>
-			</td>
-		</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>options</td>
+      <td><code>object</code></td>
+      <td>
+        <p>The object has following properties:</p>
+        <ul>
+          <li><strong>title</strong> (string) The dialog title. </li>
+          <li><strong>template</strong> (string) Raw HTML to display as the dialog body. </li>
+          <li><strong>templateUrl</strong> (string) Script tag id of template</li>
+          <li><strong>classes</strong> (string) One or more (space-separated) CSS classes to add to the dialog. </li>
+          <li><strong>closeButton</strong> (bool) - A close button is included by default. Passing <code>false</code> won't include it. </li>
+          <li><strong>unique</strong> (bool | string) Whether to close any other open dialogs. <code>true</code> means close any other dialogs. Alternatively, a CSS class name can be passed to close related dialogs. </li>
+          <li><strong>scope</strong> (object) The modal by default creates a new isolate scope. If an object of properties</li>
+          <li><strong>btns</strong> (object) An object hash of buttons to include. Each property name is used for the button text. Each button can include an <code>action</code> callback to run and one of three possible style keys: <code>success</code>, <code>danger</code>, or <code>primary</code>.</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
 </table>
 <h1 id="plugin_events">Plugin Events</h1>
 <p>The Plugin Events service is a wrapper for the <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on">Angular pub-sub system</a>, and is meant for communication between plugins and the core app. There are several events that are broadcasted at certain times, and can be listened for through <code>PluginEvents.$on</code>. Likewise, the app has some listener events registered, that can triggered through <code>PluginEvents.$broadcast</code>.</p>
@@ -154,175 +154,175 @@ wizehive.controller('MyCntl', ['$scope', 'modal', function($scope, modal) {
 
 <strong>Event Listeners:</strong>
 <ul>
-	<li>wh-data-column-resize</li>
+  <li>wh-data-column-resize</li>
 </ul>
 
 <h1 id="data">Data</h1>
 <p>The Data service provides a <a href="#available_resources">collection of resources</a> that should be used for accessing data via the REST API. After passing the name of the resource to the service, you get back an object that can use any of the four methods described below. All four methods return a standard <a href="https://docs.angularjs.org/api/ng/service/$q">Angular promise object</a>.
 </p>
-	
-	<h4 id="get">get(params, successCallback, errorCallback)</h4>
-	<p>Performs <code>GET</code> request of a single object. The last url param (generally the id), if passed to <code>params</code>, will be interpreted as a url parameter.</p>
-	{% highlight js %}
+  
+  <h4 id="get">get(params, successCallback, errorCallback)</h4>
+  <p>Performs <code>GET</code> request of a single object. The last url param (generally the id), if passed to <code>params</code>, will be interpreted as a url parameter.</p>
+  {% highlight js %}
 
-	// Get single workspace member
-	// equivalent to: GET /workspaces/123/members/456
-	// response will be a JSON Object
-	Data('WorkspaceMembers').get({ workspaceId:123, id:456 }, function(member) {
-		$scope.member = member;
-	});
-	{% endhighlight %}
+  // Get single workspace member
+  // equivalent to: GET /workspaces/123/members/456
+  // response will be a JSON Object
+  Data('WorkspaceMembers').get({ workspaceId:123, id:456 }, function(member) {
+    $scope.member = member;
+  });
+  {% endhighlight %}
 
-	<hr/>
+  <hr/>
 
-	<samp><h4 id="query">query(params, successCallback, errorCallback)</h4></samp>
-	<p>Performs <code>GET</code> request of an array of objects. The last url param (generally the id), if passed to <code>params</code>, will be interpreted as a query parameter.</p>
+  <samp><h4 id="query">query(params, successCallback, errorCallback)</h4></samp>
+  <p>Performs <code>GET</code> request of an array of objects. The last url param (generally the id), if passed to <code>params</code>, will be interpreted as a query parameter.</p>
 
-	{% highlight js %}
-	// Get list of workspace members
-	// equivalent to: GET /workspaces/123/members?id=456
-	// response will be an array
-	Data('WorkspaceMembers').query({ workspaceId:123, id: 456 }, function(members) {
-		$scope.member = members[0];
-	});
-	{% endhighlight %}
+  {% highlight js %}
+  // Get list of workspace members
+  // equivalent to: GET /workspaces/123/members?id=456
+  // response will be an array
+  Data('WorkspaceMembers').query({ workspaceId:123, id: 456 }, function(members) {
+    $scope.member = members[0];
+  });
+  {% endhighlight %}
 
-	<hr/>
+  <hr/>
 
-	<samp><h4 id="delete">delete(params, successCallback, errorCallback)</h4></samp>
-	<p>Performs <code>DELETE</code> request. Same as calling <samp>del(params, successCallback, errorCallback);</samp></p>
+  <samp><h4 id="delete">delete(params, successCallback, errorCallback)</h4></samp>
+  <p>Performs <code>DELETE</code> request. Same as calling <samp>del(params, successCallback, errorCallback);</samp></p>
 
-	{% highlight js %}
-	// Delete a workspace member
-	// equivalent to: DELETE /workspaces/123/members/456
-	Data('WorkspaceMembers').delete({ workspaceId:123, id:456 }, function() {
-		message('Member removed from workspace', 'saved');
-	});
-	{% endhighlight %}
+  {% highlight js %}
+  // Delete a workspace member
+  // equivalent to: DELETE /workspaces/123/members/456
+  Data('WorkspaceMembers').delete({ workspaceId:123, id:456 }, function() {
+    message('Member removed from workspace', 'saved');
+  });
+  {% endhighlight %}
 
-	<hr/>
+  <hr/>
 
-	<samp><h4 id="save">save([params], data, successCallback, errorCallback)</h4></samp>
-	<p> Performs a <code>POST</code> or <code>PUT</code>request, depending on the contents/presence of <code>params</code>.
+  <samp><h4 id="save">save([params], data, successCallback, errorCallback)</h4></samp>
+  <p> Performs a <code>POST</code> or <code>PUT</code>request, depending on the contents/presence of <code>params</code>.
 
-	{% highlight js %}
-	// Add a workspace member
-	// equivalent to: POST /workspaces/123/members
-	Data('WorkspaceMembers').save({ workspaceId:123 }, { 'inviteCode' : 123456 }, function(member) {
-		$scope.member = member;
-	});
+  {% highlight js %}
+  // Add a workspace member
+  // equivalent to: POST /workspaces/123/members
+  Data('WorkspaceMembers').save({ workspaceId:123 }, { 'inviteCode' : 123456 }, function(member) {
+    $scope.member = member;
+  });
 
-	// Update a workspace member to be an admin
-	// equivalent to: PUT /workspaces/123/members/456
-	Data('WorkspaceMembers').save({ workspaceId:123, id:456 }, { 'role.id' : 2 }, function(members) {
-		$scope.members = members;
-	});
+  // Update a workspace member to be an admin
+  // equivalent to: PUT /workspaces/123/members/456
+  Data('WorkspaceMembers').save({ workspaceId:123, id:456 }, { 'role.id' : 2 }, function(members) {
+    $scope.members = members;
+  });
 
-	// Make all admins of workspace 123 owners
-	// equivalent to: PUT /workspaces/123/members?role.id=1
-	Data('WorkspaceMembers').save({ workspaceId:123, 'role.id': 2 } , { 'role.id' : 1 }, function(members) {
-		$scope.members = members;
-	});
+  // Make all admins of workspace 123 owners
+  // equivalent to: PUT /workspaces/123/members?role.id=1
+  Data('WorkspaceMembers').save({ workspaceId:123, 'role.id': 2 } , { 'role.id' : 1 }, function(members) {
+    $scope.members = members;
+  });
 
-	{% endhighlight %}
+  {% endhighlight %}
 
-	<table class="table table-striped table-bordered">
-	<thead>
-		<tr>
-			<th>Param</th>
-			<th>Type</th>
-			<th>Details</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>params (optional)</td>
-			<td><code>object</code></td>
-			<td>Optional if the url has one or no parameters and a <code>POST</code> is desired. If the object is passed, any keys that are not defined as part of the url are sent as query parameters in the request. If the last url param is included in this object, a <code>PUT</code> is made. If excluded, a <code>POST</code> is made.
-			</td>
-		</tr>
-		<tr>
-			<td>data</td>
-			<td><code>object</code></td>
-			<td>Sent as the payload of the request.</td>
-		</tr>
-		<tr>
-			<td>successCallback</td>
-			<td><code>function(data, metaData, headers)</code></td>
-			<td>
-				<p>The function to execute if the request succeeds.</p>
-				<ul>
-					<li><strong>data</strong> - The data of the response. </li>
-					<li><strong>metaData</strong> - An object containing the following info about the response:
-						<ul>
-							<li>status</li>
-							<li>code</li>
-							<li>totalCount</li>
-							<li>limit</li>
-							<li>offset</li>
-						</ul>
-						Click <a href="{{site.baseurl}}/rest-api/conventions/response-format">here</a> for more info about the response format.
-					</li>
-					<li><strong>headers</strong> - The HTTP response headers.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td>errorCallback</td>
-			<td><code>function(resp)</code></td>
-			<td>
-				<p>The function to execute if the request fails. Click <a href="{{site.baseurl}}/rest-api/conventions/response-format/#failure">here</a> for more info about the format of the failure response.</p>
-			</td>
-		</tr>
-	</tbody>
+  <table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>params (optional)</td>
+      <td><code>object</code></td>
+      <td>Optional if the url has one or no parameters and a <code>POST</code> is desired. If the object is passed, any keys that are not defined as part of the url are sent as query parameters in the request. If the last url param is included in this object, a <code>PUT</code> is made. If excluded, a <code>POST</code> is made.
+      </td>
+    </tr>
+    <tr>
+      <td>data</td>
+      <td><code>object</code></td>
+      <td>Sent as the payload of the request.</td>
+    </tr>
+    <tr>
+      <td>successCallback</td>
+      <td><code>function(data, metaData, headers)</code></td>
+      <td>
+        <p>The function to execute if the request succeeds.</p>
+        <ul>
+          <li><strong>data</strong> - The data of the response. </li>
+          <li><strong>metaData</strong> - An object containing the following info about the response:
+            <ul>
+              <li>status</li>
+              <li>code</li>
+              <li>totalCount</li>
+              <li>limit</li>
+              <li>offset</li>
+            </ul>
+            Click <a href="{{site.baseurl}}/rest-api/conventions/response-format">here</a> for more info about the response format.
+          </li>
+          <li><strong>headers</strong> - The HTTP response headers.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>errorCallback</td>
+      <td><code>function(resp)</code></td>
+      <td>
+        <p>The function to execute if the request fails. Click <a href="{{site.baseurl}}/rest-api/conventions/response-format/#failure">here</a> for more info about the format of the failure response.</p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <h3 id="available_resources">Available Resources</h3>
 <table class="table table-striped">
-	<thead>
-		<th>Resource Name</th>
-		<th>Parameterized URL (POST, if last param is excluded)</th>
-	</thead>
-	<tbody>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/activities">Activities</a></td><td>/activities/:activityId</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/app_templates">AppTemplates</a></td><td>/app_templates/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/app_template_install_jobs">AppTemplateInstallJobs</a></td><td>/app_template_install_jobs/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/data_filters">DataFilters</a></td><td>/data_filters/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/data_views">DataViews</a></td><td>/data_views/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/events">Events</a></td><td>/events/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/files">Files</a></td><td>/files/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms">Forms</a></td><td>/forms/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-records-permissions">DefaultFormPermissions</a></td><td>/forms/permissions</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records-permissions">FormRecordPermissions</a></td><td>/forms/:formId/records/permissions</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-fields">FormFields</a></td><td>/forms/:formId/fields/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-folders">FormFolders</a></td><td>/forms/:formId/folders/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">FormRecords</a></td><td>/forms/:formId/records/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-uploads">FormUploads</a></td><td>/forms/:id/uploads</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/notes">Notes</a></td><td>/notes/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/notes-note.id-replies">NoteReplies</a></td><td>/notes/:noteId/replies/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notifications">Notifications</a></td><td>/notifications/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notification_email">NotificationEmails</a></td><td>/notification_emails/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/plugins">Plugins</a></td><td>/plugins/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/">PluginWorkspaces</a></td><td>/plugins/:pluginId/workspaces/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_files">RecordImportFiles</a></td>/record_import_files/:id<td>/record_import_files/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_jobs">RecordImportJobs</a></td>/record_import_jobs/:id<td>/record_import_jobs/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_export_jobs">RecordExportJobs</a></td>/record_export_jobs/:id<td>/record_export_jobs/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/tasks">Tasks</a></td><td>/tasks/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/task_lists">TaskLists</a></td><td>/task_lists/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/task_priorities">TaskPriorities</a></td><td>/task_priorities</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/task_statuses">TaskStatuses</a></td><td>/task_statuses</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-task_preferences">TaskPreferences</a></td><td>/users/:userId/task_preferences</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users">Users</a></td><td>/users/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-roles">Roles</a></td>/workspaces/:workspaceId/roles/:id<td>/workspaces/:workspaceId/roles/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces">Workspaces</a></td><td>/workspaces/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspace_copy_jobs">WorkspaceCopyJobs</a></td><td>/workspace_copy_jobs</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-invitees">WorkspaceInvitees</a></td><td>/workspaces/:workspaceId/invitees/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-members">WorkspaceMembers</a></td><td>/workspaces/:workspaceId/members/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-plugins">WorkspacePlugins</a></td><td>/workspaces/:workspaceId/plugins/:id</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-members-member.id-task_preferences">WorkspaceTaskPreferences</a></td><td>/workspaces/:workspaceId/members/:memberId/task_preferences</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-logo">WorkspaceLogo</a></td><td>/workspaces/:workspaceId/logo</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/countries">Countries</a></td><td>/countries</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/states">States</a></td><td>/states</td></tr>
-		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/subscriptions">Subscriptions</a></td><td>/subscriptions/:id</td></tr>
-	</tbody>
+  <thead>
+    <th>Resource Name</th>
+    <th>Parameterized URL (POST, if last param is excluded)</th>
+  </thead>
+  <tbody>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/activities">Activities</a></td><td>/activities/:activityId</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/app_templates">AppTemplates</a></td><td>/app_templates/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/app_template_install_jobs">AppTemplateInstallJobs</a></td><td>/app_template_install_jobs/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/data_filters">DataFilters</a></td><td>/data_filters/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/data_views">DataViews</a></td><td>/data_views/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/events">Events</a></td><td>/events/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/files">Files</a></td><td>/files/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms">Forms</a></td><td>/forms/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-records-permissions">DefaultFormPermissions</a></td><td>/forms/permissions</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records-permissions">FormRecordPermissions</a></td><td>/forms/:formId/records/permissions</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-fields">FormFields</a></td><td>/forms/:formId/fields/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-folders">FormFolders</a></td><td>/forms/:formId/folders/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">FormRecords</a></td><td>/forms/:formId/records/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-uploads">FormUploads</a></td><td>/forms/:id/uploads</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/notes">Notes</a></td><td>/notes/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/notes-note.id-replies">NoteReplies</a></td><td>/notes/:noteId/replies/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notifications">Notifications</a></td><td>/notifications/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notification_email">NotificationEmails</a></td><td>/notification_emails/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/plugins">Plugins</a></td><td>/plugins/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/">PluginWorkspaces</a></td><td>/plugins/:pluginId/workspaces/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_files">RecordImportFiles</a></td><td>/record_import_files/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_jobs">RecordImportJobs</a></td><td>/record_import_jobs/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_export_jobs">RecordExportJobs</a></td><td>/record_export_jobs/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/tasks">Tasks</a></td><td>/tasks/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/task_lists">TaskLists</a></td><td>/task_lists/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/task_priorities">TaskPriorities</a></td><td>/task_priorities</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/task_statuses">TaskStatuses</a></td><td>/task_statuses</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-task_preferences">TaskPreferences</a></td><td>/users/:userId/task_preferences</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users">Users</a></td><td>/users/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-roles">Roles</a></td><td>/workspaces/:workspaceId/roles/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces">Workspaces</a></td><td>/workspaces/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspace_copy_jobs">WorkspaceCopyJobs</a></td><td>/workspace_copy_jobs</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-invitees">WorkspaceInvitees</a></td><td>/workspaces/:workspaceId/invitees/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-members">WorkspaceMembers</a></td><td>/workspaces/:workspaceId/members/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-plugins">WorkspacePlugins</a></td><td>/workspaces/:workspaceId/plugins/:id</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-members-member.id-task_preferences">WorkspaceTaskPreferences</a></td><td>/workspaces/:workspaceId/members/:memberId/task_preferences</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-logo">WorkspaceLogo</a></td><td>/workspaces/:workspaceId/logo</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/countries">Countries</a></td><td>/countries</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/states">States</a></td><td>/states</td></tr>
+    <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/subscriptions">Subscriptions</a></td><td>/subscriptions/:id</td></tr>
+  </tbody>
 </table>

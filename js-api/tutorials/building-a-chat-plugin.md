@@ -20,75 +20,75 @@ If you haven't yet done so, we recommended first reading about [data access]({{s
  * Chat Controller
  */
 plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', function ($scope, $routeParams, Data) {
-	
-	/**
-	 * Load indicator
-	 */
-	$scope.loading = true;
-	
-	/**
-	 * Get all members in a workspace
-	 *
-	 * equivalent to: GET {{site.apiDomain}}/v1/workspaces/{workspaceId}/members
-	 */
-	Data('WorkspaceMembers').query(
-		// Params
-		{
-			workspaceId: $routeParams.workspace_id
-		},
-		// Success
-		function(resp) {
-			$scope.members = resp;
-		},
-		// Error
-		function(resp) {
-			$scope.err = resp;
-		}
-	);
-	
-	/**
-	 * Get plugin data
-	 *
-	 * equivalent to: GET {{site.apiDomain}}/v1/plugins/?namespace=chat
-	 */
-	Data('Plugins').get(
-		// Params
-		{
-			namespace: 'chat'
-		},
-		// Success
-		function(resp) {
-			// Note: the response comes back as an array, but namespaces are unique
-			// the result will be always one element, so we can eliminate the array
-			// and assign the first element to `$scope.plugin` to simplify.
-			$scope.plugin = resp[0];
-		},
-		// Error
-		function(resp) {
-			$scope.err = resp;
-		}
-	);
+    
+    /**
+     * Load indicator
+     */
+    $scope.loading = true;
+    
+    /**
+     * Get all members in a workspace
+     *
+     * equivalent to: GET {{site.apiDomain}}/v1/workspaces/{workspaceId}/members
+     */
+    Data('WorkspaceMembers').query(
+        // Params
+        {
+            workspaceId: $routeParams.workspace_id
+        },
+        // Success
+        function(resp) {
+            $scope.members = resp;
+        },
+        // Error
+        function(resp) {
+            $scope.err = resp;
+        }
+    );
+    
+    /**
+     * Get plugin data
+     *
+     * equivalent to: GET {{site.apiDomain}}/v1/plugins/?namespace=chat
+     */
+    Data('Plugins').get(
+        // Params
+        {
+            namespace: 'chat'
+        },
+        // Success
+        function(resp) {
+            // Note: the response comes back as an array, but namespaces are unique
+            // the result will be always one element, so we can eliminate the array
+            // and assign the first element to `$scope.plugin` to simplify.
+            $scope.plugin = resp[0];
+        },
+        // Error
+        function(resp) {
+            $scope.err = resp;
+        }
+    );
  
-	/**
-	 * Get current logged user in Wizehive
-	 *
-	 * equivalent to: GET {{site.apiDomain}}/v1/users/me
-	 */
-	Data('Users').get(
-		// Params
-		{
-			id: 'me'
-		},
-		// Success
-		function(resp) {
-			$scope.me = resp;
-		},
-		// Error
-		function(resp) {
-			$scope.err = resp;
-		}
-	);
-	
+    /**
+     * Get current logged user in Wizehive
+     *
+     * equivalent to: GET {{site.apiDomain}}/v1/users/me
+     */
+    Data('Users').get(
+        // Params
+        {
+            id: 'me'
+        },
+        // Success
+        function(resp) {
+            $scope.me = resp;
+        },
+        // Error
+        function(resp) {
+            $scope.err = resp;
+        }
+    );
+    
 }])
 
 {% endhighlight %}
@@ -103,37 +103,37 @@ After making the API requests, we need to wait for the success callbacks to fini
 
 {% highlight js %}
 
-	/**
-	 * Wait for members, plugin and current user data to be loaded before connect with Firebase
-	 */
-	var unbindInitalDataFetch = $scope.$watchCollection('[members, plugin, me]', function() {
+    /**
+     * Wait for members, plugin and current user data to be loaded before connect with Firebase
+     */
+    var unbindInitalDataFetch = $scope.$watchCollection('[members, plugin, me]', function() {
  
-		//
-		// If there is an err in the scope:
-		//
-		// 1. Change the state of the loading indicator to false
-		// 2. Remove the watcher
-		// 3. Return (the plugin.html should contain logic to show the error message)
-		//
-		if ($scope.err) {
-			$scope.loading = false;
-			unbindInitalDataFetch();
-			return;
-		}
-		
-		//
-		// Check if all of the three `$scope` properties have been defined
-		//
-		// 1. Remove the watcher
-		// 2. Call `$scope.connect` to connect with Firebase
-		//
-		if ($scope.members !== undefined && $scope.plugin !== undefined && $scope.me !== undefined) {
-			unbindInitalDataFetch();
-			$scope.connect();
-		}
-		
-	});
-	
+        //
+        // If there is an err in the scope:
+        //
+        // 1. Change the state of the loading indicator to false
+        // 2. Remove the watcher
+        // 3. Return (the plugin.html should contain logic to show the error message)
+        //
+        if ($scope.err) {
+            $scope.loading = false;
+            unbindInitalDataFetch();
+            return;
+        }
+        
+        //
+        // Check if all of the three `$scope` properties have been defined
+        //
+        // 1. Remove the watcher
+        // 2. Call `$scope.connect` to connect with Firebase
+        //
+        if ($scope.members !== undefined && $scope.plugin !== undefined && $scope.me !== undefined) {
+            unbindInitalDataFetch();
+            $scope.connect();
+        }
+        
+    });
+    
 {% endhighlight %}
 
 The method `$watchCollection` returns a function that can be called to dispose/remove the watcher. In this case the data is fetched once when the plugin loads into the workspace without further need to call `$scope.connect()`.
@@ -146,94 +146,94 @@ Note that you need to inject the `$firebase` module in your controller signature
 
 {% highlight js %}
 
-	/**
-	 * Load indicator
-	 */
-	$scope.loading = true;
+    /**
+     * Load indicator
+     */
+    $scope.loading = true;
  
-	/**
-	 * Connect with Firebase
-	 */
-	$scope.connect = function() {
-		
-		//
-		// Room reference
-		//
-		var ref = new Firebase($scope.plugin.firebaseUrl + '/rooms/' + $routeParams.workspace_id);
-		
-		//
-		// Authenticate user and set presence
-		//
-		ref.auth($scope.plugin.firebaseAuthToken, function(err, res) {
-			
-			//
-			// Set error if present and returns
-			//
-			if (err) {
-				$scope.err = err;
-				$scope.$apply();
-				return;
-			}
-			 
-			//
-			// Set room
-			//
-			$scope.room = $firebase(ref);
-			
-			//
-			// Set presence using the Firebase low level API
-			//
-			var session = new Firebase($scope.plugin.firebaseUrl + '/rooms/' + $routeParams.workspace_id + '/sessions/' + $scope.me.id);
-			var connection = new Firebase($scope.plugin.firebaseUrl + '/.info/connected');
-			
-			//
-			// Will set an element in the session list when the user is connected and
-			// automatically remove it when the user disconnects
-			//
-			connection.on('value', function(snapshot) {
-				
-				if (snapshot.val() === true) {
-					
-					// Add current user to the room sessions
-					session.set(true);
-					
-					// Remove on disconnect
-					session.onDisconnect().remove();
-					
-				}
-				
-			});
+    /**
+     * Connect with Firebase
+     */
+    $scope.connect = function() {
+        
+        //
+        // Room reference
+        //
+        var ref = new Firebase($scope.plugin.firebaseUrl + '/rooms/' + $routeParams.workspace_id);
+        
+        //
+        // Authenticate user and set presence
+        //
+        ref.auth($scope.plugin.firebaseAuthToken, function(err, res) {
+            
+            //
+            // Set error if present and returns
+            //
+            if (err) {
+                $scope.err = err;
+                $scope.$apply();
+                return;
+            }
+             
+            //
+            // Set room
+            //
+            $scope.room = $firebase(ref);
+            
+            //
+            // Set presence using the Firebase low level API
+            //
+            var session = new Firebase($scope.plugin.firebaseUrl + '/rooms/' + $routeParams.workspace_id + '/sessions/' + $scope.me.id);
+            var connection = new Firebase($scope.plugin.firebaseUrl + '/.info/connected');
+            
+            //
+            // Will set an element in the session list when the user is connected and
+            // automatically remove it when the user disconnects
+            //
+            connection.on('value', function(snapshot) {
+                
+                if (snapshot.val() === true) {
+                    
+                    // Add current user to the room sessions
+                    session.set(true);
+                    
+                    // Remove on disconnect
+                    session.onDisconnect().remove();
+                    
+                }
+                
+            });
  
-			//
-			// Set sessions
-			//
-			$scope.sessions = $scope.room.$child('sessions');
-			
-			//
-			// Set messages
-			//
-			$scope.messages = $scope.room.$child('messages');
-			
-			//
-			// Set preferences
-			//
-			$scope.preferences = $scope.room.$child('preferences');
-			
-			//
-			// Remove loading indicator
-			//
-			$scope.loading = false;
-			
-			//
-			// Apply changes to the scope
-			//
-			$scope.$apply();
-			
-		});
-		
-	};
+            //
+            // Set sessions
+            //
+            $scope.sessions = $scope.room.$child('sessions');
+            
+            //
+            // Set messages
+            //
+            $scope.messages = $scope.room.$child('messages');
+            
+            //
+            // Set preferences
+            //
+            $scope.preferences = $scope.room.$child('preferences');
+            
+            //
+            // Remove loading indicator
+            //
+            $scope.loading = false;
+            
+            //
+            // Apply changes to the scope
+            //
+            $scope.$apply();
+            
+        });
+        
+    };
  
-	
+    
 }])
 
 {% endhighlight %}
@@ -250,24 +250,24 @@ Note that we are using a special Firebase variable `Firebase.ServerValue.TIMESTA
 
 {% highlight js %}
 
-	/**
-	 * Add a new message
-	 */
-	$scope.addMessage = function() {
-		
-		if (!$scope.newMessage) {
-			return;
-		}
-		
-		$scope.messages.$add({
-			userId: $scope.me.id,
-			text: $scope.newMessage,
-			timestamp: Firebase.ServerValue.TIMESTAMP
-		});
-		
-		$scope.newMessage = null;
-		
-	};
+    /**
+     * Add a new message
+     */
+    $scope.addMessage = function() {
+        
+        if (!$scope.newMessage) {
+            return;
+        }
+        
+        $scope.messages.$add({
+            userId: $scope.me.id,
+            text: $scope.newMessage,
+            timestamp: Firebase.ServerValue.TIMESTAMP
+        });
+        
+        $scope.newMessage = null;
+        
+    };
 
 {% endhighlight %}
 
@@ -287,27 +287,27 @@ It also emits an event `chatAutoscroll` to trigger a scroll to the new added mes
  * Messages Directive
  */
 .directive('chatMessage', [function() {
-	return {
-		scope: {
-			message: '=',
-			members: '='
-		},
-		templateUrl: 'chat-message',
-		link: function postLink(scope, element, attrs) {
-			var unbind = scope.$watch('members', function(members) {
-				if (!members) {
-					return;
-				}
-				angular.forEach(members, function(member) {
-					if (member.user.id === scope.message.userId) {
-						scope.member = member;
-					}
-				});
-				unbind();
-				scope.$emit('chatAutoscroll');
-			});
-		}
-	};
+    return {
+        scope: {
+            message: '=',
+            members: '='
+        },
+        templateUrl: 'chat-message',
+        link: function postLink(scope, element, attrs) {
+            var unbind = scope.$watch('members', function(members) {
+                if (!members) {
+                    return;
+                }
+                angular.forEach(members, function(member) {
+                    if (member.user.id === scope.message.userId) {
+                        scope.member = member;
+                    }
+                });
+                unbind();
+                scope.$emit('chatAutoscroll');
+            });
+        }
+    };
 }])
 
 {% endhighlight %}
@@ -318,13 +318,13 @@ The `chat-message` template used in conjection with the `chatMessage` directive 
 
 <!-- Chat message template -->
 <script type="text/ng-template" id="chat-message">
-	<div class="message-left">
-		<img ng-src="{{member.user.settings.avatarUrl}}" alt="{{member.user.displayName || member.user.username || member.user.email}}" class="avatar avatar-small">
-	</div>
-	<div class="message-right">
-		<p>{{member.user.displayName || member.user.username || member.user.email}} <span class="message-time">{{message.timestamp | date:'shortTime' || ''}}</span></p>
-		<p>{{message.text}}</p>
-	</div>
+    <div class="message-left">
+        <img ng-src="{{member.user.settings.avatarUrl}}" alt="{{member.user.displayName || member.user.username || member.user.email}}" class="avatar avatar-small">
+    </div>
+    <div class="message-right">
+        <p>{{member.user.displayName || member.user.username || member.user.email}} <span class="message-time">{{message.timestamp | date:'shortTime' || ''}}</span></p>
+        <p>{{message.text}}</p>
+    </div>
 </script>
 
 {% endhighlight %}
@@ -338,15 +338,15 @@ All messages in the room will be displayed inside a `div` container with a fixed
  * Autoscroll Directive
  */
 .directive('chatAutoscroll', ['$timeout', function($timeout) {
-	return {
-		link: function postLink(scope, element, attrs) {
-			scope.$on('chatAutoscroll', function() {
-				$timeout(function() {
-					element.scrollTop(element[0].scrollHeight);
-				});
-			});
-		}
-	};
+    return {
+        link: function postLink(scope, element, attrs) {
+            scope.$on('chatAutoscroll', function() {
+                $timeout(function() {
+                    element.scrollTop(element[0].scrollHeight);
+                });
+            });
+        }
+    };
 }])
 
 {% endhighlight %}
@@ -358,29 +358,29 @@ The `chat-main` template uses the grid from the Wizehive patterns to render a tw
 {% highlight html %}
 <!-- Chat main template -->
 <script type="text/ng-template" id="chat-main">
-	<div ng-show="loading">
-		<span class="throbber"></span>
-	</div>
-	<div ng-hide="loading" class="row">
-		<div class="col-10 main-white">
-			<div class="messages" chat-autoscroll>
-				<div ng-repeat="message in messages">
-					<div chat-message message="message" members="members"></div>
-					<hr ng-if="!$last">
-				</div>
-			</div>
-			<div class="">
-				<form ng-submit="addMessage()">
-					<input type="text" ng-model="newMessage" placeholder="Type a message and press enter" class="message-box">
-				</form>
-			</div>
-		</div>
-		<div class="col-2 main-white">
-			<div class="members">
-				<p ng-repeat="member in members" ng-class="{'online': sessions[member.user.id], 'offline': !sessions[member.user.id]}">{{member.user.displayName || member.user.username}}</p>
-			</div>
-		</div>
-	</div>
+    <div ng-show="loading">
+        <span class="throbber"></span>
+    </div>
+    <div ng-hide="loading" class="row">
+        <div class="col-10 main-white">
+            <div class="messages" chat-autoscroll>
+                <div ng-repeat="message in messages">
+                    <div chat-message message="message" members="members"></div>
+                    <hr ng-if="!$last">
+                </div>
+            </div>
+            <div class="">
+                <form ng-submit="addMessage()">
+                    <input type="text" ng-model="newMessage" placeholder="Type a message and press enter" class="message-box">
+                </form>
+            </div>
+        </div>
+        <div class="col-2 main-white">
+            <div class="members">
+                <p ng-repeat="member in members" ng-class="{'online': sessions[member.user.id], 'offline': !sessions[member.user.id]}">{{member.user.displayName || member.user.username}}</p>
+            </div>
+        </div>
+    </div>
 </script>
 
 {% endhighlight %}
@@ -392,38 +392,38 @@ We are using just few CSS rules to customize the plugin look. This because the m
 {% highlight css %}
  
 .offline {
-	color: #ccc;
+    color: #ccc;
 }
  
 .online {
-	color: #000;
-	
+    color: #000;
+    
 }
  
 .messages {
-	overflow:scroll;
-	height:500px;
-	padding-right: 15px;
+    overflow:scroll;
+    height:500px;
+    padding-right: 15px;
 }
  
 .members {
-	overflow:scroll;
-	height:550px;
+    overflow:scroll;
+    height:550px;
 }
  
 .message-time {
-	color: #ccc;
+    color: #ccc;
 }
  
 .message-box {
-	margin-top: 10px;
-	width:97%;
-	padding:10px;
+    margin-top: 10px;
+    width:97%;
+    padding:10px;
 }
  
 .message-left {
-	width: 40px;
-	float: left;
+    width: 40px;
+    float: left;
 }
 
 {% endhighlight %}
@@ -439,12 +439,12 @@ The code for the entire chat plugin can be found below. In this case, the plugin
 </ul>
 <div class="tab-content">
   <div class="tab-pane fade in active" id="plugin-js">
-	{% gist /AParks/3760ac7a9c14d22bc317 %} 
+    {% gist /AParks/3760ac7a9c14d22bc317 %} 
   </div>
   <div class="tab-pane fade" id="plugin-html">
-	{% gist /AParks/de308d8081013d9e00ce %}
+    {% gist /AParks/de308d8081013d9e00ce %}
   </div>
   <div class="tab-pane fade" id="plugin-css">
-	{% gist /AParks/f27a7beccfd03df9fc7c %}
+    {% gist /AParks/f27a7beccfd03df9fc7c %}
   </div>
 </div>
