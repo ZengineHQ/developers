@@ -5,3 +5,5 @@ clientDomain: "https://stage-beta.wizehive.com"
 authDomain: "https://stage-auth.wizehive.com"
 demoClientId: "rest-api-quick-start-demo"
 apiKey: false
+kramdown:
+  input: GFM # enable github flavored markdown

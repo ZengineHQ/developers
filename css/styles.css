@@ -226,3 +226,7 @@ body.support {
 .rest-api-docs-wrapper #header {
 	margin-top:20px;
 }
+
+.center-text {
+	text-align: center;
+}
