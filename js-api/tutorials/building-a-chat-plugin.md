@@ -58,9 +58,10 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', function ($scop
         },
         // Success
         function(resp) {
-            // Note: the response comes back as an array, but namespaces are unique
-            // the result will be always one element, so we can eliminate the array
-            // and assign the first element to `$scope.plugin` to simplify.
+            // Note: the response comes back as an array, but because namespaces are unique
+            // this request will contain just one element, for convenience let assign the
+            // first element to `$scope.plugin` to save us the need to refer to it as `$scope.plugin[0]`
+            // to read plugin properties
             $scope.plugin = resp[0];
         },
         // Error
