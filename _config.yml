@@ -1,9 +1,13 @@
 baseurl: '/documentation-stage'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
-apiDomain: "https://stage-api.wizehive.com"
-clientDomain: "https://stage-beta.wizehive.com"
-authDomain: "https://stage-auth.wizehive.com"
+apiDomain: "https://stage-api.zengine.io"
+clientDomain: "https://stage-beta.zengine.io"
+authDomain: "https://stage-auth.zengine.io"
 demoClientId: "rest-api-quick-start-demo"
+supportDomain: "http://support.zengine.io"
+rootDomain: Zengine.io
 apiKey: false
 kramdown:
   input: GFM # enable github flavored markdown
+productName: Zengine
+logo: <span class="logo">Zen<span class="hive">gine</span> Developers</span>

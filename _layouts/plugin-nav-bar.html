@@ -38,35 +38,35 @@ $(function(){
 				<a href="{{site.baseurl}}/js-api/getting-started">Getting Started</a>
 			</li>
 			<li class="divider"></li>
-			<li {% if page.group == 'wizehive-services' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/js-api/wizehive-services">Wizehive Services</a>
+			<li {% if page.group == 'services' %}class="active"{% endif %}>
+				<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services">{{site.productName}} Services</a>
 				<ul>
 					<li class="message">
-						<a href="{{site.baseurl}}/js-api/wizehive-services/#message">Message</a>
+						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#message">Message</a>
 					</li>
 					<li class="confirm">
-						<a href="{{site.baseurl}}/js-api/wizehive-services/#confirm">Confirm</a>
+						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#confirm">Confirm</a>
 					</li>
 					<li class="modal">
-						<a href="{{site.baseurl}}/js-api/wizehive-services/#modal">Modal</a>
+						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#modal">Modal</a>
 					</li>
 					<li class="plugin_events">
-						<a href="{{site.baseurl}}/js-api/wizehive-services/#plugin_events">Plugin Events</a>
+						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#plugin_events">Plugin Events</a>
 					</li>
 					<li class="data">
-						<a href="{{site.baseurl}}/js-api/wizehive-services/#data">Data</a>
+						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#data">Data</a>
 						<ul>
 							<li class="get">
-								<a href="{{site.baseurl}}/js-api/wizehive-services/#get">Get</a>
+								<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#get">Get</a>
 							</li>
 							<li class="query">
-								<a href="{{site.baseurl}}/js-api/wizehive-services/#query">Query</a>
+								<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#query">Query</a>
 							</li>
 							<li class="delete">
-								<a href="{{site.baseurl}}/js-api/wizehive-services/#delete">Delete</a>
+								<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#delete">Delete</a>
 							</li>
 							<li class="save">
-								<a href="{{site.baseurl}}/js-api/wizehive-services/#save">Save</a>
+								<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#save">Save</a>
 							</li>
 						</ul>
 					</li>
@@ -91,8 +91,50 @@ $(function(){
 			<li {% if page.group == 'tutorials' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/js-api/tutorials">Tutorials</a>
 				<ul>
-					<li {% if page.subgroup == 'record-board' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/js-api/tutorials/record-board.html">Trello</a>
+					<li {% if page.subgroup == 'record-board' or page.subgroup == 'record-board-2'%}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/js-api/tutorials/record-board.html">Record Board</a>
+						<ul>
+							<li {% if page.subgroup == 'record-board' %}class="active"{% endif %}>
+								<a href="{{site.baseurl}}/js-api/tutorials/record-board.html">Part 1</a>
+								<ul>
+									<li class="prerequisites">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#prerequisites">Prerequisites</a>
+									</li>
+									<li class="current_workspace">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#current_workspace">Current Workspace</a>
+									</li>
+									<li class="workspace_forms">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#workspace_forms">Workspace Forms</a>
+									</li>
+									<li class="selecting_a_form">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#selecting_a_form">Selecting a Form</a>
+									</li>
+									<li class="loading_records">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#loading_records">Loading Records</a>
+									</li>
+									<li class="wrapping_up">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#wrapping_up">Wrapping Up</a>
+									</li>
+								</ul>
+							</li>
+							<li {% if page.subgroup == 'record-board-2' %}class="active"{% endif %}>
+								<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html">Part 2</a>
+								<ul>
+									<li class="prerequisites">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html#adding_folders">Adding Folders</a>
+									</li>
+									<li class="current_workspace">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html#moving_records">Moving Records</a>
+									</li>
+									<li class="selecting_a_form">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html#saving_record_folders">Saving Record Folders</a>
+									</li>
+									<li class="wrapping_up">
+										<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html#wrapping_up">Wrapping Up</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
 					<li class="divider"></li>
 					<li {% if page.subgroup == 'chat' %}class="active"{% endif %}>
@@ -117,7 +159,7 @@ $(function(){
 								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#add_a_directive_to_auto_scroll_messages">Autoscroll Directive</a>
 							</li>
 							<li>
-								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#code">Code</a>
+								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#wrapping_up">Wrapping Up</a>
 							</li>
 						</ul>
 					</li>

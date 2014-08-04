@@ -105,7 +105,7 @@ plugin.controller('myPluginCntl', ['$scope', '$firebase', function ($scope, $fir
 
 ## Authentication
 
-To get advantage of the already logged in user in Wizehive and authenticate this same user in Firebase, you need to use the [custom login](https://www.firebase.com/docs/security/custom-login.html) method, this method uses a JWT token instead of a username and password.
+To get advantage of the already logged in user in {{site.productName}} and authenticate this same user in Firebase, you need to use the [custom login](https://www.firebase.com/docs/security/custom-login.html) method, this method uses a JWT token instead of a username and password.
 
 You can get a token to authenticate the current user in Firebase by fetching your plugin data using the `Data` factory. The response will contain a `firebaseAuthToken` attribute, this token is generated using the Firebase secret that you set in your "Plugin Settings". 
 
@@ -123,7 +123,7 @@ The following data is passed to Firebase and made available with the `auth` vari
 }
 {% endhighlight %}
 
-The example below demonstrates how you can fetch the current plugin and user data from Wizehive API, and then use it to connect to Firebase.
+The example below demonstrates how you can fetch the current plugin and user data from {{site.productName}} API, and then use it to connect to Firebase.
 
 {% highlight js %}
 /**
