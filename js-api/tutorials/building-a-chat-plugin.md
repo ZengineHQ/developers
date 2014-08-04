@@ -316,18 +316,24 @@ It also emits an event `chatAutoscroll` to trigger a scroll to the new added mes
 The `chat-message` template used in conjection with the `chatMessage` directive that parses each messages.
 
 {% highlight html %}
-
+{% raw %}
 <!-- Chat message template -->
 <script type="text/ng-template" id="chat-message">
     <div class="message-left">
-        <img ng-src="{{member.user.settings.avatarUrl}}" alt="{{member.user.displayName || member.user.username || member.user.email}}" class="avatar avatar-small">
+        <img ng-src="{{member.user.settings.avatarUrl}}" 
+            alt="{{member.user.displayName || member.user.username || member.user.email}}" 
+            class="avatar avatar-small">
     </div>
     <div class="message-right">
-        <p>{{member.user.displayName || member.user.username || member.user.email}} <span class="message-time">{{message.timestamp | date:'shortTime' || ''}}</span></p>
+        <p>{{member.user.displayName || member.user.username || member.user.email}}
+            <span class="message-time">
+                {{message.timestamp | date:'shortTime' || ''}}
+            </span>
+        </p>
         <p>{{message.text}}</p>
     </div>
 </script>
-
+{% endraw %}
 {% endhighlight %}
 
 ## Add a directive to auto scroll messages
@@ -354,9 +360,10 @@ All messages in the room will be displayed inside a `div` container with a fixed
 
 ## The HTML markup for the chat room
 
-The `chat-main` template uses the grid from the {{site.productName}} patterns to render a two columns layout, were the left column displays the messages and the right column the member list.
+The `chat-main` template uses the grid from the {{site.productName}} patterns to render a two column layout, where the left column displays the messages and the right column the member list.
 
 {% highlight html %}
+{% raw %}
 <!-- Chat main template -->
 <script type="text/ng-template" id="chat-main">
     <div ng-show="loading">
@@ -372,61 +379,24 @@ The `chat-main` template uses the grid from the {{site.productName}} patterns to
             </div>
             <div class="">
                 <form ng-submit="addMessage()">
-                    <input type="text" ng-model="newMessage" placeholder="Type a message and press enter" class="message-box">
+                    <input type="text" 
+                        ng-model="newMessage" 
+                        placeholder="Type a message and press enter" 
+                        class="message-box">
                 </form>
             </div>
         </div>
         <div class="col-2 main-white">
             <div class="members">
-                <p ng-repeat="member in members" ng-class="{'online': sessions[member.user.id], 'offline': !sessions[member.user.id]}">{{member.user.displayName || member.user.username}}</p>
+                <p ng-repeat="member in members" 
+                    ng-class="{'online': sessions[member.user.id], 'offline': !sessions[member.user.id]}">
+                    {{member.user.displayName || member.user.username}}
+                </p>
             </div>
         </div>
     </div>
 </script>
-
-{% endhighlight %}
-
-## The CSS styles for the chat room
-
-We are using just few CSS rules to customize the plugin look. This because the most of the layout are using the {{site.productName}} Patterns.
-
-{% highlight css %}
- 
-.offline {
-    color: #ccc;
-}
- 
-.online {
-    color: #000;
-    
-}
- 
-.messages {
-    overflow:scroll;
-    height:500px;
-    padding-right: 15px;
-}
- 
-.members {
-    overflow:scroll;
-    height:550px;
-}
- 
-.message-time {
-    color: #ccc;
-}
- 
-.message-box {
-    margin-top: 10px;
-    width:97%;
-    padding:10px;
-}
- 
-.message-left {
-    width: 40px;
-    float: left;
-}
-
+{% endraw %}
 {% endhighlight %}
 
 ## Wrapping Up
@@ -708,9 +678,100 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', '$firebase', fu
 {% endhighlight %}
   </div>
     <div class="tab-pane fade" id="plugin-html">
-    <!-- {% gist /AParks/de308d8081013d9e00ce %} -->
+{% highlight html %}
+{% raw %}
+<!-- Chat main template -->
+<script type="text/ng-template" id="chat-main">
+    <div ng-show="loading">
+        <span class="throbber"></span>
+    </div>
+    <div ng-hide="loading" class="row">
+        <div class="col-10 main-white">
+            <div class="messages" chat-autoscroll>
+                <div ng-repeat="message in messages">
+                    <div chat-message message="message" members="members"></div>
+                    <hr ng-if="!$last">
+                </div>
+            </div>
+            <div class="">
+                <form ng-submit="addMessage()">
+                    <input type="text" 
+                        ng-model="newMessage" 
+                        placeholder="Type a message and press enter" 
+                        class="message-box">
+                </form>
+            </div>
+        </div>
+        <div class="col-2 main-white">
+            <div class="members">
+                <p ng-repeat="member in members" 
+                    ng-class="{'online': sessions[member.user.id], 'offline': !sessions[member.user.id]}">
+                    {{member.user.displayName || member.user.username}}
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+ 
+<!-- Chat message template -->
+<script type="text/ng-template" id="chat-message">
+    <div class="message-left">
+        <img ng-src="{{member.user.settings.avatarUrl}}" 
+            alt="{{member.user.displayName || member.user.username || member.user.email}}" 
+            class="avatar avatar-small">
+    </div>
+    <div class="message-right">
+        <p>{{member.user.displayName || member.user.username || member.user.email}}
+            <span class="message-time">
+                {{message.timestamp | date:'shortTime' || ''}}
+            </span>
+        </p>
+        <p>{{message.text}}</p>
+    </div>
+</script>
+{% endraw %}
+{% endhighlight %}
     </div>
   <div class="tab-pane fade" id="plugin-css">
-   <!--  {% gist /AParks/f27a7beccfd03df9fc7c %} -->
+    We are using just a few CSS rules to customize the plugin look. This is because most of the layout is using the {{site.productName}} Patterns.
+
+{% highlight css %}
+ 
+.offline {
+    color: #ccc;
+}
+ 
+.online {
+    color: #000;
+    
+}
+ 
+.messages {
+    overflow:scroll;
+    height:500px;
+    padding-right: 15px;
+}
+ 
+.members {
+    overflow:scroll;
+    height:550px;
+}
+ 
+.message-time {
+    color: #ccc;
+}
+ 
+.message-box {
+    margin-top: 10px;
+    width:97%;
+    padding:10px;
+}
+ 
+.message-left {
+    width: 40px;
+    float: left;
+}
+
+{% endhighlight %}
   </div>
 </div>

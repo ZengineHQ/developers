@@ -15,18 +15,19 @@ At this point you probably only have 1 column and you want to do more than just 
 Let's start by adding a column to the board that prompts for a folder name. You can recall some of this code from part 1, as a reference where to put the add folder HTML. 
 
 {% highlight html %}
+{% raw %}
 <!-- Board Canvas -->
 <div class="wrapper">
 
     <!-- Folder Column -->
     <div ng-repeat="folder in folders" class="column">
         <!-- Display Folder Name -->
-        <div class="name">{% raw %}{{folder.name}}{% endraw %}</div>
+        <div class="name">{{folder.name}}</div>
         
         <!-- Folder Records List -->
         <ul class="record-list">
                 <li ng-repeat="record in folderRecords[folder.id]" class="record">
-                    {% raw %}{{record.name}}{% endraw %}
+                    {{record.name}}
                 </li>
         </ul>
     </div>
@@ -43,6 +44,7 @@ Let's start by adding a column to the board that prompts for a folder name. You 
         </div>
     </div>    
 </div>
+{% endraw %}
 {% endhighlight %}
 
 This represents patterns for forms and buttons that will match the app. The `ng-show` for `formId` will make sure the column only appears when a form has been selected, since a form is required to create a form folder. The `ng-model` makes the new folder name accessible from the `$scope` as the property `addFolderName`. We will write the `addFolder` function below in the plugin javascript to make it work.
@@ -103,18 +105,20 @@ $scope.sortableOptions = {
 Next, in the plugin HTML, add the directive `ui-sortable` to the record list as seen below. As you can see, it should reference the `sortableOptions` from above. We also need to add `ng-model` referencing the list of records for `ui-sortable` to work.
 
 {% highlight html %}
+{% raw %}
 <!-- Folder Column -->
 <div ng-repeat="folder in folders" class="column">
     <!-- Display Folder Name -->
-    <div class="name">{% raw %}{{folder.name}}{% endraw %}</div>
+    <div class="name">{{folder.name}}</div>
     
     <!-- Folder Records List -->
     <ul class="record-list" ui-sortable="sortableOptions" ng-model="folderRecords[folder.id]">
         <li ng-repeat="record in folderRecords[folder.id]" class="record">
-            {% raw %}{{record.name}}{% endraw %}
+            {{record.name}}
         </li>
     </ul>
 </div>
+{% endraw %}
 {% endhighlight %}
 
 One more small, but important, addition is to update the CSS to add some height to empty lists. This is necessary to be able to drag items onto empty lists. Add the following to the plugin CSS.
@@ -130,18 +134,20 @@ One more small, but important, addition is to update the CSS to add some height 
 Now that users can move records into different folders, let's add a way to save the changes. Starting with the plugin HTML, we will need to add a way to identify the record being moved. We can do this by adding a data-id attribute to the record item.
 
 {% highlight html %}
+{% raw %}
 <!-- Folder Column -->
 <div ng-repeat="folder in folders" class="column">
     <!-- Display Folder Name -->
-    <div class="name">{% raw %}{{folder.name}}{% endraw %}</div>
+    <div class="name">{{folder.name}}</div>
     
     <!-- Folder Records List -->
     <ul class="record-list" ui-sortable="sortableOptions" ng-model="folderRecords[folder.id]">
         <li ng-repeat="record in folderRecords[folder.id]" data-id="{{record.id}}" class="record">
-            {% raw %}{{record.name}}{% endraw %}
+            {{record.name}}
         </li>
     </ul>
 </div>
+{% endraw %}
 {% endhighlight %}
 
 Next, we need to update the sortable options to trigger a save when a record is moved. Sortable provides several callbacks when lists are updated. Here we can take advantage of the `update` callback with the function you see below.
@@ -390,6 +396,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
     </div>
     <div class="tab-pane fade" id="plugin-html">
 {% highlight html %}
+{% raw %}
 <script type="text/ng-template" id="my-plugin-main">
     
     <!-- form tabs -->
@@ -397,7 +404,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
         <ul class="tabs">
             <li ng-repeat="form in forms" ng-class="{active: formId == form.id}">
                 <a href="#" ng-click="pickForm(form.id)">
-                    {% raw %}{{form.name}}{% endraw %}
+                    {{form.name}}
                 </a>
             </li>
         </ul>
@@ -409,12 +416,12 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
         <!-- Folder Column -->
         <div ng-repeat="folder in folders" class="column">
             <!-- Display Folder Name -->
-            <div class="name">{% raw %}{{folder.name}}{% endraw %}</div>
+            <div class="name">{{folder.name}}</div>
             
             <!-- Folder Records List -->
             <ul class="record-list" ui-sortable="sortableOptions" ng-model="folderRecords[folder.id]">
                 <li ng-repeat="record in folderRecords[folder.id]" data-id="{{record.id}}" class="record">
-                    {% raw %}{{record.name}}{% endraw %}
+                    {{record.name}}
                 </li>
             </ul>
         </div>
@@ -434,6 +441,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
     </div>
         
 </script>
+{% endraw %}
 {% endhighlight %}
     </div>
     <div class="tab-pane fade" id="plugin-css">
