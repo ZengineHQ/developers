@@ -68,6 +68,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($
 We will use the `Data` service to query the `Forms` endpoint, passing the workspace ID from above as a query parameter and `folders` as related data we want included in the response.  
 
 {% highlight js %}
+
 	// Workspace Forms
 	$scope.forms = [];
 	
@@ -89,6 +90,7 @@ We will use the `Data` service to query the `Forms` endpoint, passing the worksp
 We need to trigger the loadForms function to be called, so we will add that to the workspace detection code after it sets the workspace ID.
 
 {% highlight js %}
+
 	// Initialize for Workspace ID
 	if ($routeParams.workspace_id) {
 		// Set Selected Workspace ID
@@ -121,6 +123,7 @@ At this point you could run the plugin. After clicking into a workspace and pick
 The plugin user will want to do more than just see a list of forms in the workspace. We need to add a way to select a form. When a form is selected, it should keep track of the form ID in a similar way to the workspace ID. We also want to keep track of the form's `folders` that we requested when we queried the `Forms` endpoint so that we can access them later.
 
 {% highlight js %}
+
 	// Selected Form ID
     $scope.formId = null;
 	
@@ -165,6 +168,7 @@ Now we can update the plugin HTML to allow for selecting forms by calling the `p
 Picking a form should also trigger the records of that form to load. We will be displaying these records in lists by folder, so we will loop through the `folders` and query records by folder ID. The `folderRecords` property will hold these records. After querying the `Records` endpoint, it will store the records returned in `folderRecords`, indexed by folder ID.
 
 {% highlight js %}
+
 	// Records Indexed by Folder
     $scope.folderRecords = {};
 	
@@ -196,6 +200,7 @@ Picking a form should also trigger the records of that form to load. We will be 
 To trigger loading the records, we will update the `pickForm` function to load the records after setting the folders.
 
 {% highlight js %}
+
 	/**
 	 * Pick Selected Form
 	 */

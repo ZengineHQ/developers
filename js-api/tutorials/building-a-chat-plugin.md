@@ -316,7 +316,7 @@ It also emits an event `chatAutoscroll` to trigger a scroll to the new added mes
 The `chat-message` template used in conjection with the `chatMessage` directive that parses each messages.
 
 {% highlight html %}
-
+{% raw %}
 <!-- Chat message template -->
 <script type="text/ng-template" id="chat-message">
     <div class="message-left">
@@ -327,7 +327,7 @@ The `chat-message` template used in conjection with the `chatMessage` directive 
         <p>{{message.text}}</p>
     </div>
 </script>
-
+{% endraw %}
 {% endhighlight %}
 
 ## Add a directive to auto scroll messages
@@ -357,6 +357,7 @@ All messages in the room will be displayed inside a `div` container with a fixed
 The `chat-main` template uses the grid from the Wizehive patterns to render a two columns layout, were the left column displays the messages and the right column the member list.
 
 {% highlight html %}
+{% raw %}
 <!-- Chat main template -->
 <script type="text/ng-template" id="chat-main">
     <div ng-show="loading">
@@ -383,7 +384,7 @@ The `chat-main` template uses the grid from the Wizehive patterns to render a tw
         </div>
     </div>
 </script>
-
+{% endraw %}
 {% endhighlight %}
 
 ## The CSS styles for the chat room
