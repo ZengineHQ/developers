@@ -1,4 +1,5 @@
 _site/
 _config.yml
 Gemfile.lock
-/nbproject/private/
+/nbproject/
+CNAME
