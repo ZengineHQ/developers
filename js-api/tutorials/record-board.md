@@ -102,12 +102,14 @@ We need to trigger the loadForms function to be called, so we will add that to t
 Now the plugin javascript should be loading the workspace forms into `$scope.forms`. We need to add some HTML to display this list when the plugin runs. Click over to the plugin.html editor and add the following code into your main template.
 
 {% highlight html %}
+{% raw %}
 <!-- form tabs -->
 <div>
 	<ul class="tabs">
 		<li ng-repeat="form in forms">{{form.name}}</li>
 	</ul>
 </div>
+{% endraw %}
 {% endhighlight %}
 
 This will cause the forms to appear as tabs. Tabs are a pattern of the app, so this HTML will display tabs the same way the app displays tabs.
@@ -148,12 +150,14 @@ The plugin user will want to do more than just see a list of forms in the worksp
 Now we can update the plugin HTML to allow for selecting forms by calling the `pickForm` function. Since we have the `$scope.formId` set, we can also visually indicate which form is currently selected by applying the active class. 
 
 {% highlight html %}
+{% raw %}
 <!-- form tabs -->
 <div>
 	<ul class="tabs">
 		<li ng-repeat="form in forms" ng-class="{active: formId == form.id}"><a href="#" ng-click="pickForm(form.id)">{{form.name}}</a></li>
 	</ul>
 </div>
+{% endraw %}
 {% endhighlight %}
 
 ## Loading Records
@@ -218,6 +222,7 @@ To trigger loading the records, we will update the `pickForm` function to load t
 At this point, the plugin should be loading forms, folders, and form records into various `$scope` properties. Now that we have this data, we can use it in the plugin interface. Going back to the plugin HTML, we need to add a the folders as columns and records as lists under those columns.
 
 {% highlight html %}
+{% raw %}
 	<!-- Board Canvas -->
 	<div class="wrapper">
     
@@ -233,6 +238,7 @@ At this point, the plugin should be loading forms, folders, and form records int
 		</div>
             
     </div>
+{% endraw %}
 {% endhighlight %}
 
 To make the divs appear as columns, we can add the following to plugin CSS.
@@ -365,6 +371,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($
 Your HTML should look similar to this (with your own plugin namespace in the template id):
 
 {% highlight html %}
+{% raw %}
 <script type="text/ng-template" id="my-plugin-main">
    
     <!-- form tabs -->
@@ -391,6 +398,9 @@ Your HTML should look similar to this (with your own plugin namespace in the tem
     </div>
     
 </script>
+{% endraw %}
 {% endhighlight %}
 
-At this point you should have a functional plugin that will display form folders as columns listing form records. If you don't have any folders, you may only see one column. In part 2, we will work on making the plugin more useful by adding the ability to add folders and move records between lists.
+## Part 2
+
+At this point you should have a functional plugin that will display form folders as columns listing form records. If you don't have any folders, you may only see one column. In <a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html">part 2</a>, we will work on making the plugin more useful by adding the ability to add folders and move records between lists.
