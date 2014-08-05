@@ -208,18 +208,18 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
 	$scope.forms = [];
 	
 	// Selected Form ID
-    $scope.formId = null;
+	$scope.formId = null;
 	
 	// Selected Form Folders
 	$scope.folders = [];
 	
 	// Records Indexed by Folder
-    $scope.folderRecords = {};
+	$scope.folderRecords = {};
     
-    // Add Folder Name 
-    $scope.addFolderName = null;
+	// Add Folder Name 
+	$scope.addFolderName = null;
     
-    // Sortable Options
+	// Sortable Options
 	$scope.sortableOptions = {
 		connectWith: 'ul.record-list',
 		items: 'li.record',
