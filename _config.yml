@@ -5,7 +5,7 @@ clientDomain: "https://stage-beta.zengine.io"
 authDomain: "https://stage-auth.zengine.io"
 demoClientId: "rest-api-quick-start-demo"
 supportDomain: "http://support.zengine.io"
-rootDomain: Zengine.io
+rootDomain: zengine.io
 apiKey: false
 kramdown:
   input: GFM # enable github flavored markdown
