@@ -10,6 +10,8 @@ Forms are like a table or spreadsheet. Form records are the submissions collecte
 
 The idea behind the Record Board plugin is to offer a different visualization and way of working with this form data. The Record Board plugin will display this data similar to kanban boards as columns of lists. Form folders will be used as columns containing lists of records.
 
+![Record Board Plugin]({{ site.url }}/img/js-api/tutorials/record-board-part2.png)
+
 ## Prerequisites
 
 Before developing the plugin, we will want to start off with a form and some record data. For the purposes of this guide, the form only needs 1 field, which will represent the record name. For this plugin, the form records should be things that can be categorized into lists.
@@ -275,6 +277,8 @@ To make the divs appear as columns, we can add the following to plugin CSS.
     margin-top: 10px;
 }
 {% endhighlight %}
+
+![Record Board Part 1]({{ site.url }}/img/js-api/tutorials/record-board-part1.png)
 
 ## Wrapping Up
 
