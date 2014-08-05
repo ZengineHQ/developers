@@ -87,7 +87,7 @@ A new service is also introduced, called `message`, so be sure to add that to th
 	};
 {% endhighlight %}
 
-![Record Board Add Folder]({{ site.url }}/img/js-api/tutorials/record-board-add-folder.png)
+![Record Board Add Folder]({{ site.baseurl }}/img/js-api/tutorials/record-board-add-folder.png)
 
 ## Moving Records
 
@@ -128,7 +128,7 @@ One more small, but important, addition is to update the CSS to add some height 
 }
 {% endhighlight %}
 
-![Record Board Move Records]({{ site.url }}/img/js-api/tutorials/record-board-folders.png)
+![Record Board Move Records]({{ site.baseurl }}/img/js-api/tutorials/record-board-folders.png)
 
 ## Saving Record Folders
 
@@ -187,7 +187,7 @@ Next, we need to update the sortable options to trigger a save when a record is 
 
 First, we ignore cases where `ui.sender` is empty, because those only represent reordering records in the same list. Then we traverse the known folders and records to find the where the record was moved. When the record is found it uses the `Data` service to save the new folder ID. One the save is complete, it updates the folder record list with the response.
 
-![Record Board Plugin]({{ site.url }}/img/js-api/tutorials/record-board-part2.png)
+![Record Board Plugin]({{ site.baseurl }}/img/js-api/tutorials/record-board-part2.png)
 
 ## Wrapping Up
 
