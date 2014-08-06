@@ -10,6 +10,8 @@ Forms are like a table or spreadsheet. Form records are the submissions collecte
 
 The idea behind the Record Board plugin is to offer a different visualization and way of working with this form data. The Record Board plugin will display this data similar to kanban boards as columns of lists. Form folders will be used as columns containing lists of records.
 
+![Record Board Plugin]({{ site.baseurl }}/img/js-api/tutorials/record-board-part2.png)
+
 ## Prerequisites
 
 Before developing the plugin, we will want to start off with a form and some record data. For the purposes of this guide, the form only needs 1 field, which will represent the record name. For this plugin, the form records should be things that can be categorized into lists.
@@ -78,7 +80,7 @@ $scope.loadForms = function() {
     // Reset Workspace Forms
     $scope.forms = [];
     
-    // Query Forms by Workspae ID and Return Loading Promise
+    // Query Forms by Workspace ID and Return Loading Promise
     return Data('Forms').query(
         {
             workspace: { 
@@ -86,7 +88,7 @@ $scope.loadForms = function() {
             },
             related: 'folders'
         }, 
-        function(response) {
+        function(response){
             // Set Workspace Forms from Response
             $scope.forms = response;
         }
@@ -97,6 +99,7 @@ $scope.loadForms = function() {
 We need to trigger the loadForms function to be called, so we will add that to the workspace detection code after it sets the workspace ID.
 
 {% highlight js %}
+
 // Initialize for Workspace ID
 if ($routeParams.workspace_id) {
     // Set Selected Workspace ID
@@ -110,12 +113,14 @@ if ($routeParams.workspace_id) {
 Now the plugin javascript should be loading the workspace forms into `$scope.forms`. We need to add some HTML to display this list when the plugin runs. Click over to the plugin.html editor and add the following code into your main template.
 
 {% highlight html %}
+{% raw %}
 <!-- form tabs -->
 <div>
     <ul class="tabs">
         <li ng-repeat="form in forms">{{form.name}}</li>
     </ul>
 </div>
+{% endraw %}
 {% endhighlight %}
 
 This will cause the forms to appear as tabs. Tabs are a pattern of the app, so this HTML will display tabs the same way the app displays tabs.
@@ -127,6 +132,7 @@ At this point you could run the plugin. After clicking into a workspace and pick
 The plugin user will want to do more than just see a list of forms in the workspace. We need to add a way to select a form. When a form is selected, it should keep track of the form ID in a similar way to the workspace ID. We also want to keep track of the form's `folders` that we requested when we queried the `Forms` endpoint so that we can access them later.
 
 {% highlight js %}
+
 // Selected Form ID
 $scope.formId = null;
 
@@ -156,14 +162,18 @@ $scope.pickForm = function(formId) {
 Now we can update the plugin HTML to allow for selecting forms by calling the `pickForm` function. Since we have the `$scope.formId` set, we can also visually indicate which form is currently selected by applying the active class. 
 
 {% highlight html %}
+{% raw %}
 <!-- form tabs -->
 <div>
     <ul class="tabs">
         <li ng-repeat="form in forms" ng-class="{active: formId == form.id}">
-            <a href="#" ng-click="pickForm(form.id)">{{form.name}}</a>
+            <a href="#" ng-click="pickForm(form.id)">
+                {{form.name}}
+            </a>
         </li>
     </ul>
 </div>
+{% endraw %}
 {% endhighlight %}
 
 ## Loading Records
@@ -171,6 +181,7 @@ Now we can update the plugin HTML to allow for selecting forms by calling the `p
 Picking a form should also trigger the records of that form to load. We will be displaying these records in lists by folder, so we will loop through the `folders` and query records by folder ID. The `folderRecords` property will hold these records. After querying the `Records` endpoint, it will store the records returned in `folderRecords`, indexed by folder ID.
 
 {% highlight js %}
+
 // Records Indexed by Folder
 $scope.folderRecords = {};
 
@@ -191,9 +202,9 @@ $scope.loadRecords = function() {
         // Query and Index Records by Folder
         var request = Data('FormRecords').query(
             {
-                formId: $scope.formId,
+                formId: $scope.formId, 
                 folder: { id: folder.id }
-            }, 
+            },
             function(response) {
                 $scope.folderRecords[folder.id] = response;
             }
@@ -201,13 +212,14 @@ $scope.loadRecords = function() {
         
         queue.push(request);
     });
-        
+    
 };
 {% endhighlight %}
 
 To trigger loading the records, we will update the `pickForm` function to load the records after setting the folders.
 
 {% highlight js %}
+
 /**
  * Pick Selected Form
  */
@@ -234,38 +246,69 @@ $scope.pickForm = function(formId) {
 At this point, the plugin should be loading forms, folders, and form records into various `$scope` properties. Now that we have this data, we can use it in the plugin interface. Going back to the plugin HTML, we need to add a the folders as columns and records as lists under those columns.
 
 {% highlight html %}
+{% raw %}
 <!-- Board Canvas -->
 <div class="wrapper">
 
     <!-- Folder Column -->
     <div ng-repeat="folder in folders" class="column">
         <!-- Display Folder Name -->
-        <div class="name">{% raw %}{{folder.name}}{% endraw %}</div>
+        <div class="name">{{folder.name}}</div>
         
         <!-- Folder Records List -->
         <ul class="record-list">
-            <li ng-repeat="record in folderRecords[folder.id]" class="record">
-                {% raw %}{{record.name}}{% endraw %}
-            </li>
+            <li ng-repeat="record in folderRecords[folder.id]" class="record">{{record.name}}</li>
         </ul>
     </div>
         
 </div>
+{% endraw %}
 {% endhighlight %}
 
+To make the divs appear as columns, we can add the following to plugin CSS.
+
+{% highlight css %}
+.column {
+    float: left;
+    width: 200px;
+    background-color: #fff;
+    box-shadow: 0px 2px 2px rgba(136, 136, 136, 0.43);
+    padding: 5px;
+    margin: 0px 10px 20px 0px;
+}
+
+.column li {
+    background-color: #fff;
+    padding: 10px 5px 10px 5px;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+}
+
+.column .name {
+    font-weight: bold;
+}
+
+.wrapper {
+    width: 100%;
+    margin-top: 10px;
+}
+{% endhighlight %}
+
+![Record Board Part 1]({{ site.baseurl }}/img/js-api/tutorials/record-board-part1.png)
+
 ## Wrapping Up
+At this point you should have a functional plugin that will display form folders as columns listing form records. If you don't have any folders, you may only see one column. In <a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html">part 2</a>, we will work on making the plugin more useful by adding the ability to add folders and move records between lists.
 
-At this point you should have a functional plugin that will display form folders as columns listing form records. If you don't have any folders, you may only see one column. In part 2, we will work on making the plugin more useful by adding the ability to add folders and move records between lists. 
-
-<p>Your plugin code should look similar to the code below (with your own plugin namespace in the HTML template id, controller name, and registration options).</p>
+Your plugin code should now look something like this (with your own plugin namespace in the js registration options and html template id):
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
-    <li class="active"><a href="#plugin-js" role="tab" data-toggle="tab">plugin.js</a></li>
-    <li><a href="#plugin-html" role="tab" data-toggle="tab">plugin.html</a></li>
-    <li><a href="#plugin-css" role="tab" data-toggle="tab">plugin.css</a></li>
+  <li class="active"><a href="#plugin-js" role="tab" data-toggle="tab">plugin.js</a></li>
+  <li><a href="#plugin-html" role="tab" data-toggle="tab">plugin.html</a></li>
 </ul>
 <div class="tab-content">
     <div class="tab-pane fade in active" id="plugin-js">
+
 {% highlight js %}
 /**
  * My Plugin Controller
@@ -294,7 +337,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($
         // Reset Workspace Forms
         $scope.forms = [];
         
-        // Query Forms by Workspae ID and Return Loading Promise
+        // Query Forms by Workspace ID and Return Loading Promise
         return Data('Forms').query(
             {
                 workspace: { 
@@ -350,7 +393,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($
                 {
                     formId: $scope.formId, 
                     folder: { id: folder.id }
-                }, 
+                },
                 function(response) {
                     $scope.folderRecords[folder.id] = response;
                 }
@@ -373,19 +416,15 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($
 }])
 {% endhighlight %}
     </div>
-    <div class="tab-pane fade" id="plugin-html">
+    <div class="tab-pane fade in active" id="plugin-html">
 {% highlight html %}
-
+{% raw %}
 <script type="text/ng-template" id="my-plugin-main">
-     
+   
     <!-- form tabs -->
     <div>
         <ul class="tabs">
-            <li ng-repeat="form in forms" ng-class="{active: formId == form.id}">
-                <a href="#" ng-click="pickForm(form.id)">
-                    {% raw %}{{ form.name }}{% endraw %}
-                </a>
-            </li>
+            <li ng-repeat="form in forms" ng-class="{active: formId == form.id}"><a href="#" ng-click="pickForm(form.id)">{{form.name}}</a></li>
         </ul>
     </div>
     
@@ -395,48 +434,18 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($
         <!-- Folder Column -->
         <div ng-repeat="folder in folders" class="column">
             <!-- Display Folder Name -->
-            <div class="name">{% raw %}{{folder.name}}{% endraw %}</div>
+            <div class="name">{{folder.name}}</div>
             
             <!-- Folder Records List -->
             <ul class="record-list">
-                <li ng-repeat="record in folderRecords[folder.id]" class="record">
-                    {% raw %}{{record.name}}{% endraw %}
-                </li>
+                <li ng-repeat="record in folderRecords[folder.id]" class="record">{{record.name}}</li>
             </ul>
         </div>
             
     </div>
     
 </script>
-{% endhighlight %}
-    </div>
-    <div class="tab-pane fade" id="plugin-css">
-{% highlight css %}
-.column {
-    float: left;
-    width: 200px;
-    background-color: #fff;
-    box-shadow: 0px 2px 2px rgba(136, 136, 136, 0.43);
-    padding: 5px;
-    margin: 0px 10px 20px 0px;
-}
-
-.column li {
-    background-color: #fff;
-    padding: 10px 5px 10px 5px;
-    margin: 10px 0px 10px 0px;
-    border: 1px solid #e3e3e3;
-    border-radius: 3px;
-}
-
-.column .name {
-    font-weight: bold;
-}
-
-.wrapper {
-    width: 100%;
-    margin-top: 10px;
-}
+{% endraw %}
 {% endhighlight %}
     </div>
 </div>

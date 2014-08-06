@@ -19,30 +19,29 @@ Let's start by adding a column to the board that prompts for a folder name. You 
 <!-- Board Canvas -->
 <div class="wrapper">
 
-    <!-- Folder Column -->
-    <div ng-repeat="folder in folders" class="column">
-        <!-- Display Folder Name -->
-        <div class="name">{{folder.name}}</div>
-        
-        <!-- Folder Records List -->
-        <ul class="record-list">
-                <li ng-repeat="record in folderRecords[folder.id]" class="record">
-                    {{record.name}}
-                </li>
-        </ul>
-    </div>
+<!-- Folder Column -->
+<div ng-repeat="folder in folders" class="column">
+    <!-- Display Folder Name -->
+    <div class="name">{{folder.name}}</div>
     
-    <!-- Add Folder Column -->
-    <div ng-show="formId" class="column">
-        <!-- Folder Name -->
-        <div class="control-group">
-            <input type="text" ng-model="addFolderName" placeholder="New Folder Name" class="input-large">
-        </div>
-        <!-- Add Folder Actions -->
-        <div class="form-actions">
-            <a href="#" ng-click="addFolder()" class="btn btn-primary">Add</a>
-        </div>
-    </div>    
+    <!-- Folder Records List -->
+    <ul class="record-list">
+        <li ng-repeat="record in folderRecords[folder.id]" class="record">{{record.name}}</li>
+    </ul>
+</div>
+
+<!-- Add Folder Column -->
+<div ng-show="formId" class="column">
+    <!-- Folder Name -->
+    <div class="control-group">
+        <input type="text" ng-model="addFolderName" placeholder="New Folder Name" class="input-large">
+    </div>
+    <!-- Add Folder Actions -->
+    <div class="form-actions">
+        <a href="#" ng-click="addFolder()" class="btn btn-primary">Add</a>
+    </div>
+</div>
+        
 </div>
 {% endraw %}
 {% endhighlight %}
@@ -83,10 +82,12 @@ $scope.addFolder = function() {
         
         return folder;
     }, function (e) {
-         message('Error creating folder', 'error');
+        message('Error creating folder', 'error');
     });
 };
 {% endhighlight %}
+
+![Record Board Add Folder]({{ site.baseurl }}/img/js-api/tutorials/record-board-add-folder.png)
 
 ## Moving Records
 
@@ -113,9 +114,7 @@ Next, in the plugin HTML, add the directive `ui-sortable` to the record list as 
     
     <!-- Folder Records List -->
     <ul class="record-list" ui-sortable="sortableOptions" ng-model="folderRecords[folder.id]">
-        <li ng-repeat="record in folderRecords[folder.id]" class="record">
-            {{record.name}}
-        </li>
+        <li ng-repeat="record in folderRecords[folder.id]" class="record">{{record.name}}</li>
     </ul>
 </div>
 {% endraw %}
@@ -128,6 +127,8 @@ One more small, but important, addition is to update the CSS to add some height 
     min-height: 15px;
 }
 {% endhighlight %}
+
+![Record Board Move Records]({{ site.baseurl }}/img/js-api/tutorials/record-board-folders.png)
 
 ## Saving Record Folders
 
@@ -142,9 +143,7 @@ Now that users can move records into different folders, let's add a way to save 
     
     <!-- Folder Records List -->
     <ul class="record-list" ui-sortable="sortableOptions" ng-model="folderRecords[folder.id]">
-        <li ng-repeat="record in folderRecords[folder.id]" data-id="{{record.id}}" class="record">
-            {{record.name}}
-        </li>
+        <li ng-repeat="record in folderRecords[folder.id]" data-id="{{record.id}}" class="record">{{record.name}}</li>
     </ul>
 </div>
 {% endraw %}
@@ -161,15 +160,15 @@ $scope.sortableOptions = {
     
         // Ignore Reorder
         if (!ui.sender) {
-                return;
+            return;
         }
-            
+        
         // Traverse Records by Folder
         angular.forEach($scope.folders, function(folder) {
             angular.forEach($scope.folderRecords[folder.id], function(record, index) {
                 // Record Found
                 if (record.id == ui.item.data('id')) {
-                        
+                    
                     // Update Record Folder ID
                     Data('FormRecords').save(
                         { 
@@ -182,13 +181,11 @@ $scope.sortableOptions = {
                         function(response) {
                             // Update Folder Records with Response
                             $scope.folderRecords[folder.id].splice(index, 1, response);
-                            
-                            message('Record moved', 'saved');
-                        },
-                        function(e) {
-                            message('Error moving record', 'error');
-                        }
-                    );
+                        
+                        message('Record moved', 'saved');
+                    }, function(e) {
+                        message('Error moving record', 'error');
+                    });
                 }
             });
         });
@@ -198,12 +195,13 @@ $scope.sortableOptions = {
 
 First, we ignore cases where `ui.sender` is empty, because those only represent reordering records in the same list. Then we traverse the known folders and records to find the where the record was moved. When the record is found it uses the `Data` service to save the new folder ID. One the save is complete, it updates the folder record list with the response.
 
+![Record Board Plugin]({{ site.baseurl }}/img/js-api/tutorials/record-board-part2.png)
 
 ## Wrapping Up
 
-Your plugin should now be able to display folders as columns, create folders, drag records from one folder to another, and save the results. 
+Your plugin should now be able to display folders as columns, create folders, drag records from one folder to another, and save the results.
 
-<p>Your plugin code should look similar to the code below (with your own plugin namespace in the HTML template id, controller name, and registration options).</p>
+Your plugin code should now look something like this (with your own plugin namespace in the js registration options and html template id):
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
   <li class="active"><a href="#plugin-js" role="tab" data-toggle="tab">plugin.js</a></li>
@@ -478,7 +476,3 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
 {% endhighlight %}
     </div>
 </div>
-
-
-
-
