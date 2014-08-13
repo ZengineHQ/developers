@@ -6,7 +6,7 @@ subgroup: record-board
 
 # Creating a Record Board Plugin
 
-Forms are like a table or spreadsheet. Form records are the submissions collected from people filling out the form. The standard app Data tab displays this data as a spreadsheet, with the form fields as columns and the form records as the rows.
+Forms are like a table or spreadsheet. Form records are the submissions collected from people filling out the form. The standard app znData tab displays this data as a spreadsheet, with the form fields as columns and the form records as the rows.
 
 The idea behind the Record Board plugin is to offer a different visualization and way of working with this form data. The Record Board plugin will display this data similar to kanban boards as columns of lists. Form folders will be used as columns containing lists of records.
 
@@ -61,13 +61,13 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', function ($scope, $
 
 Now that the workspace ID is known, we want to query the workspace forms. For this example, we are only working with one form, but a workspace can have multiple forms, so we need to query for all the forms available.
 
-To query the forms, we need to use the `Data` service. The `Data` service provides access to our REST API and has built-in functionality to make requests as the logged-in plugin user. We will need to include it as a dependency, like we did with `$routeParams`.
+To query the forms, we need to use the `znData` service. The `znData` service provides access to our REST API and has built-in functionality to make requests as the logged-in plugin user. We will need to include it as a dependency, like we did with `$routeParams`.
 
 {% highlight js %}
-plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($scope, $routeParams, Data) {
+plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'znData', function ($scope, $routeParams, znData) {
 {% endhighlight %}
 
-We will use the `Data` service to query the `Forms` endpoint, passing the workspace ID from above as a query parameter and `folders` as related data we want included in the response.  
+We will use the `znData` service to query the `Forms` endpoint, passing the workspace ID from above as a query parameter and `folders` as related data we want included in the response.  
 
 {% highlight js %}
 // Workspace Forms
@@ -81,7 +81,7 @@ $scope.loadForms = function() {
     $scope.forms = [];
     
     // Query Forms by Workspace ID and Return Loading Promise
-    return Data('Forms').query(
+    return znData('Forms').query(
         {
             workspace: { 
                 id: $scope.workspaceId 
@@ -200,7 +200,7 @@ $scope.loadRecords = function() {
         $scope.folderRecords[folder.id] = [];
         
         // Query and Index Records by Folder
-        var request = Data('FormRecords').query(
+        var request = znData('FormRecords').query(
             {
                 formId: $scope.formId, 
                 folder: { id: folder.id }
@@ -313,7 +313,7 @@ Your plugin code should now look something like this (with your own plugin names
 /**
  * My Plugin Controller
  */
-plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($scope, $routeParams, Data) {
+plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'znData', function ($scope, $routeParams, znData) {
 
     // Current Workspace ID from Route
     $scope.workspaceId = null;
@@ -338,7 +338,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($
         $scope.forms = [];
         
         // Query Forms by Workspace ID and Return Loading Promise
-        return Data('Forms').query(
+        return znData('Forms').query(
             {
                 workspace: { 
                     id: $scope.workspaceId 
@@ -389,7 +389,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', function ($
             $scope.folderRecords[folder.id] = [];
             
             // Query and Index Records by Folder
-            var request = Data('FormRecords').query(
+            var request = znData('FormRecords').query(
                 {
                     formId: $scope.formId, 
                     folder: { id: folder.id }
