@@ -12,14 +12,14 @@ If you haven't yet done so, we recommended first reading about [data access]({{s
 
 ## Get API data
 
- The first thing you need to do is get some data from the API. Using the Data factory, we can get the currently logged-in user, metadata about this plugin (namely Firebase authentication info), and the members of the workspace. 
+ The first thing you need to do is get some data from the API. Using the znData factory, we can get the currently logged-in user, metadata about this plugin (namely Firebase authentication info), and the members of the workspace. 
 
 {% highlight js %}
 
 /**
  * Chat Controller
  */
-plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', function ($scope, $routeParams, Data) {
+plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', function ($scope, $routeParams, znData) {
     
     /**
      * Load indicator
@@ -31,7 +31,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', function ($scop
      *
      * equivalent to: GET {{site.apiDomain}}/v1/workspaces/{workspaceId}/members
      */
-    Data('WorkspaceMembers').query(
+    znData('WorkspaceMembers').query(
         // Params
         {
             workspaceId: $routeParams.workspace_id
@@ -51,7 +51,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', function ($scop
      *
      * equivalent to: GET {{site.apiDomain}}/v1/plugins/?namespace=chat
      */
-    Data('Plugins').get(
+    znData('Plugins').get(
         // Params
         {
             namespace: 'chat'
@@ -75,7 +75,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', function ($scop
      *
      * equivalent to: GET {{site.apiDomain}}/v1/users/me
      */
-    Data('Users').get(
+    znData('Users').get(
         // Params
         {
             id: 'me'
@@ -414,7 +414,7 @@ The code for the entire chat plugin can be found below. In this case, the plugin
 /**
  * Chat Controller
  */
-plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', '$firebase', function ($scope, $routeParams, Data, $firebase) {
+plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', function ($scope, $routeParams, znData, $firebase) {
     
     /**
      * Load indicator
@@ -508,7 +508,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', '$firebase', fu
      *
      * equivalent to: GET {{site.apiDomain}}/v1/workspaces/{workspaceId}/members
      */
-    Data('WorkspaceMembers').query(
+    znData('WorkspaceMembers').query(
         // Params
         {
             workspaceId: $routeParams.workspace_id
@@ -528,7 +528,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', '$firebase', fu
      *
      * equivalent to: GET {{site.apiDomain}}/v1/plugins/?namespace=chat
      */
-    Data('Plugins').get(
+    znData('Plugins').get(
         // Params
         {
             namespace: 'chat'
@@ -551,7 +551,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'Data', '$firebase', fu
      *
      * equivalent to: GET {{site.apiDomain}}/v1/users/me
      */
-    Data('Users').get(
+    znData('Users').get(
         // Params
         {
             id: 'me'

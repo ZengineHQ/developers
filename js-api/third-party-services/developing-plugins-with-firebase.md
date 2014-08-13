@@ -134,7 +134,7 @@ plugin.controller('myPluginCntl', ['$scope', 'Data', '$firebase', function ($sco
     /**
      * Get the current plugin data
      */
-    Data('Plugins').get(
+    znData('Plugins').get(
         {
             namespace: 'myPlugin'
         },
@@ -149,7 +149,7 @@ plugin.controller('myPluginCntl', ['$scope', 'Data', '$firebase', function ($sco
     /**
      * Get the currently logged-in user data
      */
-    Data('Users').get(
+    znData('Users').get(
         {
             id: 'me',
         },

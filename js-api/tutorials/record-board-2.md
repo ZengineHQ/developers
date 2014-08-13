@@ -50,7 +50,7 @@ This represents patterns for forms and buttons that will match the app. The `ng-
 
 The following function will post data to the `FormFolders` endpoint to create a new folder using the name from above. After successfully creating a new folder, it will update the list of folders and initialize an empty record list for the folder. With AngularJS 2-way data binding, updating the folders property will automatically make a new column appear in the interface.
 
-A new service is also introduced, called `message`, so be sure to add that to the dependencies in a similar way to `$routeParams` and `Data`. The `message` service is used here to indicate success or failure to the user.
+A new service is also introduced, called `message`, so be sure to add that to the dependencies in a similar way to `$routeParams` and `znData`. The `message` service is used here to indicate success or failure to the user.
 
 {% highlight js %}
 // Add Folder Name 
@@ -71,18 +71,18 @@ $scope.addFolder = function() {
     $scope.addFolderName = '';
 
     // Save New Folder
-    return Data('FormFolders').save({formId: $scope.formId}, data, function (folder) {
+    return znData('FormFolders').save({formId: $scope.formId}, data, function (folder) {
         // Initialize New Folder Record List
         $scope.folderRecords[folder.id] = [];
         
         // Append New Folder to Folders List
         $scope.folders.push(folder);
         
-        message('New folder created', 'saved');
+        znMessage('New folder created', 'saved');
         
         return folder;
     }, function (e) {
-        message('Error creating folder', 'error');
+        znMessage('Error creating folder', 'error');
     });
 };
 {% endhighlight %}
@@ -170,7 +170,7 @@ $scope.sortableOptions = {
                 if (record.id == ui.item.data('id')) {
                     
                     // Update Record Folder ID
-                    Data('FormRecords').save(
+                    znData('FormRecords').save(
                         { 
                             formId: $scope.formId, 
                             id: record.id
@@ -182,9 +182,9 @@ $scope.sortableOptions = {
                             // Update Folder Records with Response
                             $scope.folderRecords[folder.id].splice(index, 1, response);
                         
-                        message('Record moved', 'saved');
+                        znMessage('Record moved', 'saved');
                     }, function(e) {
-                        message('Error moving record', 'error');
+                        znMessage('Error moving record', 'error');
                     });
                 }
             });
@@ -193,7 +193,7 @@ $scope.sortableOptions = {
 };
 {% endhighlight %}
 
-First, we ignore cases where `ui.sender` is empty, because those only represent reordering records in the same list. Then we traverse the known folders and records to find the where the record was moved. When the record is found it uses the `Data` service to save the new folder ID. One the save is complete, it updates the folder record list with the response.
+First, we ignore cases where `ui.sender` is empty, because those only represent reordering records in the same list. Then we traverse the known folders and records to find the where the record was moved. When the record is found it uses the `znData` service to save the new folder ID. One the save is complete, it updates the folder record list with the response.
 
 ![Record Board Plugin]({{ site.baseurl }}/img/js-api/tutorials/record-board-part2.png)
 
@@ -214,7 +214,7 @@ Your plugin code should now look something like this (with your own plugin names
 /**
  * My Plugin Controller
  */
-plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', function ($scope, $routeParams, Data, message) {
+plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'znData', 'message', function ($scope, $routeParams, znData, message) {
 
     // Current Workspace ID from Route
     $scope.workspaceId = null;
@@ -252,7 +252,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
                     if (record.id == ui.item.data('id')) {
                             
                         // Update Record Folder ID
-                        Data('FormRecords').save(
+                        znData('FormRecords').save(
                             { 
                                 formId: $scope.formId, 
                                 id: record.id
@@ -264,10 +264,10 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
                                 // Update Folder Records with Response
                                 $scope.folderRecords[folder.id].splice(index, 1, response);
                                 
-                                message('Record moved', 'saved');
+                                znMessage('Record moved', 'saved');
                             },
                             function(e) {
-                                message('Error moving record', 'error');
+                                znMessage('Error moving record', 'error');
                             }
                         );
                     }
@@ -284,7 +284,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
         $scope.forms = [];
         
         // Query Forms by Workspae ID and Return Loading Promise
-        return Data('Forms').query(
+        return znData('Forms').query(
             {
                 workspace: { 
                     id: $scope.workspaceId 
@@ -335,7 +335,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
             $scope.folderRecords[folder.id] = [];
             
             // Query and Index Records by Folder
-            var request = Data('FormRecords').query(
+            var request = znData('FormRecords').query(
                 {
                     formId: $scope.formId, 
                     folder: { id: folder.id }
@@ -365,18 +365,18 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'Data', 'message', 
         $scope.addFolderName = '';
 
         // Save New Folder
-        return Data('FormFolders').save({formId: $scope.formId}, data, function (folder) {
+        return znData('FormFolders').save({formId: $scope.formId}, data, function (folder) {
             // Initialize New Folder Record List
             $scope.folderRecords[folder.id] = [];
             
             // Append New Folder to Folders List
             $scope.folders.push(folder);
             
-            message('New folder created', 'saved');
+            znMessage('New folder created', 'saved');
             
             return folder;
         }, function (e) {
-             message('Error creating folder', 'error');
+             znMessage('Error creating folder', 'error');
         });
     };
     
