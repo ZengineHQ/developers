@@ -36,7 +36,7 @@ Statuses are used appropriately and consistently:</p>
 
 <p>In a successful response, you will always receive a <code>status</code> in the 200 range. This is a 
 duplicate of the HTTP status code. You will also receive a <code>code</code> in the 2000 range. This is 
-a WizeHive-specific code that can be used for more context.</p>
+a {{site.productName}} specific code that can be used for more context.</p>
 
 <h4 id="success-get-post-put">GET, POST and PUT</h4>
 
@@ -94,7 +94,7 @@ scenarios, <code>data</code> itself becomes the object. For example:</p>
 
 <p>In a failure response, you will always receive a <code>status</code> in the 
 400 or 500 range. This is a duplicate of the HTTP status code. You will also receive a 
-WizeHive-specific <code>code</code> in the 4000 range. This code can be used for better context.</p>
+{{site.productName}} specific <code>code</code> in the 4000 range. This code can be used for better context.</p>
 
 <p>The <code>userMessage</code> is a string containing friendly text that you can pass directly on 
 to an end user. The <code>developerMessage</code> is geared towards the developer.</p>

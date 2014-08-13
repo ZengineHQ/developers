@@ -41,12 +41,12 @@ Although, _ui-ace_ automatically handles some handy options :
 
 {% highlight html %}
 <div ui-ace="{
-	useWrapMode : true,
-	showGutter: false,
-	theme:'twilight',
-	mode: 'xml',
-	onLoad: aceLoaded,
-	onChange: aceChanged
+    useWrapMode : true,
+    showGutter: false,
+    theme:'twilight',
+    mode: 'xml',
+    onLoad: aceLoaded,
+    onChange: aceChanged
 }"></div>
 {% endhighlight %}
 
@@ -55,14 +55,14 @@ You'll want to define the `onLoad` and the `onChange` callback on your scope:
 {% highlight js %}
 plugin.controller('MyController', [ '$scope', function($scope) {
 
-	$scope.aceLoaded = function(_editor) {
-	// Options
-	_editor.setReadOnly(true);
-	};
+    $scope.aceLoaded = function(_editor) {
+        // Options
+        _editor.setReadOnly(true);
+    };
 
-	$scope.aceChanged = function(e) {
-	//
-	};
+    $scope.aceChanged = function(e) {
+        //
+    };
 
 }]);
 {% endhighlight %}
@@ -101,20 +101,20 @@ the `$scope.aceLoaded` function will be called with the [Ace Editor instance](ht
 {% highlight js %}
 plugin.controller('MyController', [ '$scope', function($scope) {
 
-	$scope.aceLoaded = function(_editor){
-	// Editor part
-	var _session = _editor.getSession();
-	var _renderer = _editor.renderer;
+    $scope.aceLoaded = function(_editor){
+        // Editor part
+        var _session = _editor.getSession();
+        var _renderer = _editor.renderer;
 
-	// Options
-	_editor.setReadOnly(true);
-	_session.setUndoManager(new ace.UndoManager());
-	_renderer.setShowGutter(false);
+        // Options
+        _editor.setReadOnly(true);
+        _session.setUndoManager(new ace.UndoManager());
+        _renderer.setShowGutter(false);
 
-	// Events
-	_editor.on("changeSession", function(){ ... });
-	_session.on("change", function(){ ... });
-	};
+        // Events
+        _editor.on("changeSession", function(){ ... });
+        _session.on("change", function(){ ... });
+    };
 
 }]);
 {% endhighlight %}

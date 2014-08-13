@@ -14,18 +14,18 @@ All the jQueryUI Sortable options can be defined in your controller.
 
 {% highlight js%}
 plugin.controller('MyController', function($scope) {
-  $scope.items = ["One", "Two", "Three"];
+    $scope.items = ["One", "Two", "Three"];
 
-  $scope.sortableOptions = {
-    update: function(e, ui) { ... },
-    axis: 'x'
-  };
+    $scope.sortableOptions = {
+        update: function(e, ui) { ... },
+        axis: 'x'
+    };
 });
 {% endhighlight %}
 
 Apply the directive to your form elements:
 {% highlight html%}
 <ul ui-sortable="sortableOptions" ng-model="items">
-  <li ng-repeat="item in items">{{ item }}</li>
+    <li ng-repeat="item in items">{{ item }}</li>
 </ul>
 {% endhighlight %}

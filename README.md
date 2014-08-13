@@ -6,4 +6,4 @@ To run locally in a way that matches the GitHub Pages:
  2. ``bundle exec jekyll serve --watch --baseurl ''``
  3. The site should be available at http://localhost:4000
 
- Alternatively, you can develop against the Github Pages URL of your fork of the wizehive-documentation repo. Just push to your gh-pages branch, and the site will be available at ``username.github.io/forked-repo-name``.
+ Alternatively, you can develop against the Github Pages URL of your fork of the documentation repo. Just push to your gh-pages branch, and the site will be available at ``username.github.io/forked-repo-name``.

@@ -7,9 +7,9 @@ group: auth
 <h2 id="oauth2-overview">OAuth 2 Overview</h2>
 
 <p>The <a href="http://oauth.net/2/" target="_blank">OAuth 2 protocol</a> is used to authenticate and authorize every 
-API request. OAuth makes it possible for you to act on behalf of WizeHive users without those users needing 
+API request. OAuth makes it possible for you to act on behalf of {{site.productName}} users without those users needing 
 to share their credentials (username/password). This is made possible via a flow where the end user is 
-redirected from your application to WizeHive and grants your application permission to an access 
+redirected from your application to {{site.productName}} and grants your application permission to an access 
 token for a finite period of time. Additionally, </p>
 
 <p>You do not necessarily need to act on behalf of a user; you can 
@@ -24,7 +24,7 @@ OAuth flow, retrieve a token for your account, and hard code that token into you
 <h3 id="registering-an-application-redirect-uri">Redirect URI</h3>
 
 <p>Your application must specify a redirect URI. This is the URI the end user will return to upon 
-authenticating with WizeHive. This URL must be set up to look for an OAuth response and process it 
+authenticating with {{site.productName}}. This URL must be set up to look for an OAuth response and process it 
 accordingly.</p>
 
 <h2 id="public-vs-private-resources">Public vs. Private Resources</h2>
@@ -49,11 +49,11 @@ clients, these two scenarios require different flows.</p>
 <ol>
 	<li>Your app needs to acquire a token for a user, and sends that user to: 
 	<strong>{{site.authDomain}}/oauth2/v1/authorize?client_id={your API key}&response_type=code&state={a session-based string you use to prevent CSRF}</strong></li>
-	<li>The user authenticates with WizeHive and returns to the redirect URI you set up for your 
+	<li>The user authenticates with {{site.productName}} and returns to the redirect URI you set up for your 
 	application with the following query string appended: 
 	<strong>?code={a code which lasts for 30 seconds}&state={the session-based string you passed to prevent CSRF}</strong></li>
 	<li>The <strong>state</strong> parameter is checked to ensure it matches the one you passed.</li>
-	<li>A <strong>GET</strong> request is made to: <strong>{{site.authDomain}}/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=authorization_code&code={the code you just received back from WizeHive}</strong></li>
+	<li>A <strong>GET</strong> request is made to: <strong>{{site.authDomain}}/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=authorization_code&code={the code you just received back from {{site.productName}}}</strong></li>
 	<li>Assuming the code is valid, you will receive a JSON response back with an access token in it: 
 		{% highlight json %}
 			{
@@ -79,7 +79,7 @@ access token:</p>
 
 <!-- TODO: Is the info on refresh tokens here accurate? -->
 <p><pre>
-GET {{site.authDomain}}/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=refresh_token&refresh_token={the refresh token you previously received from WizeHive}
+GET {{site.authDomain}}/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=refresh_token&refresh_token={the refresh token you previously received from {{site.productName}}}
 </pre></p>
 
 <p>A sample server-side script, written in PHP, is provided below:</p>
@@ -93,7 +93,7 @@ GET {{site.authDomain}}/oauth2/v1/grant?client_id={your API key}&client_secret={
 <ol>
 	<li>Your app needs to acquire a token for a user, and sends that user to: 
 	<strong>{{site.authDomain}}/oauth2/v1/authorize?client_id={your API key}&response_type=token&state={a session-based string you use to prevent CSRF}</strong></li>
-	<li>The user authenticates with WizeHive and returns to the redirect URI you set up for your 
+	<li>The user authenticates with {{site.productName}} and returns to the redirect URI you set up for your 
 	application with the following string appended after a # hashbang: 
 	<strong>?access_token={the token}&state={the session-based string you passed to prevent CSRF}</strong></li>
 	<li>JavaScript is used to parse the parameters after the # hashbang.</li>
@@ -110,7 +110,7 @@ GET {{site.authDomain}}/oauth2/v1/grant?client_id={your API key}&client_secret={
 <p>The access token you have now lasts for 1 hour. You can use it to make API requests which require 
 authorization.</p>
 
-<p>Once your token expires, you must send the user back to WizeHive to retrieve a new token.</p>
+<p>Once your token expires, you must send the user back to {{site.productName}} to retrieve a new token.</p>
 
 <p>A sample client-side script is provided below:</p>
 
@@ -119,4 +119,4 @@ authorization.</p>
 <h2 id="authorizations-api">Authorizations API</h2>
 
 <p>An endpoint for <a href="{{site.baseurl}}/rest-api/resources/#!/authorizations">Authorizations</a> 
-is made available in the API. This makes it possible for you to handle a user's third party application authorizations on behalf of that user. This is primarily provided as a way to allow your own application to remove itself from the user's authorizations list. This comes in handy if the user asks your application to disconnect from WizeHive.</p>
+is made available in the API. This makes it possible for you to handle a user's third party application authorizations on behalf of that user. This is primarily provided as a way to allow your own application to remove itself from the user's authorizations list. This comes in handy if the user asks your application to disconnect from {{site.productName}}.</p>
