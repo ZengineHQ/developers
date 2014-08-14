@@ -51,12 +51,9 @@ body {
 	font-weight:100;
 	text-transform:lowercase;
 	color:#585858;
+	font-family: 'Ubuntu', sans-serif;
 }
 
-.hive {
-	font-weight:800;
-	color:#306CB1;
-}
 
 @media(min-width:970px) {
     .navbar {
@@ -82,9 +79,6 @@ body {
     	color: #306CB1;
 	} 
 
-	.top-nav-collapse .hive {
-		color:#306CB1;
-	}
 	.top-nav-collapse .logo {
 		color:#585858;
 	}
@@ -93,9 +87,6 @@ body {
         color:#585858;
     }
     .logo {
-		color:#fff;
-	}
-	.hive {
 		color:#fff;
 	}
 }
