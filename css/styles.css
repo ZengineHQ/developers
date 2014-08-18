@@ -221,3 +221,7 @@ body.support {
 .center-text {
 	text-align: center;
 }
+
+a.fork {
+	color:#306CB1;
+}
