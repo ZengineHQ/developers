@@ -3456,7 +3456,7 @@ kbd {
 .side-nav li > a:hover  {
   display: block;
   color: #4d4d4d;
-  font-weight: bold; 
+  font-weight: normal; 
 }
 .side-nav li.divider {
   border-top: 1px solid;
