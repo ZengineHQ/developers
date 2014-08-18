@@ -1,10 +1,10 @@
-baseurl: '/developers-stage'
+baseurl: '/developers'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
-apiDomain: "https://stage-api.zenginehq.com"
-clientDomain: "https://stage-platform.zenginehq.com"
-authDomain: "https://stage-auth.zenginehq.com"
+apiDomain: "https://api.zenginehq.com"
+clientDomain: "https://platform.zenginehq.com"
+authDomain: "https://auth.zenginehq.com"
 supportDomain: "https://support.zenginehq.com"
-developerDomain: https://github.com/ZengineHQ/developers-stage
+developerDomain: https://github.com/ZengineHQ/developers
 demoClientId: "rest-api-quick-start-demo"
 rootDomain: zenginehq.com
 apiKey: false
