@@ -1,3 +1,4 @@
+version: 1
 baseurl: '/developers-stage'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://stage-api.zenginehq.com"
