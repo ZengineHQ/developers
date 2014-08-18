@@ -17,7 +17,7 @@
 	<!-- Fonts -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<!-- Custom Theme CSS -->
-	<link type="text/css" rel="stylesheet" href="{{site.baseurl}}/css/styles.css" />
+	<link type="text/css" rel="stylesheet" href="{{site.baseurl}}/css/styles.css?{{site.version}}" />
 	<link type="text/css" rel="stylesheet" href="{{site.baseurl}}/css/main.css" />
 	<script src='{{site.baseurl}}/js/jquery-1.8.0.min.js' type='text/javascript'></script>
 </head>
@@ -46,8 +46,11 @@
 						<li class="page-scroll">
 							<a href="{{site.baseurl}}/rest-api">REST API</a>
 						</li>
-					    <li class="page-scroll">
+						<li class="page-scroll">
 							<a href="{{site.supportDomain}}/forums/245766-general-feedback/category/83251-developers" target="_blank">Community</a>
+						</li>
+						<li class="page-scroll">
+							<a class="fork" href="{{site.developerDomain}}"><i class="fa fa-github"></i> Fork this on Github</a>
 						</li>
 					</ul>
 				</div>
@@ -75,7 +78,7 @@
 					<a href="{{site.baseurl}}/js-api">Plugins</a>
 				</li>
 				<li>
-					<a href="http://www.wizehive.com/terms_of_service/" target="_blank">TOS</a>
+					<a href="http://{{site.rootDomain}}/terms-of-service/" target="_blank">TOS</a>
 				</li>
 				<!-- <li>
 					<a href="#">Privacy</a>

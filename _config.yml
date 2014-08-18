@@ -1,4 +1,4 @@
-baseurl: '/developers'
+version: 1
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://api.zenginehq.com"
 clientDomain: "https://platform.zenginehq.com"
