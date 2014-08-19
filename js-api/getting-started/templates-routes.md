@@ -1,6 +1,7 @@
 ---
 layout: plugin-nav-bar
-group: getting-started
+group: intro
+subgroup: templates-routes
 ---
 # Templates and Routes
 
@@ -58,12 +59,12 @@ We will add support for additional routes to specify the page in the plugin java
 {% raw %}
 plugin.controller('myPluginCntl', ['$scope', '$routeParams', function ($scope, $routeParams) {
     
-    // Default page
-    $scope.currentPage = 'index';
+	// Default page
+	$scope.currentPage = 'index';
 	
-	// Read page from route
+	// Read page from $routeParams
 	if ($routeParams.page) {
-        $scope.currentPage = $routeParams.page;
+		$scope.currentPage = $routeParams.page;
 	}
 
 }])
@@ -72,9 +73,9 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', function ($scope, $
  */
 .register('myPlugin', {
 	route: '/myplugin',
-	// Define possible routes
+	// Define additional routes
 	routes: [
-        "/:page"
+		"/:page"
 	],
 	controller: 'myPluginCntl',
 	template: 'my-plugin-main',
