@@ -32,6 +32,14 @@ $(function(){
 		<ul class="side-nav affix">
 			<li {% if page.group == 'intro' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/plugins">Introduction</a>
+				<ul>
+					<li class="getting-started">
+						<a href="{{site.baseurl}}/js-api/getting-started/index.html">Getting Started</a>
+					</li>
+					<li class="template-routes">
+						<a href="{{site.baseurl}}/js-api/getting-started/templates-routes.html">Templates and Routes</a>
+					</li>
+				</ul>
 			</li>
 			<li class="divider"></li>
 			<li {% if page.group == 'api' %}class="active"{% endif %}>
