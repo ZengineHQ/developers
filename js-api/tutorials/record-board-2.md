@@ -50,7 +50,7 @@ This represents patterns for forms and buttons that will match the app. The `ng-
 
 The following function will post data to the `FormFolders` endpoint to create a new folder using the name from above. After successfully creating a new folder, it will update the list of folders and initialize an empty record list for the folder. With AngularJS 2-way data binding, updating the folders property will automatically make a new column appear in the interface.
 
-A new service is also introduced, called `message`, so be sure to add that to the dependencies in a similar way to `$routeParams` and `znData`. The `message` service is used here to indicate success or failure to the user.
+A new service is also introduced, called `znMessage`, so be sure to add that to the dependencies in a similar way to `$routeParams` and `znData`. The `znMessage` service is used here to indicate success or failure to the user.
 
 {% highlight js %}
 // Add Folder Name 
@@ -214,7 +214,7 @@ Your plugin code should now look something like this (with your own plugin names
 /**
  * My Plugin Controller
  */
-plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'znData', 'message', function ($scope, $routeParams, znData, message) {
+plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'znData', 'znMessage', function ($scope, $routeParams, znData, znMessage) {
 
     // Current Workspace ID from Route
     $scope.workspaceId = null;
