@@ -1,6 +1,7 @@
 ---
 layout: plugin-nav-bar
-group: third-party-services
+group: api
+subgroup: third-party
 ---
 
 # Third Party Services and Directives

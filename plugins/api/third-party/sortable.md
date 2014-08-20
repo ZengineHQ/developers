@@ -1,6 +1,6 @@
 ---
 layout: plugin-nav-bar
-group: third-party-services
+group: api
 subgroup: ui-sortable
 ---
 
