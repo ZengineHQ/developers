@@ -134,23 +134,23 @@ The following table presents the registration options and their purpose.
 	</thead>
 	<tbody>
 		<tr>
-			<td>wh-plugin-data-subheader</td>
+			<td>zn-plugin-data-subheader</td>
 			<td>Above the data grid.</td>
 		</tr>
 		<tr>
-			<td>wh-plugin-panel-header</td>
+			<td>zn-plugin-panel-header</td>
 			<td>Above the data panel.</td>
 		</tr>
 		<tr>
-			<td>wh-plugin-panel-footer</td>
+			<td>zn-plugin-panel-footer</td>
 			<td>Below the data panel.</td>
 		</tr>
 		<tr>
-			<td>wh-plugin-form-top</td>
+			<td>zn-plugin-form-top</td>
 			<td>Above the form in the data panel.</td>
 		</tr>
 		<tr>
-			<td>wh-plugin-form-bottom</td>
+			<td>zn-plugin-form-bottom</td>
 			<td>Below the form in the data panel.</td>
 		</tr>
 	</tbody>
