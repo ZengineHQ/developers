@@ -1,7 +1,6 @@
 ---
 layout: plugin-nav-bar
-group: api
-subgroup: firebase
+group: third-party
 ---
 
 # Developing plugins with Firebase

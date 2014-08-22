@@ -1,12 +1,11 @@
 ---
 layout: plugin-nav-bar
-group: api
-subgroup: angular
+group: development
 ---
 
+# Angular Services
 
-
-# Whitelisted Angular services
+This is a whitelist of the Angular services that you can inject as dependencies into your components (controller, services, etc.).
 
 <div>
 	<table class="table">

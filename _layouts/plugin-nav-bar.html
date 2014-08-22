@@ -34,74 +34,90 @@ $(function(){
 				<a href="{{site.baseurl}}/plugins">Introduction</a>
 				<ul>
 					<li class="getting-started">
-						<a href="{{site.baseurl}}/js-api/getting-started/index.html">Getting Started</a>
+						<a href="{{site.baseurl}}/plugins/getting-started">Getting Started</a>
 					</li>
 					<li class="template-routes">
-						<a href="{{site.baseurl}}/js-api/getting-started/templates-routes.html">Templates and Routes</a>
+						<a href="{{site.baseurl}}/plugins/getting-started/templates-routes.html">Templates and Routes</a>
+					</li>
+				</ul>
+			</li>
+			<li class="divider"></li>
+			<li {% if page.group == 'registration' %}class="active"{% endif %}>
+				<a href="{{site.baseurl}}/plugins/registration">Plugin Registration</a>
+			</li>
+			<li class="divider"></li>
+			<li {% if page.group == 'development' %}class="active"{% endif %}>
+				<a href="{{site.baseurl}}/plugins/development">Plugin Development</a>
+				<ul>
+					<li {% if page.name == 'index.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/development">Using Angular</a>
+					</li>
+					<li {% if page.name == 'angular-services.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/development/angular-services.html">Angular Services</a>
 					</li>
 				</ul>
 			</li>
 			<li class="divider"></li>
 			<li {% if page.group == 'api' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/api">API Reference</a>
+				<a href="{{site.baseurl}}/plugins/api/directives">API Reference</a>
 				<ul>
-					<li {% if page.subgroup == 'angular' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/angular">Angular</a>
+					<li {% if page.subgroup == 'directives' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/api/directives">Directives</a>
 					</li>
-					<li {% if page.subgroup == 'zengine' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#message">{{site.productName}}</a>
+					<li {% if page.subgroup == 'services' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/api/services">Services</a>
 						<ul>
-							<li class="message">
-								<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#message">znMessage</a>
+							<li class="znmessage">
+								<a href="{{site.baseurl}}/plugins/api/services/#znmessage">Message</a>
 							</li>
-							<li class="confirm">
-								<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#confirm">znConfirm</a>
+							<li class="znconfirm">
+								<a href="{{site.baseurl}}/plugins/api/services/#znconfirm">Confirm</a>
 							</li>
-							<li class="znModal">
-								<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#znModal">znModal</a>
+							<li class="znmodal">
+								<a href="{{site.baseurl}}/plugins/api/services/#znmodal">Modal</a>
 							</li>
-							<li class="plugin_events">
-								<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#plugin_events">znPluginEvents</a>
+							<li class="znpluginevents">
+								<a href="{{site.baseurl}}/plugins/api/services/#znpluginevents">Plugin Events</a>
 							</li>
-							<li class="data">
-								<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#data">znData</a>
+							<li class="zndata">
+								<a href="{{site.baseurl}}/plugins/api/services/#zndata">Data</a>
 								<ul>
 									<li class="get">
-										<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#get">Get</a>
+										<a href="{{site.baseurl}}/plugins/api/services/#get">Get</a>
 									</li>
 									<li class="query">
-										<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#query">Query</a>
+										<a href="{{site.baseurl}}/plugins/api/services/#query">Query</a>
 									</li>
 									<li class="delete">
-										<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#delete">Delete</a>
+										<a href="{{site.baseurl}}/plugins/api/services/#delete">Delete</a>
 									</li>
 									<li class="save">
-										<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#save">Save</a>
+										<a href="{{site.baseurl}}/plugins/api/services/#save">Save</a>
 									</li>
-									<li class="available_resources">
-										<a href="{{site.baseurl}}/plugins/api/{{site.productName | downcase}}/#available_resources">Resources</a>
+									<li class="available-resources">
+										<a href="{{site.baseurl}}/plugins/api/services/#available-resources">Resources</a>
 									</li>
 								</ul>
 							</li>
 						</ul>
 					</li>
-					<li {% if page.subgroup == 'firebase' or page.subgroup == 'ace-editor' or page.subgroup == 'ui-sortable' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/third-party/developing-plugins-with-firebase.html">Third Party</a>
-						<ul>
-							<li {% if page.subgroup == 'firebase' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/plugins/api/third-party/developing-plugins-with-firebase.html">$firebase</a>
-							</li>
-							<li {% if page.subgroup == 'ace-editor' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/plugins/api/third-party/ace-editor.html">Ace Editor</a>
-							</li>
-							<li {% if page.subgroup == 'ui-sortable' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/plugins/api/third-party/sortable.html">UI Sortable</a>
-							</li>
-						</ul>
+				</ul>
+			</li>
+			<li class="divider"></li>
+			<li {% if page.group == 'third-party' %}class="active"{% endif %}>
+				<a href="{{site.baseurl}}/plugins/third-party">Third Party Libraries</a>
+				<ul>
+					<li {% if page.name == 'developing-plugins-with-firebase.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html">AngularFire</a>
+					</li>
+					<li {% if page.name == 'ace-editor.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/third-party/ace-editor.html">Ace Editor</a>
+					</li>
+					<li {% if page.name == 'sortable.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/third-party/sortable.html">UI Sortable</a>
 					</li>
 				</ul>
-
-			</li>			
+			</li>
 			<li class="divider"></li>
 			<li {% if page.group == 'tutorials' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/plugins/tutorials">Tutorials</a>

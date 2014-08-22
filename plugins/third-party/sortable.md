@@ -1,7 +1,6 @@
 ---
 layout: plugin-nav-bar
-group: api
-subgroup: ui-sortable
+group: third-party
 ---
 
 # UI.Sortable directive [![Build Status](https://travis-ci.org/angular-ui/ui-sortable.png)](https://travis-ci.org/angular-ui/ui-sortable)
