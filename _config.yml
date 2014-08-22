@@ -1,10 +1,11 @@
+angularVersion: 1.2.17
 version: 1
 baseurl: '/developers-stage'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://stage-api.zenginehq.com"
 clientDomain: "https://stage-platform.zenginehq.com"
 authDomain: "https://stage-auth.zenginehq.com"
-supportDomain: "https://support.zenginehq.com"
+supportDomain: "http://support.zenginehq.com"
 developerDomain: https://github.com/ZengineHQ/developers-stage
 demoClientId: "rest-api-quick-start-demo"
 rootDomain: zenginehq.com

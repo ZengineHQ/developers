@@ -1,7 +1,6 @@
 ---
 layout: plugin-nav-bar
-group: third-party-services
-subgroup: firebase
+group: third-party
 ---
 
 # Developing plugins with Firebase
@@ -249,7 +248,7 @@ Learn more about [Firebase security rules](https://www.firebase.com/docs/securit
 
 ## Links
 
-* [Chat Tutorial]({{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html)
+* [Chat Tutorial]({{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html)
 * [Get started](https://www.firebase.com/how-it-works.html)
 * [AngularJS + Firebase](https://www.firebase.com/quickstart/angularjs.html)
 * [AngularFire API reference](https://www.firebase.com/docs/angular/reference.html)

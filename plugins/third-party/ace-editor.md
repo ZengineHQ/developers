@@ -1,7 +1,6 @@
 ---
 layout: plugin-nav-bar
-group: third-party-services
-subgroup: ace-editor
+group: third-party
 ---
 
 # UI.Ace directive [![Build Status](https://travis-ci.org/angular-ui/ui-ace.png)](https://travis-ci.org/angular-ui/ui-ace)

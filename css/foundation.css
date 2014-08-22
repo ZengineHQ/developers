@@ -3447,10 +3447,6 @@ kbd {
 .side-nav li.active > ul > li.active > ul{
   display: block;
 }
-.side-nav li a{
-  display: block;
-  color: #4f6d8c;
-}
 
 .side-nav li.active > a,
 .side-nav li > a:hover  {
