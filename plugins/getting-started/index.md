@@ -5,7 +5,7 @@ subgroup: getting-started
 ---
 # Creating Plugins
 
-Plugins can be created and managed through the Zengine Developer screen, found in the [Developer section of My Account]({{site.clientDomain}}/account/developer). To start, there are two options -- name and namespace. Name will be used to publicly identify your plugin in the app. Namespace is a unique identifier to be used by your plugin code to distinguish it from other plugins. Namespace is not publicly displayed, but it will be used in several places in your plugin code. Name can be changed, but namespace cannot be changed after your plugin is created.
+Plugins can be created and managed through the Zengine Developer screen, found in the [Developer section of My Account]({{site.clientDomain}}/account/developer){:target="_blank"}. To start, there are two options -- name and namespace. Name will be used to publicly identify your plugin in the app. Namespace is a unique identifier to be used by your plugin code to distinguish it from other plugins. Namespace is not publicly displayed, but it will be used in several places in your plugin code. Name can be changed, but namespace cannot be changed after your plugin is created.
 
 After you have provided a plugin name and namespace, you will be taken into the plugin developer console to edit your newly created plugin. Plugins consist of 3 pieces of data -- CSS, HTML, and JavaScript. The initial code is a sample Hello World plugin, populated with your specific plugin options. Notice that your namespace appears in the plugin HTML template ID and in the JavaScript controller and registration parameters.
 

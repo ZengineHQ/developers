@@ -4,12 +4,16 @@ group: development
 ---
 # Best Practices
 
-The following is a list of best practices for developing {{site.productName}} plugins. This list includes things specific to {{site.productName}}, as well as general AngularJS best practices compiled from various sources, including the AngularJS [Best Practices wiki page](https://github.com/angular/angular.js/wiki/Best-Practices), the book [Mastering Web Application Development with AngularJs](http://www.amazon.com/Mastering-Web-Application-Development-AngularJS/dp/1782161821) by Pawel Kozlowski and Pete Bacon Darwin, and this Stack Overflow [post](http://stackoverflow.com/questions/14994391/how-do-i-think-in-angularjs-if-i-have-a-jquery-background) for AngularJS beginners with jQuery background.
+The following is a list of best practices for developing {{site.productName}} plugins. This list includes things specific to {{site.productName}}, as well as general AngularJS best practices compiled from various sources, including the AngularJS [Best Practices wiki page](https://github.com/angular/angular.js/wiki/Best-Practices){:target="_blank"}, the book [Mastering Web Application Development with AngularJs](http://www.amazon.com/Mastering-Web-Application-Development-AngularJS/dp/1782161821){:target="_blank"} by Pawel Kozlowski and Pete Bacon Darwin, and this Stack Overflow [post](http://stackoverflow.com/questions/14994391/how-do-i-think-in-angularjs-if-i-have-a-jquery-background){:target="_blank"} for AngularJS beginners with jQuery background.
 
 * **Namespace your code**  
   Your component names and HTML template IDs should all be prefix with the namespace you chose when you created your plugin.
-* **Always follow the User Interface guidelines / patterns**
-  Checkout [{{site.productName}} Design Patterns]({{site.clientDomain}}/patterns) for UI guidelines,
+* **Follow {{site.productName}} Design Patterns for UI Guidelines**
+  When designing your plugin, follow [{{site.productName}} Design Patterns]({{site.clientDomain}}/patterns){:target="_blank"}, so that your plugin UI fits in with the rest of the app. The page contains information on:
+  - global CSS settings (typography, colors, etc.)
+  - {{site.productName}}-specific components (e.g. follow buttons, data screen, tasks, config lists)
+  - {{site.productName}} extensions of Bootstrap components (e.g. tables, buttons, forms)
+  - general design principles.
 * **Use the `znData` service for accessing the {{site.productName}} API**
   The [znData service]({{site.baseurl}}/plugins/api/services/#zndata) is a useful AngularJS binding for accessing resources from the [{{site.productName}} API]({{site.baseurl}}/rest-api).
 * **Store any user preferences in Firebase**

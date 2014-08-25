@@ -102,7 +102,7 @@ znConfirm('Are you sure you want to close?', close);
 
 # znModal
 
-A service that displays a [modal]({{site.clientDomain}}/patterns/modals) dialog. For an alternative modal service, try <a href="http://angular-ui.github.io/bootstrap" target="_blank">Angular bootstrap's</a> `$modal`.
+A service that displays a [modal]({{site.clientDomain}}/patterns/modals) dialog. For an alternative modal service, try [Angular bootstrap's](http://angular-ui.github.io/bootstrap){:target="_blank"}</a> `$modal`.
 
 <h4><samp>znModal(options)</samp></h4>
 
@@ -199,11 +199,11 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
 
 # znPluginEvents
 
-znPluginEvents is service that acts as a wrapper for the <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope" target="_blank">Angular pub-sub system</a>, and is meant for communication between plugins and the core app.
+znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope){:target="_blank"}, and is meant for communication between plugins and the core app.
 
 <h4><samp>znPluginEvents.$on(name, listener)</samp></h4>
 
-Same as <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on" target="_blank">Angular $on</a>. This method can used to listen for the following **broadcasted events**:
+Same as [Angular $on](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can used to listen for the following **broadcasted events**:
 
 * zn-data-view-deleted
 * zn-data-view-saved
@@ -215,13 +215,13 @@ Same as <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on" ta
 
 <h4><samp>znPluginEvents.$broadcast(name, args)</samp></h4>
 
-Same as <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$broadcast" target="_blank">Angular $broadcast</a>. This method can used to broadcast data to  the following **event listeners**:
+Same as [Angular $broadcast](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$broadcast){:target="_blank"}. This method can used to broadcast data to  the following **event listeners**:
 
 * zn-data-column-resize
 
 # znData
 
-The znData service provides a [collection of resources](#available_resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard <a href="https://docs.angularjs.org/api/ng/service/$q" taregt="_blank">Angular promise object</a>.
+The znData service provides a [collection of resources](#available_resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
 
     
 <h4 id="get"><samp>znData(resourceName).get(params, successCallback, errorCallback)</samp></h4>
