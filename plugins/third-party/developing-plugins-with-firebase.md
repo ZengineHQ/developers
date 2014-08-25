@@ -5,7 +5,7 @@ group: third-party
 
 # Developing plugins with Firebase
 
-The Firebase javascript client and angularfire is available to all plugin developers. Use it to store and sync data in realtime.
+The Firebase JavaScript client and AngularFire is available to all plugin developers. Use it to store and sync data in realtime.
 
 This guide covers basic aspects on how to use Firebase in your plugins, for a complete reference or tutorials checkout the links in the bottom of this page.
 

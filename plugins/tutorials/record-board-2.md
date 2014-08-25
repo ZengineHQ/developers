@@ -46,7 +46,7 @@ Let's start by adding a column to the board that prompts for a folder name. You 
 {% endraw %}
 {% endhighlight %}
 
-This represents patterns for forms and buttons that will match the app. The `ng-show` for `formId` will make sure the column only appears when a form has been selected, since a form is required to create a form folder. The `ng-model` makes the new folder name accessible from the `$scope` as the property `addFolderName`. We will write the `addFolder` function below in the plugin javascript to make it work.
+This represents patterns for forms and buttons that will match the app. The `ng-show` for `formId` will make sure the column only appears when a form has been selected, since a form is required to create a form folder. The `ng-model` makes the new folder name accessible from the `$scope` as the property `addFolderName`. We will write the `addFolder` function below in the plugin JavaScript to make it work.
 
 The following function will post data to the `FormFolders` endpoint to create a new folder using the name from above. After successfully creating a new folder, it will update the list of folders and initialize an empty record list for the folder. With AngularJS 2-way data binding, updating the folders property will automatically make a new column appear in the interface.
 
@@ -93,7 +93,7 @@ $scope.addFolder = function() {
 
 Users can now add folders, but without a way to change the record folder from this screen, the new columns are probably empty. Let's add the ability to move the records between lists using the `ui-sortable` directive.
 
-In the plugin javascript, we need to add some sortable options to the `$scope`. This will connect the record lists and allow you to drag records from one folder to another.
+In the plugin JavaScript, we need to add some sortable options to the `$scope`. This will connect the record lists and allow you to drag records from one folder to another.
 
 {% highlight js %}
 // Sortable Options

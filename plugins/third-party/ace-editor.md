@@ -26,7 +26,7 @@ To see something it's better to add some CSS, like
 
 ## Options
 
-Ace doesn't provide a one gate access to all the options the jquery way.
+Ace doesn't provide a one gate access to all the options the jQuery way.
 Each option is configured with the function of a specific instance.
 See the [api doc](http://ajaxorg.github.io/ace/#nav=api) for more.
 
@@ -74,7 +74,7 @@ The ui-ace directive plays nicely with ng-model.
 
 The ng-model will be watched for to set the Ace EditSession value (by [setValue](http://ajaxorg.github.io/ace/#nav=api&api=edit_session)).
 
-_The ui-ace directive stores and expects the model value to be a standard javascript String._
+_The ui-ace directive stores and expects the model value to be a standard JavaScript String._
 
 ### Can be read only
 

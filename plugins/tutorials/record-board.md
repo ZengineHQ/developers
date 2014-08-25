@@ -110,7 +110,7 @@ if ($routeParams.workspace_id) {
 }
 {% endhighlight %}
 
-Now the plugin javascript should be loading the workspace forms into `$scope.forms`. We need to add some HTML to display this list when the plugin runs. Click over to the plugin.html editor and add the following code into your main template.
+Now the plugin JavaScript should be loading the workspace forms into `$scope.forms`. We need to add some HTML to display this list when the plugin runs. Click over to the plugin.html editor and add the following code into your main template.
 
 {% highlight html %}
 {% raw %}

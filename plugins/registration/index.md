@@ -68,11 +68,11 @@ The following table presents the registration options and their purpose.
         </tr>
         <tr>
             <td>controller</td>
-            <td>You can have multiple controllers in your plugin javascript. This param represents the main controller name. Note that all controller names are prefixed with your namepsace, like <code>myPluginCntl</code>.</td>
+            <td>You can have multiple controllers in your plugin JavaScript. This param represents the main controller name. Note that all controller names are prefixed with your namepsace, like <code>myPluginCntl</code>.</td>
         </tr>
         <tr>
             <td>template</td>
-            <td>Similar to controller, your plugin HTML can have multiple templates. This is the template that corresponds with the main controller. This value represents a template ID in the plugin HTML. The template ID must be prefixed with a dash-delimited version of your namespace, like <code>my-plugin-main</code>. This is in keeping with the AngularJS HTML attribute style.</td>
+            <td>Similar to controller, your plugin HTML can have multiple templates. The `template` parameter corresponds to the template associated with the main controller. This value represents a template ID in the plugin HTML. The template ID must be prefixed with a dash-delimited version of your namespace, like <code>my-plugin-main</code>. This is in keeping with the AngularJS HTML attribute style.</td>
         </tr>
         <tr>
             <td>title</td>

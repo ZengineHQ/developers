@@ -102,7 +102,7 @@ znConfirm('Are you sure you want to close?', close);
 
 # znModal
 
-A service that displays a modal dialog. For an alternative modal service, try <a href="http://angular-ui.github.io/bootstrap" target="_blank">Angular bootstrap's</a> `$modal`.
+A service that displays a [modal]({{site.clientDomain}}/patterns/modals) dialog. For an alternative modal service, try <a href="http://angular-ui.github.io/bootstrap" target="_blank">Angular bootstrap's</a> `$modal`.
 
 <h4><samp>znModal(options)</samp></h4>
 
