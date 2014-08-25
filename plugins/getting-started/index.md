@@ -52,7 +52,7 @@ There are various plugin options you can change through the registration options
 {% endraw %}
 {% endhighlight %}
 
-The `route` parameter represents the URI path to run your plugin. If your route is `/myplugin`, then the full URI to your plugin might be `{{ site.clientDomain }}/workspaces/123/plugin/myplugin</`
+The `route` parameter represents the URI path to run your plugin. If your route is `/myplugin`, then the full URI to your plugin might be `{{ site.clientDomain }}/workspaces/123/plugin/myplugin`
 
 You can have multiple controllers in your plugin JavaScript. The `controller` parameter represents the main controller name. Note that all controller names are prefixed with your namepsace, like `myPluginCntl`.
 

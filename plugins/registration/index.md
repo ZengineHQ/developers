@@ -72,7 +72,7 @@ The following table presents the registration options and their purpose.
         </tr>
         <tr>
             <td>template</td>
-            <td>Similar to controller, your plugin HTML can have multiple templates. The `template` parameter corresponds to the template associated with the main controller. This value represents a template ID in the plugin HTML. The template ID must be prefixed with a dash-delimited version of your namespace, like <code>my-plugin-main</code>. This is in keeping with the AngularJS HTML attribute style.</td>
+            <td>Similar to controller, your plugin HTML can have multiple templates. The <code>template</code> parameter corresponds to the template associated with the main controller. This value represents a template ID in the plugin HTML. The template ID must be prefixed with a dash-delimited version of your namespace, like <code>my-plugin-main</code>. This is in keeping with the AngularJS HTML attribute style.</td>
         </tr>
         <tr>
             <td>title</td>
