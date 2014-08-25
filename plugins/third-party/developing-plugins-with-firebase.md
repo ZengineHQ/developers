@@ -210,7 +210,7 @@ plugin.controller('myPluginCntl', ['$scope', 'znData', '$firebase', function ($s
 
 ## Security rules
 
-Using [Firebase console](https://www.firebase.com/account/) you can setup security rules to protect your data.
+Using [Firebase dashboard](https://www.firebase.com/account/) you can setup security rules to protect your data.
 
 In the example below, the reference `https://<my-firebase>.firebaseio.com/preferences/<user-id>` is a list of preferences of a specific user id, it allows read and write access only if the current authenticated user id matches the `<user-id>`.
 
