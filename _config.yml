@@ -1,6 +1,6 @@
 angularVersion: 1.2.17
 version: 1
-baseurl: 'https://zenginehq.github.io/developers-stage'
+baseurl: '/developers-stage'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://stage-api.zenginehq.com"
 clientDomain: "https://stage-platform.zenginehq.com"
