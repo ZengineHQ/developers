@@ -248,8 +248,8 @@ Learn more about [Firebase security rules](https://www.firebase.com/docs/securit
 ## Links
 
 * [Chat Tutorial]({{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html)
-* [Get started](https://www.firebase.com/how-it-works.html)
-* [AngularJS + Firebase](https://www.firebase.com/quickstart/angularjs.html)
+* [Get started](https://www.firebase.com/how-it-works.html){:target="_blank"}
+* [AngularJS + Firebase](https://www.firebase.com/quickstart/angularjs.html){:target="_blank"}
 * [AngularFire API reference v0.8.0]({{site.baseurl}}/libraries/angularfire/0.8.0/){:target="_blank"}
-* [Javascript client API reference](https://www.firebase.com/docs/javascript/firebase/index.html)
-* [Open Data Sets](https://www.firebase.com/docs/data/index.html)
+* [Javascript client API reference](https://www.firebase.com/docs/javascript/firebase/index.html){:target="_blank"}
+* [Open Data Sets](https://www.firebase.com/docs/data/index.html){:target="_blank"}
