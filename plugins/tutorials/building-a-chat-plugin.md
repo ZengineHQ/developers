@@ -12,20 +12,20 @@ If you haven't yet done so, we recommended first reading about [data access]({{s
 
 ## Get API data
 
- The first thing you need to do is get some data from the API. Using the znData factory, we can get the currently logged-in user, metadata about this plugin (namely Firebase authentication info), and the members of the workspace. 
+ The first thing you need to do is get some data from the API. Using the znData factory, we can get the currently logged-in user, metadata about this plugin (namely Firebase authentication info), and the members of the workspace.
 
 {% highlight js %}
 
 /**
  * Chat Controller
  */
-plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', function ($scope, $routeParams, znData) {
-    
+plugin.controller('namespacedChatCntl', ['$scope', '$routeParams', 'znData', function ($scope, $routeParams, znData) {
+
     /**
      * Load indicator
      */
     $scope.loading = true;
-    
+
     /**
      * Get all members in a workspace
      *
@@ -45,7 +45,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', function ($sc
             $scope.err = resp;
         }
     );
-    
+
     /**
      * Get plugin data
      *
@@ -54,7 +54,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', function ($sc
     znData('Plugins').get(
         // Params
         {
-            namespace: 'chat'
+            namespace: 'namespaced'
         },
         // Success
         function(resp) {
@@ -69,7 +69,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', function ($sc
             $scope.err = resp;
         }
     );
- 
+
     /**
      * Get currently logged-in user
      *
@@ -89,7 +89,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', function ($sc
             $scope.err = resp;
         }
     );
-    
+
 }])
 
 {% endhighlight %}
@@ -99,7 +99,7 @@ You can also add a call to `console.log(res)` in each request success function t
 
 ## Wait for API responses
 
-After making the API requests, we need to wait for the success callbacks to finish before connecting to Firebase. Depending on how familiar you are with AngularJS, you may know the concept of <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watchCollection" target="_blank">watchers</a>. In short, you can set a watcher for one or more properties on an object and be notified when a change occurs. In this use case, we want to know when the following properties are loaded: `$scope.members`, `$scope.plugin` and `$scope.me`.
+After making the API requests, we need to wait for the success callbacks to finish before connecting to Firebase. Depending on how familiar you are with AngularJS, you may know the concept of [watchers](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$watchCollection){:target="_blank"}. In short, you can set a watcher for one or more properties on an object and be notified when a change occurs. In this use case, we want to know when the following properties are loaded: `$scope.members`, `$scope.plugin` and `$scope.me`.
 
 
 {% highlight js %}
@@ -108,7 +108,7 @@ After making the API requests, we need to wait for the success callbacks to fini
      * Wait for members, plugin and current user data to be loaded before connect with Firebase
      */
     var unbindInitalDataFetch = $scope.$watchCollection('[members, plugin, me]', function() {
- 
+
         // If there is an err in the scope:
         // 1. Change the state of the loading indicator to false
         // 2. Remove the watcher
@@ -118,7 +118,7 @@ After making the API requests, we need to wait for the success callbacks to fini
             unbindInitalDataFetch();
             return;
         }
-        
+
         // Check if all of the three `$scope` properties have been defined
         // 1. Remove the watcher
         // 2. Call `$scope.connect` to connect with Firebase
@@ -126,9 +126,9 @@ After making the API requests, we need to wait for the success callbacks to fini
             unbindInitalDataFetch();
             $scope.connect();
         }
-        
+
     });
-    
+
 {% endhighlight %}
 
 The method `$watchCollection` returns a function that can be called to dispose/remove the watcher. In this case the data is fetched once when the plugin loads into the workspace without further need to call `$scope.connect()`.
@@ -145,64 +145,64 @@ Note that you need to inject the `$firebase` service in your controller signatur
      * Load indicator
      */
     $scope.loading = true;
- 
+
     /**
      * Connect with Firebase
      */
     $scope.connect = function() {
-        
+
         // Room reference
         var ref = new Firebase($scope.plugin.firebaseUrl + '/rooms/' + $routeParams.workspace_id);
-        
+
         // Authenticate user and set presence
         ref.auth($scope.plugin.firebaseAuthToken, function(err, res) {
-            
+
             // Set error if present and returns
             if (err) {
                 $scope.err = err;
                 $scope.$apply();
                 return;
             }
-            
+
             // Set presence using the Firebase low level API
             var session = new Firebase($scope.plugin.firebaseUrl + '/rooms/' + $routeParams.workspace_id + '/sessions/' + $scope.me.id);
             var connection = new Firebase($scope.plugin.firebaseUrl + '/.info/connected');
-            
+
             // Will set an element in the session list when the user is connected and
             // automatically remove it when the user disconnects
             connection.on('value', function(snapshot) {
-                
+
                 if (snapshot.val() === true) {
-                    
+
                     // Add current user to the room sessions
                     session.set(true);
-                    
+
                     // Remove on disconnect
                     session.onDisconnect().remove();
-                    
+
                 }
-                
+
             });
- 
+
             // Remove the user from the active sessions list when the plugin is closed
             $scope.$on('$destroy', function() {
-                session.remove(); 
+                session.remove();
             });
 
             // Set sessions
             $scope.sessions = $firebase(ref.child('sessions')).$asObject();
-            
+
             // Set messages
             $scope.messages = $firebase(ref.child('/messages')).$asArray();
-            
+
             // Set loading
             $scope.loading = false;
-            
+
             // Apply changes to the scope
             $scope.$apply();
-            
+
         });
-        
+
     };
 
 {% endhighlight %}
@@ -223,19 +223,19 @@ Note that we are using a special Firebase variable `Firebase.ServerValue.TIMESTA
      * Add a new message
      */
     $scope.addMessage = function() {
-        
+
         if (!$scope.form || !$scope.form.message) {
             return;
         }
-        
+
         $scope.messages.$add({
             userId: $scope.me.id,
             text: $scope.form.message,
             timestamp: Firebase.ServerValue.TIMESTAMP
         });
-        
+
         $scope.form.message = null;
-        
+
     };
 
 {% endhighlight %}
@@ -244,7 +244,7 @@ Note that we are using a special Firebase variable `Firebase.ServerValue.TIMESTA
 
 This directive will use two scope properties: `message`, the message to be parsed, and  `members`, an array with workspace members data (ex: display name and avatar image url).
 
-The `templateUrl` property value is `chat-message` a HTML template that will be put in the `plugin.html` later in this tutorial.
+The `templateUrl` property value is `namespaced-chat-message` a HTML template that will be put in the `plugin.html` later in this tutorial.
 
 The directive uses a scope watcher in the members property, because the members takes a few milliseconds to be available so it's need to wait before start parsing the message, when available it's loops the `members` and finds the member that posted the message and assign it to `scope.member` to be used in the template.
 
@@ -261,7 +261,7 @@ It also emits an event `chatAutoscroll` to trigger a scroll to the new added mes
             message: '=',
             members: '='
         },
-        templateUrl: 'chat-message',
+        templateUrl: 'namespaced-chat-message',
         link: function postLink(scope, element, attrs) {
             var unbind = scope.$watch('members', function(members) {
                 if (!members) {
@@ -281,12 +281,12 @@ It also emits an event `chatAutoscroll` to trigger a scroll to the new added mes
 
 {% endhighlight %}
 
-The `chat-message` template used in conjection with the `chatMessage` directive that parses each messages.
+The `namespaced-chat-message` template used in conjection with the `namespacedChatMessage` directive that parses each messages.
 
 {% highlight html %}
 {% raw %}
 <!-- Chat message template -->
-<script type="text/ng-template" id="chat-message">
+<script type="text/ng-template" id="namespaced-chat-message">
     <div class="message-left">
         <img ng-src="{{member.user.settings.avatarUrl}}" alt="{{member.user.displayName || member.user.username || member.user.email}}" class="avatar avatar-small">
     </div>
@@ -334,9 +334,9 @@ The `chat-main` template uses the grid from the {{site.productName}} patterns to
     <div ng-hide="loading" class="row">
         <div class="col-md-10">
             <div class="main-white">
-                <div class="messages" chat-autoscroll>
+                <div class="messages" namespaced-chat-autoscroll>
                     <div ng-repeat="message in messages">
-                        <div chat-message message="message" members="members"></div>
+                        <div namespaced-chat-message message="message" members="members"></div>
                         <hr ng-if="!$last">
                     </div>
                 </div>
@@ -380,7 +380,9 @@ To restrict the access to only authenticated users in Firebase and only to membe
 
 ## Wrapping Up
 
-The code for the entire chat plugin can be found below. In this case, the plugin namespace is 'chat', so to make it work as your own, you will need to replace all instances of the word 'chat' with your namespace.
+The code for the entire chat plugin can be found below and also on [Github](https://github.com/ZengineHQ/labs/tree/master/plugins/chat-room){:target="_blank"}. In this case, the plugin namespace is 'namespaced', so to make it work as your own, you will need to replace all instances of the word 'namespaced' with your namespace.
+
+If you have improvements to the plugin, feel free to make pull requests to the code repository and update the documentation for it [here]({{site.developerDomain}}/edit/gh-pages/plugins/tutorials/building-a-chat-plugin.md).
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
   <li class="active"><a href="#plugin-js" role="tab" data-toggle="tab">plugin.js</a></li>
@@ -393,72 +395,72 @@ The code for the entire chat plugin can be found below. In this case, the plugin
 /**
  * Chat Controller
  */
-plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', function ($scope, $routeParams, znData, $firebase) {
-    
+plugin.controller('namespacedChatCntl', ['$scope', '$routeParams', 'znData', '$firebase', function ($scope, $routeParams, znData, $firebase) {
+
     /**
      * Load indicator
      */
     $scope.loading = true;
- 
+
     /**
      * Connect with Firebase
      */
     $scope.connect = function() {
-        
+
         // Room reference
         var ref = new Firebase($scope.plugin.firebaseUrl + '/rooms/' + $routeParams.workspace_id);
-        
+
         // Authenticate user and set presence
         ref.auth($scope.plugin.firebaseAuthToken, function(err, res) {
-            
+
             // Set error if present and returns
             if (err) {
                 $scope.err = err;
                 $scope.$apply();
                 return;
             }
-            
+
             // Set presence using the Firebase low level API
             var session = new Firebase($scope.plugin.firebaseUrl + '/rooms/' + $routeParams.workspace_id + '/sessions/' + $scope.me.id);
             var connection = new Firebase($scope.plugin.firebaseUrl + '/.info/connected');
-            
+
             // Will set an element in the session list when the user is connected and
             // automatically remove it when the user disconnects
             connection.on('value', function(snapshot) {
-                
+
                 if (snapshot.val() === true) {
-                    
+
                     // Add current user to the room sessions
                     session.set(true);
-                    
+
                     // Remove on disconnect
                     session.onDisconnect().remove();
-                    
+
                 }
-                
+
             });
- 
+
             // Remove the user from the active sessions list when the plugin is closed
             $scope.$on('$destroy', function() {
-                session.remove(); 
+                session.remove();
             });
 
             // Set sessions
             $scope.sessions = $firebase(ref.child('sessions')).$asObject();
-            
+
             // Set messages
             $scope.messages = $firebase(ref.child('/messages')).$asArray();
-            
+
             // Set loading
             $scope.loading = false;
-            
+
             // Apply changes to the scope
             $scope.$apply();
-            
+
         });
-        
+
     };
-    
+
     /**
      * Get all members in a workspace
      *
@@ -478,16 +480,16 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
             $scope.err = resp;
         }
     );
-    
+
     /**
      * Get plugin data
      *
-     * equivalent to: GET {{site.apiDomain}}/v1/plugins/?namespace=chat
+     * equivalent to: GET {{site.apiDomain}}/v1/plugins/?namespace=namespaced
      */
     znData('Plugins').get(
         // Params
         {
-            namespace: 'chat'
+            namespace: 'namespaced'
         },
         // Success
         function(resp) {
@@ -502,7 +504,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
             $scope.err = resp;
         }
     );
- 
+
     /**
      * Get current logged user in {{site.productName}}
      *
@@ -522,12 +524,12 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
             $scope.err = resp;
         }
     );
-    
+
     /**
      * Wait for members, plugin and current user data to be loaded before connect with Firebase
      */
     var unbindInitalDataFetch = $scope.$watchCollection('[members, plugin, me]', function() {
- 
+
         // If there is an err in the scope:
         // 1. Change the state of the loading indicator to false
         // 2. Remove the watcher
@@ -537,7 +539,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
             unbindInitalDataFetch();
             return;
         }
-        
+
         // Check if all of the three `$scope` properties have been defined
         // 1. Remove the watcher
         // 2. Call `$scope.connect` to connect with Firebase
@@ -545,41 +547,41 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
             unbindInitalDataFetch();
             $scope.connect();
         }
-        
+
     });
-    
+
     /**
      * Add a new message
      */
     $scope.addMessage = function() {
-        
+
         if (!$scope.form || !$scope.form.message) {
             return;
         }
-        
+
         $scope.messages.$add({
             userId: $scope.me.id,
             text: $scope.form.message,
             timestamp: Firebase.ServerValue.TIMESTAMP
         });
-        
+
         $scope.form.message = null;
-        
+
     };
-    
+
 }])
- 
- 
+
+
 /**
  * Messages Directive
  */
-.directive('chatMessage', [function() {
+.directive('namespacedChatMessage', [function() {
     return {
         scope: {
             message: '=',
             members: '='
         },
-        templateUrl: 'chat-message',
+        templateUrl: 'namespaced-chat-message',
         link: function postLink(scope, element, attrs) {
             var unbind = scope.$watch('members', function(members) {
                 if (!members) {
@@ -596,11 +598,11 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
         }
     };
 }])
- 
+
 /**
  * Autoscroll Directive
  */
-.directive('chatAutoscroll', ['$timeout', function($timeout) {
+.directive('namespacedChatAutoscroll', ['$timeout', function($timeout) {
     return {
         link: function postLink(scope, element, attrs) {
             scope.$on('chatAutoscroll', function() {
@@ -611,14 +613,14 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
         }
     };
 }])
- 
+
 /**
  * Registration Settings
  */
-.register('chat', {
-  route: '/chat',
-  controller: 'chatCntl',
-  template: 'chat-main',
+.register('namespacedChat', {
+  route: '/namespacedchat',
+  controller: 'namespacedChatCntl',
+  template: 'namespaced-chat-main',
   title: 'Chat',
   pageTitle: false,
   fullPage: true,
@@ -632,16 +634,16 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
 {% highlight html %}
 {% raw %}
 <!-- Chat main template -->
-<script type="text/ng-template" id="chat-main">
+<script type="text/ng-template" id="namespaced-chat-main">
     <div ng-show="loading">
         <span class="throbber"></span>
     </div>
     <div ng-hide="loading" class="row">
         <div class="col-md-10">
             <div class="main-white">
-                <div class="messages" chat-autoscroll>
+                <div class="messages" namespaced-chat-autoscroll>
                     <div ng-repeat="message in messages">
-                        <div chat-message message="message" members="members"></div>
+                        <div namespaced-chat-message message="message" members="members"></div>
                         <hr ng-if="!$last">
                     </div>
                 </div>
@@ -663,7 +665,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
 </script>
 
 <!-- Chat message template -->
-<script type="text/ng-template" id="chat-message">
+<script type="text/ng-template" id="namespaced-chat-message">
     <div class="message-left">
         <img ng-src="{{member.user.settings.avatarUrl}}" alt="{{member.user.displayName || member.user.username || member.user.email}}" class="avatar avatar-small">
     </div>
@@ -676,7 +678,7 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
 {% endhighlight %}
     </div>
   <div class="tab-pane fade" id="plugin-css">
-{% highlight css %} 
+{% highlight css %}
 /**
  * We are using just a few CSS rules to customize the plugin look.
  * This is because most of the layout is using the {{site.productName}} Patterns.
@@ -685,33 +687,33 @@ plugin.controller('chatCntl', ['$scope', '$routeParams', 'znData', '$firebase', 
 .offline {
     color: #ccc;
 }
- 
+
 .online {
     color: #000;
-    
+
 }
- 
+
 .messages {
     overflow:scroll;
     height:500px;
     padding-right: 15px;
 }
- 
+
 .members {
     overflow:scroll;
     height:550px;
 }
- 
+
 .message-time {
     color: #ccc;
 }
- 
+
 .message-box {
     margin-top: 10px;
     width:97%;
     padding:10px;
 }
- 
+
 .message-left {
     width: 40px;
     float: left;

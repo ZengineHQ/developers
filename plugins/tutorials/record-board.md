@@ -47,7 +47,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', function ($scope, $
 
     // Current Workspace ID from Route
     $scope.workspaceId = null;
-    
+
     // Initialize for Workspace ID
     if ($routeParams.workspace_id) {
         // Set Selected Workspace ID
@@ -67,7 +67,7 @@ To query the forms, we need to use the `znData` service. The `znData` service pr
 plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'znData', function ($scope, $routeParams, znData) {
 {% endhighlight %}
 
-We will use the `znData` service to query the `Forms` endpoint, passing the workspace ID from above as a query parameter and `folders` as related data we want included in the response.  
+We will use the `znData` service to query the `Forms` endpoint, passing the workspace ID from above as a query parameter and `folders` as related data we want included in the response.
 
 {% highlight js %}
 // Workspace Forms
@@ -79,15 +79,15 @@ $scope.forms = [];
 $scope.loadForms = function() {
     // Reset Workspace Forms
     $scope.forms = [];
-    
+
     // Query Forms by Workspace ID and Return Loading Promise
     return znData('Forms').query(
         {
-            workspace: { 
-                id: $scope.workspaceId 
+            workspace: {
+                id: $scope.workspaceId
             },
             related: 'folders'
-        }, 
+        },
         function(response){
             // Set Workspace Forms from Response
             $scope.forms = response;
@@ -104,7 +104,7 @@ We need to trigger the loadForms function to be called, so we will add that to t
 if ($routeParams.workspace_id) {
     // Set Selected Workspace ID
     $scope.workspaceId = $routeParams.workspace_id;
-    
+
     // Load Workspace Forms
     $scope.loadForms();
 }
@@ -142,24 +142,24 @@ $scope.folders = [];
 /**
  * Pick Selected Form
  */
-$scope.pickForm = function(formId) {        
+$scope.pickForm = function(formId) {
     // Set Selected Form ID
     $scope.formId = formId;
-    
+
     // Reset Form Folders
     $scope.folders = [];
-    
+
     // Find Form and Set Selected Form Folders
     angular.forEach($scope.forms, function(form) {
         if (form.id == formId) {
             $scope.folders = form.folders;
         }
     });
-    
+
 };
 {% endhighlight %}
 
-Now we can update the plugin HTML to allow for selecting forms by calling the `pickForm` function. Since we have the `$scope.formId` set, we can also visually indicate which form is currently selected by applying the active class. 
+Now we can update the plugin HTML to allow for selecting forms by calling the `pickForm` function. Since we have the `$scope.formId` set, we can also visually indicate which form is currently selected by applying the active class.
 
 {% highlight html %}
 {% raw %}
@@ -191,28 +191,28 @@ $scope.folderRecords = {};
 $scope.loadRecords = function() {
     // Reset Folder Records
     $scope.folderRecords = {};
-    
+
     var queue = [];
-    
+
     // Get Records by Folder
     angular.forEach($scope.folders, function(folder) {
         // Initialize Folder Record List
         $scope.folderRecords[folder.id] = [];
-        
+
         // Query and Index Records by Folder
         var request = znData('FormRecords').query(
             {
-                formId: $scope.formId, 
+                formId: $scope.formId,
                 folder: { id: folder.id }
             },
             function(response) {
                 $scope.folderRecords[folder.id] = response;
             }
         );
-        
+
         queue.push(request);
     });
-    
+
 };
 {% endhighlight %}
 
@@ -226,17 +226,17 @@ To trigger loading the records, we will update the `pickForm` function to load t
 $scope.pickForm = function(formId) {
     // Set Selected Form ID
     $scope.formId = formId;
-    
+
     // Reset Form Folders
     $scope.folders = [];
-    
+
     // Find Form and Set Selected Form Folders
     angular.forEach($scope.forms, function(form) {
         if (form.id == formId) {
             $scope.folders = form.folders;
         }
     });
-    
+
     // Load Records for Selected Form Folders
     $scope.loadRecords();
 
@@ -254,13 +254,13 @@ At this point, the plugin should be loading forms, folders, and form records int
     <div ng-repeat="folder in folders" class="column">
         <!-- Display Folder Name -->
         <div class="name">{{folder.name}}</div>
-        
+
         <!-- Folder Records List -->
         <ul class="record-list">
             <li ng-repeat="record in folderRecords[folder.id]" class="record">{{record.name}}</li>
         </ul>
     </div>
-        
+
 </div>
 {% endraw %}
 {% endhighlight %}
@@ -317,98 +317,98 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'znData', function 
 
     // Current Workspace ID from Route
     $scope.workspaceId = null;
-    
+
     // Workspace Forms
     $scope.forms = [];
-    
+
     // Selected Form ID
     $scope.formId = null;
-    
+
     // Selected Form Folders
     $scope.folders = [];
-    
+
     // Records Indexed by Folder
     $scope.folderRecords = {};
-    
+
     /**
      * Load Forms for Workspace
      */
     $scope.loadForms = function() {
         // Reset Workspace Forms
         $scope.forms = [];
-        
+
         // Query Forms by Workspace ID and Return Loading Promise
         return znData('Forms').query(
             {
-                workspace: { 
-                    id: $scope.workspaceId 
+                workspace: {
+                    id: $scope.workspaceId
                 },
                 related: 'folders'
-            }, 
+            },
             function(response){
                 // Set Workspace Forms from Response
                 $scope.forms = response;
             }
         );
     };
-    
+
     /**
      * Pick Selected Form
      */
     $scope.pickForm = function(formId) {
         // Set Selected Form ID
         $scope.formId = formId;
-        
+
         // Reset Form Folders
         $scope.folders = [];
-        
+
         // Find Form and Set Selected Form Folders
         angular.forEach($scope.forms, function(form) {
             if (form.id == formId) {
                 $scope.folders = form.folders;
             }
         });
-        
+
         // Load Records for Selected Form Folders
         $scope.loadRecords();
 
     };
-    
+
     /**
      * Load Records by Form Folders
      */
     $scope.loadRecords = function() {
         // Reset Folder Records
         $scope.folderRecords = {};
-        
+
         var queue = [];
-        
+
         // Get Records by Folder
         angular.forEach($scope.folders, function(folder) {
             // Initialize Folder Record List
             $scope.folderRecords[folder.id] = [];
-            
+
             // Query and Index Records by Folder
             var request = znData('FormRecords').query(
                 {
-                    formId: $scope.formId, 
+                    formId: $scope.formId,
                     folder: { id: folder.id }
                 },
                 function(response) {
                     $scope.folderRecords[folder.id] = response;
                 }
             );
-            
+
             queue.push(request);
         });
-        
+
     };
-    
+
     // Initialize for Workspace ID
     if ($routeParams.workspace_id) {
         // Set Selected Workspace ID
         $scope.workspaceId = $routeParams.workspace_id;
-        
+
         // Load Workspace Forms
         $scope.loadForms();
     }
@@ -420,30 +420,30 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', 'znData', function 
 {% highlight html %}
 {% raw %}
 <script type="text/ng-template" id="my-plugin-main">
-   
+
     <!-- form tabs -->
     <div>
         <ul class="tabs">
             <li ng-repeat="form in forms" ng-class="{active: formId == form.id}"><a href="#" ng-click="pickForm(form.id)">{{form.name}}</a></li>
         </ul>
     </div>
-    
+
     <!-- Board Canvas -->
     <div class="wrapper">
-    
+
         <!-- Folder Column -->
         <div ng-repeat="folder in folders" class="column">
             <!-- Display Folder Name -->
             <div class="name">{{folder.name}}</div>
-            
+
             <!-- Folder Records List -->
             <ul class="record-list">
                 <li ng-repeat="record in folderRecords[folder.id]" class="record">{{record.name}}</li>
             </ul>
         </div>
-            
+
     </div>
-    
+
 </script>
 {% endraw %}
 {% endhighlight %}

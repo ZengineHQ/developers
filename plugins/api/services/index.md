@@ -102,7 +102,7 @@ znConfirm('Are you sure you want to close?', close);
 
 # znModal
 
-A service that displays a [modal]({{site.clientDomain}}/patterns/modals) dialog. For an alternative modal service, try [Angular bootstrap's](http://angular-ui.github.io/bootstrap){:target="_blank"}</a> `$modal`.
+A service that displays a [modal]({{site.clientDomain}}/patterns/modals) dialog. For an alternative modal service, try [Angular bootstrap's](http://angular-ui.github.io/bootstrap){:target="_blank"} `$modal`.
 
 <h4><samp>znModal(options)</samp></h4>
 
@@ -137,7 +137,7 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
     $scope.setBtnAction('Save', function (callback) {
 
         // See https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/directive/form for more details
-        var form = $scope.myForm; // value of the name attribute on the form. 
+        var form = $scope.myForm; // value of the name attribute on the form.
 
         if (!form.$valid) { // e.g. empty input
             return false; // do nothing
@@ -223,9 +223,9 @@ Same as [Angular $broadcast](https://code.angularjs.org/{{site.angularVersion}}/
 
 The znData service provides a [collection of resources](#available_resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
 
-    
+
 <h4 id="get"><samp>znData(resourceName).get(params, successCallback, errorCallback)</samp></h4>
-    
+
 Performs a `GET` request on a single object. The id param, if passed to `params`, will be interpreted as a url parameter.
 
 {% highlight js %}
@@ -256,7 +256,7 @@ znData('WorkspaceMembers').query({ workspaceId:123, id: 456 }, function(members)
 ---
 
 <h4 id="delete"><samp>znData(resourceName).delete(params, successCallback, errorCallback)</samp></h4>
-    
+
 Performs a `DELETE` request. Same as calling <samp>del(params, successCallback, errorCallback);</samp>
 
 {% highlight js %}
