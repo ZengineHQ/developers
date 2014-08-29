@@ -298,7 +298,7 @@ To make the divs appear as columns, we can add the following to plugin CSS.
 ![Record Board Part 1]({{ site.baseurl }}/img/plugins/tutorials/record-board-part1.png)
 
 ## Wrapping Up
-At this point you should have a functional plugin that will display form folders as columns listing form records. If you don't have any folders, you may only see one column. In <a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html">part 2</a>, we will work on making the plugin more useful by adding the ability to add folders and move records between lists.
+At this point you should have a functional plugin that will display form folders as columns listing form records. If you don't have any folders, you may only see one column. In [part 2]({{site.baseurl}}/plugins/tutorials/record-board-2), we will work on making the plugin more useful by adding the ability to add folders and move records between lists.
 
 Your plugin code should now look something like this (with your own plugin namespace in the js registration options and html template id):
 

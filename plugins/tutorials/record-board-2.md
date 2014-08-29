@@ -6,41 +6,55 @@ subgroup: record-board-2
 
 # Creating a Record Board Plugin Part 2
 
-In part 1, we created a workspace plugin that would get a list of forms, folders, and records. The plugin would display the forms as tabs, the folders as columns, and the records in a list, by column.
+In [part 1]({{site.baseurl}}/plugins/tutorials/record-board), we created a workspace plugin that would get a list of forms, folders, and records. The plugin would display the forms as tabs, the folders as columns, and the records in a list, by column.
 
 At this point you probably only have 1 column and you want to do more than just see a list of records. In this guide we will work on adding new folders/columns and moving records from one column to another.
 
 ## Adding Folders
 
-Let's start by adding a column to the board that prompts for a folder name. You can recall some of this code from part 1, as a reference where to put the add folder HTML.
+Let's start by adding a column to the board that prompts for a folder name. You may recall some of this code from [part 1]({{site.baseurl}}/plugins/tutorials/record-board), as a reference where to put the add folder HTML.
 
 {% highlight html %}
 {% raw %}
 <!-- Board Canvas -->
 <div class="wrapper">
 
-<!-- Folder Column -->
-<div ng-repeat="folder in folders" class="column">
-    <!-- Display Folder Name -->
-    <div class="name">{{folder.name}}</div>
+    <!-- Folder Column -->
+    <div ng-repeat="folder in folders" class="column">
+        <!-- Display Folder Name -->
+        <div class="name" ng-hide="editFolder.id==folder.id">
+            <span ng-show="folder.id==0">{{folder.name}}</span>
+            <a href="#" ng-click="toggleEditFolder(folder.id)" ng-show="folder.id!=0">{{folder.name}}</a>
+        </div>
+        <!-- Edit Folder Name -->
+        <div ng-show="editFolder.id==folder.id">
+            <div class="control-group">
+                <input type="text" ng-model="editFolder.name" class="input-large">
+            </div>
+            <div class="form-actions">
+                <a href="#" ng-click="saveFolder()" class="btn btn-primary">Save</a>
+                <a href="#" ng-click="toggleEditFolder(folder.id)" class="secondary">Cancel</a>
+            </div>
+        </div>
 
-    <!-- Folder Records List -->
-    <ul class="record-list">
-        <li ng-repeat="record in folderRecords[folder.id]" class="record">{{record.name}}</li>
-    </ul>
-</div>
+        <!-- Folder Records List -->
+        <ul id="{{folder.id}}" data-id="{{folder.id}}" class="records-container">
+            <li data-id="{{record.id}}" ng-repeat="record in folderRecords[folder.id]" class="record">{{record.name}}</li>
+        </ul>
+    </div>
 
-<!-- Add Folder Column -->
-<div ng-show="formId" class="column">
-    <!-- Folder Name -->
-    <div class="control-group">
-        <input type="text" ng-model="addFolderName" placeholder="New Folder Name" class="input-large">
+    <!-- Add Folder Column -->
+    <div ng-show="showAddFolder" class="column">
+        <!-- Folder Name -->
+        <div class="control-group">
+            <input type="text" ng-model="addFolderName" placeholder="New Folder Name" class="input-large">
+        </div>
+        <!-- Add Folder Actions -->
+        <div class="form-actions">
+            <a href="#" ng-click="addFolder()" class="btn btn-primary">Add</a>
+            <a href="#" ng-click="openAddFolder(false)" class="secondary">Cancel</a>
+        </div>
     </div>
-    <!-- Add Folder Actions -->
-    <div class="form-actions">
-        <a href="#" ng-click="addFolder()" class="btn btn-primary">Add</a>
-    </div>
-</div>
 
 </div>
 {% endraw %}
@@ -60,6 +74,11 @@ $scope.addFolderName = null;
  * Add Folder
  */
 $scope.addFolder = function() {
+
+    var params = {
+            formId: $scope.formId
+    };
+
     var data = {
         name: $scope.addFolderName,
         form: {
@@ -71,7 +90,7 @@ $scope.addFolder = function() {
     $scope.addFolderName = '';
 
     // Save New Folder
-    return znData('FormFolders').save({formId: $scope.formId}, data, function (folder) {
+    return znData('FormFolders').save(params, data, function (folder) {
         // Initialize New Folder Record List
         $scope.folderRecords[folder.id] = [];
 
@@ -98,7 +117,7 @@ In the plugin JavaScript, we need to add some sortable options to the `$scope`. 
 {% highlight js %}
 // Sortable Options
 $scope.sortableOptions = {
-    connectWith: 'ul.record-list',
+    connectWith: 'ul.records-container',
     items: 'li.record'
 };
 {% endhighlight %}
@@ -123,8 +142,8 @@ Next, in the plugin HTML, add the directive `ui-sortable` to the record list as 
 One more small, but important, addition is to update the CSS to add some height to empty lists. This is necessary to be able to drag items onto empty lists. Add the following to the plugin CSS.
 
 {% highlight css %}
-.record-list {
-    min-height: 15px;
+.column ul {
+    min-height: 30px;
 }
 {% endhighlight %}
 
@@ -132,7 +151,7 @@ One more small, but important, addition is to update the CSS to add some height 
 
 ## Saving Record Folders
 
-Now that users can move records into different folders, let's add a way to save the changes. Starting with the plugin HTML, we will need to add a way to identify the record being moved. We can do this by adding a data-id attribute to the record item.
+Now that users can move records into different folders, let's add a way to save the changes. Starting with the plugin HTML, we will need to add a way to identify the record being moved. We can do this by adding a `data-id` attribute to the record item.
 
 {% highlight html %}
 {% raw %}
@@ -149,40 +168,26 @@ Now that users can move records into different folders, let's add a way to save 
 {% endraw %}
 {% endhighlight %}
 
-Next, we need to update the sortable options to trigger a save when a record is moved. Sortable provides several callbacks when lists are updated. Here we can take advantage of the `update` callback with the function you see below.
+Next, we need to update the sortable options to trigger a save when a record is moved. Sortable provides several callbacks when lists are updated. Here we can take advantage of the `stop` callback with the function you see below.
 
 {% highlight js %}
 // Sortable Options
 $scope.sortableOptions = {
-    connectWith: 'ul.record-list',
-    items: 'li.record',
-    update: function(event, ui) {
-
-        // Ignore Reorder
-        if (!ui.sender) {
-            return;
-        }
+    connectWith: "ul.records-container",
+    items: "li.record",
+    stop: function(event, ui) {
 
         // Traverse Records by Folder
         angular.forEach($scope.folders, function(folder) {
             angular.forEach($scope.folderRecords[folder.id], function(record, index) {
-                // Record Found
-                if (record.id == ui.item.data('id')) {
+                // Record Found and Folder Changed
+                if (record.id == ui.item.data('id') &&
+                    record.folder.id != folder.id) {
 
                     // Update Record Folder ID
-                    znData('FormRecords').save(
-                        {
-                            formId: $scope.formId,
-                            id: record.id
-                        },
-                        {
-                            folder: { id: folder.id }
-                        },
-                        function(response) {
-                            // Update Folder Records with Response
-                            $scope.folderRecords[folder.id].splice(index, 1, response);
-
-                        znMessage('Record moved', 'saved');
+                    znData('FormRecords').save({ formId: $scope.formId, id: record.id}, { folder: { id: folder.id }}, function(response) {
+                        // Update Folder Records with Response
+                        $scope.folderRecords[folder.id].splice(index, 1, response);
                     }, function(e) {
                         znMessage('Error moving record', 'error');
                     });
@@ -193,7 +198,7 @@ $scope.sortableOptions = {
 };
 {% endhighlight %}
 
-First, we ignore cases where `ui.sender` is empty, because those only represent reordering records in the same list. Then we traverse the known folders and records to find the where the record was moved. When the record is found it uses the `znData` service to save the new folder ID. One the save is complete, it updates the folder record list with the response.
+When the sorting has stopped, we traverse the known folders and records to find the where the record was moved. When the record is found and the new folder is different from the current folder, it uses the `znData` service to save the new folder ID. Once the save is complete, it updates the folder record list with the response.
 
 ![Record Board Plugin]({{ site.baseurl }}/img/plugins/tutorials/record-board-part2.png)
 
@@ -475,17 +480,20 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
     <div class="tab-pane fade" id="plugin-html">
 {% highlight html %}
 {% raw %}
-<script type="text/ng-template" id="my-plugin-main">
+<script type="text/ng-template" id="namespaced-record-board-main">
 
     <!-- form tabs -->
     <div>
         <ul class="tabs">
             <li ng-repeat="form in forms" ng-class="{active: formId == form.id}">
-                <a href="#" ng-click="pickForm(form.id)">
-                    {{form.name}}
-                </a>
+                <a href="#" ng-click="pickForm(form.id)">{{form.name}}</a>
             </li>
         </ul>
+    </div>
+
+    <!-- Header Actions -->
+    <div ng-show="formId">
+        <span class="btn" ng-click="openAddFolder(true)"><i class="icon-plus"></i> Add Folder</span>
     </div>
 
     <!-- Board Canvas -->
@@ -494,18 +502,29 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
         <!-- Folder Column -->
         <div ng-repeat="folder in folders" class="column">
             <!-- Display Folder Name -->
-            <div class="name">{{folder.name}}</div>
+            <div class="name" ng-hide="editFolder.id==folder.id">
+                <span ng-show="folder.id==0">{{folder.name}}</span>
+                <a href="#" ng-click="toggleEditFolder(folder.id)" ng-show="folder.id!=0">{{folder.name}}</a>
+            </div>
+            <!-- Edit Folder Name -->
+            <div ng-show="editFolder.id==folder.id">
+                <div class="control-group">
+                    <input type="text" ng-model="editFolder.name" class="input-large">
+                </div>
+                <div class="form-actions">
+                    <a href="#" ng-click="saveFolder()" class="btn btn-primary">Save</a>
+                    <a href="#" ng-click="toggleEditFolder(folder.id)" class="secondary">Cancel</a>
+                </div>
+            </div>
 
             <!-- Folder Records List -->
-            <ul class="record-list" ui-sortable="sortableOptions" ng-model="folderRecords[folder.id]">
-                <li ng-repeat="record in folderRecords[folder.id]" data-id="{{record.id}}" class="record">
-                    {{record.name}}
-                </li>
+            <ul id="{{folder.id}}" data-id="{{folder.id}}" ui-sortable="sortableOptions" ng-model="folderRecords[folder.id]" class="records-container">
+                <li data-id="{{record.id}}" ng-repeat="record in folderRecords[folder.id]" class="record">{{record.name}}</li>
             </ul>
         </div>
 
         <!-- Add Folder Column -->
-        <div ng-show="formId" class="column">
+        <div ng-show="showAddFolder" class="column">
             <!-- Folder Name -->
             <div class="control-group">
                 <input type="text" ng-model="addFolderName" placeholder="New Folder Name" class="input-large">
@@ -513,6 +532,7 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
             <!-- Add Folder Actions -->
             <div class="form-actions">
                 <a href="#" ng-click="addFolder()" class="btn btn-primary">Add</a>
+                <a href="#" ng-click="openAddFolder(false)" class="secondary">Cancel</a>
             </div>
         </div>
 
@@ -524,6 +544,13 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
     </div>
     <div class="tab-pane fade" id="plugin-css">
 {% highlight css %}
+/**
+ * Plugin Record Board CSS
+ */
+
+.title {
+    color: purple;
+}
 .column {
     float: left;
     width: 200px;
@@ -545,8 +572,12 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
     font-weight: bold;
 }
 
-.record-list {
-    min-height: 15px;
+.column ul {
+    min-height: 30px;
+}
+
+.record {
+    cursor: move;
 }
 
 .wrapper {
