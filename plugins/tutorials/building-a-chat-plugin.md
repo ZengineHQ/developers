@@ -8,7 +8,7 @@ subgroup: chat
 
 This tutorial guides you through the process of building a basic workspace-level chat plugin using Firebase to store the chat messages.
 
-If you haven't yet done so, we recommended first reading about [data access]({{site.baseurl}}/plugins/{{site.productName | downcase}}-services/#data) and [developing plugins with Firebase]({{site.baseurl}}/plugins/third-party-services/developing-plugins-with-firebase.html) before starting this tutorial.
+If you haven't yet done so, we recommended first reading about [data access]({{site.baseurl}}/plugins/api/services/#zndata) and [developing plugins with Firebase]({{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html) before starting this tutorial.
 
 ## Get API data
 
