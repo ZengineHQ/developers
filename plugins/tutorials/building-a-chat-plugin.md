@@ -107,7 +107,7 @@ After making the API requests, we need to wait for the success callbacks to fini
     /**
      * Wait for members, plugin and current user data to be loaded before connect with Firebase
      */
-    var unbindInitalDataFetch = $scope.$watchCollection('[members, plugin, me]', function() {
+    var unbindInitialDataFetch = $scope.$watchCollection('[members, plugin, me]', function() {
 
         // If there is an err in the scope:
         // 1. Change the state of the loading indicator to false
@@ -115,7 +115,7 @@ After making the API requests, we need to wait for the success callbacks to fini
         // 3. Return (the plugin.html should contain logic to show the error message)
         if ($scope.err) {
             $scope.loading = false;
-            unbindInitalDataFetch();
+            unbindInitialDataFetch();
             return;
         }
 
@@ -123,7 +123,7 @@ After making the API requests, we need to wait for the success callbacks to fini
         // 1. Remove the watcher
         // 2. Call `$scope.connect` to connect with Firebase
         if ($scope.members !== undefined && $scope.plugin !== undefined && $scope.me !== undefined) {
-            unbindInitalDataFetch();
+            unbindInitialDataFetch();
             $scope.connect();
         }
 
@@ -528,7 +528,7 @@ plugin.controller('namespacedChatCntl', ['$scope', '$routeParams', 'znData', '$f
     /**
      * Wait for members, plugin and current user data to be loaded before connect with Firebase
      */
-    var unbindInitalDataFetch = $scope.$watchCollection('[members, plugin, me]', function() {
+    var unbindInitialDataFetch = $scope.$watchCollection('[members, plugin, me]', function() {
 
         // If there is an err in the scope:
         // 1. Change the state of the loading indicator to false
@@ -536,7 +536,7 @@ plugin.controller('namespacedChatCntl', ['$scope', '$routeParams', 'znData', '$f
         // 3. Return (the plugin.html should contain logic to show the error message)
         if ($scope.err) {
             $scope.loading = false;
-            unbindInitalDataFetch();
+            unbindInitialDataFetch();
             return;
         }
 
@@ -544,7 +544,7 @@ plugin.controller('namespacedChatCntl', ['$scope', '$routeParams', 'znData', '$f
         // 1. Remove the watcher
         // 2. Call `$scope.connect` to connect with Firebase
         if ($scope.members !== undefined && $scope.plugin !== undefined && $scope.me !== undefined) {
-            unbindInitalDataFetch();
+            unbindInitialDataFetch();
             $scope.connect();
         }
 
