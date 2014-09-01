@@ -314,7 +314,7 @@ Your plugin code should now look something like this (with your own plugin names
 /**
  * Plugin Record Board Controller
  */
-plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znData', function ($scope, $routeParams, znData, znMessage) {
+plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znData', function ($scope, $routeParams, znData) {
 
     // Current Workspace ID from Route
     $scope.workspaceId = null;
