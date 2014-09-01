@@ -175,6 +175,23 @@ Now we can update the plugin HTML to allow for selecting forms by calling the `p
 {% endraw %}
 {% endhighlight %}
 
+Now that we can select forms, we will update the workspace detection code to initially select the first form after loading all of the forms.
+
+{% highlight js %}
+// Initialize for Workspace ID
+if ($routeParams.workspace_id) {
+    // Set Selected Workspace ID
+    $scope.workspaceId = $routeParams.workspace_id;
+
+    // Load Workspace Forms, then Pick First Form
+    $scope.loadForms().then(function() {
+        if ($scope.forms) {
+            $scope.pickForm($scope.forms[0].id);
+        }
+    });
+}
+{% endhighlight %}
+
 ## Loading Records
 
 Picking a form should also trigger the records of that form to load. We will be displaying these records in lists by folder, so we will loop through the `folders` and query records by folder ID. The `folderRecords` property will hold these records. After querying the `Records` endpoint, it will store the records returned in `folderRecords`, indexed by folder ID.
@@ -195,15 +212,15 @@ $scope.loadRecords = function() {
 
     var params = {
         formId: $scope.formId,
-        folder: {
-            id: folder.id
-        }
+        folder: {}
     };
 
     // Get Records by Folder
     angular.forEach($scope.folders, function(folder) {
         // Initialize Folder Record List
         $scope.folderRecords[folder.id] = [];
+
+        params.folder.id = folder.id;
 
         // Query and Index Records by Folder
         var request = znData('FormRecords').query(params).then(function(response) {
@@ -383,15 +400,15 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
 
         var params = {
             formId: $scope.formId,
-            folder: {
-                id: folder.id
-            }
+            folder: {}
         };
 
         // Get Records by Folder
         angular.forEach($scope.folders, function(folder) {
             // Initialize Folder Record List
             $scope.folderRecords[folder.id] = [];
+
+            params.folder.id = folder.id;
 
             // Query and Index Records by Folder
             var request = znData('FormRecords').query(params).then(function(response) {
@@ -409,17 +426,35 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
         // Set Selected Workspace ID
         $scope.workspaceId = $routeParams.workspace_id;
 
-        // Load Workspace Forms
-        $scope.loadForms();
+        // Load Workspace Forms, then Pick First Form
+        $scope.loadForms().then(function() {
+            if ($scope.forms) {
+                $scope.pickForm($scope.forms[0].id);
+            }
+        });
     }
 
 }])
+/**
+ * Plugin Registration
+ */
+.register('namespacedRecordBoard', {
+    route: '/namespacedrecordboard',
+    controller: 'namespacedRecordBoardCntl',
+    template: 'namespaced-record-board-main',
+    title: 'Record Board',
+    pageTitle: false,
+    fullPage: true,
+    topNav: true,
+    order: 300,
+    icon: 'icon-th-large'
+});
 {% endhighlight %}
     </div>
     <div class="tab-pane fade" id="plugin-html">
 {% highlight html %}
 {% raw %}
-<script type="text/ng-template" id="my-plugin-main">
+<script type="text/ng-template" id="namespaced-record-board-main">
 
     <!-- form tabs -->
     <div>

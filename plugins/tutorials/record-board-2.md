@@ -306,15 +306,15 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
 
         var params = {
             formId: $scope.formId,
-            folder: {
-                id: folder.id
-            }
+            folder: {}
         };
 
         // Get Records by Folder
         angular.forEach($scope.folders, function(folder) {
             // Initialize Folder Record List
             $scope.folderRecords[folder.id] = [];
+
+            params.folder.id = folder.id;
 
             // Query and Index Records by Folder
             var request = znData('FormRecords').query(params).then(function(response) {
