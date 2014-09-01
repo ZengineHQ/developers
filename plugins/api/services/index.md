@@ -1,11 +1,19 @@
 ---
 layout: plugin-nav-bar
-group: services
+group: api
+subgroup: services
 ---
 
-<h1 id="message">znMessage</h1>
-<p>Displays a temporary alert message at the top of the page.</p>
-<samp><h4>znMessage(message, [type], [duration])</h4></samp>
+# Zengine Services
+
+{{site.productName}} provides several services for you to inject as dependencies when developing your plugin.
+
+# znMessage
+
+A service that displays a temporary alert message at the top of the page.
+
+<h4><samp>znMessage(message, [type], [duration])</samp></h4>
+
 {% highlight javascript %}
 // Example controller including the 'znMessage' service.
 plugin.controller('MyCntl', ['$scope', 'znMessage', function($scope, znMessage) {
@@ -14,6 +22,7 @@ plugin.controller('MyCntl', ['$scope', 'znMessage', function($scope, znMessage) 
     };
 }]);
 {% endhighlight %}
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -48,18 +57,23 @@ plugin.controller('MyCntl', ['$scope', 'znMessage', function($scope, znMessage) 
 </table>
 
 Forces any open messages to close.
-<samp><h4>znMessage(false);</h4></samp>
+
+<h4><samp>znMessage(false);</samp></h4>
 
 
-<h1 id="confirm">znConfirm</h1>
-<p>Displays confirmation dialog.</p>
-<samp><h4>znConfirm(message, [callback])</h4></samp>
+# znConfirm
+
+A service that displays a confirmation dialog.
+
+<h4><samp>znConfirm(message, [callback])</samp></h4>
+
 {% highlight javascript %}
 var close = function() {
     console.log('Closed');
 };
 znConfirm('Are you sure you want to close?', close);
 {% endhighlight %}
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -85,20 +99,24 @@ znConfirm('Are you sure you want to close?', close);
         </tr>
     </tbody>
 </table>
-<h1 id="modal">znModal</h1>
-<p>Displays modal dialog.</p>
-<samp><h4>znModal(options)</h4></samp>
+
+# znModal
+
+A service that displays a [modal]({{site.clientDomain}}/patterns/modals) dialog. For an alternative modal service, try [Angular bootstrap's](http://angular-ui.github.io/bootstrap){:target="_blank"} `$modal`.
+
+<h4><samp>znModal(options)</samp></h4>
+
 {% highlight javascript %}
-plugin.controller('MyCntl', ['$scope', 'znModal', function($scope, znModal) {
+plugin.controller('myMainCntl', ['$scope', 'znModal', function($scope, znModal) {
     $scope.onSubmit = function() {
         znModal({
             title: 'My Modal Dialog',
-            template: '<div>Here\'s my dialog content</div>',
+            template: "<form ng-controller='myModalCntl' name='myForm'><input name='input' required></form>",
             classes: 'my-dialog',
             btns: {
                 'Save': {
                     primary: true,
-                    action: function() {
+                    action: function(scope) {
                         // on Save click
                     }
                 },
@@ -112,7 +130,26 @@ plugin.controller('MyCntl', ['$scope', 'znModal', function($scope, znModal) {
         });
     };
 }]);
+/*
+ * For enhanced control over modal buttons
+*/
+plugin.controller('myModalCntl', ['$scope', function($scope) {
+    $scope.setBtnAction('Save', function (callback) {
+
+        // See https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/directive/form for more details
+        var form = $scope.myForm; // value of the name attribute on the form.
+
+        if (!form.$valid) { // e.g. empty input
+            return false; // do nothing
+        }
+
+        var keepOpen = false; // close the modal afterwards
+        callback($scope, keepOpen); // call the original callback with $scope passed to it
+    });
+}]);
 {% endhighlight %}
+
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -128,41 +165,69 @@ plugin.controller('MyCntl', ['$scope', 'znModal', function($scope, znModal) {
             <td>
                 <p>The object has following properties:</p>
                 <ul>
-                    <li><strong>title</strong> (string) The dialog title. </li>
-                    <li><strong>template</strong> (string) Raw HTML to display as the dialog body. </li>
-                    <li><strong>templateUrl</strong> (string) Script tag id of template</li>
+                    <li><strong>title</strong> (string) - The dialog title. </li>
+                    <li><strong>template</strong> (string) - Raw HTML to display as the dialog body. </li>
+                    <li><strong>templateUrl</strong> (string) - Takes precedence over the template property. Works the same as the 'templateUrl' option when registering a directive. Corresponds to the id of the <code>script</code> tag that wraps the HTML to display as the dialog body. For more info, see the Angular docs on the <a href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/directive/script" target="_blank">script directive</a>. </li>
                     <li><strong>classes</strong> (string) One or more (space-separated) CSS classes to add to the dialog. </li>
                     <li><strong>closeButton</strong> (bool) - A close button is included by default. Passing <code>false</code> won't include it. </li>
                     <li><strong>unique</strong> (bool | string) Whether to close any other open dialogs. <code>true</code> means close any other dialogs. Alternatively, a CSS class name can be passed to close related dialogs. </li>
-                    <li><strong>scope</strong> (object) The modal by default creates a new isolate scope. If an object of properties</li>
-                    <li><strong>btns</strong> (object) An object hash of buttons to include. Each property name is used for the button text. Each button can include an <code>action</code> callback to run and one of three possible style keys: <code>success</code>, <code>danger</code>, or <code>primary</code>.</li>
+                    <li><strong>btns</strong> (object) An object hash of buttons to include. Each button is a key-value pair, where the key is name used for the button text, and the value is a hash object that can include the following properties:
+                        <ul>
+                            <li>
+                                one of three possible keys to determine background color: <code class="btn-success">success</code>, <code class="btn-danger">danger</code>, or <code class="btn-primary">primary</code>.
+                            </li>
+                            <li>
+                                <code>action</code> callback to run when the button is clicked. By default, the action callback is called with no arguments, but this can be enhanced by calling the function <code>setBtnAction(name, onClick)</code>, which is available on the modal scope (more detail on modal scope below). The first argument, <code>name</code>, is the name of the button specified as the key in the <code>btns</code> hash. The second argument, <code>onClick</code>, is a function that is called on click of the button, instead of the original callback. When called, <code>onClick</code> is passed a wrapper function that takes two arguments: <code>data</code> and <code>keepOpen</code>. When the wrapper function is called within the <code>onClick</code> function, it calls the original <code>action</code>callback with its first argument <code>data</code>, and unless <code>keepOpen</code> is true, closes the modal.
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>scope</strong> (object) - This property determines which scope to use in the modal template. (If you are familiar with Angular, this property is similar to how the scope property works with a directive.) There are three options for the scope to be used:
+                        <ul>
+                            <li>By default, the modal creates a child scope, which prototypically inherits from the $rootScope.</li>
+                            <li>To create a child scope, which prototypically inherits from a different parent (i.e. the scope where the modal is being used), you can pass a reference like this: <code>scope: $scope</code>.</li>
+                            <li>To create an isolated scope, which does not prototypically inherit, so that it is completely isolated from its parent, you can pass an object like this: <code>scope: { ... } </code>.
+                            </li>
+                        </ul>
+                    In addition the scope associated with modal's content is augmented with the method <code>setBtnAction(name, onClick)</code>.
+                    </li>
                 </ul>
             </td>
         </tr>
     </tbody>
 </table>
-<h1 id="plugin_events">znPluginEvents</h1>
-<p>The Plugin Events service is a wrapper for the <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on">Angular pub-sub system</a>, and is meant for communication between plugins and the core app. There are several events that are broadcasted at certain times, and can be listened for through <code>znPluginEvents.$on</code>. Likewise, the app has some listener events registered, that can triggered through <code>znPluginEvents.$broadcast</code>.</p>
 
-<strong>Broadcasted Events:</strong>
-<ul>
-<li>zn-data-view-deleted</li>
-<li>zn-data-view-saved</li>
-<li>zn-data-view-loaded</li>
-<li>zn-data-panel-record-loaded</li>
-</ul>
 
-<strong>Event Listeners:</strong>
-<ul>
-    <li>zn-data-column-resize</li>
-</ul>
+# znPluginEvents
 
-<h1 id="data">znData</h1>
-<p>The znData service provides a <a href="#available_resources">collection of resources</a> that should be used for accessing data via the {{site.productName}}REST API. After passing the name of the resource to the service, you get back an object that can use any of the four methods described below. All four methods return a standard <a href="https://docs.angularjs.org/api/ng/service/$q">Angular promise object</a>.
-</p>
-    
-    <h4 id="get">get(params, successCallback, errorCallback)</h4>
-    <p>Performs <code>GET</code> request of a single object. The last url param (generally the id), if passed to <code>params</code>, will be interpreted as a url parameter.</p>
+znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope){:target="_blank"}, and is meant for communication between plugins and the core app.
+
+<h4><samp>znPluginEvents.$on(name, listener)</samp></h4>
+
+Same as [Angular $on](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can used to listen for the following **broadcasted events**:
+
+* zn-data-view-deleted
+* zn-data-view-saved
+* zn-data-view-loaded
+* zn-data-panel-record-loaded
+
+
+---
+
+<h4><samp>znPluginEvents.$broadcast(name, args)</samp></h4>
+
+Same as [Angular $broadcast](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$broadcast){:target="_blank"}. This method can used to broadcast data to  the following **event listeners**:
+
+* zn-data-column-resize
+
+# znData
+
+The znData service provides a [collection of resources](#available_resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
+
+
+<h4 id="get"><samp>znData(resourceName).get(params, successCallback, errorCallback)</samp></h4>
+
+Performs a `GET` request on a single object. The id param, if passed to `params`, will be interpreted as a url parameter.
+
 {% highlight js %}
 
 // Get single workspace member
@@ -173,10 +238,11 @@ znData('WorkspaceMembers').get({ workspaceId:123, id:456 }, function(member) {
 });
 {% endhighlight %}
 
-    <hr/>
+---
 
-    <samp><h4 id="query">query(params, successCallback, errorCallback)</h4></samp>
-    <p>Performs <code>GET</code> request of an array of objects. The last url param (generally the id), if passed to <code>params</code>, will be interpreted as a query parameter.</p>
+<h4 id="query"><samp>znData(resourceName).query(params, successCallback, errorCallback)</samp></h4>
+
+Performs a `GET` request on an array of objects. The id param, if passed to `params`, will be interpreted as a query parameter.
 
 {% highlight js %}
 // Get list of workspace members
@@ -187,10 +253,11 @@ znData('WorkspaceMembers').query({ workspaceId:123, id: 456 }, function(members)
 });
 {% endhighlight %}
 
-    <hr/>
+---
 
-    <samp><h4 id="delete">delete(params, successCallback, errorCallback)</h4></samp>
-    <p>Performs <code>DELETE</code> request. Same as calling <samp>del(params, successCallback, errorCallback);</samp></p>
+<h4 id="delete"><samp>znData(resourceName).delete(params, successCallback, errorCallback)</samp></h4>
+
+Performs a `DELETE` request. Same as calling <samp>del(params, successCallback, errorCallback);</samp>
 
 {% highlight js %}
 // Delete a workspace member
@@ -200,10 +267,11 @@ znData('WorkspaceMembers').delete({ workspaceId:123, id:456 }, function() {
 });
 {% endhighlight %}
 
-    <hr/>
+---
 
-    <samp><h4 id="save">save([params], data, successCallback, errorCallback)</h4></samp>
-    <p> Performs a <code>POST</code> or <code>PUT</code>request, depending on the contents/presence of <code>params</code>.
+<h4 id="save"><samp>znData(resourceName).save([params], data, successCallback, errorCallback)</samp></h4>
+
+If `params` is present and contains the id param, performs a `PUT`. Otherwise performs a `POST` request.
 
 {% highlight js %}
 // Add a workspace member
@@ -226,7 +294,7 @@ znData('WorkspaceMembers').save({ workspaceId:123, 'role.id': 2 } , { 'role.id' 
 
 {% endhighlight %}
 
-    <table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>Param</th>
@@ -238,7 +306,7 @@ znData('WorkspaceMembers').save({ workspaceId:123, 'role.id': 2 } , { 'role.id' 
         <tr>
             <td>params (optional)</td>
             <td><code>object</code></td>
-            <td>Optional if the url has one or no parameters and a <code>POST</code> is desired. If the object is passed, any keys that are not defined as part of the url are sent as query parameters in the request. If the last url param is included in this object, a <code>PUT</code> is made. If excluded, a <code>POST</code> is made.
+            <td>Optional if the resource has no required URL parameters and a <code>POST</code> is desired. Valid URL parameters are defined for each resource <a href="#available_resources">here</a>. If the <code>params</code>object is passed, any keys that aren't URL parameters are sent as <a href="{{site.baseurl}}/rest-api/conventions/querying-options/">query parameters</a> in the request. Some examples of valid query parameters are limit, related, sort, and attributes. If the id param is included in this object, a <code>PUT</code> is made. If not, a <code>POST</code> is made.
             </td>
         </tr>
         <tr>
@@ -277,11 +345,14 @@ znData('WorkspaceMembers').save({ workspaceId:123, 'role.id': 2 } , { 'role.id' 
     </tbody>
 </table>
 
-<h3 id="available_resources">Available Resources</h3>
+#### Available Resources
+
+The parameterized URL is used to query the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). For example, if the resource name is **FormFields**, the parameterized URL is **/forms/:formId/fields/:id**. In this case, `formId` is a required URL paramter, and must be passed to the `params` argument of any `get()`, `query()`, `delete()`, or `save()` called on `znData('FormFields')`. The `id` parameter on the other hand, may or may not be passed, depending on whether the request is intended for a single object or multiple objects. This is true for the `id` parameter of any resource URL.
+
 <table class="table table-striped">
     <thead>
         <th>Resource Name</th>
-        <th>Parameterized URL (POST, if last param is excluded)</th>
+        <th>Parameterized URL</th>
     </thead>
     <tbody>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/activities">Activities</a></td><td>/activities/:id</td></tr>

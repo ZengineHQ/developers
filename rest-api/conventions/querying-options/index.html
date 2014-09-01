@@ -78,17 +78,12 @@ ask the API for all results where (<strong>attribute1</strong> equals <strong>1<
 
 <h3 id="limiting-returned-attributes">Limiting Returned Attributes</h3>
 
-<p><code>?attributes</code> can be used to limit the attributes returned in a <strong>GET</strong> request, 
-usually to help save network bandwidth and/or simplify caching. For example: 
-<code>?attributes=first,second</code> will ensure that only the attributes named <strong>first</strong> 
-and <strong>second</strong>, respectively, are returned in the result set.</p>
+<p><code>?attributes</code> can be used to limit the attributes returned in a <strong>GET</strong> request, usually to help save network bandwidth and/or simplify caching. For example: 
+<code>?attributes=first,second</code> will ensure that only the attributes named <strong>first</strong> and <strong>second</strong>, respectively, are returned in the result set.</p>
 
 <h3 id="relational-data">Relational Data</h3>
 
-<p><code>?related</code> allows for querying resources which are related to the current <strong>GET</strong> 
-request. For example: <code>?related=RelatedResource</code> will join in the <strong>RelatedResource</strong> 
-object. It is strongly encouraged to avoid using this option unless absolutely necessary. It is not easy 
-to cache and is therefore a burden on both bandwidth and processing.</p>
+<p><code>?related</code> allows for querying resources which are related to the current <strong>GET</strong> request. For example: <code>?related=RelatedResource</code> will join in the <strong>RelatedResource</strong> object. It is strongly encouraged to avoid using this option unless absolutely necessary. It is not easy to cache and is therefore a burden on both bandwidth and processing. If you need to make multiple requests, this parameter is useful for reducing the number of requests and saving overall request time. To see the available relations on a resource, you can look at the implementation notes for a <strong>GET</strong> request of that resource in the <a href="{{site.baseurl}}/rest-api/resources">Resources section</a>. For example, the relations for a workspace are listed <a href="{{site.baseurl}}/rest-api/resources/#!/workspaces/index_workspaces_get_0">here</a>. </p>
 
 <h3 id="timezone-conversion">Timezone Conversion</h3>
 

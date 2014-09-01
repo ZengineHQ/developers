@@ -31,102 +31,140 @@ $(function(){
 	<div class="large-2 columns">
 		<ul class="side-nav affix">
 			<li {% if page.group == 'intro' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/js-api">Introduction</a>
+				<a href="{{site.baseurl}}/plugins/">Introduction</a>
+				<ul>
+					<li class="getting-started">
+						<a href="{{site.baseurl}}/plugins/getting-started/">Getting Started</a>
+					</li>
+					<li class="template-routes">
+						<a href="{{site.baseurl}}/plugins/getting-started/templates-routes.html">Templates and Routes</a>
+					</li>
+				</ul>
 			</li>
 			<li class="divider"></li>
-			<li {% if page.group == 'services' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services">{{site.productName}} Services</a>
+			<li {% if page.group == 'registration' %}class="active"{% endif %}>
+				<a href="{{site.baseurl}}/plugins/registration/">Plugin Registration</a>
+			</li>
+			<li class="divider"></li>
+			<li {% if page.group == 'development' %}class="active"{% endif %}>
+				<a href="{{site.baseurl}}/plugins/development/">Plugin Development</a>
 				<ul>
-					<li class="message">
-						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#message">Message</a>
+					<li {% if page.name == 'index.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/development/">Using Angular</a>
 					</li>
-					<li class="confirm">
-						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#confirm">Confirm</a>
+					<li {% if page.name == 'angular-services.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/development/angular-services.html">Angular Services</a>
 					</li>
-					<li class="modal">
-						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#modal">Modal</a>
+					<li {% if page.name == 'best-practices.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/development/best-practices.html">Best Practices</a>
 					</li>
-					<li class="plugin_events">
-						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#plugin_events">Plugin Events</a>
+				</ul>
+			</li>
+			<li class="divider"></li>
+			<li {% if page.group == 'api' %}class="active"{% endif %}>
+				<a href="{{site.baseurl}}/plugins/api/directives/">API Reference</a>
+				<ul>
+					<li {% if page.subgroup == 'directives' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/api/directives/">Directives</a>
 					</li>
-					<li class="data">
-						<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#data">Data</a>
+					<li {% if page.subgroup == 'services' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/api/services/">Services</a>
 						<ul>
-							<li class="get">
-								<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#get">Get</a>
+							<li class="znmessage">
+								<a href="{{site.baseurl}}/plugins/api/services/#znmessage">Message</a>
 							</li>
-							<li class="query">
-								<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#query">Query</a>
+							<li class="znconfirm">
+								<a href="{{site.baseurl}}/plugins/api/services/#znconfirm">Confirm</a>
 							</li>
-							<li class="delete">
-								<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#delete">Delete</a>
+							<li class="znmodal">
+								<a href="{{site.baseurl}}/plugins/api/services/#znmodal">Modal</a>
 							</li>
-							<li class="save">
-								<a href="{{site.baseurl}}/js-api/{{site.productName | downcase}}-services/#save">Save</a>
+							<li class="znpluginevents">
+								<a href="{{site.baseurl}}/plugins/api/services/#znpluginevents">Plugin Events</a>
+							</li>
+							<li class="zndata">
+								<a href="{{site.baseurl}}/plugins/api/services/#zndata">Data</a>
+								<ul>
+									<li class="get">
+										<a href="{{site.baseurl}}/plugins/api/services/#get">Get</a>
+									</li>
+									<li class="query">
+										<a href="{{site.baseurl}}/plugins/api/services/#query">Query</a>
+									</li>
+									<li class="delete">
+										<a href="{{site.baseurl}}/plugins/api/services/#delete">Delete</a>
+									</li>
+									<li class="save">
+										<a href="{{site.baseurl}}/plugins/api/services/#save">Save</a>
+									</li>
+									<li class="available-resources">
+										<a href="{{site.baseurl}}/plugins/api/services/#available-resources">Resources</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
 				</ul>
 			</li>
 			<li class="divider"></li>
-			<li {% if page.group == 'third-party-services' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/js-api/third-party-services">Third Party Services</a>
+			<li {% if page.group == 'third-party' %}class="active"{% endif %}>
+				<a href="{{site.baseurl}}/plugins/third-party/">Third Party Libraries</a>
 				<ul>
-					<li {% if page.subgroup == 'firebase' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/js-api/third-party-services/developing-plugins-with-firebase.html">$firebase</a>
+					<li {% if page.name == 'developing-plugins-with-firebase.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html">AngularFire</a>
 					</li>
-					<li {% if page.subgroup == 'ace-editor' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/js-api/third-party-services/ace-editor.html">Ace Editor</a>
+					<li {% if page.name == 'ace-editor.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/third-party/ace-editor.html">Ace Editor</a>
 					</li>
-					<li {% if page.subgroup == 'ui-sortable' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/js-api/third-party-services/sortable.html">UI Sortable</a>
+					<li {% if page.name == 'sortable.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/third-party/sortable.html">UI Sortable</a>
 					</li>
 				</ul>
 			</li>
 			<li class="divider"></li>
 			<li {% if page.group == 'tutorials' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/js-api/tutorials">Tutorials</a>
+				<a href="{{site.baseurl}}/plugins/tutorials/">Tutorials</a>
 				<ul>
 					<li {% if page.subgroup == 'record-board' or page.subgroup == 'record-board-2'%}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/js-api/tutorials/record-board.html">Record Kanban Board</a>
+						<a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Record Kanban Board</a>
 						<ul>
 							<li {% if page.subgroup == 'record-board' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/js-api/tutorials/record-board.html">Part 1</a>
+								<a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Part 1</a>
 								<ul>
 									<li class="prerequisites">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#prerequisites">Prerequisites</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#prerequisites">Prerequisites</a>
 									</li>
 									<li class="current-workspace">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#current-workspace">Current Workspace</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#current-workspace">Current Workspace</a>
 									</li>
 									<li class="workspace-forms">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#workspace-forms">Workspace Forms</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#workspace-forms">Workspace Forms</a>
 									</li>
 									<li class="selecting-a-form">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#selecting-a-form">Selecting a Form</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#selecting-a-form">Selecting a Form</a>
 									</li>
 									<li class="loading-records">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#loading-records">Loading Records</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#loading-records">Loading Records</a>
 									</li>
 									<li class="wrapping-up">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board.html#wrapping-up">Wrapping Up</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#wrapping-up">Wrapping Up</a>
 									</li>
 								</ul>
 							</li>
 							<li {% if page.subgroup == 'record-board-2' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html">Part 2</a>
+								<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html">Part 2</a>
 								<ul>
 									<li class="adding-folders">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html#adding-folders">Adding Folders</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#adding-folders">Adding Folders</a>
 									</li>
 									<li class="moving-records">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html#moving-records">Moving Records</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#moving-records">Moving Records</a>
 									</li>
 									<li class="saving-record-folders">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html#saving-record-folders">Saving Record Folders</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#saving-record-folders">Saving Record Folders</a>
 									</li>
 									<li class="wrapping-up">
-										<a href="{{site.baseurl}}/js-api/tutorials/record-board-2.html#wrapping-up">Wrapping Up</a>
+										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#wrapping-up">Wrapping Up</a>
 									</li>
 								</ul>
 							</li>
@@ -134,28 +172,28 @@ $(function(){
 					</li>
 					<li class="divider"></li>
 					<li {% if page.subgroup == 'chat' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html">Chat Room</a>
+						<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html">Chat Room</a>
 						<ul>
 							<li class="get-api-data">
-								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#get-api-data">Get API Data</a>
+								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#get-api-data">Get API Data</a>
 							</li>
 							<li class="wait-for-api-responses">
-								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#wait-for-api-responses">Wait for API responses</a>
+								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wait-for-api-responses">Wait for API responses</a>
 							</li>
 							<li class="connecting-to-firebase">
-								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#connecting-to-firebase">Connecting to Firebase</a>
+								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#connecting-to-firebase">Connecting to Firebase</a>
 							</li>
 							<li class="adding-chat-messages-to-firebase">
-								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#adding-chat-messages-to-firebase">Saving to Firebase</a>
+								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#adding-chat-messages-to-firebase">Saving to Firebase</a>
 							</li>
 							<li class="using-a-directive-to-display-each-message">
-								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#using-a-directive-to-display-each-message">Message Display Directive</a>
+								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#using-a-directive-to-display-each-message">Message Display Directive</a>
 							</li>
 							<li class="add-a-directive-to-auto-scroll-messages">
-								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#add-a-directive-to-auto-scroll-messages">Autoscroll Directive</a>
+								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#add-a-directive-to-auto-scroll-messages">Autoscroll Directive</a>
 							</li>
 							<li class="wrapping-up">
-								<a href="{{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html#wrapping-up">Wrapping Up</a>
+								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wrapping-up">Wrapping Up</a>
 							</li>
 						</ul>
 					</li>

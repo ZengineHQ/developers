@@ -1,12 +1,11 @@
 ---
 layout: plugin-nav-bar
-group: third-party-services
-subgroup: ace-editor
+group: third-party
 ---
 
 # UI.Ace directive [![Build Status](https://travis-ci.org/angular-ui/ui-ace.png)](https://travis-ci.org/angular-ui/ui-ace)
 
-This [directive](https://github.com/Wizehive/ui-ace) allows you to add [ACE](http://ajaxorg.github.io/ace/) editor elements.
+This [directive](https://github.com/Wizehive/ui-ace){:target="_blank"} allows you to add [ACE](http://ajaxorg.github.io/ace/){:target="_blank"} editor elements.
 
 
 ## Usage
@@ -27,9 +26,9 @@ To see something it's better to add some CSS, like
 
 ## Options
 
-Ace doesn't provide a one gate access to all the options the jquery way.
+Ace doesn't provide a one gate access to all the options the jQuery way.
 Each option is configured with the function of a specific instance.
-See the [api doc](http://ajaxorg.github.io/ace/#nav=api) for more.
+See the [api doc](http://ajaxorg.github.io/ace/#nav=api){:target="_blank"} for more.
 
 Although, _ui-ace_ automatically handles some handy options :
  + _showGutter_ : to show the gutter or not.
@@ -73,9 +72,9 @@ To handle other options you'll have to use a direct access to the Ace created in
 
 The ui-ace directive plays nicely with ng-model.
 
-The ng-model will be watched for to set the Ace EditSession value (by [setValue](http://ajaxorg.github.io/ace/#nav=api&api=edit_session)).
+The ng-model will be watched for to set the Ace EditSession value (by [setValue](http://ajaxorg.github.io/ace/#nav=api&api=edit_session){:target="_blank"}).
 
-_The ui-ace directive stores and expects the model value to be a standard javascript String._
+_The ui-ace directive stores and expects the model value to be a standard JavaScript String._
 
 ### Can be read only
 
@@ -96,7 +95,7 @@ Using
 <div ui-ace="{ onLoad : aceLoaded }" ></div>
 {% endhighlight %}
 
-the `$scope.aceLoaded` function will be called with the [Ace Editor instance](http://ajaxorg.github.io/ace/#nav=api&api=editor) as first argument
+the `$scope.aceLoaded` function will be called with the [Ace Editor instance](http://ajaxorg.github.io/ace/#nav=api&api=editor){:target="_blank"} as first argument
 
 {% highlight js %}
 plugin.controller('MyController', [ '$scope', function($scope) {

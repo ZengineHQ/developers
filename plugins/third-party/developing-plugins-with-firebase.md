@@ -1,15 +1,13 @@
 ---
 layout: plugin-nav-bar
-group: third-party-services
-subgroup: firebase
+group: third-party
 ---
 
 # Developing plugins with Firebase
 
-The Firebase javascript client and angularfire is available to all plugin developers. Use it to store and sync data in realtime.
+The Firebase JavaScript client v1.0.17 and AngularFire v0.8.0 is available to all plugin developers. Use it to store and sync data in realtime.
 
 This guide covers basic aspects on how to use Firebase in your plugins, for a complete reference or tutorials checkout the links in the bottom of this page.
-
 
 ## Initializing Firebase
 
@@ -38,7 +36,7 @@ The `$add` method takes a single argument of any type. It will append this value
  */
 plugin.controller('myPluginCntl', ['$scope', '$firebase', function ($scope, $firebase) {
     
-    var peopleRef = new Firebase('https://<my-firebase>.firebaseio.com/people');
+    var peopleRef = new Firebase('https://<my-firebase>.firebaseio.com/people').$asArray();
     
     $scope.people = $firebase(peopleRef);
     
@@ -129,7 +127,7 @@ The example below demonstrates how you can fetch the current plugin and user dat
 /**
  * My Plugin Controller
  */
-plugin.controller('myPluginCntl', ['$scope', 'Data', '$firebase', function ($scope, Data,  $firebase) {
+plugin.controller('myPluginCntl', ['$scope', 'znData', '$firebase', function ($scope, znData,  $firebase) {
 
     /**
      * Get the current plugin data
@@ -198,7 +196,7 @@ plugin.controller('myPluginCntl', ['$scope', 'Data', '$firebase', function ($sco
             $scope.auth = res.auth;
             
             // Set preferences
-            $scope.preferences = $firebase(ref);
+            $scope.preferences = $firebase(ref).$asObject();
             
             // Apply changes to the scope
             $scope.$apply();
@@ -212,7 +210,7 @@ plugin.controller('myPluginCntl', ['$scope', 'Data', '$firebase', function ($sco
 
 ## Security rules
 
-Using [Firebase console](https://www.firebase.com/account/) you can setup security rules to protect your data.
+Using [Firebase dashboard](https://www.firebase.com/account/) you can setup security rules to protect your data.
 
 In the example below, the reference `https://<my-firebase>.firebaseio.com/preferences/<user-id>` is a list of preferences of a specific user id, it allows read and write access only if the current authenticated user id matches the `<user-id>`.
 
@@ -249,9 +247,9 @@ Learn more about [Firebase security rules](https://www.firebase.com/docs/securit
 
 ## Links
 
-* [Chat Tutorial]({{site.baseurl}}/js-api/tutorials/building-a-chat-plugin.html)
-* [Get started](https://www.firebase.com/how-it-works.html)
-* [AngularJS + Firebase](https://www.firebase.com/quickstart/angularjs.html)
-* [AngularFire API reference](https://www.firebase.com/docs/angular/reference.html)
-* [Javascript client API reference](https://www.firebase.com/docs/javascript/firebase/index.html)
-* [Open Data Sets](https://www.firebase.com/docs/data/index.html)
+* [Chat Tutorial]({{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html)
+* [Get started](https://www.firebase.com/how-it-works.html){:target="_blank"}
+* [AngularJS + Firebase](https://www.firebase.com/quickstart/angularjs.html){:target="_blank"}
+* [AngularFire API reference v0.8.0]({{site.baseurl}}/libraries/angularfire/0.8.0/){:target="_blank"}
+* [Javascript client API reference](https://www.firebase.com/docs/javascript/firebase/index.html){:target="_blank"}
+* [Open Data Sets](https://www.firebase.com/docs/data/index.html){:target="_blank"}
