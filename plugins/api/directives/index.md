@@ -4,7 +4,7 @@ group: api
 subgroup: directives
 ---
 
-# Zengine Directives 
+# Zengine Directives
 
 Zengine provides several directives for you to use in your plugin html.
 
@@ -35,7 +35,7 @@ Apply the directive to your elements:
 </ul>
 {% endhighlight %}
 
-# validate 
+# validate
 
 The `validate` directive works in conjunction with the [Angular form directive](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/directive/form){:target="_blank"} to add an `error` class to the element when it has any invalid child inputs. The directive only checks for invalid inputs when `formName.submitted` is true. An input is considered invalid if `inputName.$valid` is false. In the example below, after clicking <input type="button"  class="btn btn-sm btn-primary" value="Save" />, this directive will add an `error` class to the control-group div if `myFormInput` is invalid. In this case, the validity of `myFormInput` will depend on the `ng-maxlength` and `required` directives. Check out the Angular docs for more info on [input validation](https://code.angularjs.org/1.2.17/docs/api/ng/directive/input){:target="_blank"}.
 
