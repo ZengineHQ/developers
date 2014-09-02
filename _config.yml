@@ -6,7 +6,8 @@ apiDomain: "https://stage-api.zenginehq.com"
 clientDomain: "https://stage-platform.zenginehq.com"
 authDomain: "https://stage-auth.zenginehq.com"
 supportDomain: "http://support.zenginehq.com"
-developerDomain: https://github.com/ZengineHQ/developers-stage
+developerDomain: "https://github.com/ZengineHQ/developers-stage"
+angularDomain: "https://code.angularjs.org"
 demoClientId: "rest-api-quick-start-demo"
 rootDomain: zenginehq.com
 apiKey: false

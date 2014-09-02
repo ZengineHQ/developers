@@ -33,17 +33,31 @@ $(function(){
 			<li {% if page.group == 'intro' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/plugins/">Introduction</a>
 				<ul>
-					<li class="getting-started">
+					<li {% if page.subgroup == 'getting-started' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/plugins/getting-started/">Getting Started</a>
 					</li>
-					<li class="template-routes">
+					<li {% if page.subgroup == 'full-page-inline' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/getting-started/full-page-inline.html">Full-Page vs. Inline Plugins</a>
+					</li>
+					<li {% if page.subgroup == 'templates-routes' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/plugins/getting-started/templates-routes.html">Templates and Routes</a>
+					</li>
+					<li {% if page.subgroup == 'publishing' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/getting-started/publishing.html">Publishing</a>
 					</li>
 				</ul>
 			</li>
 			<li class="divider"></li>
 			<li {% if page.group == 'registration' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/registration/">Plugin Registration</a>
+				<a href="{{site.baseurl}}/plugins/registration/">Plugin Options</a>
+				<ul>
+					<li class="registration-options">
+						<a href="{{site.baseurl}}/plugins/registration/">Registration Options</a>
+					</li>
+					<li class="plugin-locations">
+						<a href="{{site.baseurl}}/plugins/registration/#plugin-locations">Plugin Locations</a>
+					</li>
+				</ul>
 			</li>
 			<li class="divider"></li>
 			<li {% if page.group == 'development' %}class="active"{% endif %}>

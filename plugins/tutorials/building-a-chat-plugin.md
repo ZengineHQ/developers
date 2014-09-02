@@ -99,7 +99,7 @@ You can also add a call to `console.log(res)` in each request success function t
 
 ## Wait for API responses
 
-After making the API requests, we need to wait for the success callbacks to finish before connecting to Firebase. Depending on how familiar you are with AngularJS, you may know the concept of [watchers](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$watchCollection){:target="_blank"}. In short, you can set a watcher for one or more properties on an object and be notified when a change occurs. In this use case, we want to know when the following properties are loaded: `$scope.members`, `$scope.plugin` and `$scope.me`.
+After making the API requests, we need to wait for the success callbacks to finish before connecting to Firebase. Depending on how familiar you are with AngularJS, you may know the concept of [watchers]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$watchCollection){:target="_blank"}. In short, you can set a watcher for one or more properties on an object and be notified when a change occurs. In this use case, we want to know when the following properties are loaded: `$scope.members`, `$scope.plugin` and `$scope.me`.
 
 
 {% highlight js %}
