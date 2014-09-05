@@ -4,7 +4,13 @@ group: tutorials
 subgroup: chat
 ---
 
-# Building a Chat plugin
+
+<h1 id="building-a-chat-plugin">Building a Chat plugin <a href="https://github.com/ZengineHQ/labs/tree/master/plugins/chat-room" target="_blank">
+        <span class="btn btn-primary btn-sm">
+            <i class="fa fa-github fa-lg"></i> View on Github
+        </span>
+    </a>
+</h1>
 
 This tutorial guides you through the process of building a basic workspace-level chat plugin using Firebase to store the chat messages.
 
