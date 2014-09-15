@@ -136,7 +136,7 @@ plugin.controller('myMainCntl', ['$scope', 'znModal', function($scope, znModal) 
 plugin.controller('myModalCntl', ['$scope', function($scope) {
     $scope.setBtnAction('Save', function (callback) {
 
-        // See https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/directive/form for more details
+        // See {{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/directive/form for more details
         var form = $scope.myForm; // value of the name attribute on the form.
 
         if (!form.$valid) { // e.g. empty input
@@ -167,7 +167,7 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
                 <ul>
                     <li><strong>title</strong> (string) - The dialog title. </li>
                     <li><strong>template</strong> (string) - Raw HTML to display as the dialog body. </li>
-                    <li><strong>templateUrl</strong> (string) - Takes precedence over the template property. Works the same as the 'templateUrl' option when registering a directive. Corresponds to the id of the <code>script</code> tag that wraps the HTML to display as the dialog body. For more info, see the Angular docs on the <a href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/directive/script" target="_blank">script directive</a>. </li>
+                    <li><strong>templateUrl</strong> (string) - Takes precedence over the template property. Works the same as the 'templateUrl' option when registering a directive. Corresponds to the id of the <code>script</code> tag that wraps the HTML to display as the dialog body. For more info, see the Angular docs on the <a href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/directive/script" target="_blank">script directive</a>. </li>
                     <li><strong>classes</strong> (string) One or more (space-separated) CSS classes to add to the dialog. </li>
                     <li><strong>closeButton</strong> (bool) - A close button is included by default. Passing <code>false</code> won't include it. </li>
                     <li><strong>unique</strong> (bool | string) Whether to close any other open dialogs. <code>true</code> means close any other dialogs. Alternatively, a CSS class name can be passed to close related dialogs. </li>
@@ -199,11 +199,11 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
 
 # znPluginEvents
 
-znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope){:target="_blank"}, and is meant for communication between plugins and the core app.
+znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope){:target="_blank"}, and is meant for communication between plugins and the core app.
 
 <h4><samp>znPluginEvents.$on(name, listener)</samp></h4>
 
-Same as [Angular $on](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can used to listen for the following **broadcasted events**:
+Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can used to listen for the following **broadcasted events**:
 
 * zn-data-view-deleted
 * zn-data-view-saved
@@ -215,13 +215,13 @@ Same as [Angular $on](https://code.angularjs.org/{{site.angularVersion}}/docs/ap
 
 <h4><samp>znPluginEvents.$broadcast(name, args)</samp></h4>
 
-Same as [Angular $broadcast](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$broadcast){:target="_blank"}. This method can used to broadcast data to  the following **event listeners**:
+Same as [Angular $broadcast]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$broadcast){:target="_blank"}. This method can used to broadcast data to  the following **event listeners**:
 
 * zn-data-column-resize
 
 # znData
 
-The znData service provides a [collection of resources](#available_resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object](https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
+The znData service provides a [collection of resources](#available_resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
 
 
 <h4 id="get"><samp>znData(resourceName).get(params, successCallback, errorCallback)</samp></h4>

@@ -4,7 +4,12 @@ group: tutorials
 subgroup: record-board-2
 ---
 
-# Creating a Record Board Plugin Part 2
+<h1 id="creating-a-record-board-plugin-part-2">Creating a Record Board Plugin (Part 2) <a href="https://github.com/ZengineHQ/labs/tree/master/plugins/record-kanban-board" target="_blank">
+        <span class="btn btn-primary btn-sm">
+            <i class="fa fa-github fa-lg"></i> View on Github
+        </span>
+    </a>
+</h1>
 
 In [part 1]({{site.baseurl}}/plugins/tutorials/record-board), we created a workspace plugin that would get a list of forms, folders, and records. The plugin would display the forms as tabs, the folders as columns, and the records in a list, by column.
 

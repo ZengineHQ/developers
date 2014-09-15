@@ -16,7 +16,7 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 			</tr>
 			<tr>
 				<td>
-					<a target="_blank" target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$anchorScroll">$anchorScroll</a>
+					<a target="_blank" target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$anchorScroll">$anchorScroll</a>
 				</td>
 				<td>
 					<p>When called, it checks current value of <code>$location.hash</code> and scrolls to the related element, according to rules specified in
@@ -41,7 +41,7 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 			</tr>
 			<tr>
 				<td>
-					<a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$filter">$filter</a>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$filter">$filter</a>
 				</td>
 				<td>
 					<p>Filters are used for formatting data displayed to the user.</p>
@@ -50,7 +50,7 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 	  
 			<tr>
 				<td>
-					<a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$http">$http</a>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$http">$http</a>
 				</td>
 				<td>
 					<p>The <code>$http</code> service is a core Angular service that facilitates communication with the remote HTTP servers via the browser's <a target="_blank" href="https://developer.mozilla.org/en/xmlhttprequest">XMLHttpRequest</a> object or via <a target="_blank" href="http://en.wikipedia.org/wiki/JSONP">JSONP</a>.</p>
@@ -58,16 +58,16 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 			</tr>
 			<tr>
 				<td>
-					<a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$interpolate">$interpolate</a>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$interpolate">$interpolate</a>
 				</td>
 				<td>
-					<p>Compiles a string with markup into an interpolation function. This service is used by the HTML <a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$compile">$compile</a> service for data binding. See <a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/provider/$interpolateProvider">$interpolateProvider</a> for configuring the interpolation markup.</p>
+					<p>Compiles a string with markup into an interpolation function. This service is used by the HTML <a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$compile">$compile</a> service for data binding. See <a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/provider/$interpolateProvider">$interpolateProvider</a> for configuring the interpolation markup.</p>
 				</td>
 			</tr>
 
 			<tr>
 				<td>
-					<a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$interval">$interval</a>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$interval">$interval</a>
 				</td>
 				<td>
 					<p>Angular's wrapper for <code>window.setInterval</code>. The <code>fn</code> function is executed every <code>delay</code>milliseconds.</p>
@@ -75,7 +75,7 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 			</tr>
 
 			<tr>
-				<td><a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$locale">$locale</a></td>
+				<td><a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$locale">$locale</a></td>
 				<td>
 					<p>$locale service provides localization rules for various Angular components.
 					</p>
@@ -84,7 +84,7 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 		  
 			<tr>
 				<td>
-					<a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$location">$location</a>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$location">$location</a>
 				</td>
 				<td>
 					<p>The $location service parses the URL in the browser address bar (based on the
@@ -94,18 +94,18 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 				</td>
 			</tr>
 			<tr>
-				<td><a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$log">$log</a></td>
+				<td><a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$log">$log</a></td>
 				<td><p>Simple service for logging. Default implementation safely writes the message into the browser's console (if present).</p>
 				</td>
 			</tr>
 
 			<tr>
-				<td><a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$parse">$parse</a></td>
-				<td><p>Converts Angular <a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/guide/expression">expression</a> into a function.</p></td>
+				<td><a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$parse">$parse</a></td>
+				<td><p>Converts Angular <a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/guide/expression">expression</a> into a function.</p></td>
 			</tr>
 
 			<tr>
-				<td><a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$q">$q</a></td>
+				<td><a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$q">$q</a></td>
 				<td><p>A promise/deferred implementation inspired by <a target="_blank" href="https://github.com/kriskowal/q">Kris Kowal's Q</a>.</p>
 				</td>
 			</tr>
@@ -117,10 +117,10 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 			</tr>
 			<tr>
 				<td>
-					<a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$timeout">$timeout</a>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$timeout">$timeout</a>
 				</td>
 				<td>
-					<p>Angular's wrapper for <code>window.setTimeout</code>. The <code>fn</code> function is wrapped into a try/catch block and delegates any exceptions to <a target="_blank" href="https://code.angularjs.org/{{site.angularVersion}}/docs/api/ng/service/$exceptionHandler">$exceptionHandler</a> service.</p>
+					<p>Angular's wrapper for <code>window.setTimeout</code>. The <code>fn</code> function is wrapped into a try/catch block and delegates any exceptions to <a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$exceptionHandler">$exceptionHandler</a> service.</p>
 				</td>
 			 </tr>
 		</tbody>

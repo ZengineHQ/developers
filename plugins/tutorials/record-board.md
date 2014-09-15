@@ -4,7 +4,12 @@ group: tutorials
 subgroup: record-board
 ---
 
-# Creating a Record Board Plugin
+<h1 id="creating-a-record-board-plugin">Creating a Record Board Plugin (Part 1) <a href="https://github.com/ZengineHQ/labs/tree/master/plugins/record-kanban-board" target="_blank">
+        <span class="btn btn-primary btn-sm">
+            <i class="fa fa-github fa-lg"></i> View on Github
+        </span>
+    </a>
+</h1>
 
 Forms are like a table or spreadsheet. Form records are the submissions collected from people filling out the form. The standard app znData tab displays this data as a spreadsheet, with the form fields as columns and the form records as the rows.
 
