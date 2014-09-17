@@ -9,11 +9,13 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 
 <div>
 	<table class="table">
-		<tbody>
+		<thead>
 			<tr>
 				<th>Name</th>
 				<th>Description</th>
 			</tr>
+		</thead>
+		<tbody>
 			<tr>
 				<td>
 					<a target="_blank" target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$anchorScroll">$anchorScroll</a>
@@ -123,6 +125,39 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 					<p>Angular's wrapper for <code>window.setTimeout</code>. The <code>fn</code> function is wrapped into a try/catch block and delegates any exceptions to <a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$exceptionHandler">$exceptionHandler</a> service.</p>
 				</td>
 			 </tr>
+		</tbody>
+	</table>
+</div>
+
+## Partially Supported Services
+
+This is a list of partially supported angular services that can be injected into plugins. Only the methods listed here are allowed. All other methods and properties are not implemented.
+
+<div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$templateCache">$templateCache</a>
+				</td>
+				<td>
+					<p>The way to access angular templates programmatically. The <code>get</code> method is supported to read your plugin templates out of the $templateCache.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$window">$window</a>
+				</td>
+				<td>
+					<p>The only way to access the browser <code>window</code> object. Only the <code>open</code> method is supported.</p>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </div>
