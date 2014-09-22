@@ -374,7 +374,8 @@ The parameterized URL is used to query the {{site.productName}} [REST API]({{sit
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notifications">Notifications</a></td><td>/notifications/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notification_email">NotificationEmails</a></td><td>/notification_emails/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/plugins">Plugins</a></td><td>/plugins/:id</td></tr>
-        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/">PluginWorkspaces</a></td><td>/plugins/:pluginId/workspaces/:id</td></tr>
+        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/user_plugin_links">UserPluginLinks</a></td><td>/user_plugin_links/:id</td></tr>
+        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspace_plugin_links">WorkspacePluginLinks</a></td><td>/workspace_plugin_links/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_files">RecordImportFiles</a></td><td>/record_import_files/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_jobs">RecordImportJobs</a></td><td>/record_import_jobs/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_export_jobs">RecordExportJobs</a></td><td>/record_export_jobs/:id</td></tr>
@@ -389,7 +390,6 @@ The parameterized URL is used to query the {{site.productName}} [REST API]({{sit
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspace_copy_jobs">WorkspaceCopyJobs</a></td><td>/workspace_copy_jobs</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-invitees">WorkspaceInvitees</a></td><td>/workspaces/:workspaceId/invitees/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-members">WorkspaceMembers</a></td><td>/workspaces/:workspaceId/members/:id</td></tr>
-        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-plugins">WorkspacePlugins</a></td><td>/workspaces/:workspaceId/plugins/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-members-member.id-task_preferences">WorkspaceTaskPreferences</a></td><td>/workspaces/:workspaceId/members/:memberId/task_preferences</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-logo">WorkspaceLogo</a></td><td>/workspaces/:workspaceId/logo</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/countries">Countries</a></td><td>/countries</td></tr>
