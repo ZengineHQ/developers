@@ -58,7 +58,11 @@ Template code (HTML):
 
 # Dependency Injection
 
-In order for components to get ahold of their dependencies, Angular wires everything using a [dependency injection]({{site.angularDomain}}/{{site.angularVersion}}/docs/guide/di) subsystem. All of the components above (except for constants) were registered using [inline array annotation]({{site.angularDomain}}/{{site.angularVersion}}/docs/guide/di#inline-array-annotation); you pass an array, whose elements consist of a list of strings (the names of the dependencies) followed by the factory function. Dependency injection is how you can wire your own components together, as well as how you can include external dependencies, such as services written by [AngularJS](angular-services.html), [{{site.productName}}]({{site.baseurl}}/plugins/api/services), and few [third parties]({{site.baseurl}}/plugins/third-party). 
+In order for components to get ahold of their dependencies, Angular wires everything using a [dependency injection]({{site.angularDomain}}/{{site.angularVersion}}/docs/guide/di) subsystem. All of the components above (except for constants) were registered using [inline array annotation]({{site.angularDomain}}/{{site.angularVersion}}/docs/guide/di#inline-array-annotation); you pass an array, whose elements consist of a list of strings (the names of the dependencies), followed by the factory function taking a set of dependency arguments that match the list of string names.
+
+The list of strings tell Angular which dependencies are required.  Angular then passes those dependencies into the function you define - then you can use them inside of your code however you like.
+
+Dependency injection is how you can wire your own components together, as well as how you can include external dependencies, such as services written by [AngularJS](angular-services.html), [{{site.productName}}]({{site.baseurl}}/plugins/api/services), and few [third parties]({{site.baseurl}}/plugins/third-party). 
 
 {% highlight js %}
 

@@ -120,6 +120,10 @@ The following table presents the registration options and their purpose.
         </tr>
     </thead>
     <tbody>
+		<tr>
+            <td>zn-top-nav</td>
+            <td>In the nav bar at the top of the app, next to the Notifications bell.</td>
+        </tr>
         <tr>
             <td>zn-plugin-data-subheader</td>
             <td>Above the data grid.</td>
