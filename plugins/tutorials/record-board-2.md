@@ -211,7 +211,7 @@ When the sorting has stopped, we traverse the known folders and records to find 
 
 Your plugin should now be able to display folders as columns, create folders, drag records from one folder to another, and save the results.
 
-The code for the entire chat plugin can be found below and also on [Github](https://github.com/ZengineHQ/labs/tree/master/plugins/record-kanban-board){:target="_blank"}. In this case, the plugin namespace is 'namespaced', so to make it work as your own, you will need to replace all instances of the word 'namespaced' with your namespace.
+The code for the entire record board plugin can be found below and also on [Github](https://github.com/ZengineHQ/labs/tree/master/plugins/record-kanban-board){:target="_blank"}. In this case, the plugin namespace is 'namespaced', so to make it work as your own, you will need to replace all instances of the word 'namespaced' with your namespace.
 
 If you have improvements to the plugin, feel free to make pull requests to the code repository and update the documentation for it [here]({{site.developerDomain}}/edit/gh-pages/plugins/tutorials/record-board-2.md).
 
@@ -470,7 +470,7 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
  * Plugin Registration
  */
 .register('namespacedRecordBoard', {
-    route: '/namespacedrecordboard',
+    route: '/namespaced',
     controller: 'namespacedRecordBoardCntl',
     template: 'namespaced-record-board-main',
     title: 'Record Board',

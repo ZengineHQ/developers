@@ -67,6 +67,10 @@ The following table presents the registration options and their purpose.
             <td>Specify additional routes to sub pages of your plugin. Will appear under your main <code>route</code> param. Value should be defined as a JSON array. Ex: <code>routes: ['/:id']</code> translates to <code>{{ site.clientDomain }}/workspaces/123/plugin/myplugin/456</code>, where 456 will be available as a <code>$routeParam</code> named <code>id</code>.</td>
         </tr>
         <tr>
+            <td>context</td>
+            <td>Determines where your full-page user-level plugin should appear (outside a workspace, inside a workspace, or both). Can be one of three options: <code>root</code>, <code>workspace</code>, or <code>both</code>. If the plugin context is <code>root</code>, then the full URI for your plugin will be <code>{{ site.clientDomain }}/plugin/myplugin</code>. If the context is <code>workspace</code>, then the URI will look like this: <code>{{ site.clientDomain }}/workspaces/123/plugin/myplugin</code>. If the context is <code>both</code>, then both routes will be valid.</td>
+        </tr>
+        <tr>
             <td>controller</td>
             <td>You can have multiple controllers in your plugin JavaScript. This param represents the main controller name. Note that all controller names are prefixed with your namepsace, like <code>myPluginCntl</code>.</td>
         </tr>
@@ -96,7 +100,7 @@ The following table presents the registration options and their purpose.
         </tr>
         <tr>
             <td>icon</td>
-            <td>Icon to represent your plugin in the app header. Must be an icon name seen here: <a href="{{ site.clientDomain }}/patterns/icons">{{ site.clientDomain }}/patterns/icons</a></td>
+            <td>Icon to represent your plugin in the app header and the marketplace (if the plugin is public). Must be an icon name seen here: <a href="{{ site.clientDomain }}/patterns/icons">{{ site.clientDomain }}/patterns/icons</a></td>
         </tr>
         <tr>
             <td>location</td>
@@ -116,6 +120,10 @@ The following table presents the registration options and their purpose.
         </tr>
     </thead>
     <tbody>
+		<tr>
+            <td>zn-top-nav</td>
+            <td>In the nav bar at the top of the app, next to the Notifications bell.</td>
+        </tr>
         <tr>
             <td>zn-plugin-data-subheader</td>
             <td>Above the data grid.</td>
