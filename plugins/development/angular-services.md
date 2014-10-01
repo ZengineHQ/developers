@@ -112,7 +112,7 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 				</td>
 			</tr>
 			<tr>
-				<td><a target="_blank" href="api/ngRoute/service/$routeParams">$routeParams</a></td>
+				<td><a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ngRoute/service/$routeParams">$routeParams</a></td>
 				<td>
 					<p>The <code>$routeParams</code> service allows you to retrieve the current set of route parameters.</p>
 				</td>
