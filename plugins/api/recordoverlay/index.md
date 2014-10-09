@@ -14,3 +14,41 @@ recordId = 2;
 $location.search('record', formId + '.' + recordId);
 {% endhighlight %}
 
+You can jump to a specific tab by passing the <code>tab</code> query string param in a similar way.
+
+{% highlight js %}
+$location.search('tab', 'activities');
+{% endhighlight %}
+
+The standard tabs available are listed below.
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Tab</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Linked Records</td>
+            <td>linked</td>
+        </tr>
+        <tr>
+            <td>Activities</td>
+            <td>activities</td>
+        </tr>
+        <tr>
+            <td>Tasks</td>
+            <td>tasks</td>
+        </tr>
+        <tr>
+            <td>Events</td>
+            <td>events</td>
+        </tr>
+        <tr>
+            <td>Files</td>
+            <td>files</td>
+        </tr>
+    </tbody>
+</table>
