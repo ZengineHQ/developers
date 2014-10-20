@@ -36,7 +36,7 @@ plugin.controller('myPluginCntl', ['$scope', function ($scope) {
 
 ### Registration Options
 
-There are various plugin options you can change through the registration options. The following options are the only ones you need to get a [full-page plugin]({{site.baseurl}}/plugins/getting-started/full-page-inline.html) up and running. 
+There are various plugin options you can change through the registration options. The following options are the only ones you need to get a [full-page plugin]({{site.baseurl}}/plugins/getting-started/plugin-types.html) up and running. 
 
 {% highlight javascript %}
 {% raw %}
@@ -46,7 +46,8 @@ There are various plugin options you can change through the registration options
 .register('myPlugin', {
     route: '/myplugin',
     controller: 'myPluginCntl',
-    template: 'my-plugin-main'
+    template: 'my-plugin-main',
+    type: 'fullPage'
 });
 
 {% endraw %}

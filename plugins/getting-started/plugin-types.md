@@ -1,7 +1,7 @@
 ---
 layout: plugin-nav-bar
 group: intro
-subgroup: full-page-inline
+subgroup: plugin-types
 ---
 # Plugins Types
 You can create plugins of three different types: fullPage, inline or recordOverlay.  Use registration options to specify which type your plugin will be, as well as related options.  If you do not specify any registration options, the default type is fullPage.
@@ -21,6 +21,6 @@ To set up an inline plugin, set `type: 'inline'` on your plugin registration.  Y
 The `route`, `routes`, and `context` registration options do not apply for inline plugins, and will be ignored if provided. The `icon` option only applies if the plugin is also public.
 
 ## Record Overlay
-Record overlay plugins allow you to add entire new tabs to the record panel.
+Record overlay plugins allow you to add new tabs to the record panel.
 
 To set up a record overlay plugin, set `type: 'recordOverlay'` on your plugin registration. 
