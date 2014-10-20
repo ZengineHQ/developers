@@ -598,7 +598,7 @@ plugin.controller('todaySummaryCntl', ['$scope', 'znData', '$routeParams', '$q',
 	controller: 'todaySummaryCntl',
 	template: 'today-summary-main',
 	title: 'Today Summary Plugin',
-	fullPage: false,
+	type: 'inline',
 	icon: 'icon-th-list',
 	location: 'zn-top-nav'
 });

@@ -449,7 +449,7 @@ plugin.controller('namespacedRecordBoardCntl', ['$scope', '$routeParams', 'znDat
     template: 'namespaced-record-board-main',
     title: 'Record Board',
     pageTitle: false,
-    fullPage: true,
+    type: 'fullPage',
     topNav: true,
     order: 300,
     icon: 'icon-th-large'

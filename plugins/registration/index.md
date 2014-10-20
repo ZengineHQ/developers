@@ -23,7 +23,7 @@ The following is a full set of possible options for a full page plugins.
     template: 'my-plugin-main',
     title: 'My Plugin',
     pageTitle: false,
-    fullPage: true,
+    type: 'fullPage',
     topNav: true,
     order: 300,
     icon: 'icon-emo-beer'
@@ -87,8 +87,8 @@ The following table presents the registration options and their purpose.
             <td>Heading text to appear below the app header and above your plugin template. If not provided, will use value of <code>title</code>. If false, won't prepend the header at all.</td>
         </tr>
         <tr>
-            <td>fullPage</td>
-            <td>If true, your plugin will appear on its own page. It can have an icon in the app header and its own URI defined by the <code>route</code> param. If false, the plugin will not appear on its own and should be written to appear in another app location using XYZ.</td>
+            <td>type</td>
+            <td>The type of your plugin, can be one of: fullPage, inline or recordOverlay. Checkout <a href="{{site.baseurl}}/plugins/getting-started/plugin-types.html">plugin types</a> for details of each plugin type option.</td>
         </tr>
         <tr>
             <td>topNav</td>
@@ -104,7 +104,7 @@ The following table presents the registration options and their purpose.
         </tr>
         <tr>
             <td>location</td>
-            <td>Location to load plugin if not a full page plugin. See <a href="#locations">plugin locations</a>.</td>
+            <td>Location to load plugin if it's type is "inline". See <a href="#locations">plugin locations</a>.</td>
         </tr>
     </tbody>
 </table>
@@ -120,7 +120,7 @@ The following table presents the registration options and their purpose.
         </tr>
     </thead>
     <tbody>
-		<tr>
+		    <tr>
             <td>zn-top-nav</td>
             <td>In the nav bar at the top of the app, next to the Notifications bell.</td>
         </tr>

@@ -6,257 +6,257 @@ layout: default
 
 $(function(){
 
-	updateActiveHashLink();
+  updateActiveHashLink();
 
-	// wait until html is loaded to fix the nav bar position
-	$('.side-nav.affix').css('position', 'fixed');
+  // wait until html is loaded to fix the nav bar position
+  $('.side-nav.affix').css('position', 'fixed');
 
-	$(window).on('hashchange', function() {
-		updateActiveHashLink();
-	});
+  $(window).on('hashchange', function() {
+    updateActiveHashLink();
+  });
 
-	function updateActiveHashLink() {
+  function updateActiveHashLink() {
 
-		var fragIdentifier = location.hash.substring(1);
+    var fragIdentifier = location.hash.substring(1);
 
-		if (fragIdentifier) {
-			$('.' + fragIdentifier).siblings().removeClass("active");
-			$('.' + fragIdentifier).addClass("active");
-		}
-	}
+    if (fragIdentifier) {
+      $('.' + fragIdentifier).siblings().removeClass("active");
+      $('.' + fragIdentifier).addClass("active");
+    }
+  }
 });
 
 </script>
 <div class="row">
-	<div class="large-2 columns">
-		<ul class="side-nav affix">
-			<li {% if page.group == 'intro' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/">Introduction</a>
-				<ul>
-					<li {% if page.subgroup == 'getting-started' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/getting-started/">Getting Started</a>
-					</li>
-					<li {% if page.subgroup == 'full-page-inline' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/getting-started/full-page-inline.html">Full-Page vs. Inline Plugins</a>
-					</li>
-					<li {% if page.subgroup == 'templates-routes' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/getting-started/templates-routes.html">Templates and Routes</a>
-					</li>
-					<li {% if page.subgroup == 'publishing' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/getting-started/publishing.html">Publishing</a>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'registration' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/registration/">Plugin Options</a>
-				<ul>
-					<li class="registration-options">
-						<a href="{{site.baseurl}}/plugins/registration/">Registration Options</a>
-					</li>
-					<li class="plugin-locations">
-						<a href="{{site.baseurl}}/plugins/registration/#plugin-locations">Plugin Locations</a>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'development' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/development/">Plugin Development</a>
-				<ul>
-					<li {% if page.name == 'index.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/development/">Using Angular</a>
-					</li>
-					<li {% if page.name == 'angular-services.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/development/angular-services.html">Angular Services</a>
-					</li>
-					<li {% if page.name == 'best-practices.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/development/best-practices.html">Best Practices</a>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'api' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/api/directives/">API Reference</a>
-				<ul>
-					<li {% if page.subgroup == 'directives' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/directives/">Directives</a>
-					</li>
-					<li {% if page.subgroup == 'services' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/services/">Services</a>
-						<ul>
-							<li class="znmessage">
-								<a href="{{site.baseurl}}/plugins/api/services/#znmessage">Message</a>
-							</li>
-							<li class="znconfirm">
-								<a href="{{site.baseurl}}/plugins/api/services/#znconfirm">Confirm</a>
-							</li>
-							<li class="znmodal">
-								<a href="{{site.baseurl}}/plugins/api/services/#znmodal">Modal</a>
-							</li>
-							<li class="znpluginevents">
-								<a href="{{site.baseurl}}/plugins/api/services/#znpluginevents">Plugin Events</a>
-							</li>
-							<li class="zndata">
-								<a href="{{site.baseurl}}/plugins/api/services/#zndata">Data</a>
-								<ul>
-									<li class="get">
-										<a href="{{site.baseurl}}/plugins/api/services/#get">Get</a>
-									</li>
-									<li class="query">
-										<a href="{{site.baseurl}}/plugins/api/services/#query">Query</a>
-									</li>
-									<li class="delete">
-										<a href="{{site.baseurl}}/plugins/api/services/#delete">Delete</a>
-									</li>
-									<li class="save">
-										<a href="{{site.baseurl}}/plugins/api/services/#save">Save</a>
-									</li>
-									<li class="available-resources">
-										<a href="{{site.baseurl}}/plugins/api/services/#available-resources">Resources</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li {% if page.subgroup == 'recordoverlay' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/recordoverlay/">Record Overlay</a>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'third-party' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/third-party/">Third Party Libraries</a>
-				<ul>
-					<li {% if page.name == 'developing-plugins-with-firebase.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html">AngularFire</a>
-					</li>
-					<li {% if page.name == 'ace-editor.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/third-party/ace-editor.html">Ace Editor</a>
-					</li>
-					<li {% if page.name == 'sortable.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/third-party/sortable.html">UI Sortable</a>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'tutorials' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/tutorials/">Tutorials</a>
-				<ul>
-					<li {% if page.subgroup == 'record-board' or page.subgroup == 'record-board-2'%}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Record Kanban Board</a>
-						<ul>
-							<li {% if page.subgroup == 'record-board' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Part 1</a>
-								<ul>
-									<li class="prerequisites">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#prerequisites">Prerequisites</a>
-									</li>
-									<li class="current-workspace">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#current-workspace">Current Workspace</a>
-									</li>
-									<li class="workspace-forms">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#workspace-forms">Workspace Forms</a>
-									</li>
-									<li class="selecting-a-form">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#selecting-a-form">Selecting a Form</a>
-									</li>
-									<li class="loading-records">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#loading-records">Loading Records</a>
-									</li>
-									<li class="wrapping-up">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#wrapping-up">Wrapping Up</a>
-									</li>
-								</ul>
-							</li>
-							<li {% if page.subgroup == 'record-board-2' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html">Part 2</a>
-								<ul>
-									<li class="adding-folders">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#adding-folders">Adding Folders</a>
-									</li>
-									<li class="moving-records">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#moving-records">Moving Records</a>
-									</li>
-									<li class="saving-record-folders">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#saving-record-folders">Saving Record Folders</a>
-									</li>
-									<li class="wrapping-up">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#wrapping-up">Wrapping Up</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li class="divider"></li>
-					<li {% if page.subgroup == 'chat' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html">Chat Room</a>
-						<ul>
-							<li class="get-api-data">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#get-api-data">Get API Data</a>
-							</li>
-							<li class="wait-for-api-responses">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wait-for-api-responses">Wait for API responses</a>
-							</li>
-							<li class="connecting-to-firebase">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#connecting-to-firebase">Connecting to Firebase</a>
-							</li>
-							<li class="adding-chat-messages-to-firebase">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#adding-chat-messages-to-firebase">Saving to Firebase</a>
-							</li>
-							<li class="using-a-directive-to-display-each-message">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#using-a-directive-to-display-each-message">Message Display Directive</a>
-							</li>
-							<li class="add-a-directive-to-auto-scroll-messages">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#add-a-directive-to-auto-scroll-messages">Autoscroll Directive</a>
-							</li>
-							<li class="wrapping-up">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wrapping-up">Wrapping Up</a>
-							</li>
-						</ul>
-					</li>
-					<li class="divider"></li>
-					<li {% if page.subgroup == 'today-summary' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html">Today Summary</a>
-						<ul>
-							<li class="get-api-data">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#prerequisites">Prerequisites</a>
-							</li>
-							<li class="wait-for-api-responses">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#base-plugin-setup">Base Plugin Setup</a>
-							</li>
-							<li class="connecting-to-firebase">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#getting-started">Getting Started</a>
-							</li>
-							<li class="adding-chat-messages-to-firebase">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#fetching-api-data">Fetching API Data</a>
-							</li>
-							<li class="using-a-directive-to-display-each-message">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#querying-appropriate-data">Querying Appropriate Data</a>
-							</li>
-							<li class="add-a-directive-to-auto-scroll-messages">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#formatting-output">Formatting output</a>
-							</li>
-							<li class="add-a-directive-to-auto-scroll-messages">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#user-data">User Data</a>
-							</li>
-							<li class="add-a-directive-to-auto-scroll-messages">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#showing-a-loading-indicator">Showing a Loading Indicator</a>
-							</li>
-							<li class="add-a-directive-to-auto-scroll-messages">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#accounting-for-different-workspaces">Accounting for different workspaces</a>
-							</li>
-							<li class="wrapping-up">
-								<a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#wrapping-up">Wrapping Up</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-	<div class="large-10 columns">
-		<div class="rest-api-docs-wrapper">
-			{{content}}
-		</div>
-	</div>
+  <div class="large-2 columns">
+    <ul class="side-nav affix">
+      <li {% if page.group == 'intro' %}class="active"{% endif %}>
+        <a href="{{site.baseurl}}/plugins/">Introduction</a>
+        <ul>
+          <li {% if page.subgroup == 'getting-started' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/getting-started/">Getting Started</a>
+          </li>
+          <li {% if page.subgroup == 'full-page-inline' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/getting-started/plugin-types.html">Plugin Types</a>
+          </li>
+          <li {% if page.subgroup == 'templates-routes' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/getting-started/templates-routes.html">Templates and Routes</a>
+          </li>
+          <li {% if page.subgroup == 'publishing' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/getting-started/publishing.html">Publishing</a>
+          </li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li {% if page.group == 'registration' %}class="active"{% endif %}>
+        <a href="{{site.baseurl}}/plugins/registration/">Plugin Options</a>
+        <ul>
+          <li class="registration-options">
+            <a href="{{site.baseurl}}/plugins/registration/">Registration Options</a>
+          </li>
+          <li class="plugin-locations">
+            <a href="{{site.baseurl}}/plugins/registration/#plugin-locations">Plugin Locations</a>
+          </li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li {% if page.group == 'development' %}class="active"{% endif %}>
+        <a href="{{site.baseurl}}/plugins/development/">Plugin Development</a>
+        <ul>
+          <li {% if page.name == 'index.md' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/development/">Using Angular</a>
+          </li>
+          <li {% if page.name == 'angular-services.md' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/development/angular-services.html">Angular Services</a>
+          </li>
+          <li {% if page.name == 'best-practices.md' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/development/best-practices.html">Best Practices</a>
+          </li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li {% if page.group == 'api' %}class="active"{% endif %}>
+        <a href="{{site.baseurl}}/plugins/api/directives/">API Reference</a>
+        <ul>
+          <li {% if page.subgroup == 'directives' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/api/directives/">Directives</a>
+          </li>
+          <li {% if page.subgroup == 'services' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/api/services/">Services</a>
+            <ul>
+              <li class="znmessage">
+                <a href="{{site.baseurl}}/plugins/api/services/#znmessage">Message</a>
+              </li>
+              <li class="znconfirm">
+                <a href="{{site.baseurl}}/plugins/api/services/#znconfirm">Confirm</a>
+              </li>
+              <li class="znmodal">
+                <a href="{{site.baseurl}}/plugins/api/services/#znmodal">Modal</a>
+              </li>
+              <li class="znpluginevents">
+                <a href="{{site.baseurl}}/plugins/api/services/#znpluginevents">Plugin Events</a>
+              </li>
+              <li class="zndata">
+                <a href="{{site.baseurl}}/plugins/api/services/#zndata">Data</a>
+                <ul>
+                  <li class="get">
+                    <a href="{{site.baseurl}}/plugins/api/services/#get">Get</a>
+                  </li>
+                  <li class="query">
+                    <a href="{{site.baseurl}}/plugins/api/services/#query">Query</a>
+                  </li>
+                  <li class="delete">
+                    <a href="{{site.baseurl}}/plugins/api/services/#delete">Delete</a>
+                  </li>
+                  <li class="save">
+                    <a href="{{site.baseurl}}/plugins/api/services/#save">Save</a>
+                  </li>
+                  <li class="available-resources">
+                    <a href="{{site.baseurl}}/plugins/api/services/#available-resources">Resources</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li {% if page.subgroup == 'recordoverlay' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/api/recordoverlay/">Record Overlay</a>
+          </li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li {% if page.group == 'third-party' %}class="active"{% endif %}>
+        <a href="{{site.baseurl}}/plugins/third-party/">Third Party Libraries</a>
+        <ul>
+          <li {% if page.name == 'developing-plugins-with-firebase.md' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html">AngularFire</a>
+          </li>
+          <li {% if page.name == 'ace-editor.md' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/third-party/ace-editor.html">Ace Editor</a>
+          </li>
+          <li {% if page.name == 'sortable.md' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/third-party/sortable.html">UI Sortable</a>
+          </li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li {% if page.group == 'tutorials' %}class="active"{% endif %}>
+        <a href="{{site.baseurl}}/plugins/tutorials/">Tutorials</a>
+        <ul>
+          <li {% if page.subgroup == 'record-board' or page.subgroup == 'record-board-2'%}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Record Kanban Board</a>
+            <ul>
+              <li {% if page.subgroup == 'record-board' %}class="active"{% endif %}>
+                <a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Part 1</a>
+                <ul>
+                  <li class="prerequisites">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board.html#prerequisites">Prerequisites</a>
+                  </li>
+                  <li class="current-workspace">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board.html#current-workspace">Current Workspace</a>
+                  </li>
+                  <li class="workspace-forms">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board.html#workspace-forms">Workspace Forms</a>
+                  </li>
+                  <li class="selecting-a-form">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board.html#selecting-a-form">Selecting a Form</a>
+                  </li>
+                  <li class="loading-records">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board.html#loading-records">Loading Records</a>
+                  </li>
+                  <li class="wrapping-up">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board.html#wrapping-up">Wrapping Up</a>
+                  </li>
+                </ul>
+              </li>
+              <li {% if page.subgroup == 'record-board-2' %}class="active"{% endif %}>
+                <a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html">Part 2</a>
+                <ul>
+                  <li class="adding-folders">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#adding-folders">Adding Folders</a>
+                  </li>
+                  <li class="moving-records">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#moving-records">Moving Records</a>
+                  </li>
+                  <li class="saving-record-folders">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#saving-record-folders">Saving Record Folders</a>
+                  </li>
+                  <li class="wrapping-up">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#wrapping-up">Wrapping Up</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+          <li {% if page.subgroup == 'chat' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html">Chat Room</a>
+            <ul>
+              <li class="get-api-data">
+                <a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#get-api-data">Get API Data</a>
+              </li>
+              <li class="wait-for-api-responses">
+                <a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wait-for-api-responses">Wait for API responses</a>
+              </li>
+              <li class="connecting-to-firebase">
+                <a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#connecting-to-firebase">Connecting to Firebase</a>
+              </li>
+              <li class="adding-chat-messages-to-firebase">
+                <a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#adding-chat-messages-to-firebase">Saving to Firebase</a>
+              </li>
+              <li class="using-a-directive-to-display-each-message">
+                <a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#using-a-directive-to-display-each-message">Message Display Directive</a>
+              </li>
+              <li class="add-a-directive-to-auto-scroll-messages">
+                <a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#add-a-directive-to-auto-scroll-messages">Autoscroll Directive</a>
+              </li>
+              <li class="wrapping-up">
+                <a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wrapping-up">Wrapping Up</a>
+              </li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+          <li {% if page.subgroup == 'today-summary' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html">Today Summary</a>
+            <ul>
+              <li class="get-api-data">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#prerequisites">Prerequisites</a>
+              </li>
+              <li class="wait-for-api-responses">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#base-plugin-setup">Base Plugin Setup</a>
+              </li>
+              <li class="connecting-to-firebase">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#getting-started">Getting Started</a>
+              </li>
+              <li class="adding-chat-messages-to-firebase">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#fetching-api-data">Fetching API Data</a>
+              </li>
+              <li class="using-a-directive-to-display-each-message">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#querying-appropriate-data">Querying Appropriate Data</a>
+              </li>
+              <li class="add-a-directive-to-auto-scroll-messages">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#formatting-output">Formatting output</a>
+              </li>
+              <li class="add-a-directive-to-auto-scroll-messages">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#user-data">User Data</a>
+              </li>
+              <li class="add-a-directive-to-auto-scroll-messages">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#showing-a-loading-indicator">Showing a Loading Indicator</a>
+              </li>
+              <li class="add-a-directive-to-auto-scroll-messages">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#accounting-for-different-workspaces">Accounting for different workspaces</a>
+              </li>
+              <li class="wrapping-up">
+                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#wrapping-up">Wrapping Up</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="large-10 columns">
+    <div class="rest-api-docs-wrapper">
+      {{content}}
+    </div>
+  </div>
 </div>

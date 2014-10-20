@@ -629,7 +629,7 @@ plugin.controller('namespacedChatCntl', ['$scope', '$routeParams', 'znData', '$f
   template: 'namespaced-chat-main',
   title: 'Chat',
   pageTitle: false,
-  fullPage: true,
+  type: 'fullPage',
   topNav: true,
   order: 300,
   icon: 'icon-chat'
