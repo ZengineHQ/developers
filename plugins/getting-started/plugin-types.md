@@ -3,7 +3,7 @@ layout: plugin-nav-bar
 group: intro
 subgroup: plugin-types
 ---
-# Plugins Types
+# Plugin Types
 You can create plugins of three different types: fullPage, inline or recordOverlay.  Use registration options to specify which type your plugin will be, as well as related options.  If you do not specify any registration options, the default type is fullPage.
 
 More information about the individual options is available on the [plugin registration options page]({{site.baseurl}}/plugins/registration).
