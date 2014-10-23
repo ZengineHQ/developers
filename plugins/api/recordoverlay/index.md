@@ -53,7 +53,7 @@ The standard tabs available are listed below.
     </tbody>
 </table>
 
-To open tabs for a specific plugin use the suffix 'plugin.' + plugin namespace.
+To open tabs for a specific plugin use the prefix 'plugin.' + plugin namespace.
 
 {% highlight js %}
 $location.search('tab', 'plugin.cloudFiles');
