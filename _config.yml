@@ -5,7 +5,7 @@ exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://api.zenginehq.com"
 clientDomain: "https://platform.zenginehq.com"
 authDomain: "https://auth.zenginehq.com"
-supportDomain: "https://support.zenginehq.com"
+supportDomain: "http://support.zenginehq.com"
 developerDomain: https://github.com/ZengineHQ/developers
 angularDomain: "https://code.angularjs.org"
 demoClientId: "rest-api-quick-start-demo"

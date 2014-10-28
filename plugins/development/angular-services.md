@@ -27,7 +27,7 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 			</tr>
 			<tr>
 				<td>
-					<a target="_blank" href="api/ngCookies/service/$cookies">$cookies</a>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ngCookies/service/$cookies">$cookies</a>
 				</td>
 				<td>
 					<p>Provides read/write access to browser's cookies.</p>
@@ -35,7 +35,7 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 			</tr>
 			<tr>
 				<td>
-					<a target="_blank" href="api/ngCookies/service/$cookieStore">$cookieStore</a>
+					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ngCookies/service/$cookieStore">$cookieStore</a>
 				</td>
 				<td>
 					<p>Provides a key-value (string-object) storage, that is backed by session cookies. Objects put or retrieved from this storage are automatically serialized or deserialized by angular's toJson/fromJson.</p>
@@ -112,7 +112,7 @@ This is a whitelist of the Angular services that you can inject as dependencies 
 				</td>
 			</tr>
 			<tr>
-				<td><a target="_blank" href="api/ngRoute/service/$routeParams">$routeParams</a></td>
+				<td><a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ngRoute/service/$routeParams">$routeParams</a></td>
 				<td>
 					<p>The <code>$routeParams</code> service allows you to retrieve the current set of route parameters.</p>
 				</td>
