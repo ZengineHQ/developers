@@ -22,9 +22,9 @@ In order for the plugin to show output, you should also create a few sample task
 
 ## Base Plugin Setup
 
-When you first create a new plugin, you are provided with a template for a basic full-page plugin.  In this case, we want to make an inline plugin that will appear in the top nav bar, so that the user can quickly glance at it regardless of where they are within the app.  You can read more about full-page and inline plugins [here]({{site.baseurl}}/plugins/getting-started/full-page-inline.html).
+When you first create a new plugin, you are provided with a template for a basic full-page plugin.  In this case, we want to make an inline plugin that will appear in the top nav bar, so that the user can quickly glance at it regardless of where they are within the app.  You can read more about full-page and inline plugins [here]({{site.baseurl}}/plugins/getting-started/plugin-types.html).
 
-As described in the link above, we need to make a few changes to our base registration options.  Namely, set `fullpage: false` and `location: 'zn-top-nav'` to make our plugin inline and give it a [location]({{site.baseurl}}/plugins/registration/#plugin-locations). We can delete `route`, `topNav`, and `pageTitle`, since they don't apply for inline plugins.
+As described in the link above, we need to make a few changes to our base registration options.  Namely, set `type: 'inline'` and `location: 'zn-top-nav'` to make our plugin inline and give it a [location]({{site.baseurl}}/plugins/registration/#plugin-locations). We can delete `route`, `topNav`, and `pageTitle`, since they don't apply for inline plugins.
 
 We also want to make this a user-level plugin, rather than the default of workspace-level.  This means that a user can install the plugin on an account level and use it regardless of which workspace they're in - in fact, it can even be used on the home screen, where no workspace is selected.  Be sure to go into the plugin's Publishing Settings in the app and change the Plugin Activation Level to User.
 
@@ -598,7 +598,7 @@ plugin.controller('todaySummaryCntl', ['$scope', 'znData', '$routeParams', '$q',
 	controller: 'todaySummaryCntl',
 	template: 'today-summary-main',
 	title: 'Today Summary Plugin',
-	fullPage: false,
+	type: 'inline',
 	icon: 'icon-th-list',
 	location: 'zn-top-nav'
 });
