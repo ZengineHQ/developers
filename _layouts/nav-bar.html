@@ -181,6 +181,24 @@ $(function(){
 							</li>
 						</ul>
 					</li>
+					<li class="divider"></li>
+					<li {% if page.subgroup == 'data-filters' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/rest-api/conventions/data-filters/">Data Filters</a>
+						<ul>
+							<li class="conditions">
+								<a href="{{site.baseurl}}/rest-api/conventions/data-filters/#conditions">Conditions</a>
+							</li>
+							<li class="prefixes">
+								<a href="{{site.baseurl}}/rest-api/conventions/data-filters/#prefixes">Prefixes</a>
+							</li>
+							<li class="attributes">
+								<a href="{{site.baseurl}}/rest-api/conventions/data-filters/#attributes">Attributes</a>
+							</li>
+							<li class="subfiltering">
+								<a href="{{site.baseurl}}/rest-api/conventions/data-filters/#subfiltering">Subfiltering</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</li>
 			<li class="divider"></li>
