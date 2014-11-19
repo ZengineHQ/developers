@@ -397,3 +397,143 @@ The parameterized URL is used to query the {{site.productName}} [REST API]({{sit
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/subscriptions">Subscriptions</a></td><td>/subscriptions/:id</td></tr>
     </tbody>
 </table>
+
+<!-- znLocalStorage -->
+
+# znLocalStorage {#zn-local-storage}
+
+This service gives you basic access to <a href="http://diveintohtml5.info/storage.html" target="_blank">browser local storage</a> and fallbacks to browser cookies if support is not available.
+
+### znLocalStorage.set(key, value) {#zn-local-storage-set}
+
+Set an item in browser local storage.
+
+{% highlight js %}
+/**
+ * Plugin testLocalStorage Controller
+ */
+plugin.controller('testLocalStorageCntl', ['$scope', 'znLocalStorage', function ($scope, znLocalStorage) {
+
+  znLocalStorage.set('lastSaved', new Date());
+
+}]);
+{% endhighlight %}
+
+### znLocalStorage.get(key) {#zn-local-storage-get}
+
+Get an item in browser local storage.
+
+{% highlight js %}
+/**
+ * Plugin testLocalStorage Controller
+ */
+plugin.controller('testLocalStorageCntl', ['$scope', 'znLocalStorage', function ($scope, znLocalStorage) {
+
+  znLocalStorage.get('lastSaved');
+
+}]);
+{% endhighlight %}
+
+### znLocalStorage.remove(key) {#zn-local-storage-remove}
+
+Remove an item in browser local storage.
+
+{% highlight js %}
+/**
+ * Plugin testLocalStorage Controller
+ */
+plugin.controller('testLocalStorageCntl', ['$scope', 'znLocalStorage', function ($scope, znLocalStorage) {
+
+  znLocalStorage.remove('lastSaved');
+
+}]);
+{% endhighlight %}
+
+### znLocalStorage.isSupported {#zn-local-storage-is-supported}
+
+Checks if the browser support local storage.
+
+{% highlight js %}
+/**
+ * Plugin testLocalStorage Controller
+ */
+plugin.controller('testLocalStorageCntl', ['$scope', 'znLocalStorage', function ($scope, znLocalStorage) {
+
+  if (znLocalStorage.isSupported) {
+    // is supported
+  } else {
+    // not supported
+  }
+
+}]);
+{% endhighlight %}
+
+<!-- znCookies -->
+
+# znCookies {#zn-cookies}
+
+This service gives you basic access to browser cookies.
+
+### znCookies.set(key, value) {#zn-cookies-set}
+
+Set an item in browser cookies.
+
+{% highlight js %}
+/**
+ * Plugin testLocalStorage Controller
+ */
+plugin.controller('testCookiesCntl', ['$scope', 'znCookies', function ($scope, znCookies) {
+
+  znCookies.set('lastSaved', new Date());
+
+}]);
+{% endhighlight %}
+
+### znCookies.get(key) {#zn-cookies-get}
+
+Get an item in browser cookies.
+
+{% highlight js %}
+/**
+ * Plugin testLocalStorage Controller
+ */
+plugin.controller('testCookiesCntl', ['$scope', 'znCookies', function ($scope, znCookies) {
+
+  znCookies.get('lastSaved');
+
+}]);
+{% endhighlight %}
+
+### znCookies.remove(key) {#zn-cookies-remove}
+
+Remove an item in browser cookies.
+
+{% highlight js %}
+/**
+ * Plugin testLocalStorage Controller
+ */
+plugin.controller('testCookiesCntl', ['$scope', 'znCookies', function ($scope, znCookies) {
+
+  znCookies.remove('lastSaved');
+
+}]);
+{% endhighlight %}
+
+### znCookies.isSupported {#zn-cookies-is-supported}
+
+Checks if the browser support cookies.
+
+{% highlight js %}
+/**
+ * Plugin testLocalStorage Controller
+ */
+plugin.controller('testCookiesCntl', ['$scope', 'znCookies', function ($scope, znCookies) {
+
+  if (znCookies.isSupported) {
+    // is supported
+  } else {
+    // not supported
+  }
+
+}]);
+{% endhighlight %}
