@@ -167,7 +167,6 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
                 <ul>
                     <li><strong>title</strong> (string) - The dialog title. </li>
                     <li><strong>template</strong> (string) - Raw HTML to display as the dialog body. </li>
-                    <li><strong>templateUrl</strong> (string) - Takes precedence over the template property. Works the same as the 'templateUrl' option when registering a directive. Corresponds to the id of the <code>script</code> tag that wraps the HTML to display as the dialog body. For more info, see the Angular docs on the <a href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/directive/script" target="_blank">script directive</a>. </li>
                     <li><strong>classes</strong> (string) One or more (space-separated) CSS classes to add to the dialog. </li>
                     <li><strong>closeButton</strong> (bool) - A close button is included by default. Passing <code>false</code> won't include it. </li>
                     <li><strong>unique</strong> (bool | string) Whether to close any other open dialogs. <code>true</code> means close any other dialogs. Alternatively, a CSS class name can be passed to close related dialogs. </li>
