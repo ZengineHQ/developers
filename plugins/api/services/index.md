@@ -358,7 +358,8 @@ The parameterized URL is used to query the {{site.productName}} [REST API]({{sit
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/activities">Activities</a></td><td>/activities/:activityId</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/app_templates">AppTemplates</a></td><td>/app_templates/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/app_template_install_jobs">AppTemplateInstallJobs</a></td><td>/app_template_install_jobs/:id</td></tr>
-        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/data_filters">DataFilters</a></td><td>/data_filters/:id</td></tr>
+        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/calculate">Calculate</a></td><td>/calculate</td></tr>
+        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/calculation_settings">CalculationSettings</a></td><td>/calculation_settings/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/data_views">DataViews</a></td><td>/data_views/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/events">Events</a></td><td>/events/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/files">Files</a></td><td>/files/:id</td></tr>

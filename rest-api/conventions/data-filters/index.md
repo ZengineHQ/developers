@@ -120,3 +120,5 @@ Let's say we need a list of premium users aged 21 or older.  We can set up a fil
 {% endhighlight %}
 
 Note that the subfilter uses the `attribute` "form4".  Because User is the parent form, it does not have a linked field to Profile - the link is the other way around.  Because this is a one-to-one link, we are able to use the special "form{id}" `attribute` to specify a subfilter.
+
+For information on how to use a data filter through the API, checkout [CalculationSettings]({{site.baseurl}}/rest-api/resources/#!/calculation_settings) and [DataViews]({{site.baseurl}}/rest-api/resources/#!/data_views).
