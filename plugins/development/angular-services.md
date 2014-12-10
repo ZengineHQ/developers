@@ -155,7 +155,8 @@ This is a list of partially supported angular services that can be injected into
 					<a target="_blank" href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$window">$window</a>
 				</td>
 				<td>
-					<p>The only way to access the browser <code>window</code> object. Only the <code>open</code> method is supported.</p>
+					<p>The only way to access the browser <code>window</code> object. Only the <code>open</code> and <code>reload</code>method is supported.</p>
+          <p>For the <code>reload</code> method if you pass <code>true</code> ex: <code>$window.reload(true)</code>, causes the page to always be reloaded from the server.</p>
 				</td>
 			</tr>
 		</tbody>
