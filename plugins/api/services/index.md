@@ -391,6 +391,7 @@ The parameterized URL is used to query the {{site.productName}} [REST API]({{sit
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspace_copy_jobs">WorkspaceCopyJobs</a></td><td>/workspace_copy_jobs</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-invitees">WorkspaceInvitees</a></td><td>/workspaces/:workspaceId/invitees/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-members">WorkspaceMembers</a></td><td>/workspaces/:workspaceId/members/:id</td></tr>
+		<tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-transfer_requests">WorkspaceTransferRequests</a></td><td>/workspaces/:workspaceId/transfer_requests/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-members-member.id-task_preferences">WorkspaceTaskPreferences</a></td><td>/workspaces/:workspaceId/members/:memberId/task_preferences</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspaces-workspace.id-logo">WorkspaceLogo</a></td><td>/workspaces/:workspaceId/logo</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/countries">Countries</a></td><td>/countries</td></tr>
