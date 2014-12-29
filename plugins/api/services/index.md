@@ -257,10 +257,10 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
                     <li><strong>formId</strong> (integer) - Form ID of the form you want to filter on.</li>
                     <li><strong>filter</strong> (object) - Existing filter to open with the panel.</li>
                     <li><strong>onSave(filter)</strong> (function) - A callback executed when the filter panel is saved.</li>
-                    <li><strong>subfilters</strong> (boolean) - Whether to allow subfiltering on related fields. Defaults to true.</li>
+                    <li><strong>subfilters</strong> (boolean) - Whether to allow subfiltering on related fields. Defaults to <code>true</code>.</li>
                     <li><strong>operators</strong> (array) - A list of operators to allow filtering on. Defaults to <code>['and', 'or']</code> but <code>['and']</code> or <code>['or']</code> can also be passed.
                     </li>
-                    <li><strong>attributeBlacklist</strong> (array) - A list of specific fields to prevent the user from filtering on. The list can contain an attribute like "field123", where 123 is the ID of a field belonging to the form. The list can also contain the following attributes: "folder.id", "createdByUser.id", "created", and "modified". </li>
+                    <li><strong>attributeBlacklist</strong> (array) - A list of specific fields to prevent the user from filtering on. The list can contain an attribute like <code>'field123'</code>, where 123 is the ID of a field belonging to the form. The list can also contain the following attributes: <code>'folder.id'</code>, <code>'createdByUser.id'</code>, <code>'created'</code>, and <code>'modified'</code>. </li>
                     <li><strong>fieldTypeBlacklist</strong> (array) -  A list of field types to prevent the user from filtering on. The following is a list of valid field types:
                         <ul>
                             <li>calculated-field</li>
