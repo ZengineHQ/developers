@@ -210,8 +210,6 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
 
     $scope.openFiltersPanel = function() {
 
-        var formId = $scope.formId;
-
         znFiltersPanel.open({
             formId: formId,
             filter: {
