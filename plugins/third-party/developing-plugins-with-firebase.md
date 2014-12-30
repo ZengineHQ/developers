@@ -36,9 +36,9 @@ The `$add` method takes a single argument of any type. It will append this value
  */
 plugin.controller('myPluginCntl', ['$scope', '$firebase', function ($scope, $firebase) {
     
-    var peopleRef = new Firebase('https://<my-firebase>.firebaseio.com/people').$asArray();
+    var peopleRef = new Firebase('https://<my-firebase>.firebaseio.com/people');
     
-    $scope.people = $firebase(peopleRef);
+    $scope.people = $firebase(peopleRef).$asArray();
     
     $scope.people.$add({
         name: 'Steve',
