@@ -163,7 +163,7 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
             <td>options</td>
             <td><code>object</code></td>
             <td>
-                <p>The object has following properties:</p>
+                <p>The object has the following properties:</p>
                 <ul>
                     <li><strong>title</strong> (string) - The dialog title. </li>
                     <li><strong>template</strong> (string) - Raw HTML to display as the dialog body. </li>
@@ -188,6 +188,100 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
                             </li>
                         </ul>
                     In addition the scope associated with modal's content is augmented with the method <code>setBtnAction(name, onClick)</code>.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+# znFiltersPanel
+
+znFiltersPanel is a service that allows you to view and build a <a href="{{site.baseurl}}/rest-api/conventions/data-filters/">data filter</a>. The filter returned from the panel can be used to query <a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">records</a>, save to a <a href="{{site.baseurl}}/rest-api/resources/#!/data_views">data view</a>, and build and run <a href="{{site.baseurl}}/rest-api/resources/#!/calculation_settings">calculations</a>.
+
+<h4><samp>znFiltersPanel.open(options)</samp></h4>
+
+{% highlight js %}
+
+plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function($scope, znFiltersPanel, znData) {
+
+    $scope.formId = 123;
+
+    $scope.openFiltersPanel = function() {
+
+        znFiltersPanel.open({
+            formId: formId,
+            filter: {
+                and: [{
+                    prefix: '',
+                    attribute: 'folder.id',
+                    value: 0
+                }]
+            },
+            onSave: function(filter) {
+                // use filter to interact with API, e.g. query records
+
+                znData('FormRecords').get(
+                    {
+                        formId: $scope.formId,
+                        filter: JSON.stringify(filter)
+                    }
+                );
+            },
+            fieldTypeBlacklist: ['text-input', 'linked'],
+            attributeBlacklist: ['field123', 'createdByUser.id']
+        });
+    };
+}]);
+
+{% endhighlight %}
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Param</th>
+            <th>Type</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>options</td>
+            <td><code>object</code></td>
+            <td>
+                <p>The object has the following properties:</p>
+                <ul>
+                    <li><strong>formId</strong> (integer) - Form ID of the form you want to filter on.</li>
+                    <li><strong>filter</strong> (object) - Existing filter to open with the panel.</li>
+                    <li><strong>onSave(filter)</strong> (function) - A callback executed when the filter panel is saved.</li>
+                    <li><strong>subfilters</strong> (boolean) - Whether to allow subfiltering on related fields. Defaults to <code>true</code>.</li>
+                    <li><strong>operators</strong> (array) - A list of operators to allow filtering on. Defaults to <code>['and', 'or']</code> but <code>['and']</code> or <code>['or']</code> can also be passed.
+                    </li>
+                    <li><strong>attributeBlacklist</strong> (array) - A list of specific fields to prevent the user from filtering on. The list can contain an attribute like <code>'field123'</code>, where 123 is the ID of a field belonging to the form. The list can also contain the following attributes: <code>'folder.id'</code>, <code>'createdByUser.id'</code>, <code>'created'</code>, and <code>'modified'</code>. </li>
+                    <li><strong>fieldTypeBlacklist</strong> (array) -  A list of field types to prevent the user from filtering on. The following is a list of valid field types:
+                        <ul>
+                            <li>calculated-field</li>
+                            <li>checkbox</li>
+                            <li>country-select</li>
+                            <li>date-picker</li>
+                            <li>dropdown</li>
+                            <li>file-upload</li>
+                            <li>heading</li>
+                            <li>hidden-field</li>
+                            <li>html</li>
+                            <li>link-counter</li>
+                            <li>linked</li>
+                            <li>member</li>
+                            <li>page-break</li>
+                            <li>radio</li>
+                            <li>spacer</li>
+                            <li>state-select</li>
+                            <li>text</li>
+                            <li>text-area</li>
+                            <li>text-input</li>
+                            <li>year</li>
+                        </ul>
+                        For a more complete reference, see the API documention on <a href="{{site.baseurl}}/rest-api/resources/#!/form_field_taxonomy">form field taxonomy</a>.
                     </li>
                 </ul>
             </td>
@@ -220,7 +314,7 @@ Same as [Angular $broadcast]({{site.angularDomain}}/{{site.angularVersion}}/docs
 
 # znData
 
-The znData service provides a [collection of resources](#available_resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
+The znData service provides a [collection of resources](#available-resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
 
 
 <h4 id="get"><samp>znData(resourceName).get(params, successCallback, errorCallback)</samp></h4>
