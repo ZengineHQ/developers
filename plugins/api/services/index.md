@@ -290,29 +290,6 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
     </tbody>
 </table>
 
-
-# znPluginEvents
-
-znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope){:target="_blank"}, and is meant for communication between plugins and the core app.
-
-<h4><samp>znPluginEvents.$on(name, listener)</samp></h4>
-
-Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can used to listen for the following **broadcasted events**:
-
-* zn-data-view-deleted
-* zn-data-view-saved
-* zn-data-view-loaded
-* zn-data-panel-record-loaded
-
-
----
-
-<h4><samp>znPluginEvents.$broadcast(name, args)</samp></h4>
-
-Same as [Angular $broadcast]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$broadcast){:target="_blank"}. This method can used to broadcast data to  the following **event listeners**:
-
-* zn-data-column-resize
-
 # znData
 
 The znData service provides a [collection of resources](#available-resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
@@ -493,6 +470,53 @@ The parameterized URL is used to query the {{site.productName}} [REST API]({{sit
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/subscriptions">Subscriptions</a></td><td>/subscriptions/:id</td></tr>
     </tbody>
 </table>
+
+# znPluginEvents
+
+znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope){:target="_blank"}, and is meant for communication between plugins and the core app.
+
+<h4><samp>znPluginEvents.$on(name, listener)</samp></h4>
+
+Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can be used to listen for various broadcasted events, whose names are always prefixed by either `'zn-data'` or `'zn-ui'`.
+
+**zn-ui** events are triggered by actions made in app, such as clicking a button or loading a certain screen.
+For now, the following UI events are available:
+
+* zn-ui-record-overlay-record-loaded
+
+**zn-data** events are triggered by a successful response to a call via the [znData service](#znData), and have the following format:
+
+    zn-data-resource-name-action
+
+The resource name is the hyphenated version of the resource names listed [here](#available-resources).
+The action is one of the following: read, saved, or deleted. For example, calling `znData('FormRecords').save()` will trigger the `'zn-data-form-records-saved'` event.
+
+{% highlight js %}
+/**
+ * Plugin testPluginEvents Controller
+ */
+plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function ($scope, znPluginEvents) {
+
+    znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created) {
+        if (created) {
+            console.log('Record' + record.id + ' was created');
+        } else {
+            console.log('Record' + record.id + ' was updated');
+        }
+    });
+
+    znPluginEvents.$on('zn-data-form-records-deleted', function(evt, params) {
+        console.log('Record ' + params.id + ' was deleted');
+    });
+
+    znPluginEvents.$on('zn-data-form-records-read', function(evt, records) {
+        angular.forEach(records, function(record) {
+            console.log(record);
+        });
+    });
+
+}]);
+{% endhighlight %}
 
 <!-- znLocalStorage -->
 
