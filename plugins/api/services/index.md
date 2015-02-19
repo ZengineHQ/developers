@@ -477,7 +477,7 @@ znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system
 
 <h4><samp>znPluginEvents.$on(name, listener)</samp></h4>
 
-Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can used to listen for the following broadcasted events:
+Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can be used to listen for the following broadcasted events:
 
 * zn-ui-record-overlay-record-loaded
 * zn-data-<code class="btn-success">resource-name</code>-<code class="btn-primary">action</code>
