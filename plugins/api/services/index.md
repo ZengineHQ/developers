@@ -477,19 +477,11 @@ znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system
 
 <h4><samp>znPluginEvents.$on(name, listener)</samp></h4>
 
-Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can be used to listen for various broadcasted events, whose names are always prefixed by either `'zn-data'` or `'zn-ui'`.
-
-**zn-ui** events are triggered by actions made in app, such as clicking a button or loading a certain screen.
-For now, the following UI events are available:
+Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can used to listen for the following broadcasted events:
 
 * zn-ui-record-overlay-record-loaded
-
-**zn-data** events are triggered by a successful response to a call via the [znData service](#znData), and have the following format:
-
-    zn-data-resource-name-action
-
-The resource name is the hyphenated version of the resource names listed [here](#available-resources).
-The action is one of the following: read, saved, or deleted. For example, calling `znData('FormRecords').save()` will trigger the `'zn-data-form-records-saved'` event.
+* zn-data-<code class="btn-success">resource-name</code>-<code class="btn-primary">action</code>
+    * Events in this format are triggered by a successful response to a call via the [znData service](#zndata). The <code class="btn-success">resource name</code> is the hyphenated version of the resource names listed [here](#available-resources). The <code class="btn-primary">action</code> can be one of the following: `read`, `saved`, or `deleted`. For example, calling `znData('FormRecords').save()` will trigger the `'zn-data-form-records-saved'` event.
 
 {% highlight js %}
 /**
@@ -499,9 +491,9 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
 
     znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created) {
         if (created) {
-            console.log('Record' + record.id + ' was created');
+            console.log('Record ' + record.id + ' was created');
         } else {
-            console.log('Record' + record.id + ' was updated');
+            console.log('Record ' + record.id + ' was updated');
         }
     });
 
@@ -513,6 +505,10 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
         angular.forEach(records, function(record) {
             console.log(record);
         });
+    });
+
+    znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
+        console.log(record);
     });
 
 }]);
