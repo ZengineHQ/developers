@@ -126,7 +126,7 @@ The following table presents the registration options and their purpose.
         </tr>
         <tr>
             <td>zn-plugin-data-subheader</td>
-            <td>Above the data grid.</td>
+            <td>Above the data grid. Only available when there are records to display in the grid./td>
         </tr>
         <tr>
             <td>zn-plugin-panel-header</td>

@@ -420,6 +420,8 @@ znData('WorkspaceMembers').save({ workspaceId:123, 'role.id': 2 } , { 'role.id' 
 
 The parameterized URL is used to query the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). For example, if the resource name is **FormFields**, the parameterized URL is **/forms/:formId/fields/:id**. In this case, `formId` is a required URL paramter, and must be passed to the `params` argument of any `get()`, `query()`, `delete()`, or `save()` called on `znData('FormFields')`. The `id` parameter on the other hand, may or may not be passed, depending on whether the request is intended for a single object or multiple objects. This is true for the `id` parameter of any resource URL.
 
+The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/rest-api/conventions/querying-options) for pagination, sorting, filtering, and relational data.
+
 <table class="table table-striped">
     <thead>
         <th>Resource Name</th>

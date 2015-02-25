@@ -33,6 +33,19 @@ plugin.controller('myPluginCntl', ['$scope', function ($scope) {
 {% endraw %}
 {% endhighlight %}
 
+If you click into CSS, you can see the CSS that will apply to your HTML. CSS will be scoped by your namespace when published, so your CSS will only apply inside your plugin.
+
+{% highlight css %}
+{% raw %}
+/**
+ * Plugin My Plugin CSS
+ */
+
+.title { 
+    color: purple;
+}
+{% endraw %}
+{% endhighlight %}
 
 ### Registration Options
 

@@ -39,25 +39,27 @@ sorted ascending.</p>
 <h3 id="operator-prefixes">Operator Prefixes</h3>
 
 <p>Operators may be used when performing a <strong>GET</strong> query, providing an ample amount of 
-search & filtering capability.</p>
+search & filtering capability. <code>Equals</code> prefixes represent an exact match;
+<code>contains</code>, <code>starts-with</code>, and <code>ends-with</code> prefixes represent
+partial match searches.</p>
 
 <ul>
 	<li><code>?attribute=value</code>: <strong>attribute 
-	<span style="font-style: italic">equals</span> value</strong></li>
+		<span style="font-style: italic">equals</span> value</strong></li>
 	<li><code>?not-attribute=value</code>: <strong>attribute 
-	<span style="font-style: italic">does not equal</span> value</strong></li>
+		<span style="font-style: italic">does not equal</span> value</strong></li>
 	<li><code>?contains-attribute=value</code>: <strong>attribute 
-	<span style="font-style: italic">contains</span> value</strong></li>
+		<span style="font-style: italic">contains</span> value</strong></li>
 	<li><code>?not-contains-attribute=value</code>: <strong>attribute 
-	<span style="font-style: italic">does not contain</span> value</strong></li>
+		<span style="font-style: italic">does not contain</span> value</strong></li>
 	<li><code>?starts-with-attribute=value</code>: <strong>attribute 
-	<span style="font-style: italic">starts with</span> value</strong></li>
+		<span style="font-style: italic">starts with</span> value</strong></li>
 	<li><code>?ends-with-attribute=value</code>: <strong>attribute 
-	<span style="font-style: italic">ends with</span> value</strong></li>
+		<span style="font-style: italic">ends with</span> value</strong></li>
 	<li><code>?min-attribute=5</code>: <strong>attribute 
-	<span style="font-style: italic">is at least</span> 5</strong></li>
+		<span style="font-style: italic">is at least</span> 5</strong></li>
 	<li><code>?max-attribute=10</code>: <strong>attribute 
-	<span style="font-style: italic">is no more than</span> 10</strong></li>
+		<span style="font-style: italic">is no more than</span> 10</strong></li>
 </ul>
 
 <h3 id="multiple-conditions">Multiple Conditions</h3>
