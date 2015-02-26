@@ -12,7 +12,7 @@ Our backend stores two separate sets of files for your plugin - the "draft" code
 
 When you've reached a point where you are ready to release your plugin to be run by other users, you need to publish it.  Publishing copies the current set of draft code over to the published code set.  After this point, your published code will remain unchanged until you choose to publish again.  In the meantime, you can continue working on improvements in your draft code using the developer tools without affecting end users.
 
-## Publishing your plugin
+## Publishing Your plugin
 
 When you are ready to publish your plugin, go to the Developer Tools code editor and click Publishing Settings.  Optionally, you may update your plugin name and description, which can be seen by users with access to the plugin.  Click Save & Publish, and you're done.
 
