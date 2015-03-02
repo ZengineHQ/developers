@@ -7,7 +7,7 @@ group: development
 The following is a list of best practices for developing {{site.productName}} plugins. This list includes things specific to {{site.productName}}, as well as general AngularJS best practices compiled from various sources, including the AngularJS [Best Practices wiki page](https://github.com/angular/angular.js/wiki/Best-Practices){:target="_blank"}, the book [Mastering Web Application Development with AngularJs](http://www.amazon.com/Mastering-Web-Application-Development-AngularJS/dp/1782161821){:target="_blank"} by Pawel Kozlowski and Pete Bacon Darwin, and this Stack Overflow [post](http://stackoverflow.com/questions/14994391/how-do-i-think-in-angularjs-if-i-have-a-jquery-background){:target="_blank"} for AngularJS beginners with jQuery background.
 
 * **Namespace your code**  
-  Your component names and HTML template IDs should all be prefixed with the namespace you chose when you created your plugin.
+  Your component names and HTML template IDs should all be prefixed with the namespace you chose when you created your plugin. Your CSS will be automatically scoped by your namespace.
 * **Follow {{site.productName}} Design Patterns for UI Guidelines**
   When designing your plugin, follow our [{{site.productName}} Design Patterns]({{site.clientDomain}}/patterns){:target="_blank"}, so that your plugin UI fits in with the rest of the app. This page contains information on:
   - global CSS settings (typography, colors, etc.)

@@ -33,6 +33,19 @@ plugin.controller('myPluginCntl', ['$scope', function ($scope) {
 {% endraw %}
 {% endhighlight %}
 
+If you click into CSS, you can see the CSS that will apply to your HTML. CSS will be scoped by your namespace when published, so your CSS will only apply inside your plugin.
+
+{% highlight css %}
+{% raw %}
+/**
+ * Plugin My Plugin CSS
+ */
+
+.title { 
+    color: purple;
+}
+{% endraw %}
+{% endhighlight %}
 
 ### Registration Options
 
@@ -71,6 +84,10 @@ To get back to the plugin editor, hover over the Dev Mode menu in the right of t
 
 You can get to the publishing screen by clicking the Publishing Settings button in the plugin editor. From there you can confirm settings such as the name and description. You can also provide a Firebase URL and optionally a Firebase secret. The Firebase secret will allow a plugin to take advantage of Firebase authentication. 
 
-Plugins are available only to the developer prior to publishing. Once a plugin is published, it can be shared with specific workspaces for all users to use in that workspace. After publishing, a list of workspaces where the plugin developer is a member will appear. The plugin developer can choose to add or remove access to the plugin by workspace.
+Plugins are available only to the developer prior to publishing. Once a plugin is published, different rules apply, depending on whether it's a private or public plugin:
+
+- If it's a **private** (and therefore workspace-level) plugin, it can be shared with specific workspaces for all users to use in that workspace. After publishing, a list of workspaces where the plugin developer is a member will appear. The plugin developer can choose to add or remove access to the plugin by workspace. The plugin developer can also revoke access entirely by deleteing the plugin through the API.
+- If it's a **public** plugin, it will appear on the marketplace for anyone to use. Although it can't be deleted, the plugin developer has the option of hiding it from the marketplace.
+
 
 More information about publishing is available [here]({{site.baseurl}}/plugins/getting-started/publishing.html).

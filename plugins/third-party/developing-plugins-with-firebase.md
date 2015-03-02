@@ -5,7 +5,7 @@ group: third-party
 
 # Developing plugins with Firebase
 
-The Firebase JavaScript client v1.0.17 and AngularFire v0.8.0 is available to all plugin developers. Use it to store and sync data in realtime.
+The Firebase JavaScript client v1.0.17 and [AngularFire v0.8.0]({{site.baseurl}}/libraries/angularfire/0.8.0/){:target="_blank"} is available to all plugin developers. Use it to store and sync data in realtime.
 
 This guide covers basic aspects on how to use Firebase in your plugins, for a complete reference or tutorials checkout the links in the bottom of this page.
 

@@ -289,29 +289,6 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
     </tbody>
 </table>
 
-
-# znPluginEvents
-
-znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope){:target="_blank"}, and is meant for communication between plugins and the core app.
-
-<h4><samp>znPluginEvents.$on(name, listener)</samp></h4>
-
-Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can used to listen for the following **broadcasted events**:
-
-* zn-data-view-deleted
-* zn-data-view-saved
-* zn-data-view-loaded
-* zn-data-panel-record-loaded
-
-
----
-
-<h4><samp>znPluginEvents.$broadcast(name, args)</samp></h4>
-
-Same as [Angular $broadcast]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$broadcast){:target="_blank"}. This method can used to broadcast data to  the following **event listeners**:
-
-* zn-data-column-resize
-
 # znData
 
 The znData service provides a [collection of resources](#available-resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
@@ -442,6 +419,8 @@ znData('WorkspaceMembers').save({ workspaceId:123, 'role.id': 2 } , { 'role.id' 
 
 The parameterized URL is used to query the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). For example, if the resource name is **FormFields**, the parameterized URL is **/forms/:formId/fields/:id**. In this case, `formId` is a required URL paramter, and must be passed to the `params` argument of any `get()`, `query()`, `delete()`, or `save()` called on `znData('FormFields')`. The `id` parameter on the other hand, may or may not be passed, depending on whether the request is intended for a single object or multiple objects. This is true for the `id` parameter of any resource URL.
 
+The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/rest-api/conventions/querying-options) for pagination, sorting, filtering, and relational data.
+
 <table class="table table-striped">
     <thead>
         <th>Resource Name</th>
@@ -492,6 +471,49 @@ The parameterized URL is used to query the {{site.productName}} [REST API]({{sit
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/subscriptions">Subscriptions</a></td><td>/subscriptions/:id</td></tr>
     </tbody>
 </table>
+
+# znPluginEvents
+
+znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope){:target="_blank"}, and is meant for communication between plugins and the core app.
+
+<h4><samp>znPluginEvents.$on(name, listener)</samp></h4>
+
+Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope#$on){:target="_blank"}. This method can be used to listen for the following broadcasted events:
+
+* zn-ui-record-overlay-record-loaded
+* zn-data-<code class="btn-success">resource-name</code>-<code class="btn-primary">action</code>
+    * Events in this format are triggered by a successful response to a call via the [znData service](#zndata). The <code class="btn-success">resource name</code> is the hyphenated version of the resource names listed [here](#available-resources). The <code class="btn-primary">action</code> can be one of the following: `read`, `saved`, or `deleted`. For example, calling `znData('FormRecords').save()` will trigger the `'zn-data-form-records-saved'` event.
+
+{% highlight js %}
+/**
+ * Plugin testPluginEvents Controller
+ */
+plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function ($scope, znPluginEvents) {
+
+    znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created) {
+        if (created) {
+            console.log('Record ' + record.id + ' was created');
+        } else {
+            console.log('Record ' + record.id + ' was updated');
+        }
+    });
+
+    znPluginEvents.$on('zn-data-form-records-deleted', function(evt, params) {
+        console.log('Record ' + params.id + ' was deleted');
+    });
+
+    znPluginEvents.$on('zn-data-form-records-read', function(evt, records) {
+        angular.forEach(records, function(record) {
+            console.log(record);
+        });
+    });
+
+    znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
+        console.log(record);
+    });
+
+}]);
+{% endhighlight %}
 
 <!-- znLocalStorage -->
 
