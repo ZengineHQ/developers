@@ -5,7 +5,7 @@ group: third-party
 
 # Developing plugins with Firebase
 
-The Firebase JavaScript client v1.0.17 and [AngularFire v{{angularFireVersion}}]({{site.baseurl}}/libraries/angularfire/{{angularFireVersion}}/){:target="_blank"} is available to all plugin developers. Use it to store and sync data in realtime.
+The Firebase JavaScript client v1.0.17 and [AngularFire v{{site.angularFireVersion}}]({{site.baseurl}}/libraries/angularfire/{{site.angularFireVersion}}/){:target="_blank"} is available to all plugin developers. Use it to store and sync data in realtime.
 
 This guide covers basic aspects on how to use Firebase in your plugins, for a complete reference or tutorials checkout the links in the bottom of this page.
 
@@ -250,6 +250,6 @@ Learn more about [Firebase security rules](https://www.firebase.com/docs/securit
 * [Chat Tutorial]({{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html)
 * [Get started](https://www.firebase.com/how-it-works.html){:target="_blank"}
 * [AngularJS + Firebase](https://www.firebase.com/quickstart/angularjs.html){:target="_blank"}
-* [AngularFire API reference v{{angularFireVersion}}]({{site.baseurl}}/libraries/angularfire/0.8.0/){:target="_blank"}
+* [AngularFire API reference v{{site.angularFireVersion}}]({{site.baseurl}}/libraries/angularfire/{{site.angularFireVersion}}/){:target="_blank"}
 * [Javascript client API reference](https://www.firebase.com/docs/javascript/firebase/index.html){:target="_blank"}
 * [Open Data Sets](https://www.firebase.com/docs/data/index.html){:target="_blank"}
