@@ -19,7 +19,7 @@ served from Firebase's CDN, which you are welcome to use.
 
 ```html
 <script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
-<script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/{{angularFireVersion}}/angularfire.js"></script>
 ```
 
 If you want to use any Simple Login related functionality, you'll need to include
