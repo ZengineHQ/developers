@@ -610,7 +610,12 @@ Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng
  */
 plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function ($scope, znPluginEvents) {
 
-    // zn-[resource name]-saved
+    // zn-ui-record-overlay-record-loaded
+    znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
+        console.log(record);
+    });
+
+    // zn-data-[resource name]-saved
     znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created) {
         if (created) {
             console.log('Record ' + record.id + ' was created');
@@ -619,37 +624,32 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
         }
     });
 
-    // zn-[resource name]-deleted
+    // zn-data-[resource name]-deleted
     znPluginEvents.$on('zn-data-form-records-deleted', function(evt, params) {
         console.log('Record ' + params.id + ' was deleted');
     });
 
-    // zn-[resource name]-read
+    // zn-data-[resource name]-read
     znPluginEvents.$on('zn-data-form-records-read', function(evt, records) {
         angular.forEach(records, function(record) {
             console.log(record);
         });
     });
 
-    // zn-[resource name]-loaded
-    znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
-        console.log(record);
-    });
-
-    // zn-[resource name]-saved-all
-    znPluginEvents.$on('zn-tasks-saved-all', function(evt, data) {
+    // zn-data-[resource name]-saved-all
+    znPluginEvents.$on('zn-data-tasks-saved-all', function(evt, data) {
         console.log('Tasks IDs created: ' + data.join(','));
         // `data` will be an array of IDs
     });
 
-    // zn-[resource name]-updated-all
-    znPluginEvents.$on('zn-tasks-updated-all', function(evt, data) {
+    // zn-data-[resource name]-updated-all
+    znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, data) {
         console.log('Tasks was updated');
         // `data` will be always empty
     });
 
-    // zn-[resource name]-deleted-all
-    znPluginEvents.$on('zn-tasks-deleted-all', function(evt, data) {
+    // zn-data-[resource name]-deleted-all
+    znPluginEvents.$on('zn-data-tasks-deleted-all', function(evt, data) {
         console.log('Tasks was deleted');
         // `data` will contain the params/conditions used
     });
