@@ -604,6 +604,8 @@ Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng
 * zn-data-<code class="btn-success">resource-name</code>-<code class="btn-primary">action</code>
     * Events in this format are triggered by a successful response to a call via the [znData service](#zndata). The <code class="btn-success">resource name</code> is the hyphenated version of the resource names listed [here](#available-resources). The <code class="btn-primary">action</code> can be one of the following: `read`, `saved`, `deleted`, `saved-all`, `updated-all` or `deleted-all`. For example, calling `znData('FormRecords').save()` will trigger the `'zn-data-form-records-saved'` event.
 
+Events for the actions `saved`, `saved-all`, `updated-all` will be suppressed in cases that the params `validate_only` equals `true` or `validate` equals `only` are passed to the `znData` methods `save`, `update`, `saveAll` or `updateAll`.
+
 {% highlight js %}
 /**
  * Plugin testPluginEvents Controller
