@@ -644,7 +644,7 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
     // zn-data-[resource name]-updated-all
     znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, data) {
         console.log('Tasks was updated');
-        // `data` will be always empty
+        // `data` will contain the params/conditions used
     });
 
     // zn-data-[resource name]-deleted-all
