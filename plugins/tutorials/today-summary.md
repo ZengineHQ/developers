@@ -38,11 +38,11 @@ We set up our template shell like so:
 {% raw %}
 
 <script type="text/ng-template" id="today-summary-main">
-	<div class="dropdown">
-    	<a class="topnav-section-link" data-toggle="dropdown" href="javascript:void(0)">
+	<div dropdown>
+    	<a class="topnav-section-link" dropdown-toggle href="javascript:void(0)">
     		<i class="icon-th-list"></i>
     	</a>
-    	<div id="today-summary-menu" class="dropdown-menu" role="menu">
+    	<div id="today-summary-menu" class="dropdown-menu">
             {{text}}
     	</div>
     </div>
@@ -110,11 +110,11 @@ In order to invoke this function, we'll set `ng-click="update()"` on the dropdow
 {% highlight html %}
 {% raw %}
 <script type="text/ng-template" id="today-summary-main">
-	<div class="dropdown">
-		<a class="topnav-section-link" data-toggle="dropdown" ng-click="update()" href="javascript:void(0)">
+	<div dropdown>
+		<a class="topnav-section-link" dropdown-toggle ng-click="update()" href="javascript:void(0)">
 			<i class="icon-th-list"></i>
 		</a>
-		<div id="today-summary-menu" class="dropdown-menu" role="menu">
+		<div id="today-summary-menu" class="dropdown-menu">
 			<span class="throbber" ng-show="loading"></span>
 			<h2>Today's Tasks</h2>
 			<ul>
@@ -324,11 +324,11 @@ Now that we have these templates set up, we need to update our primary template 
 {% highlight html %}
 {% raw %}
 <script type="text/ng-template" id="today-summary-main">
-	<div class="dropdown">
-    	<a class="topnav-section-link" data-toggle="dropdown" ng-click="update()" href="javascript:void(0)">
+	<div dropdown>
+    	<a class="topnav-section-link" dropdown-toggle ng-click="update()" href="javascript:void(0)">
     		<i class="icon-th-list"></i>
     	</a>
-    	<div id="today-summary-menu" class="dropdown-menu" role="menu">
+    	<div id="today-summary-menu" class="dropdown-menu">
             <h2>Today's Tasks</h2>
     	    <ul class="list condensed">
                 <li ng-repeat="task in tasks" ng-include src="'today-summary-task'"></li>
@@ -609,11 +609,11 @@ plugin.controller('todaySummaryCntl', ['$scope', 'znData', '$routeParams', '$q',
 {% raw %}
 <!-- Primary template -->
 <script type="text/ng-template" id="today-summary-main">
-	<div class="dropdown">
-    	<a class="topnav-section-link" data-toggle="dropdown" ng-click="update()" href="javascript:void(0)">
+	<div dropdown>
+    	<a class="topnav-section-link" dropdown-toggle ng-click="update()" href="javascript:void(0)">
     		<i class="icon-th-list"></i>
     	</a>
-    	<div id="today-summary-menu" class="dropdown-menu" role="menu">
+    	<div id="today-summary-menu" class="dropdown-menu">
             <span class="throbber" ng-show="loading"></span>
             <h2>Today's Tasks</h2>
     	    <ul class="list condensed">
