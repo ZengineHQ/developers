@@ -299,7 +299,7 @@ We add a template for events as well.  The layout is almost identical, but event
 			<div class="list-item-subline">
 				<span class="subline">
 					<span class="record" ng-show="event.record">{{event.record.name}} | </span>
-					<span>{{event.start | date:'short'}} - {{event.end | date:'short'}}</span>
+					<span>{{event.start | znUserDate}} - {{event.end | znUserDate}}</span>
 				</span>
 			</div>
 			<div class="list-item-right-block">
@@ -317,7 +317,7 @@ We add a template for events as well.  The layout is almost identical, but event
 {% endraw %}
 {% endhighlight %}
 
-For the event template we're including the `start` and `end` dates.  The pipe notation passes them to AngularJS's `date` filter so that they're output in a compact, readable form.
+For the event template we're including the `start` and `end` dates.  The pipe notation passes them to our [znUserDate filter]({{site.baseurl}}/plugins/api/filters) so that they're output in a form that's preferable to the user.
 
 Now that we have these templates set up, we need to update our primary template to actually use them for each task and event.  At the same time, let's show a bit of help text if there are no tasks or events to display:
 
@@ -669,7 +669,7 @@ plugin.controller('todaySummaryCntl', ['$scope', 'znData', '$routeParams', '$q',
 			<div class="list-item-subline">
 				<span class="subline">
 					<span class="record" ng-show="event.record">{{event.record.name}} | </span>
-					<span>{{event.start | date:'short'}} - {{event.end | date:'short'}}</span>
+					<span>{{event.start | znUserDate}} - {{event.end | znUserDate}}</span>
 				</span>
 			</div>
 			<div class="list-item-right-block">
