@@ -4,7 +4,7 @@ group: api
 subgroup: services
 ---
 
-# Zengine Services
+# {{site.productName}} Services
 
 {{site.productName}} provides several services for you to inject as dependencies when developing your plugin.
 
