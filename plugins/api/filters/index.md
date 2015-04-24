@@ -19,24 +19,3 @@ You can use it in your html, like any other filter.
 <span>{{'2015-04-09' | znUserDate }}</span>
 {% endraw %}
 {% endhighlight %}
-
-You can also inject 'znUserDateFilter' as a dependency in your components (filters, services, etc.).
-
-{% highlight js%}
-plugin.filter('myRelativeUserDate', ['znUserDateFilter', function(znUserDateFilter) {
-
-    return function(input) {
-
-        var mDate = moment(input);
-        var now = moment();
-
-        if (now.diff(mDate) < 1) { // less than a year ago
-            return mDate.fromNow();
-        }
-
-        return znUserDateFilter(input);
-
-    }
-
-});
-{% endhighlight %}
