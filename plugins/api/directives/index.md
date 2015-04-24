@@ -33,10 +33,12 @@ In addition, the directive provides the following useful scope properties:
 - `dateOptions` - a set of default datepicker settings used for all datepickers within the app.
 
 {% highlight html%}
+{% raw %}
 <div ng-model="myDate" zn-datetimepicker-wrapper sync-time="true">
     <input type="text" placeholder="{{user.settings.dateFormat}}" ng-model="date" ng-focus="open($event)" is-open="opened" datepicker-popup="{{format}}" datepicker-options="dateOptions"/>
     <timepicker class="timepicker" ng-model="time" minute-step="1"></timepicker>
 </div>
+{% endraw %}
 {% endhighlight %}
 
 # uiDraggable
