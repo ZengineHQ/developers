@@ -4,9 +4,42 @@ group: api
 subgroup: directives
 ---
 
-# Zengine Directives
+# {{site.productName}} Directives
 
-Zengine provides several directives for you to use in your plugin html.
+{{site.productName}} provides several directives for you to use in your plugin html.
+
+# znDatetimepickerWrapper
+
+The `zn-datetimepicker-wrapper` directive is a wrapper for the Angular bootstrap [datepicker](http://angular-ui.github.io/bootstrap/#/datepicker){:target="_blank"} and [timepicker](http://angular-ui.github.io/bootstrap/#/timepicker){:target="_blank"}.
+Both directives work perfectly fine on their own, but there are two main downsides:
+
+1. There isn't a way to have a single datetime that is synced with both the datepicker and the timepicker.
+2. The model for the pickers needs to be a Date object. This is a problem if your model needs to be a string, which is likely if the date is being retrieved and/or saved via the {{site.productName}} API.
+
+ This directive solves both issues. You can use the directive on an element with model that's a string type, and put a bootstrap datepicker (and optionally a timepicker) as children of the directive element. Then, changes in the directive model are reflected in the picker(s), and vice versa.
+
+A few things to note:
+
+- The datepicker model must have a model called `date`.
+- The timepicker (if present) must have a model called `time`.
+- If you want the directive model to also sync with the timepicker, the directive element needs the attribute `sync-time` with a value that evaluates to true.
+
+In addition, the directive provides the following useful scope properties:
+
+- `format` - the preferred user date format, which can be passed on as the display format of the datepicker
+- `open` - a function for opening the datepicker popup
+- `opened` - a boolean state of whether the datepicker popup is open or not
+- `user` - the entire User object.
+- `dateOptions` - a set of default datepicker settings used for all datepickers within the app.
+
+{% highlight html%}
+{% raw %}
+<div ng-model="myDate" zn-datetimepicker-wrapper sync-time="true">
+    <input type="text" placeholder="{{user.settings.dateFormat}}" ng-model="date" ng-focus="open($event)" is-open="opened" datepicker-popup="{{format}}" datepicker-options="dateOptions"/>
+    <timepicker class="timepicker" ng-model="time" minute-step="1"></timepicker>
+</div>
+{% endraw %}
+{% endhighlight %}
 
 # uiDraggable
 
