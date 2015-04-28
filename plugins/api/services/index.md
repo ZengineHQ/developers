@@ -567,7 +567,6 @@ The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/r
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notifications">Notifications</a></td><td>/notifications/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notification_email">NotificationEmails</a></td><td>/notification_emails/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/plugins">Plugins</a></td><td>/plugins/:id</td></tr>
-        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/user_plugin_links">UserPluginLinks</a></td><td>/user_plugin_links/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspace_plugin_links">WorkspacePluginLinks</a></td><td>/workspace_plugin_links/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_files">RecordImportFiles</a></td><td>/record_import_files/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_jobs">RecordImportJobs</a></td><td>/record_import_jobs/:id</td></tr>
