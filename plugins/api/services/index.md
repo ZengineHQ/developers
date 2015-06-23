@@ -4,7 +4,7 @@ group: api
 subgroup: services
 ---
 
-# Zengine Services
+# {{site.productName}} Services
 
 {{site.productName}} provides several services for you to inject as dependencies when developing your plugin.
 
@@ -291,7 +291,7 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
 
 # znData
 
-The znData service provides a [collection of resources](#available-resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the four methods described below: `get`, `query`, `delete`, and `save`. All four methods return a standard [Angular promise object]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
+The znData service provides a [collection of resources](#available-resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the methods described below: `get`, `query`, `save`, `update`, `delete`, `saveAll`, `updateAll` and `deleteAll`. All methods return a standard [Angular promise object]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
 
 
 <h4 id="get"><samp>znData(resourceName).get(params, successCallback, errorCallback)</samp></h4>
@@ -325,20 +325,6 @@ znData('WorkspaceMembers').query({ workspaceId:123, id: 456 }, function(members)
 
 ---
 
-<h4 id="delete"><samp>znData(resourceName).delete(params, successCallback, errorCallback)</samp></h4>
-
-Performs a `DELETE` request. Same as calling <samp>del(params, successCallback, errorCallback);</samp>
-
-{% highlight js %}
-// Delete a workspace member
-// equivalent to: DELETE /workspaces/123/members/456
-znData('WorkspaceMembers').delete({ workspaceId:123, id:456 }, function() {
-    znMessage('Member removed from workspace', 'saved');
-});
-{% endhighlight %}
-
----
-
 <h4 id="save"><samp>znData(resourceName).save([params], data, successCallback, errorCallback)</samp></h4>
 
 If `params` is present and contains the id param, performs a `PUT`. Otherwise performs a `POST` request.
@@ -361,8 +347,141 @@ znData('WorkspaceMembers').save({ workspaceId:123, id:456 }, { 'role.id' : 2 }, 
 znData('WorkspaceMembers').save({ workspaceId:123, 'role.id': 2 } , { 'role.id' : 1 }, function(members) {
     $scope.members = members;
 });
-
 {% endhighlight %}
+
+---
+
+<h4 id="update"><samp>znData(resourceName).update([params], data, successCallback, errorCallback)</samp></h4>
+
+Works the same as the `save` with the execption it will always performs a `PUT`.
+
+{% highlight js %}
+// Update a workspace member to be an admin
+// equivalent to: PUT /workspaces/123/members/456
+znData('WorkspaceMembers').update({ workspaceId:123, id:456 }, { 'role.id' : 2 }, function(members) {
+    $scope.members = members;
+});
+{% endhighlight %}
+
+---
+
+<h4 id="delete"><samp>znData(resourceName).delete(params, successCallback, errorCallback)</samp></h4>
+
+Performs a `DELETE` request. Same as calling <samp>del(params, successCallback, errorCallback);</samp>
+
+{% highlight js %}
+// Delete a workspace member
+// equivalent to: DELETE /workspaces/123/members/456
+znData('WorkspaceMembers').delete({ workspaceId:123, id:456 }, function() {
+    znMessage('Member removed from workspace', 'saved');
+});
+{% endhighlight %}
+
+---
+
+<h4 id="saveAll"><samp>znData(resourceName).saveAll(params, data, successCallback, errorCallback)</samp></h4>
+
+Performs a `POST` request with multiple objects to be created.
+
+{% highlight js %}
+// Create multiple tasks at once
+// equivalent to: POST /tasks
+
+$scope.tasks = [
+    {
+        "task":"Test 1",
+        "workspace":{"id":62},
+        "taskList":{"id":0},
+        "order":1,
+        "due":"2015-03-20",
+        "assignedToUser":{"id":9},
+        "priority":1,
+        "status":"open"
+    },
+    {
+        "task":"Test 2",
+        "workspace":{"id":62},
+        "taskList":{"id":0},
+        "order":1,
+        "due":"2015-03-20",
+        "assignedToUser":{"id":9},
+        "priority":1,
+        "status":"open"
+    },
+    {
+        "task":"Test 3",
+        "workspace":{"id":62},
+        "taskList":{"id":0},
+        "order":1,
+        "due":"2015-03-20",
+        "assignedToUser":{"id":9},
+        "priority":1,
+        "status":"open"
+    }
+];
+
+znData('Tasks').saveAll({}, $scope.tasks, function(data) {
+    znMessage('All tasks saved.', 'saved');
+    // `data` will contain IDs of created tasks
+});
+{% endhighlight %}
+
+---
+
+<h4 id="updateAll"><samp>znData(resourceName).updateAll(params, data, successCallback, errorCallback)</samp></h4>
+
+Performs a `PUT` request.
+The `data` param needs to be an object with the properties to be updated for all record that matches the params/conditions.
+
+{% highlight js %}
+// Update all tasks status to `closed` where the status is `in-progress`
+// equivalent to: PUT /tasks/?status=in-progress
+
+var params = { status: 'in-progress' };
+var data = { status: 'closed' };
+
+znData('Tasks').updateAll(params, data, function() {
+    znMessage('All tasks updated.', 'saved');
+});
+
+// Update all tasks status to `archived` where the IDs are 1, 2, 3
+// equivalent to: PUT /tasks/?id=1|2|3
+
+var params = { id: '1|2|3' };
+var data = { status: 'archived' };
+
+znData('Tasks').updateAll(params, data, function() {
+    znMessage('All tasks archived.', 'saved');
+});
+{% endhighlight %}
+
+---
+
+<h4 id="deleteAll"><samp>znData(resourceName).deleteAll(params, successCallback, errorCallback)</samp></h4>
+
+Performs a `DELETE` request.
+
+{% highlight js %}
+// Delete all tasks with status `archived`
+// equivalent to: DELETE /tasks/?status=archived
+
+var params = { status: 'archived' };
+
+znData('Tasks').deleteAll(params, function() {
+    znMessage('All tasks deleted.', 'saved');
+});
+
+// Delete all tasks with IDs 1, 2, 3
+// equivalent to: DELETE /tasks/?id=1|2|3
+
+var params = { id: '1|2|3' };
+
+znData('Tasks').deleteAll(params, function() {
+    znMessage('All tasks deleted.', 'saved');
+});
+{% endhighlight %}
+
+---
 
 <table class="table table-striped table-bordered">
     <thead>
@@ -447,7 +566,6 @@ The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/r
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notifications">Notifications</a></td><td>/notifications/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notification_email">NotificationEmails</a></td><td>/notification_emails/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/plugins">Plugins</a></td><td>/plugins/:id</td></tr>
-        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/user_plugin_links">UserPluginLinks</a></td><td>/user_plugin_links/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/workspace_plugin_links">WorkspacePluginLinks</a></td><td>/workspace_plugin_links/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_files">RecordImportFiles</a></td><td>/record_import_files/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/record_import_jobs">RecordImportJobs</a></td><td>/record_import_jobs/:id</td></tr>
@@ -482,7 +600,7 @@ Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng
 
 * zn-ui-record-overlay-record-loaded
 * zn-data-<code class="btn-success">resource-name</code>-<code class="btn-primary">action</code>
-    * Events in this format are triggered by a successful response to a call via the [znData service](#zndata). The <code class="btn-success">resource name</code> is the hyphenated version of the resource names listed [here](#available-resources). The <code class="btn-primary">action</code> can be one of the following: `read`, `saved`, or `deleted`. For example, calling `znData('FormRecords').save()` will trigger the `'zn-data-form-records-saved'` event.
+    * Events in this format are triggered by a successful response to a call via the [znData service](#zndata). The <code class="btn-success">resource name</code> is the hyphenated version of the resource names listed [here](#available-resources). The <code class="btn-primary">action</code> can be one of the following: `read`, `saved`, `deleted`, `saved-all`, `updated-all` or `deleted-all`. For example, calling `znData('FormRecords').save()` will trigger the `'zn-data-form-records-saved'` event.
 
 {% highlight js %}
 /**
@@ -490,6 +608,12 @@ Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng
  */
 plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function ($scope, znPluginEvents) {
 
+    // zn-ui-record-overlay-record-loaded
+    znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
+        console.log(record);
+    });
+
+    // zn-data-[resource name]-saved
     znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created) {
         if (created) {
             console.log('Record ' + record.id + ' was created');
@@ -498,18 +622,34 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
         }
     });
 
+    // zn-data-[resource name]-deleted
     znPluginEvents.$on('zn-data-form-records-deleted', function(evt, params) {
         console.log('Record ' + params.id + ' was deleted');
     });
 
+    // zn-data-[resource name]-read
     znPluginEvents.$on('zn-data-form-records-read', function(evt, records) {
         angular.forEach(records, function(record) {
             console.log(record);
         });
     });
 
-    znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
-        console.log(record);
+    // zn-data-[resource name]-saved-all
+    znPluginEvents.$on('zn-data-tasks-saved-all', function(evt, data) {
+        console.log('Tasks IDs created: ' + data.join(','));
+        // `data` will be an array of IDs
+    });
+
+    // zn-data-[resource name]-updated-all
+    znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, data) {
+        console.log('Tasks was updated');
+        // `data` will contain the params/conditions used
+    });
+
+    // zn-data-[resource name]-deleted-all
+    znPluginEvents.$on('zn-data-tasks-deleted-all', function(evt, data) {
+        console.log('Tasks was deleted');
+        // `data` will contain the params/conditions used
     });
 
 }]);

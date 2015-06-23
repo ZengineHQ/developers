@@ -81,6 +81,9 @@ $(function(){
           <li {% if page.subgroup == 'directives' %}class="active"{% endif %}>
             <a href="{{site.baseurl}}/plugins/api/directives/">Directives</a>
           </li>
+          <li {% if page.subgroup == 'filters' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/api/filters/">Filters</a>
+          </li>
           <li {% if page.subgroup == 'services' %}class="active"{% endif %}>
             <a href="{{site.baseurl}}/plugins/api/services/">Services</a>
             <ul>
@@ -155,8 +158,19 @@ $(function(){
               </li>
             </ul>
           </li>
-          <li {% if page.subgroup == 'recordoverlay' %}class="active"{% endif %}>
-            <a href="{{site.baseurl}}/plugins/api/recordoverlay/">Record Overlay</a>
+          <li {% if page.subgroup == 'query-parameters' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/api/query-parameters/">Query Parameters</a>
+              <ul>
+                <li class="record">
+                  <a href="{{site.baseurl}}/plugins/api/query-parameters/#record">Record Overlay</a>
+                </li>
+                <li class="file-viewer">
+                  <a href="{{site.baseurl}}/plugins/api/query-parameters/#file-viewer">File Viewer Modal</a>
+                </li>
+                <li class="lightbox">
+                  <a href="{{site.baseurl}}/plugins/api/query-parameters/#lightbox">Image Lightbox</a>
+                </li>
+              </ul>
           </li>
         </ul>
       </li>
@@ -254,40 +268,6 @@ $(function(){
               </li>
             </ul>
           </li>
-          <li class="divider"></li>
-          <li {% if page.subgroup == 'today-summary' %}class="active"{% endif %}>
-            <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html">Today Summary</a>
-            <ul>
-              <li class="get-api-data">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#prerequisites">Prerequisites</a>
-              </li>
-              <li class="wait-for-api-responses">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#base-plugin-setup">Base Plugin Setup</a>
-              </li>
-              <li class="connecting-to-firebase">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#getting-started">Getting Started</a>
-              </li>
-              <li class="adding-chat-messages-to-firebase">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#fetching-api-data">Fetching API Data</a>
-              </li>
-              <li class="using-a-directive-to-display-each-message">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#querying-appropriate-data">Querying Appropriate Data</a>
-              </li>
-              <li class="add-a-directive-to-auto-scroll-messages">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#formatting-output">Formatting output</a>
-              </li>
-              <li class="add-a-directive-to-auto-scroll-messages">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#user-data">User Data</a>
-              </li>
-              <li class="add-a-directive-to-auto-scroll-messages">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#showing-a-loading-indicator">Showing a Loading Indicator</a>
-              </li>
-              <li class="add-a-directive-to-auto-scroll-messages">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#accounting-for-different-workspaces">Accounting for different workspaces</a>
-              </li>
-              <li class="wrapping-up">
-                <a href="{{site.baseurl}}/plugins/tutorials/today-summary.html#wrapping-up">Wrapping Up</a>
-              </li>
             </ul>
           </li>
         </ul>

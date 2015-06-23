@@ -53,7 +53,7 @@ clients, these two scenarios require different flows.</p>
 	application with the following query string appended: 
 	<strong>?code={a code which lasts for 30 seconds}&state={the session-based string you passed to prevent CSRF}</strong></li>
 	<li>The <strong>state</strong> parameter is checked to ensure it matches the one you passed.</li>
-	<li>A <strong>GET</strong> request is made to: <strong>{{site.authDomain}}/oauth2/v1/grant?client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=authorization_code&code={the code you just received back from {{site.productName}}}</strong></li>
+	<li>A <strong>POST</strong> request is made to <strong>{{site.authDomain}}/oauth2/v1/grant</strong> with the following payload: <strong>client_id={your API key}&client_secret={your API secret}&redirect_uri={the redirect URI associated with your application}&grant_type=authorization_code&code={the code you just received back from {{site.productName}}}</strong></li>
 	<li>Assuming the code is valid, you will receive a JSON response back with an access token in it: 
 		{% highlight json %}
 			{

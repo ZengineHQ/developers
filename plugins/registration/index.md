@@ -67,10 +67,6 @@ The following table presents the registration options and their purpose.
             <td>Specify additional routes to sub pages of your plugin. Will appear under your main <code>route</code> param. Value should be defined as a JSON array. Ex: <code>routes: ['/:id']</code> translates to <code>{{ site.clientDomain }}/workspaces/123/plugin/myplugin/456</code>, where 456 will be available as a <code>$routeParam</code> named <code>id</code>.</td>
         </tr>
         <tr>
-            <td>context</td>
-            <td>Determines where your full-page user-level plugin should appear (outside a workspace, inside a workspace, or both). Can be one of three options: <code>root</code>, <code>workspace</code>, or <code>both</code>. If the plugin context is <code>root</code>, then the full URI for your plugin will be <code>{{ site.clientDomain }}/plugin/myplugin</code>. If the context is <code>workspace</code>, then the URI will look like this: <code>{{ site.clientDomain }}/workspaces/123/plugin/myplugin</code>. If the context is <code>both</code>, then both routes will be valid.</td>
-        </tr>
-        <tr>
             <td>controller</td>
             <td>You can have multiple controllers in your plugin JavaScript. This param represents the main controller name. Note that all controller names are prefixed with your namepsace, like <code>myPluginCntl</code>.</td>
         </tr>
