@@ -636,19 +636,19 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
 
     // zn-data-[resource name]-saved-all
     znPluginEvents.$on('zn-data-tasks-saved-all', function(evt, data) {
-        console.log('Tasks IDs created: ' + data.join(','));
+        console.log('Task IDs created: ' + data.join(','));
         // `data` will be an array of IDs
     });
 
     // zn-data-[resource name]-updated-all
     znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, data) {
-        console.log('Tasks was updated');
+        console.log('Tasks were updated');
         // `data` will contain the params/conditions used
     });
 
     // zn-data-[resource name]-deleted-all
     znPluginEvents.$on('zn-data-tasks-deleted-all', function(evt, data) {
-        console.log('Tasks was deleted');
+        console.log('Tasks were deleted');
         // `data` will contain the params/conditions used
     });
 
