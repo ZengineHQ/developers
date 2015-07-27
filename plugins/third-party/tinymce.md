@@ -33,7 +33,7 @@ The directive supports all of the standard TinyMCE initialization options as lis
 
 In addition, it supports these additional optional options
 
-- `format` Format to get content as, i.e. 'raw' for raw HTML, or 'text' for text only. Documentation [here](http://www.tinymce.com/wiki.php/api4:method.tinymce.Editor.getContent).
+- `format` Format to get content as, i.e. `raw` for raw HTML, or `text` for text only. Documentation [here](http://www.tinymce.com/wiki.php/api4:method.tinymce.Editor.getContent).
 - `trusted` When `true`, all TinyMCE content that is set to `ngModel` will be whitelisted by `$sce`.
 - `mode` Preset toolbar controls, two modes are available `basic` or `advanced`, if a mode is not set it will default to `basic`, check the table below for complete list of toolbars controls set for each mode.
 
