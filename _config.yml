@@ -15,6 +15,6 @@ demoClientId: "rest-api-quick-start-demo"
 rootDomain: zenginehq.com
 apiKey: false
 kramdown:
-  input: GFM # enable github flavored markdown
+  input: GFM
 productName: Zengine
 logo: <span class="logo">Zengine</span> Developers</span>
