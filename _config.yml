@@ -13,6 +13,8 @@ angularDomain: "https://code.angularjs.org"
 communityUrl: "https://groups.google.com/forum/#!forum/zengine-development/"
 demoClientId: "rest-api-quick-start-demo"
 rootDomain: zenginehq.com
+rateLimit: 250
+rateLimitWindow: 5
 apiKey: false
 kramdown:
   input: GFM
