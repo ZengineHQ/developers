@@ -603,6 +603,8 @@ Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng
 * zn-data-<code class="btn-success">resource-name</code>-<code class="btn-primary">action</code>
     * Events in this format are triggered by a successful response to a call via the [znData service](#zndata). The <code class="btn-success">resource name</code> is the hyphenated version of the resource names listed [here](#available-resources). The <code class="btn-primary">action</code> can be one of the following: `read`, `saved`, `deleted`, `saved-all`, `updated-all` or `deleted-all`. For example, calling `znData('FormRecords').save()` will trigger the `'zn-data-form-records-saved'` event.
 
+*Important:* Make sure to de-register your listeners when your plugin is destroyed. Not de-registering listeners will cause listeners to duplicate and pile up, which will degrade performance of your plugin and the app. The code below shows listeners being registered and de-registered on $scope $destroy.
+
 {% highlight js %}
 /**
  * Plugin testPluginEvents Controller
@@ -610,12 +612,12 @@ Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng
 plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function ($scope, znPluginEvents) {
 
     // zn-ui-record-overlay-record-loaded
-    znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
+    var watchRecordLoaded = znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
         console.log(record);
     });
 
     // zn-data-[resource name]-saved
-    znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created, params) {
+    var watchRecordSaved = znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created, params) {
         if (created) {
             console.log('Record ' + record.id + ' was created in form ' + params.formId);
         } else {
@@ -624,33 +626,43 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
     });
 
     // zn-data-[resource name]-deleted
-    znPluginEvents.$on('zn-data-form-records-deleted', function(evt, params) {
+    var watchRecordDeleted = znPluginEvents.$on('zn-data-form-records-deleted', function(evt, params) {
         console.log('Record ' + params.id + ' was deleted');
     });
 
     // zn-data-[resource name]-read
-    znPluginEvents.$on('zn-data-form-records-read', function(evt, records, params) {
+    var watchRecordRead = znPluginEvents.$on('zn-data-form-records-read', function(evt, records, params) {
         angular.forEach(records, function(record) {
             console.log(record);
         });
     });
 
     // zn-data-[resource name]-saved-all
-    znPluginEvents.$on('zn-data-tasks-saved-all', function(evt, data, params) {
+    var watchTaskSaveAll = znPluginEvents.$on('zn-data-tasks-saved-all', function(evt, data, params) {
         console.log('Tasks IDs created: ' + data.join(','));
         // `data` will be an array of IDs
     });
 
     // zn-data-[resource name]-updated-all
-    znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, params) {
+    var watchTaskUpdateAll = znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, params) {
         console.log('Tasks was updated');
         // `params` will contain the path and query params used
     });
 
     // zn-data-[resource name]-deleted-all
-    znPluginEvents.$on('zn-data-tasks-deleted-all', function(evt, params) {
+    var watchTaskDeleteAll = znPluginEvents.$on('zn-data-tasks-deleted-all', function(evt, params) {
         console.log('Tasks was deleted');
         // `params` will contain the path and query params used
+    });
+
+    $scope.$on("$destroy", function() {
+        if (watchRecordLoaded) watchRecordLoaded();
+        if (watchRecordSaved) watchRecordSaved();
+        if (watchRecordDeleted) watchRecordDeleted();
+        if (watchRecordRead) watchRecordRead();
+        if (watchTaskSaveAll) watchTaskSaveAll();
+        if (watchTaskUpdateAll) watchTaskUpdateAll();
+        if (watchTaskDeleteAll) watchTaskDeleteAll();
     });
 
 }]);
