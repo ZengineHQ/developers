@@ -661,7 +661,7 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
         if (recordSaved) recordSaved();
         if (recordDeleted) recordDeleted();
         if (recordRead) recordRead();
-        if (taskSaveAll) raskSaveAll();
+        if (taskSaveAll) taskSaveAll();
         if (taskUpdateAll) taskUpdateAll();
         if (taskDeleteAll) taskDeleteAll();
     });
