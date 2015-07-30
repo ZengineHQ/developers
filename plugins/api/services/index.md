@@ -615,11 +615,11 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
     });
 
     // zn-data-[resource name]-saved
-    znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created) {
+    znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created, params) {
         if (created) {
-            console.log('Record ' + record.id + ' was created');
+            console.log('Record ' + record.id + ' was created in form ' + params.formId);
         } else {
-            console.log('Record ' + record.id + ' was updated');
+            console.log('Record ' + record.id + ' was updated in form ' + params.formId);
         }
     });
 
@@ -629,28 +629,28 @@ plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function 
     });
 
     // zn-data-[resource name]-read
-    znPluginEvents.$on('zn-data-form-records-read', function(evt, records) {
+    znPluginEvents.$on('zn-data-form-records-read', function(evt, records, params) {
         angular.forEach(records, function(record) {
             console.log(record);
         });
     });
 
     // zn-data-[resource name]-saved-all
-    znPluginEvents.$on('zn-data-tasks-saved-all', function(evt, data) {
+    znPluginEvents.$on('zn-data-tasks-saved-all', function(evt, data, params) {
         console.log('Tasks IDs created: ' + data.join(','));
         // `data` will be an array of IDs
     });
 
     // zn-data-[resource name]-updated-all
-    znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, data) {
+    znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, params) {
         console.log('Tasks was updated');
-        // `data` will contain the params/conditions used
+        // `params` will contain the path and query params used
     });
 
     // zn-data-[resource name]-deleted-all
-    znPluginEvents.$on('zn-data-tasks-deleted-all', function(evt, data) {
+    znPluginEvents.$on('zn-data-tasks-deleted-all', function(evt, params) {
         console.log('Tasks was deleted');
-        // `data` will contain the params/conditions used
+        // `params` will contain the path and query params used
     });
 
 }]);
