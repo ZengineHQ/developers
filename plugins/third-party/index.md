@@ -11,4 +11,6 @@ group: third-party
 * [AngularFire]({{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html) - AngularJS binding for Firebase, an API to store and sync data in realtime
 * [UI Ace]({{site.baseurl}}/plugins/third-party/ace-editor.html) - AngularJS directive for adding ACE editor elements
 * [UI Sortable]({{site.baseurl}}/plugins/third-party/sortable.html) - AngularJS bindings for jQuery UI Sortable
+* [UI Tinymce]({{site.baseurl}}/plugins/third-party/tinymce.html) - AngularJS directive for adding TinyMCE editor to your form elements
+
 
