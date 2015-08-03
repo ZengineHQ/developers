@@ -158,8 +158,19 @@ $(function(){
               </li>
             </ul>
           </li>
-          <li {% if page.subgroup == 'recordoverlay' %}class="active"{% endif %}>
-            <a href="{{site.baseurl}}/plugins/api/recordoverlay/">Record Overlay</a>
+          <li {% if page.subgroup == 'query-parameters' %}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/api/query-parameters/">Query Parameters</a>
+              <ul>
+                <li class="record">
+                  <a href="{{site.baseurl}}/plugins/api/query-parameters/#record">Record Overlay</a>
+                </li>
+                <li class="file-viewer">
+                  <a href="{{site.baseurl}}/plugins/api/query-parameters/#file-viewer">File Viewer Modal</a>
+                </li>
+                <li class="lightbox">
+                  <a href="{{site.baseurl}}/plugins/api/query-parameters/#lightbox">Image Lightbox</a>
+                </li>
+              </ul>
           </li>
         </ul>
       </li>
