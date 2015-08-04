@@ -1,4 +1,4 @@
-angularVersion: 1.2.17
+angularVersion: 1.2.21
 angularFireVersion: 0.8.0
 angularBootstrapVersion: 0.12.1
 version: 1
@@ -14,6 +14,8 @@ communityUrl: "https://groups.google.com/forum/#!forum/zengine-development/"
 demoClientId: "rest-api-quick-start-demo"
 rootDomain: zenginehq.com
 apiKey: false
+rateLimit: 250
+rateLimitWindow: 5
 kramdown:
   input: GFM # enable github flavored markdown
 productName: Zengine
