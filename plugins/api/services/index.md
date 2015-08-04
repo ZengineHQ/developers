@@ -167,6 +167,7 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
                 <ul>
                     <li><strong>title</strong> (string) - The dialog title. </li>
                     <li><strong>template</strong> (string) - Raw HTML to display as the dialog body. </li>
+                    <li><strong>templateUrl</strong> (string) - Takes precedence over the template property. Works the same as the 'templateUrl' option when registering a directive. Corresponds to the id of the <code>script</code> tag that wraps the HTML to display as the dialog body. For more info, see the Angular docs on the <a href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/directive/script" target="_blank">script directive</a>. </li>
                     <li><strong>classes</strong> (string) One or more (space-separated) CSS classes to add to the dialog. </li>
                     <li><strong>closeButton</strong> (bool) - A close button is included by default. Passing <code>false</code> won't include it. </li>
                     <li><strong>unique</strong> (bool | string) Whether to close any other open dialogs. <code>true</code> means close any other dialogs. Alternatively, a CSS class name can be passed to close related dialogs. </li>
@@ -546,7 +547,7 @@ The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/r
         <th>Parameterized URL</th>
     </thead>
     <tbody>
-        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/activities">Activities</a></td><td>/activities/:id</td></tr>
+        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/activities">Activities</a></td><td>/activities/:activityId</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/app_templates">AppTemplates</a></td><td>/app_templates/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/app_template_install_jobs">AppTemplateInstallJobs</a></td><td>/app_template_install_jobs/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/calculate">Calculate</a></td><td>/calculate</td></tr>
@@ -560,7 +561,7 @@ The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/r
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-fields">FormFields</a></td><td>/forms/:formId/fields/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-folders">FormFolders</a></td><td>/forms/:formId/folders/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">FormRecords</a></td><td>/forms/:formId/records/:id</td></tr>
-        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-uploads">FormUploads</a></td><td>/forms/:formId/uploads</td></tr>
+        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-uploads">FormUploads</a></td><td>/forms/:id/uploads</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/notes">Notes</a></td><td>/notes/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/notes-note.id-replies">NoteReplies</a></td><td>/notes/:noteId/replies/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/users-user.id-notifications">Notifications</a></td><td>/notifications/:id</td></tr>
@@ -602,6 +603,8 @@ Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng
 * zn-data-<code class="btn-success">resource-name</code>-<code class="btn-primary">action</code>
     * Events in this format are triggered by a successful response to a call via the [znData service](#zndata). The <code class="btn-success">resource name</code> is the hyphenated version of the resource names listed [here](#available-resources). The <code class="btn-primary">action</code> can be one of the following: `read`, `saved`, `deleted`, `saved-all`, `updated-all` or `deleted-all`. For example, calling `znData('FormRecords').save()` will trigger the `'zn-data-form-records-saved'` event.
 
+**Important:** Make sure to deregister your listeners when your plugin is destroyed. Not deregistering listeners will cause listeners to duplicate and pile up, which will degrade the performance of your plugin and the app. The code below shows listeners being registered and deregistered on $scope $destroy.
+
 {% highlight js %}
 /**
  * Plugin testPluginEvents Controller
@@ -609,47 +612,58 @@ Same as [Angular $on]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng
 plugin.controller('testPluginEventsCntl', ['$scope', 'znPluginEvents', function ($scope, znPluginEvents) {
 
     // zn-ui-record-overlay-record-loaded
-    znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
+    var recordLoaded = znPluginEvents.$on('zn-ui-record-overlay-record-loaded', function(evt, record) {
         console.log(record);
     });
 
     // zn-data-[resource name]-saved
-    znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created) {
+    var recordSaved = znPluginEvents.$on('zn-data-form-records-saved', function(evt, record, created, params) {
         if (created) {
-            console.log('Record ' + record.id + ' was created');
+            console.log('Record ' + record.id + ' was created in form ' + params.formId);
         } else {
-            console.log('Record ' + record.id + ' was updated');
+            console.log('Record ' + record.id + ' was updated in form ' + params.formId);
         }
     });
 
     // zn-data-[resource name]-deleted
-    znPluginEvents.$on('zn-data-form-records-deleted', function(evt, params) {
+    var recordDeleted = znPluginEvents.$on('zn-data-form-records-deleted', function(evt, params) {
         console.log('Record ' + params.id + ' was deleted');
     });
 
     // zn-data-[resource name]-read
-    znPluginEvents.$on('zn-data-form-records-read', function(evt, records) {
+    var recordRead = znPluginEvents.$on('zn-data-form-records-read', function(evt, records, params) {
         angular.forEach(records, function(record) {
             console.log(record);
         });
     });
 
     // zn-data-[resource name]-saved-all
-    znPluginEvents.$on('zn-data-tasks-saved-all', function(evt, data) {
-        console.log('Task IDs created: ' + data.join(','));
+    var taskSaveAll = znPluginEvents.$on('zn-data-tasks-saved-all', function(evt, data, params) {
+        console.log('Tasks IDs created: ' + data.join(','));
         // `data` will be an array of IDs
     });
 
     // zn-data-[resource name]-updated-all
-    znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, data) {
-        console.log('Tasks were updated');
-        // `data` will contain the params/conditions used
+    var taskUpdateAll = znPluginEvents.$on('zn-data-tasks-updated-all', function(evt, params) {
+        console.log('Tasks was updated');
+        // `params` will contain the path and query params used
     });
 
     // zn-data-[resource name]-deleted-all
-    znPluginEvents.$on('zn-data-tasks-deleted-all', function(evt, data) {
-        console.log('Tasks were deleted');
-        // `data` will contain the params/conditions used
+    var taskDeleteAll = znPluginEvents.$on('zn-data-tasks-deleted-all', function(evt, params) {
+        console.log('Tasks was deleted');
+        // `params` will contain the path and query params used
+    });
+
+    // Deregister listeners
+    $scope.$on("$destroy", function() {
+        if (recordLoaded) recordLoaded();
+        if (recordSaved) recordSaved();
+        if (recordDeleted) recordDeleted();
+        if (recordRead) recordRead();
+        if (taskSaveAll) taskSaveAll();
+        if (taskUpdateAll) taskUpdateAll();
+        if (taskDeleteAll) taskDeleteAll();
     });
 
 }]);
