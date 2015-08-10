@@ -35,7 +35,9 @@ In addition, it supports these additional optional options
 
 - `format` Format to get content as, i.e. `raw` for raw HTML, or `text` for text only. Documentation [here](http://www.tinymce.com/wiki.php/api4:method.tinymce.Editor.getContent).
 - `trusted` When `true`, all TinyMCE content that is set to `ngModel` will be whitelisted by `$sce`.
-- `mode` Preset toolbar controls, two modes are available `basic` or `advanced`, if a mode is not set it will default to `basic`, check the table below for complete list of toolbars controls set for each mode.
+- `mode` Preset options for toolbar and plugin controls. **We strongly encourage you to use one of these preset modes so that users of your plugin will have a consistent experience with other editors in the app.**
+Two modes are available: `basic` or `advanced`. If a mode is not set it will default to `basic`. Check the table below for a complete list of toolbar controls set for each mode.
+If you wish to customize the set of plugins/toolbars, do not specify a `mode`. You may use the listings below as a baseline for your options.
 
 <table class="table">
 	<thead>
@@ -50,7 +52,8 @@ In addition, it supports these additional optional options
 				<p>basic</p>
 			</td>
 			<td>
-				<p>bold, italic, forecolor, backcolor, alignleft, aligncenter, alignright, bullist, numlist, outdent, indent, hr and link</p>
+				<p>plugins: &quot;link textcolor hr code&quot;<br>
+toolbar: &quot;bold italic | forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | hr link&quot;</p>
 			</td>
 		</tr>
 		<tr>
@@ -58,7 +61,8 @@ In addition, it supports these additional optional options
 				<p>advanced</p>
 			</td>
 			<td>
-				<p>styleselect, fontselect, bold, italic, forecolor, backcolor, alignleft, aligncenter, alignright, bullist, numlist, outdent, indent, hr, link, image, table, searchreplace, fullscreen and code</p>
+				<p>plugins: &quot;link textcolor hr table code image paste searchreplace fullscreen&quot;<br>
+toolbar: &quot;styleselect fontselect | bold italic | forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | hr link image table | searchreplace | fullscreen code&quot;</p>
 			</td>
 		</tr>
 	</tbody>
@@ -71,7 +75,8 @@ myAppModule.controller('MyController', function($scope) {
       // put logic here for keypress and cut/paste changes
     },
     inline: false,
-    plugins : 'advlist autolink link image lists charmap print preview'
+    plugins : 'advlist autolink link image lists charmap print preview',
+    toolbar: 'bold italic | forecolor backcolor | alignleft aligncenter alignright | print preview'
   };
 });
 {% endhighlight %}
