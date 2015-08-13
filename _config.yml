@@ -2,7 +2,7 @@ angularVersion: 1.2.21
 angularFireVersion: 0.8.0
 angularBootstrapVersion: 0.12.1
 version: 1
-baseurl: '/developers'
+baseurl: '/developers-stage'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://stage-api.zenginehq.com"
 clientDomain: "https://stage-platform.zenginehq.com"
