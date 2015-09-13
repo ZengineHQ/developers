@@ -161,17 +161,17 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
     <tbody>
         <tr>
             <td>options</td>
-            <td><code>object</code></td>
+            <td><code>Object</code></td>
             <td>
                 <p>The object has the following properties:</p>
                 <ul>
-                    <li><strong>title</strong> (string) - The dialog title. </li>
-                    <li><strong>template</strong> (string) - Raw HTML to display as the dialog body. </li>
-                    <li><strong>templateUrl</strong> (string) - Takes precedence over the template property. Works the same as the 'templateUrl' option when registering a directive. Corresponds to the id of the <code>script</code> tag that wraps the HTML to display as the dialog body. For more info, see the Angular docs on the <a href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/directive/script" target="_blank">script directive</a>. </li>
-                    <li><strong>classes</strong> (string) One or more (space-separated) CSS classes to add to the dialog. </li>
-                    <li><strong>closeButton</strong> (bool) - A close button is included by default. Passing <code>false</code> won't include it. </li>
-                    <li><strong>unique</strong> (bool | string) Whether to close any other open dialogs. <code>true</code> means close any other dialogs. Alternatively, a CSS class name can be passed to close related dialogs. </li>
-                    <li><strong>btns</strong> (object) An object hash of buttons to include. Each button is a key-value pair, where the key is name used for the button text, and the value is a hash object that can include the following properties:
+                    <li><strong>title</strong> - <code>{string}</code> - The dialog title. </li>
+                    <li><strong>template</strong> - <code>{string}</code> - Raw HTML to display as the dialog body. </li>
+                    <li><strong>templateUrl</strong> - <code>{string}</code> - Takes precedence over the template property. Works the same as the 'templateUrl' option when registering a directive. Corresponds to the id of the <code>script</code> tag that wraps the HTML to display as the dialog body. For more info, see the Angular docs on the <a href="{{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/directive/script" target="_blank">script directive</a>. </li>
+                    <li><strong>classes</strong> - <code>{string}</code> - One or more (space-separated) CSS classes to add to the dialog. </li>
+                    <li><strong>closeButton</strong> - <code>{boolean}</code> - A close button is included by default. Passing <code>false</code> won't include it. </li>
+                    <li><strong>unique</strong> - <code>{boolean|string}</code> - Whether to close any other open dialogs. <code>true</code> means close any other dialogs. Alternatively, a CSS class name can be passed to close related dialogs. </li>
+                    <li><strong>btns</strong> - <code>{Object}</code> - An object hash of buttons to include. Each button is a key-value pair, where the key is name used for the button text, and the value is a hash object that can include the following properties:
                         <ul>
                             <li>
                                 one of three possible keys to determine background color: <code class="btn-success">success</code>, <code class="btn-danger">danger</code>, or <code class="btn-primary">primary</code>.
@@ -181,7 +181,7 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
                             </li>
                         </ul>
                     </li>
-                    <li><strong>scope</strong> (object) - This property determines which scope to use in the modal template. (If you are familiar with Angular, this property is similar to how the scope property works with a directive.) There are three options for the scope to be used:
+                    <li><strong>scope</strong> - <code>{Object}</code> - This property determines which scope to use in the modal template. (If you are familiar with Angular, this property is similar to how the scope property works with a directive.) There are three options for the scope to be used:
                         <ul>
                             <li>By default, the modal creates a child scope, which prototypically inherits from the $rootScope.</li>
                             <li>To create a child scope, which prototypically inherits from a different parent (i.e. the scope where the modal is being used), you can pass a reference like this: <code>scope: $scope</code>.</li>
@@ -248,18 +248,18 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
     <tbody>
         <tr>
             <td>options</td>
-            <td><code>object</code></td>
+            <td><code>Object</code></td>
             <td>
                 <p>The object has the following properties:</p>
                 <ul>
-                    <li><strong>formId</strong> (integer) - Form ID of the form you want to filter on.</li>
-                    <li><strong>filter</strong> (object) - Existing filter to open with the panel.</li>
-                    <li><strong>onSave(filter)</strong> (function) - A callback executed when the filter panel is saved.</li>
-                    <li><strong>subfilters</strong> (boolean) - Whether to allow subfiltering on related fields. Defaults to <code>true</code>.</li>
-                    <li><strong>operators</strong> (array) - A list of operators to allow filtering on. Defaults to <code>['and', 'or']</code> but <code>['and']</code> or <code>['or']</code> can also be passed.
+                    <li><strong>formId</strong> - <code>{integer}</code> - Form ID of the form you want to filter on.</li>
+                    <li><strong>filter</strong> - <code>{Object}</code> - Existing filter to open with the panel.</li>
+                    <li><strong>onSave</strong> - <code>{function(filter)}</code> - A callback executed when the filter panel is saved.</li>
+                    <li><strong>subfilters</strong> - <code>{boolean}</code> - Whether to allow subfiltering on related fields. Defaults to <code>true</code>.</li>
+                    <li><strong>operators</strong> - <code>{array}</code> - A list of operators to allow filtering on. Defaults to <code>['and', 'or']</code> but <code>['and']</code> or <code>['or']</code> can also be passed.
                     </li>
-                    <li><strong>attributeBlacklist</strong> (array) - A list of specific fields to prevent the user from filtering on. The list can contain an attribute like <code>'field123'</code>, where 123 is the ID of a field belonging to the form. The list can also contain the following attributes: <code>'folder.id'</code>, <code>'createdByUser.id'</code>, <code>'created'</code>, and <code>'modified'</code>. </li>
-                    <li><strong>fieldTypeBlacklist</strong> (array) -  A list of field types to prevent the user from filtering on. The following is a list of valid field types:
+                    <li><strong>attributeBlacklist</strong> - <code>{array}</code> - A list of specific fields to prevent the user from filtering on. The list can contain an attribute like <code>'field123'</code>, where 123 is the ID of a field belonging to the form. The list can also contain the following attributes: <code>'folder.id'</code>, <code>'createdByUser.id'</code>, <code>'created'</code>, and <code>'modified'</code>. </li>
+                    <li><strong>fieldTypeBlacklist</strong> - <code>{array}</code> -  A list of field types to prevent the user from filtering on. The following is a list of valid field types:
                         <ul>
                             <li>calculated-field</li>
                             <li>checkbox</li>
@@ -495,13 +495,13 @@ znData('Tasks').deleteAll(params, function() {
     <tbody>
         <tr>
             <td>params (optional)</td>
-            <td><code>object</code></td>
+            <td><code>Object</code></td>
             <td>Optional if the resource has no required URL parameters and a <code>POST</code> is desired. Valid URL parameters are defined for each resource <a href="#available_resources">here</a>. If the <code>params</code>object is passed, any keys that aren't URL parameters are sent as <a href="{{site.baseurl}}/rest-api/conventions/querying-options/">query parameters</a> in the request. Some examples of valid query parameters are limit, related, sort, and attributes. If the id param is included in this object, a <code>PUT</code> is made. If not, a <code>POST</code> is made.
             </td>
         </tr>
         <tr>
             <td>data</td>
-            <td><code>object</code></td>
+            <td><code>Object</code></td>
             <td>Sent as the payload of the request.</td>
         </tr>
         <tr>
@@ -510,8 +510,8 @@ znData('Tasks').deleteAll(params, function() {
             <td>
                 <p>The function to execute if the request succeeds.</p>
                 <ul>
-                    <li><strong>data</strong> - The data of the response. </li>
-                    <li><strong>metaData</strong> - An object containing the following info about the response:
+                    <li><strong>data</strong> - <code>{Object}</code> - The data of the response. </li>
+                    <li><strong>metaData</strong> - <code>{Object}</code> - An object containing the following info about the response:
                         <ul>
                             <li>status</li>
                             <li>code</li>
@@ -521,7 +521,7 @@ znData('Tasks').deleteAll(params, function() {
                         </ul>
                         Click <a href="{{site.baseurl}}/rest-api/conventions/response-format">here</a> for more info about the response format.
                     </li>
-                    <li><strong>headers</strong> - The HTTP response headers.</li>
+                    <li><strong>headers</strong> - <code>{function([headerName])}</code> – Getter function for the HTTP response headers.</li>
                 </ul>
             </td>
         </tr>
