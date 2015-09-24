@@ -33,5 +33,14 @@ group: tutorials
 			</p>
 		</a>
 	</div>
+
+	<div class="col-md-4">
+		<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html">
+			<p class="icon blue"><i class="fa fa-clock-o"></i></p> 
+			<p>
+				Learn to fetch records from {{site.productName}} and post them to HipChat once a day using Plugin Services and Scheduled Webhooks.
+			</p>
+		</a>
+	</div>
 	
 </div>
