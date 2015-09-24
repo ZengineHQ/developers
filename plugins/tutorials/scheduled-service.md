@@ -4,7 +4,7 @@ group: tutorials
 subgroup: scheduled-service
 ---
 
-<h1 id="creating-a-record-sms-plugin">Creating a Scheduled Plugin Service <a href="https://github.com/ZengineHQ/labs/tree/master/plugins/scheduled-service" target="_blank">
+<h1 id="creating-a-scheduled-plugin-service">Creating a Scheduled Plugin Service <a href="https://github.com/ZengineHQ/labs/tree/master/plugins/scheduled-service" target="_blank">
         <span class="btn btn-primary btn-sm">
             <i class="fa fa-github fa-lg"></i> View on Github
         </span>
