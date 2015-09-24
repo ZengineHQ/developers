@@ -19,7 +19,7 @@ You will need a HipChat account with API access to send messages. [Create an API
 
 ## Creating the Plugin Service
 
-If you haven't done so already, start by [creating a plugin]({{site.baseurl}}/developers-stage/rest-api/resources/#!/plugins/add_plugins_Plugin_post_2) and [adding a backend service]({{site.baseurl}}/developers/rest-api/resources/#!/plugins-plugin.id-services/add_plugins_services_Services_post_2). Next, download and extract the draft source from the `draftSourceUrl`. Edit the `plugin.js` file and replace the contents with the following code:
+If you haven't done so already, start by [creating a plugin]({{site.baseurl}}/rest-api/resources/#!/plugins/add_plugins_Plugin_post_2) and [adding a backend service]({{site.baseurl}}/rest-api/resources/#!/plugins-plugin.id-services/add_plugins_services_Services_post_2). Next, download and extract the draft source from the `draftSourceUrl`. Edit the `plugin.js` file and replace the contents with the following code:
 
 {% highlight js %}
 {% raw %}
@@ -87,7 +87,7 @@ After publishing, install and activate the plugin in your workspace.
 
 ## Creating a Scheduled Webhook
 
-Now that you have a plugin service, you can [create a scheduled webhook]({{site.baseurl}}/developers/rest-api/resources/#!/scheduled_webhooks/add_scheduled_webhooks_ScheduledWebhook_post_2) to execute it. Create a scheduled webhook with the `workspace.id` where you installed your plugin, a `frequency` of `daily`, and a URL in the format `{{site.pluginDomain}}/workspaces/{workspaceId}/{pluginNamespace}/{serviceRoute}?formId={formId}&folderId={folderID}&hipchatRoom={room}&hipchatToken={token}`
+Now that you have a plugin service, you can [create a scheduled webhook]({{site.baseurl}}/rest-api/resources/#!/scheduled_webhooks/add_scheduled_webhooks_ScheduledWebhook_post_2) to execute it. Create a scheduled webhook with the `workspace.id` where you installed your plugin, a `frequency` of `daily`, and a URL in the format `{{site.pluginDomain}}/workspaces/{workspaceId}/{pluginNamespace}/{serviceRoute}?formId={formId}&folderId={folderID}&hipchatRoom={room}&hipchatToken={token}`
 
  You must specify a `formId`, `hipchatRoom`, and the `hipchatToken` that you created under prerequisites. You can optionally specify a `folderId` to fetch a subset of records, for instance, only records in a "To Do" folder, ignoring records in a "Completed" folder.
 
