@@ -6,6 +6,7 @@ baseurl: '/developers-stage'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://stage-api.zenginehq.com"
 clientDomain: "https://stage-platform.zenginehq.com"
+pluginDomain: "https://stage-plugins.zenginehq.com"
 authDomain: "https://stage-auth.zenginehq.com"
 supportDomain: "http://support.zenginehq.com"
 developerDomain: https://github.com/ZengineHQ/developers-stage

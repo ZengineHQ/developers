@@ -3,10 +3,10 @@ layout: plugin-nav-bar
 group: tutorials
 ---
 
-<h1> Sample Plugins </h1>
+# Sample Plugins
 
 <div class="container-fluid center-text">
-	<div class="col-md-6">
+	<div class="col-md-4">
 		<a href="{{site.baseurl}}/plugins/tutorials/record-board.html">
 			<p class="icon blue"><i class="fa fa-columns"></i></p> 
 			<p>
@@ -16,11 +16,20 @@ group: tutorials
 
 	</div>
 	
-	<div class="col-md-6">
+	<div class="col-md-4">
 		<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html">
 			<p class="icon green"><i class="fa fa-database"></i></p> 
 			<p>
 				Want to learn how to store and sync additional data? Follow this tutorial for building a chat plugin using Firebase.
+			</p>
+		</a>
+	</div>
+
+	<div class="col-md-4">
+		<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html">
+			<p class="icon orange"><i class="fa fa-mobile"></i></p> 
+			<p>
+				Want to learn how to integrate with other systems? Follow this tutorial for building an sms plugin using the Twillio API and {{site.productName}} Webhooks.
 			</p>
 		</a>
 	</div>

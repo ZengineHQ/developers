@@ -271,6 +271,58 @@ $(function(){
               </li>
             </ul>
           </li>
+          <li class="divider"></li>
+          <li {% if page.subgroup == 'record-sms' or page.subgroup == 'record-sms-2'%}class="active"{% endif %}>
+            <a href="{{site.baseurl}}/plugins/tutorials/record-sms.html">Record SMS</a>
+            <ul>
+              <li {% if page.subgroup == 'record-sms' %}class="active"{% endif %}>
+                <a href="{{site.baseurl}}/plugins/tutorials/record-sms.html">Part 1</a>
+                <ul>
+                  <li class="prerequisites">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#prerequisites">Prerequisites</a>
+                  </li>
+                  <li class="creating-a-backend-plugin-service">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#creating-a-backend-plugin-service">Creating a Backend Plugin Service</a>
+                  </li>
+                  <li class="plugin-settings">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#plugin-settings">Plugin Settings</a>
+                  </li>
+                  <li class="configuring-the-webhook">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#configuring-the-webhook">Configuring the Webhook</a>
+                  </li>
+                  <li class="using-webhook-payload-data">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#using-webhook-payload-data">Using Webhook Payload Data</a>
+                  </li>
+                  <li class="saving-webhook-settings-to-firebase">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#saving-webhook-settings-to-firebase">Saving to Firebase</a>
+                  </li>
+                  <li class="wrapping-up">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#wrapping-up">Wrapping Up</a>
+                  </li>
+                </ul>
+              </li>
+              <li {% if page.subgroup == 'record-sms-2' %}class="active"{% endif %}>
+                <a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html">Part 2</a>
+                <ul>
+                  <li class="adding-sms-settings">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#adding-sms-settings">Adding SMS Settings</a>
+                  </li>
+                  <li class="adding-twillio-credentials">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#adding-twillio-credentials">Adding Twillio Credentials</a>
+                  </li>
+                  <li class="using-firebase-in-your-backend-service">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#using-firebase-in-your-backend-service">Using Firebase in Your Backend Service</a>
+                  </li>
+                  <li class="webhook-verification">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#webhook-verification">Webhook Verification</a>
+                  </li>
+                  <li class="wrapping-up">
+                    <a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#wrapping-up">Wrapping Up</a>
+                  </li>
+                </ul>
+              </li>
+                  </ul>
+              </li>
             </ul>
           </li>
         </ul>
