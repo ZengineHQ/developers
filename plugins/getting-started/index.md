@@ -83,7 +83,7 @@ A plugin can have one or more `interfaces`. This interfaces allows you to develo
 {% endhighlight %}
 
 A plugin can also have multiple `interfaces`.
-This allows you to develop a plugin that with different types, for example a common use case is a plugin with the types `full-page` and `settings`.
+This allows you to develop a plugin with different types, for example a common use case is a plugin with both `full-page` and `settings` types.
 
 {% highlight javascript %}
 {% raw %}
