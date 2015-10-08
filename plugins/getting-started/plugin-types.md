@@ -4,7 +4,7 @@ group: intro
 subgroup: plugin-types
 ---
 # Plugin Types
-You can create plugins of three different types: fullPage, inline or recordOverlay.  Use registration options to specify which type your plugin will be, as well as related options.  If you do not specify any registration options, the default type is fullPage.
+You can create plugins with several different types: fullPage, inline, recordOverlay, settings, and/or server.  Use registration options to specify which type your plugin will be, as well as related options.  If you do not specify any registration options, the default type is fullPage.
 
 More information about the individual options is available on the [plugin registration options page]({{site.baseurl}}/plugins/registration).
 
@@ -24,3 +24,11 @@ The `route` and `routes` registration options do not apply for inline plugins, a
 Record overlay plugins allow you to add new tabs to the record panel.
 
 To set up a record overlay plugin, set `type: 'recordOverlay'` on your plugin registration. 
+
+## Settings
+
+Allows your plugin to add a screen to the workspace settings area. To use plugin settings, set `type: 'settings'` in your plugin registration. 
+
+## Server
+
+Plugin services run on the server. When you add a plugin service, your plugin becomes a server plugin.

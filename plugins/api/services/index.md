@@ -591,6 +591,67 @@ The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/r
     </tbody>
 </table>
 
+# znPluginData
+
+The znPluginData service is used to communicate with Plugin Services **LINK NEEDED**, similar to how znData makes requests to the REST API. Instead of passing a resource name, you pass the plugin namespace and service route. The methods available are: `get`, `post`, `put`, and `delete`. The methods return an Angular promise object.
+
+The param `workspaceId` is always required and must be a workspace where the plugin is installed. All other
+params will be interpreted as query string parameters.
+
+---
+
+<h4 id="pluginDataGet"><samp>znPluginData(namespace).get(route, params, successCallback, errorCallback)</samp></h4>
+
+Performs a `GET` request.
+
+{% highlight js %}
+// equivalent to: GET {{site.pluginDomain}}/workspaces/123/myPlugin/my-route?id=456
+znPluginData('myPlugin').get('/my-route', { workspaceId: 123, id: 456 }, function(results) {
+    $scope.results = results;
+});
+{% endhighlight %}
+
+---
+
+<h4 id="pluginDataPost"><samp>znPluginData(namepsace).post(route, params, data, successCallback, errorCallback)</samp></h4>
+
+Performs a `POST` request.
+
+{% highlight js %}
+// equivalent to: POST {{site.pluginDomain}}/workspaces/123/myPlugin/my-route
+znPluginData('myPlugin').post('/my-route', { workspaceId: 123 }, { name: $scope.name }, function(result) {
+    $scope.result = result;
+});
+{% endhighlight %}
+
+---
+
+<h4 id="pluginDataPut"><samp>znPluginData(namespace).put(route, params, data, successCallback, errorCallback)</samp></h4>
+
+Performs a `PUT` request.
+
+{% highlight js %}
+// equivalent to: PUT {{site.pluginDomain}}/workspaces/123/myPlugin/my-route?id=456
+znPluginData('myPlugin').put('/my-route', { workspaceId: 123, id: 456 }, { email: $scope.email }, function(result) {
+    $scope.result = result;
+});
+{% endhighlight %}
+
+---
+
+<h4 id="pluginDataDelete"><samp>znPluginData(namespace).delete(route, params, successCallback, errorCallback)</samp></h4>
+
+Performs a `DELETE` request.
+
+{% highlight js %}
+// equivalent to: DELETE {{site.pluginDomain}}/workspaces/123/myPlugin/my-route?id=456
+znPluginData('myPlugin').delete('/my-route', { workspaceId: 123, id: 456 }, function(result) {
+    // Deleted
+});
+{% endhighlight %}
+
+---
+
 # znPluginEvents
 
 znPluginEvents is service that acts as a wrapper for the [Angular pub-sub system]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/type/$rootScope.Scope){:target="_blank"}, and is meant for communication between plugins and the core app.

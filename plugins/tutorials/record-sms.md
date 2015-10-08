@@ -4,7 +4,7 @@ group: tutorials
 subgroup: record-sms
 ---
 
-<h1 id="creating-a-record-sms-plugin">Creating a Record SMS Plugin (Part 1) <a href="https://github.com/ZengineHQ/labs/tree/master/plugins/record-sms" target="_blank">
+<h1 id="creating-a-record-sms-plugin">Creating a Record SMS Plugin (Part 1) <a href="https://github.com/ZengineHQ/labs/tree/{{site.githubBranch}}/plugins/record-sms" target="_blank">
         <span class="btn btn-primary btn-sm">
             <i class="fa fa-github fa-lg"></i> View on Github
         </span>
@@ -23,7 +23,9 @@ Before developing the plugin, you will need a [Twillio account](https://www.twil
 
 When a {{site.productName}} webhook is triggered, it makes a POST request with a payload about the triggered data. We need to setup a service to receive these payloads and send the text messages. We can do this by adding a [backend service]({{site.baseurl}}/rest-api/resources/#!/plugins-plugin.id-services) to our plugin. After creating a backend service, downloading and unzipping the draft source code, go to the top-level of the code directory, and run the command below to install the [Twillio Node.js library](https://www.twilio.com/docs/node/install){:target="_blank"}:
 
-`npm install twilio --save`
+{% highlight js %}
+npm install twilio --save
+{% endhighlight %}
 
 Then in the plugin.js file, add the following code: 
 
@@ -33,7 +35,7 @@ exports.run = function(eventData) {
 
     var sendSms = function() {
 
-        var accountSid = '{{your AccountSID goes here}}', 
+        var accountSid = '{{your AccountSID goes here}}',
             authToken = '{{your AuthToken goes here}}',
             client = require('twilio')(accountSid, authToken);
 
@@ -61,7 +63,7 @@ exports.run = function(eventData) {
 {% endraw %}
 {% endhighlight %}
 
-If you use your test API credentials, you can test sending a successful sms by using the magic number **+15005550006** as the **From** number, and a regular phone number for the **To** number. To generate failure cases, check out this [list of test numbers](https://www.twilio.com/docs/api/rest/test-credentials#test-sms-messages-parameters-From){:target="_blank"}. You can try this out locally by booting up the node app by running `npm start` and going to [localhost:3000/](localhost:3000/){:target="_blank"}.
+If you use your test API credentials, you can test sending a successful sms by using the magic number **+15005550006** as the **From** number, and a regular phone number for the **To** number. To generate failure cases, check out this [list of test numbers](https://www.twilio.com/docs/api/rest/test-credentials#test-sms-messages-parameters-From){:target="_blank"}. You can try this out locally by booting up the node app by running `npm start` and going to [localhost:3000/](localhost:3000/){:target="_blank"}. This won't actually send the text message, but you should get a successful response back. If you want to send real text messages, you must use your live API credentials. If you want to send text messages for free through your trial account, follow this [5-step process](https://www.twilio.com/help/faq/twilio-basics/how-does-twilios-free-trial-work){:target="_blank"}.
 
 ## Plugin Settings
 
@@ -69,14 +71,14 @@ Now we want to allow workspace administrators to customize what triggers these s
 
 {% highlight js %}
 
-.register('record-sms', {
-    route: '/record-sms',
+.register('namespaced-record-sms', {
+    route: '/namespaced-record-sms',
     title: 'Record SMS Plugin',
     icon: 'icon-mobile',
     interfaces: [
         {
-            controller: 'recordSmsCntl',
-            template: 'record-sms-settings',
+            controller: 'namespacedRecordSmsSettingsCntl',
+            template: 'namespaced-record-sms-settings',
             type: 'settings'
         }
     ]
@@ -91,7 +93,7 @@ Now workspaces admins can go to the workspace settings section in {{site.product
 
 ## Configuring the Webhook
 
-Now that our plugin has a settings section, we can use it to create the webhooks that will make requests to the plugin service endpoint. For the purposes of this tutorial, assume the webhook should trigger for events about records, so we set the `resource` attribute to `'records'`. We also assume we care about records in the current workspace, so we can get the workspace ID from the route using `$routeParams`. We don't want the webhook to trigger for any activity on tasks, events, or comments associated with the records, so we set `includeRelated` to `false`.
+Now that our plugin has a settings section, we can use it to create the webhooks that will make requests to the plugin service endpoint. For the purposes of this tutorial, assume the webhook should trigger for events about records, so we set the `resource` attribute to `'records'`. We also assume we only care about records in the current workspace, so we can get the workspace ID from the route using `$routeParams`. We don't want the webhook to trigger for any activity on tasks, events, or comments associated with the records, so we set `includeRelated` to `false`.
 
 Below is the resulting base data we will use to create a webhook: 
 {% highlight js %}
@@ -102,11 +104,116 @@ var baseUrl = '{{site.pluginDomain}}/workspaces/' + $routeParams.workspace_id,
             id: $routeParams.workspace_id
         },
         includeRelated: false,
-        url: baseUrl + '/' + $scope.pluginName + '/sms'
+        url: baseUrl + '/' + $scope.pluginName + '/sms-messages'
     };
 {% endhighlight %}
 
-Now we want to allow users to further filter down which records trigger the webhook. The html below creates a form called `pluginSettings` that allows users to choose a form ID and a [data filter]({{site.baseurl}}/rest-api/conventions/data-filters/).
+Now we want to allow users to further filter down which records trigger the webhook, so we allow users to choose a form from a dropdown list of forms in the workspace. If a form is chosen, we also provide the option to create a data filter.
+
+Add the code below, replacing 'namespaced' with your namespace, and 'sms-messages' with the actual route of your backend service. so a webhook is created when a workspace admin clicks the "Save" button.
+
+{% highlight js %}
+plugin.controller('namespacedRecordSmsSettingsCntl', [
+    '$scope',
+    '$routeParams',
+    '$firebase',
+    'znMessage',
+    'znData',
+    'znFiltersPanel',
+    function (
+        $scope,
+        $routeParams,
+        $firebase,
+        znMessage,
+        znData,
+        znFiltersPanel
+    ) {
+
+        /**
+         * Save Plugin Settings
+         */
+        $scope.save = function() {
+
+            var baseUrl = '{{site.pluginDomain}}/workspaces/' + $routeParams.workspace_id,
+                data = {
+                    resource: 'records',
+                    workspace: {
+                        id: $routeParams.workspace_id
+                    },
+                    includeRelated: false,
+                    url: baseUrl + '/' + $scope.pluginName + '/sms-messages'
+                };
+
+            $scope.settings.webhook = $scope.settings.webhook || {};
+
+            if ($scope.settings.webhook.form &&
+                $scope.settings.webhook.form.id) {
+                data['form.id'] = $scope.settings.webhook.form.id;
+            }
+
+            if ($scope.settings.webhook.filter) {
+                data['filter'] =  $scope.settings.webhook.filter;
+            }
+
+            var success = function(response) {
+
+                znMessage('Settings Updated', 'saved');
+
+            };
+
+            znData('Webhooks').save(data, success);
+
+        };
+
+        /**
+         * Reset Filter
+         */
+        $scope.resetFilter = function() {
+            delete $scope.settings.webhook.filter;
+            $scope.filterCount = null;
+        };
+
+
+        /**
+         * Open Filter Panel
+         */
+        $scope.openFiltersPanel = function() {
+
+            var params = {
+                formId: $scope.settings.webhook.form.id,
+                subfilters: false,
+                onSave: function(filter) {
+                    $scope.settings.webhook.filter = filter;
+                    $scope.filterCount = filter[Object.keys(filter)[0]].length;
+                }
+            };
+
+            if ($scope.settings.webhook && $scope.settings.webhook.filter) {
+                params.filter = $scope.settings.webhook.filter;
+            }
+
+            znFiltersPanel.open(params);
+        };
+
+        /**
+         * Load Forms For Workspace
+         *
+         */
+        znData('Forms').query(
+            {
+                workspace: { id: $routeParams.workspace_id },
+                related: 'fields',
+                attributes: 'id,name,singularName'
+            },
+            function(data) {
+                $scope.forms = data;
+            }
+        );
+    }
+])
+{% endhighlight %}
+
+The html below creates a form called `pluginSettings` that allows users to choose a form ID and a [data filter]({{site.baseurl}}/rest-api/conventions/data-filters/).
 
 {% highlight html %}
 {% raw %}
@@ -142,133 +249,9 @@ Now we want to allow users to further filter down which records trigger the webh
 {% endraw %}
 {% endhighlight %}
 
-
-Add the following code below, so a webhook is created when a workspace admin clicks the "Save" button. When defining the webhook URL, replace **sms** with the actual route of your backend service.
-
-{% highlight js %}
-
-/**
- * Save Plugin Settings
- */
-$scope.save = function() {
-    
-    var baseUrl = '{{site.pluginDomain}}/workspaces/' + $routeParams.workspace_id,
-        data = {
-            resource: 'records',
-            workspace: {
-                id: $routeParams.workspace_id
-            },
-            includeRelated: false,
-            url: baseUrl + '/' + $scope.pluginName + '/sms'
-        };
-    
-    $scope.settings.webhook = $scope.settings.webhook || {};
-    
-    if ($scope.settings.webhook.form &&
-        $scope.settings.webhook.form.id) {
-        data['form.id'] = $scope.settings.webhook.form.id;
-    }
-    
-    if ($scope.settings.webhook.filter) {
-        data['filter'] =  $scope.settings.webhook.filter;
-    }
-    
-    var success = function(response) {
-
-        znMessage('Settings Updated', 'saved');
-        
-    };
-    
-    znData('Webhooks').save(data, success);
-    
-};
-
-/**
- * Reset Filter
- */
-$scope.resetFilter = function() {
-    delete $scope.settings.webhook.filter;
-    $scope.filterCount = null;   
-};
-
-
-/**
- * Open Filter Panel
- */
-$scope.openFiltersPanel = function() {
-    
-    var params = {
-        formId: $scope.settings.webhook.form.id,
-        subfilters: false,
-        onSave: function(filter) {
-            $scope.settings.webhook.filter = filter;
-            $scope.filterCount = filter[Object.keys(filter)[0]].length;
-        }
-    };
-
-    if ($scope.settings.webhook && $scope.settings.webhook.filter) {
-        params.filter = $scope.settings.webhook.filter;
-    }
-    
-    znFiltersPanel.open(params);
-};
-
-/**
- * Load Forms For Workspace
- *
- */
-znData('Forms').query(
-    {
-        workspace: { id: $routeParams.workspace_id },
-        related: 'fields',
-        attributes: 'id,name,singularName'
-    },
-    function(data) {
-        $scope.forms = data;
-    }
-);
-{% endhighlight %}
-
 ## Using Webhook Payload Data
 
-Now that the webhook is being created in the plugin settings, once workspace admins save their settings, text messages will be sent anytime a record is created, updated, or deleted in the workspace. However, we only want to send messages when a record is created, so we need to update our service code to look at the payload data, and ignore non-creates.
-
-For record creation, a sample webhook payload looks like this:
-
-{% highlight json %}
-{
-    "developerMessage":"The data in the payload is an activity.",
-    "webhook": {
-        "id": 26430
-    },
-    "webhookEvent": {
-        "id":1622
-    },
-    "data":[
-        {
-            "id":1089360,
-            "workspace": {
-                "id":237
-            },
-            "resource":"records",
-            "action":"create",
-            "createdByUser": {
-                "id": 109
-            },
-            "record": {
-                "id": 866944
-                "form": {
-                    "id":2237
-                },
-                "folder":{
-                    "id":0
-                }
-            },
-            "created":"2015-09-23 18:02:29"
-        }
-    ]
-}
-{% endhighlight %}
+Now that the webhook is being created in the plugin settings, text messages will be sent anytime a record is created, updated, or deleted in the workspace. However, we only want to send messages when a record is created, so we need to update our service code to look at the payload data, and ignore non-creates.
 
 Update your service code below to use the payload data to filter out updates and deletes, as well as send the record id in the message body.
 
@@ -281,13 +264,13 @@ exports.run = function(eventData) {
         if (eventData.request.body.data &&
             eventData.request.body.data[0].action === 'create') {
 
-            var accountSid = '{{your AccountSID goes here}}', 
+            var accountSid = '{{your AccountSID goes here}}',
                 authToken = '{{your AuthToken goes here}}',
                 client = require('twilio')(accountSid, authToken);
 
             var recordId = eventData.request.body.data[0].record.id;
 
-            var message = 'Record' + recordId + ' was created!';
+            var message = 'Record ' + recordId + ' was created!';
 
             var params = {
                 body: message,
@@ -317,6 +300,47 @@ exports.run = function(eventData) {
 {% endraw %}
 {% endhighlight %}
 
+Once you have updated your `plugin.js` file, zip the updated plugin folder and upload it back to your plugin service. In order to test it working via a webhook, you will need to publish your plugin. If you don't want it to show up in the marketplace, make sure your plugin is private.
+
+After publishing your plugin, add it to a workspace, and create a record in that workspace. For record creation, a sample webhook payload looks like this:
+
+{% highlight json %}
+{
+    "developerMessage": "The data in the payload is an activity.",
+    "webhook": {
+        "id": 26430
+    },
+    "webhookEvent": {
+        "id": 1622
+    },
+    "data": [
+        {
+            "id": 1089360,
+            "workspace": {
+                "id": 237
+            },
+            "resource": "records",
+            "action": "create",
+            "createdByUser": {
+                "id": 109
+            },
+            "record": {
+                "id": 866944,
+                "form": {
+                    "id": 2237
+                },
+                "folder": {
+                    "id": 0
+                }
+            },
+            "created": "2015-09-23 18:02:29"
+        }
+    ]
+}
+{% endhighlight %}
+
+You can see whether the webhook POST request was successful by querying the [webhook_events endpoint]({{site.baseurl}}/rest-api/resources/#!/webhook_events){:target="_blank"}. If you are using the live Twillio API credentials, you can also look at the [Twillio SMS logs](https://www.twilio.com/user/account/log/messages).
+
 ## Saving Webhook Settings to Firebase
 
 In order for workspace administrators to be able to come back and edit these settings, we will use Firebase to store them.
@@ -345,7 +369,7 @@ $scope.connect = function() {
             console.log(err);
             return;
         }
-        
+
         // Fetch settings
         $scope.settings = $firebase(ref.child('settings')).$asObject();
         
@@ -396,7 +420,7 @@ Since a new webhook is created each time the "Save" button is clicked, the code 
  * Save Plugin Settings
  */
 $scope.save = function() {
-    
+
     var baseUrl = '{{site.pluginDomain}}/workspaces/' + $routeParams.workspace_id,
         data = {
             workspace: {
@@ -406,7 +430,7 @@ $scope.save = function() {
             includeRelated: false,
             url: baseUrl + '/' + $scope.pluginName + '/sms-messages'
         };
-    
+
     $scope.settings.webhook = $scope.settings.webhook || {};
 
     if ($scope.settings.webhook.id) {
@@ -417,11 +441,11 @@ $scope.save = function() {
         $scope.settings.webhook.form.id) {
         data['form.id'] = $scope.settings.webhook.form.id;
     }
-    
+
     if ($scope.settings.webhook.filter) {
         data['filter'] =  $scope.settings.webhook.filter;
     }
-    
+
     var success = function(response) {
 
         if (response && response.id) {
@@ -431,7 +455,7 @@ $scope.save = function() {
         $scope.updateFirebaseData();
 
         znMessage('Settings Updated', 'saved');
-        
+
     };
     
     znData('Webhooks').save(data, success);
@@ -452,7 +476,54 @@ $scope.updateFirebaseData = function() {
 ## Wrapping Up
 At this point you should have a functional plugin that will send sms messages anytime a record matching certain user-defined conditions is created in the workspace. In [part 2]({{site.baseurl}}/plugins/tutorials/record-sms-2), we will work on making the plugin more customizable and secure.
 
-Your plugin code should now look something like this (with your own plugin namespace in the js registration options and html template id):
+Your plugin backend code should look like this:
+{% highlight js %}
+{% raw %}
+exports.run = function(eventData) {
+
+    var sendSms = function() {
+
+        if (eventData.request.body.data &&
+            eventData.request.body.data[0].action === 'create') {
+
+            var accountSid = '{{your AccountSID goes here}}',
+                authToken = '{{your AuthToken goes here}}',
+                client = require('twilio')(accountSid, authToken);
+
+            var recordId = eventData.request.body.data[0].record.id;
+
+            var message = 'Record ' + recordId + ' was created!';
+
+            var params = {
+                body: message,
+                to: '{{ any valid mobile number}}',
+                from: '+15005550006'
+            };
+
+            client.sms.messages.create(params, function(err, sms) {
+
+                if (err) {
+                    eventData.response.status(404).send(err);
+                } else {
+                    eventData.response.status(200).send(sms);
+                }
+
+            });
+
+        } else {
+            eventData.response.status(403).send('Forbidden');
+        }
+
+    };
+
+    sendSms();
+
+}
+{% endraw %}
+{% endhighlight %}
+
+
+Your plugin frontend code should now look something like this (with your own plugin namespace in the js registration options and html template id, and replace '/sms-messages' with your own plugin service route):
 
 <ul class="nav nav-tabs" role="tablist" id="myTab">
   <li class="active"><a href="#plugin-js" role="tab" data-toggle="tab">plugin.js</a></li>
@@ -463,7 +534,7 @@ Your plugin code should now look something like this (with your own plugin names
     <div class="tab-pane fade in active" id="plugin-js">
 
 {% highlight js %}
-plugin.controller('recordSmsCntl', [
+plugin.controller('namespacedRecordSmsSettingsCntl', [
     '$scope',
     '$routeParams',
     '$firebase',
@@ -479,7 +550,7 @@ plugin.controller('recordSmsCntl', [
         znFiltersPanel
     ) {
 
-  
+
         /**
          * Save Plugin Settings
          */
@@ -492,7 +563,7 @@ plugin.controller('recordSmsCntl', [
                     },
                     resource: 'records',
                     includeRelated: false,
-                    url: baseUrl + $scope.pluginName + '/sms'
+                    url: baseUrl + '/' + $scope.pluginName + '/sms-messages'
                 };
 
             $scope.settings.webhook = $scope.settings.webhook || {};
@@ -511,14 +582,14 @@ plugin.controller('recordSmsCntl', [
             }
 
             var success = function(response) {
-                
+
                 $scope.updateFirebaseData();
 
-                znData('Webhooks').save(data, success);
+                znMessage('Settings Updated', 'saved');
 
             };
 
-            znMessage('Settings Updated', 'saved');
+            znData('Webhooks').save(data, success);
 
         };
 
@@ -569,7 +640,7 @@ plugin.controller('recordSmsCntl', [
                 
             // Firebase reference
             var ref = new Firebase($scope.plugin.firebaseUrl + '/' + $routeParams.workspace_id);
-    
+
             // Authenticate user
             ref.auth($scope.plugin.firebaseAuthToken, function(err, res) {
 
@@ -578,7 +649,7 @@ plugin.controller('recordSmsCntl', [
                     console.log(err);
                     return;
                 }
-                
+
                 // Fetch readable settings
                 $scope.settings = $firebase(ref.child('settings')).$asObject();
                 
@@ -589,9 +660,9 @@ plugin.controller('recordSmsCntl', [
                         $scope.filterCount = filter[Object.keys(filter)[0]].length;
                     }
                 });
-    
+
             });
-    
+
         };
         
 
@@ -643,7 +714,7 @@ plugin.controller('recordSmsCntl', [
     icon: 'icon-mobile',
     interfaces: [
         {
-            controller: 'recordSmsCntl',
+            controller: 'namespacedRecordSmsSettingsCntl',
             template: 'record-sms-settings',
             type: 'settings'
         }
