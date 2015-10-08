@@ -5,7 +5,7 @@ subgroup: chat
 ---
 
 
-<h1 id="building-a-chat-plugin">Building a Chat plugin <a href="https://github.com/ZengineHQ/labs/tree/master/plugins/chat-room" target="_blank">
+<h1 id="building-a-chat-plugin">Building a Chat plugin <a href="https://github.com/ZengineHQ/labs/tree/{{site.githubBranch}}/plugins/chat-room" target="_blank">
         <span class="btn btn-primary btn-sm">
             <i class="fa fa-github fa-lg"></i> View on Github
         </span>
@@ -386,7 +386,7 @@ To restrict the access to only authenticated users in Firebase and only to membe
 
 ## Wrapping Up
 
-The code for the entire chat plugin can be found below and also on [Github](https://github.com/ZengineHQ/labs/tree/master/plugins/chat-room){:target="_blank"}. In this case, the plugin namespace is 'namespaced', so to make it work as your own, you will need to replace all instances of the word 'namespaced' with your namespace.
+The code for the entire chat plugin can be found below and also on [Github](https://github.com/ZengineHQ/labs/tree/{{site.githubBranch}}/plugins/chat-room){:target="_blank"}. In this case, the plugin namespace is 'namespaced', so to make it work as your own, you will need to replace all instances of the word 'namespaced' with your namespace.
 
 If you have improvements to the plugin, feel free to make pull requests to the code repository and update the documentation for it [here]({{site.developerDomain}}/edit/gh-pages/plugins/tutorials/building-a-chat-plugin.md).
 

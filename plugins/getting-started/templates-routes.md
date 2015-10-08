@@ -73,18 +73,26 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', function ($scope, $
  */
 .register('myPlugin', {
     route: '/myplugin',
-    // Define additional routes
-    routes: [
-        "/:page"
-    ],
-    controller: 'myPluginCntl',
-    template: 'my-plugin-main',
     title: 'My Plugin',
-    pageTitle: false,
-    fullPage: true,
-    topNav: true,
-    order: 300,
-    icon: 'icon-emo-beer'
+    icon: 'icon-puzzle',
+    interfaces: [
+        {
+            controller: 'myPluginCntl',
+            template: 'my-plugin-main-main',
+            type: 'fullPage',
+            order: 300,
+            topNav: true,
+            // Define additional routes
+            routes: [
+                '/:page'
+            ]
+        },
+        {
+            controller: 'myPluginSettingsCntl',
+            template: 'my-plugin-main-settings',
+            type: 'settings'
+        }
+    ]
 });
 
 {% endraw %}

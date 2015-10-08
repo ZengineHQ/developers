@@ -51,6 +51,8 @@ If you click into CSS, you can see the CSS that will apply to your HTML. CSS wil
 
 There are various plugin options you can change through the registration options. The following options are the only ones you need to get a [full-page plugin]({{site.baseurl}}/plugins/getting-started/plugin-types.html) up and running. 
 
+A plugin can have one or more `interfaces`. This interfaces allows you to develop a plugin that with different types, for example a common use case is a plugin type `full-page` and `settings`.
+
 {% highlight javascript %}
 {% raw %}
 /**
@@ -63,8 +65,60 @@ There are various plugin options you can change through the registration options
     type: 'fullPage'
 });
 
+/**
+ * Plugin Registration
+ */
+.register('myPlugin', {
+	route: '/myPlugin',
+	interfaces: [
+		{
+			controller: 'myPluginCntl',
+			template: 'my-plugin-main',
+			type: 'fullPage',
+		}
+	]
+});
+
 {% endraw %}
 {% endhighlight %}
+
+A plugin can also have multiple `interfaces`.
+This allows you to develop a plugin with different types, for example a common use case is a plugin with both `full-page` and `settings` types.
+
+{% highlight javascript %}
+{% raw %}
+/**
+ * Plugin Registration
+ */
+.register('myPlugin', {
+    route: '/myplugin',
+    controller: 'myPluginCntl',
+    template: 'my-plugin-main',
+    type: 'fullPage'
+});
+
+/**
+ * Plugin Registration
+ */
+.register('myPlugin', {
+	route: '/myPlugin',
+	interfaces: [
+		{
+			controller: 'myPluginCntl',
+			template: 'my-plugin-main',
+			type: 'fullPage',
+		},
+		{
+			controller: 'myPluginSettingsCntl',
+			template: 'my-plugin-settings',
+			type: 'settings'
+		}
+	]
+});
+
+{% endraw %}
+{% endhighlight %}
+
 
 The `route` parameter represents the URI path to run your plugin. If your route is `/myplugin`, then the full URI to your plugin might be `{{ site.clientDomain }}/workspaces/123/plugin/myplugin`
 
