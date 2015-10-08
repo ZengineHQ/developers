@@ -8,7 +8,7 @@ As mentioned in the Getting Started guide, your plugin is available only to you,
 
 ## Published vs. Draft Code
 
-Our backend stores two separate sets of files for your plugin - the "draft" code that you work with while developing your plugin, and the "published" code that will actually be loaded for end users when they run your plugin.
+Our system stores two separate sets of files for your plugin - the "draft" code that you work with while developing your plugin, and the "published" code that will actually be loaded for end users when they run your plugin.
 
 When you've reached a point where you are ready to release your plugin to be run by other users, you need to publish it.  Publishing copies the current set of draft code over to the published code set.  After this point, your published code will remain unchanged until you choose to publish again.  In the meantime, you can continue working on improvements in your draft code using the developer tools without affecting end users.
 

@@ -42,6 +42,9 @@ $(function(){
 					<li {% if page.subgroup == 'templates-routes' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/plugins/getting-started/templates-routes.html">Templates and Routes</a>
 					</li>
+					<li {% if page.subgroup == 'services' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/getting-started/services.html">Backend Services</a>
+					</li>
 					<li {% if page.subgroup == 'publishing' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/plugins/getting-started/publishing.html">Publishing</a>
 					</li>
@@ -68,6 +71,9 @@ $(function(){
 					</li>
 					<li {% if page.name == 'angular-services.md' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/plugins/development/angular-services.html">Angular Services</a>
+					</li>
+					<li {% if page.name == 'services.md' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/plugins/development/services.html">Backend Services</a>
 					</li>
 					<li {% if page.name == 'best-practices.md' %}class="active"{% endif %}>
 						<a href="{{site.baseurl}}/plugins/development/best-practices.html">Best Practices</a>
@@ -116,6 +122,23 @@ $(function(){
 									</li>
 									<li class="available-resources">
 										<a href="{{site.baseurl}}/plugins/api/services/#available-resources">Resources</a>
+									</li>
+								</ul>
+							</li>
+							<li class="znplugindata">
+								<a href="{{site.baseurl}}/plugins/api/services/#znplugindata">Plugin Data</a>
+								<ul>
+									<li class="get">
+										<a href="{{site.baseurl}}/plugins/api/services/#pluginDataGet">Get</a>
+									</li>
+									<li class="query">
+										<a href="{{site.baseurl}}/plugins/api/services/#pluginDataPost">Post</a>
+									</li>
+									<li class="delete">
+										<a href="{{site.baseurl}}/plugins/api/services/#pluginDataPut">Put</a>
+									</li>
+									<li class="save">
+										<a href="{{site.baseurl}}/plugins/api/services/#pluginDataDelete">Delete</a>
 									</li>
 								</ul>
 							</li>
