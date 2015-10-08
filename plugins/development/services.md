@@ -172,9 +172,7 @@ When using the Developer tools and testing your plugin in draft mode, the `znPlu
 
 When working with your service locally or when accessing the service directly, to use the draft service, you will need to manually pass in the draft HTTP header `X-Plugin-Draft`. This header value must be a valid access token for the plugin developer. By default, this will make requests as the plugin developer. You can pas a second HTTP authorization header to specify a different, valid access token, if known. 
 
-{% highlight %}
-X-Plugin-Draft: 93c43cc17b5ecdb53b5b732247c99086
-Authorization: Bearer 93c43cc17b5ecdb53b5b732247c99086
-{% endhighlight %}
+`X-Plugin-Draft: 93c43cc17b5ecdb53b5b732247c99086
+Authorization: Bearer 93c43cc17b5ecdb53b5b732247c99086`
 
 
