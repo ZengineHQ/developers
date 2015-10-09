@@ -11,7 +11,7 @@ subgroup: scheduled-service
     </a>
 </h1>
 
-In order to know which items are on the todo list for today, we will fetch records from {{site.productName}} and post them to HipChat once a day. We will accomplish this by combining a backend plugin service with scheduled webhooks. Our backend service will fetch records and post them to HipChat. Our scheduled webhook will then run once a day to execute the backend service.
+Our goal -- in order to know which items are on the todo list for today, we will fetch records from {{site.productName}} and post them to HipChat once a day. We will accomplish this by combining a backend plugin service with scheduled webhooks. Our backend service will fetch records and post them to HipChat. Our scheduled webhook will then run once a day to execute the backend service. If you aren't yet familiar, we recommended first reading about [backend services]({{site.baseurl}}/plugins/development/services.html).
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ You will need a HipChat account with API access to send messages. [Create an API
 
 ## Creating the Plugin Service
 
-If you haven't done so already, start by [creating a plugin]({{site.baseurl}}/rest-api/resources/#!/plugins/add_plugins_Plugin_post_2) and [adding a backend service]({{site.baseurl}}/rest-api/resources/#!/plugins-plugin.id-services/add_plugins_services_Services_post_2). Next, download and extract the draft source from the `draftSourceUrl`. Edit the `plugin.js` file and replace the contents with the following code:
+If you haven't done so already, start by creating a plugin and adding a backend service using the [Developer tools]({{site.clientDomain}}/account/developer){:target="_blank"}. Next, download and extract the default draft source. Edit the `plugin.js` file and replace the contents with the following code:
 
 {% highlight js %}
 {% raw %}

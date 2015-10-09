@@ -13,7 +13,7 @@ subgroup: record-sms
 
 This tutorial guides you through the process of building a plugin that sends text messages when a record is created. We will use [Twillio](https://www.twilio.com){:target="_blank"} to send the text messages and {{site.productName}} webhooks to trigger the messages to sends on record creation.
 
-If you haven't yet done so, we recommended first reading about [backend services]({{site.baseurl}}/plugins/development/backend-services) and [developing plugins with Firebase]({{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html) before starting this tutorial.
+If you haven't yet done so, we recommended first reading about [backend services]({{site.baseurl}}/plugins/development/services.html) and [developing plugins with Firebase]({{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html) before starting this tutorial.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ Before developing the plugin, you will need a [Twillio account](https://www.twil
 
 ## Creating A Backend Plugin Service
 
-When a {{site.productName}} webhook is triggered, it makes a POST request with a payload about the triggered data. We need to setup a service to receive these payloads and send the text messages. We can do this by adding a [backend service]({{site.baseurl}}/rest-api/resources/#!/plugins-plugin.id-services) to our plugin. After creating a backend service, downloading and unzipping the draft source code, go to the top-level of the code directory, and run the command below to install the [Twillio Node.js library](https://www.twilio.com/docs/node/install){:target="_blank"}:
+When a {{site.productName}} webhook is triggered, it makes a POST request with a payload about the triggered data. We need to setup a service to receive these payloads and send the text messages. We can do this by adding a backend service to our plugin from the [Developer tools]({{site.clientDomain}}/account/developer){:target="_blank"}. After creating a backend service, downloading and unzipping the draft source code, go to the top-level of the code directory, and run the command below to install the [Twillio Node.js library](https://www.twilio.com/docs/node/install){:target="_blank"}:
 
 {% highlight js %}
 npm install twilio --save
