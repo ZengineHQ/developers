@@ -63,11 +63,11 @@ exports.run = function(eventData) {
 {% endraw %}
 {% endhighlight %}
 
-## eventData
+### eventData
 
 The `eventData` object contains the request and the response objects for getting data from the user and sending data to the user.
 
-### eventData.request Properties
+#### eventData.request Properties
 
 <div>
 	<table class="table">
@@ -113,7 +113,7 @@ The `eventData` object contains the request and the response objects for getting
 	</table>
 </div>
 
-### eventData.response Methods
+#### eventData.response Methods
 
 <div>
 	<table class="table">
@@ -144,7 +144,7 @@ The `eventData` object contains the request and the response objects for getting
 	</table>
 </div>
 
-## znHttp
+### znHttp
 
 znHttp is an included library for connecting to the {{site.productName}} REST API. API requests will be made as the user accessing the service. When used in conjunction with frontend plugin code, the user accessing your frontend plugin will be the user making the API requests. This means the plugin service can only access what the acting user has permission to access. When saving data, that user will be considered the "created by user."
 
