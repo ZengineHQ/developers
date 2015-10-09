@@ -5,7 +5,9 @@ group: development
 
 # Plugin Services
 
-Plugin services are [Node.js](https://nodejs.org/){:target="_blank"} apps with a specific structure that will be explained below. They are written in Javascript and can take advantage of existing 3rd-party, Javascript based, node modules. They can use our included API library to communicate with our REST API or modules like `restify` to communicate with other APIs.
+Plugin services are [Node.js](https://nodejs.org/){:target="_blank"} apps with a specific structure that will be explained below. Node.js apps are lightweight Javascript apps that run on the server instead of the browser. Node.js is a popular framework with many existing 3rd party libraries available that you can re-use in your plugins.
+
+## Getting Started
 
 To get started, from the [Developer tools]({{site.clientDomain}}/account/developer){:target="_blank"}, create or edit a plugin, then add a new backend service. This will initialize your service with sample code that you should then download and unzip. The unzipped folder represents everything that makes your service.
 
@@ -58,7 +60,6 @@ exports.run = function(eventData) {
 	}
 
 }
-
 {% endraw %}
 {% endhighlight %}
 
@@ -80,7 +81,7 @@ The `eventData` object contains the request and the response objects for getting
 		<tbody>
 			<tr>
 				<td>headers</td>
-				<td><code>Object<code></td>
+				<td><code>Object</code></td>
 				<td>HTTP request headers</td>
 			</tr>
 			<tr>
@@ -137,7 +138,7 @@ The `eventData` object contains the request and the response objects for getting
 			</tr>
 			<tr>
 				<td>end</td>
-				<td>Ends the response. Corresponds to <a href="http://expressjs.com/api.html#res.end" target="_blank">res.end</a></td>
+				<td>Ends the response.</td>
 			</tr>
 		</tbody>
 	</table>
@@ -166,13 +167,17 @@ eventData.response.status(200).send();
 {% endraw %}
 {% endhighlight %}
 
+## Developing Locally
+
+You will need to download and install [Node.js](https://nodejs.org/){:target="_blank"} to run your service locally. Next, browse to your service directory from the command line and run `npm start`. You should see `Listening on port 3000`, indicating your service is running at `http://localhost:3000`. We recommend using the Google Chrome extension [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop){:target="_blank"} to make requests to your service. This will allow you to easily make requests and send HTTP headers you will need for offline plugins.
+
 ## Executing Draft Services
 
-When using the Developer tools and testing your plugin in draft mode, the `znPluginData` service will automatically make requests to your draft service. Your user will be making the requests to the service, so actions will be taken under your account. Keep in mind this will not be the case when you publish the plugin and other users are the ones accessing your plugin.
+When using the Developer tools and testing your plugin in draft mode, the `znPluginData` service will automatically make requests to your draft service. In draft mode, your user will be making requests to the service, so actions will be taken under your account. Keep in mind this will not be the case when you publish the plugin and other users are accessing your plugin.
 
-When working with your service locally or when accessing the service directly, to use the draft service, you will need to manually pass in the draft HTTP header `X-Plugin-Draft`. This header value must be a valid access token for the plugin developer. By default, this will make requests as the plugin developer. You can pas a second HTTP authorization header to specify a different, valid access token, if known. 
+To use the draft version when accessing the service directly, you will need to manually pass in the draft HTTP header `X-Plugin-Draft`. This header value must be a valid access token for the plugin developer. By default, this will make requests as the plugin developer user. You can optionally pass a second HTTP authorization header to specify an access token different from the developer token.
 
-`X-Plugin-Draft: 93c43cc17b5ecdb53b5b732247c99086
-Authorization: Bearer 93c43cc17b5ecdb53b5b732247c99086`
+* `X-Plugin-Draft: developer_access_token`
+* `Authorization: Bearer user_access_token`
 
 
