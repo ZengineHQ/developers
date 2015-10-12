@@ -87,7 +87,7 @@ The following table presents the registration options and their purpose.
     <tbody>
         <tr>
             <td>route</td>
-            <td>The URI path to run your plugin. If your route is <code>/myplugin</code>, then the full URI to your plugin might be <code>{{ site.clientDomain }}/workspaces/123/plugin/myplugin</code></td>
+            <td>The URI path to run the settings and/or full page interfaces of your plugin. If your route is <code>/myplugin</code>, then the full URI to your full page interface would be <code>{{ site.clientDomain }}/workspaces/123/plugin/myplugin</code>. The URI to your settings interface would be <code>{{ site.clientDomain }}/workspaces/123/admin/plugin/myplugin</code>.</td>
         </tr>
         <tr>
             <td>title</td>
@@ -99,7 +99,7 @@ The following table presents the registration options and their purpose.
         </tr>
         <tr>
             <td>icon</td>
-            <td>Icon to represent your plugin in the app header and the marketplace (if the plugin is public). Must be an icon name seen here: <a href="{{ site.clientDomain }}/patterns/icons">{{ site.clientDomain }}/patterns/icons</a></td>
+            <td>Icon to represent your plugin in the various places in the app. Icon will appear in the top nav if there's a full page interface, the right side nav of the record overlay if there's a record overlay interface, and in the workspace settings and tools section if there's a settings interface. The icon will be used in the marketplace, if the plugin is public. Must be an icon name seen here: <a href="{{ site.clientDomain }}/patterns/icons">{{ site.clientDomain }}/patterns/icons</a></td>
         </tr>
         <tr>
             <td>interfaces</td>
@@ -120,7 +120,7 @@ The following table presents the `interfaces` options and their purpose.
     <tbody>
         <tr>
             <td>routes</td>
-            <td>Specify additional routes to sub pages of your plugin. Will appear under your main <code>route</code> param. Value should be defined as a JSON array. Ex: <code>routes: ['/:id']</code> translates to <code>{{ site.clientDomain }}/workspaces/123/plugin/myplugin/456</code>, where 456 will be available as a <code>$routeParam</code> named <code>id</code>.</td>
+            <td>Specify additional routes to sub pages of your plugin. Only applicable to full page and settings interfaces. Will appear under your main <code>route</code> param. Value should be defined as a JSON array. Ex: <code>routes: ['/:id']</code> translates to <code>{{ site.clientDomain }}/workspaces/123/plugin/myplugin/456</code>, where 456 will be available as a <code>$routeParam</code> named <code>id</code>.</td>
         </tr>
         <tr>
             <td>controller</td>
@@ -132,7 +132,7 @@ The following table presents the `interfaces` options and their purpose.
         </tr>
         <tr>
             <td>type</td>
-            <td>The type of your plugin, can be one of: fullPage, inline or recordOverlay. Checkout <a href="{{site.baseurl}}/plugins/getting-started/plugin-types.html">plugin types</a> for details of each plugin type option.</td>
+            <td>The type of your plugin, can be one of: fullPage, inline, settings, or recordOverlay. Checkout <a href="{{site.baseurl}}/plugins/getting-started/plugin-types.html">plugin types</a> for details of each plugin type option.</td>
         </tr>
         <tr>
             <td>topNav</td>
@@ -140,7 +140,7 @@ The following table presents the `interfaces` options and their purpose.
         </tr>
         <tr>
             <td>order</td>
-            <td>The order to display the plugin icon in <code>topNav</code>, in relation to the other icons. A higher number moves the icon towards the left and a lower number towards the right.</td>
+            <td>The order to display the plugin icon in the top nav (for full page interfaces) or the record overlay side nav (for record overlay interfaces), in relation to the other icons. A higher number moves the icon towards the left and a lower number towards the right.</td>
         </tr>
         <tr>
             <td>location</td>
