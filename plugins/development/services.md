@@ -189,6 +189,7 @@ Learn more about how to setup [Firebase security rules]({{site.baseurl}}/plugins
 You will need to download and install [Node.js](https://nodejs.org/){:target="_blank"} to run your service locally. Next, browse to your service directory from the command line and run `npm start`. You should see `Listening on port 3000`, indicating your service is running at `http://localhost:3000`. We recommend using the Google Chrome extension [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop){:target="_blank"} to make requests to your service. This will allow you to easily make requests and send HTTP headers you will need for offline plugins.
 
 When using the znFirebase library to access data protected by security rules you will need to send two headers:
+
 * `X-Firebase-Url: your Firebase URL`
 * `X-Firebase-Secret: your Firebase Secret`
 
