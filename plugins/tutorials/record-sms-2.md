@@ -210,7 +210,7 @@ Now that we are saving these SMS and Twillio Settings in Firebase, we need to up
 
 If a frontend component of the plugin was making requests to the backend service, we could send the Firebase settings as part of the payload. However, since a webhook is making the request to the backend service with a predetermined payload, the backend service needs to fetch these settings from Firebase directly.
 
-In order to do this, we first need to include the `zn-firebase` library, which when invoked, returns a reference to a `Firebase` object constructed from the Firebase URL associated with your plugin. If you are developing locally, you will need to pass in this url as the header `X-Firebase-Url`.
+In order to do this, we first need to include the `zn-firebase` library, which when invoked, returns a reference to a `Firebase` object constructed from the Firebase URL associated with your plugin. If you are developing locally, you will need to pass in the Firebase URL and secret as the headers `X-Firebase-Url` and `X-Firebase-Secret`, respectively.
 
 {% highlight js %}
 

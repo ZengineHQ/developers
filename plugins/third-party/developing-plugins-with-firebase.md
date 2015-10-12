@@ -7,11 +7,11 @@ group: third-party
 
 The Firebase JavaScript client v1.0.17 and [AngularFire v{{site.angularFireVersion}}]({{site.baseurl}}/libraries/angularfire/{{site.angularFireVersion}}/){:target="_blank"} is available to all plugin developers. Use it to store and sync data in realtime.
 
-This guide covers basic aspects on how to use Firebase in your plugins, for a complete reference or tutorials checkout the links in the bottom of this page.
+This guide covers basic aspects on how to use Firebase in your plugins. For a complete reference or tutorials, checkout the links in the bottom of this page.
 
 ## Initializing Firebase
 
-To initialize Firebase in your plugin inject the `$firebase` service in the controllers, services, factories or directives signature, create a reference to your Firebase URL and assign it to the scope:
+After creating an app in Firebase, go to the settings section in the Developer Tools and save the URL and secret of your Firebase app. To initialize Firebase from your plugin frontend, inject the `$firebase` service in the controllers, services, factories or directives signature, create a reference to your Firebase URL and assign it to the scope:
 
 {% highlight js %}
 /**
@@ -105,21 +105,7 @@ plugin.controller('myPluginCntl', ['$scope', '$firebase', function ($scope, $fir
 
 To get advantage of the already logged in user in {{site.productName}} and authenticate this same user in Firebase, you need to use the [custom login](https://www.firebase.com/docs/security/custom-login.html) method, this method uses a JWT token instead of a username and password.
 
-You can get a token to authenticate the current user in Firebase by fetching your plugin data using the `Data` factory. The response will contain a `firebaseAuthToken` attribute, this token is generated using the Firebase secret that you set in your "Plugin Settings". 
-
-The following data is passed to Firebase and made available with the `auth` variable in your security rules, that you can use to restrict read and write access to references: 
-
-{% highlight json %}
-{
-    "user_id": "1",
-    "workspaces": {
-        1: "admin",
-        2: "owner",
-        3: "owner",
-        4: "member"
-    }
-}
-{% endhighlight %}
+You can get a token to authenticate the current user in Firebase by fetching your plugin data using the `Data` factory. The response will contain a `firebaseAuthToken` attribute, which is generated using the Firebase secret that you set in your "Plugin Settings".
 
 The example below demonstrates how you can fetch the current plugin and user data from {{site.productName}} API, and then use it to connect to Firebase.
 
@@ -210,9 +196,25 @@ plugin.controller('myPluginCntl', ['$scope', 'znData', '$firebase', function ($s
 
 ## Security rules
 
-Using [Firebase dashboard](https://www.firebase.com/account/) you can setup security rules to protect your data.
+Using the [Firebase dashboard](https://www.firebase.com/account/), you can setup security rules to define when your data can be read from and written to.
 
-In the example below, the reference `https://<my-firebase>.firebaseio.com/preferences/<user-id>` is a list of preferences of a specific user id, it allows read and write access only if the current authenticated user id matches the `<user-id>`.
+When using Firebase from the frontend Javascript of a plugin, the following data is passed to Firebase and made available with the `auth` variable in your security rules:
+
+{% highlight json %}
+{
+    "user_id": "1",
+    "workspaces": {
+        1: "admin",
+        2: "owner",
+        3: "owner",
+        4: "member"
+    }
+}
+{% endhighlight %}
+
+The `workspaces` object contains all of the workspaces the currently authenticated user is a member of, where each key is the workspace id and the corresponding value is the user's role in that workspace.
+
+Now we'll show how you can use this `auth` variable in your security rules. In the example below, the reference `https://<my-firebase>.firebaseio.com/preferences/<user-id>` is a list of preferences of a specific user id. The rules below allow read and write access only if the currently authenticated user id matches the `<user-id>`.
 
 {% highlight json %}
 {
@@ -227,7 +229,7 @@ In the example below, the reference `https://<my-firebase>.firebaseio.com/prefer
 }
 {% endhighlight %}
 
-Another example, restricting read access only to members in the workspace and write access to workspace owners, assuming the following reference to `https://<my-firebase>.firebaseio.com/preferences/<workspace-id>`
+Another example is restricting read access to any user belonging to the workspace and write access to workspace owners, assuming the following reference to `https://<my-firebase>.firebaseio.com/preferences/<workspace-id>`
 
 {% highlight json %}
 {
@@ -242,7 +244,7 @@ Another example, restricting read access only to members in the workspace and wr
 }
 {% endhighlight %}
 
-When using the znFirebase wrapper with a [Backend service]({{site.baseurl}}/plugins/development/services.html), if you have set the Firebase URL and Firebase secret in your plugin settings the znFirebase will automatically authenticate and the following data will be available with the `auth` variable in your security rules, assuming the request was made to a backend service at `{{site.pluginDomain}}/workspaces/1/testBackendService/testRoute`:
+When using the znFirebase wrapper with a [Backend service]({{site.baseurl}}/plugins/development/services.html), znFirebase will automatically authenticate and the following data will be available with the `auth` variable in your security rules, assuming the request was made to a backend service at `{{site.pluginDomain}}/workspaces/1/testBackendService/testRoute`:
 
 {% highlight json %}
 {
@@ -252,9 +254,9 @@ When using the znFirebase wrapper with a [Backend service]({{site.baseurl}}/plug
 }
 {% endhighlight %}
 
-Similar to the frontend authentication, but instead of send the user role and each workspace it is a member of, only the workspace id which the backend service request was made against and the value `server` will be available.
+Similar to the authentication data from the frontend, the `auth` data from the backend contains a `workspaces` object. However, for backend service Firebase authentication, the `workspaces` object contains a single key-value pair: the workspace id which the backend service request was made against and the value `server`.
 
-With this you can extend your security rules to also allow backend service access, if we take the previous example restricting read access only to members in the workspace and write access to workspaces owners but also allow read and write access to backend services the rules can be setup like this:
+With this, you can extend your security rules to also allow backend service access. We will expand on the previous example to also allow read and write access to backend services:
 
 {% highlight json %}
 {
