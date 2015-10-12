@@ -271,7 +271,7 @@ With this, you can extend your security rules to also allow backend service acce
 }
 {% endhighlight %}
 
-Learn more about [Firebase security rules](https://www.firebase.com/docs/security/rule-types/index.html).
+Learn more about [Firebase security rules](https://www.firebase.com/docs/security/guide/index.html){:target="_blank"}.
 
 ## Links
 
