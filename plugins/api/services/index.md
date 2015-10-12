@@ -593,7 +593,7 @@ The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/r
 
 # znPluginData
 
-The znPluginData service is used to communicate with Plugin Services **LINK NEEDED**, similar to how znData makes requests to the REST API. Instead of passing a resource name, you pass the plugin namespace and service route. The methods available are: `get`, `post`, `put`, and `delete`. The methods return an Angular promise object.
+The znPluginData service is used to communicate with [Plugin Services]({{site.baseurl}}/plugins/development/services.html), similar to how znData makes requests to the REST API. Instead of passing a resource name, you pass the plugin namespace and service route. The methods available are: `get`, `post`, `put`, and `delete`. The methods return an Angular promise object.
 
 The param `workspaceId` is always required and must be a workspace where the plugin is installed. All other
 params will be interpreted as query string parameters.
