@@ -90,7 +90,10 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', function ($scope, $
         {
             controller: 'myPluginSettingsCntl',
             template: 'my-plugin-main-settings',
-            type: 'settings'
+            type: 'settings',
+            routes: [
+                '/:config'
+            ]
         }
     ]
 });
@@ -98,4 +101,7 @@ plugin.controller('myPluginCntl', ['$scope', '$routeParams', function ($scope, $
 {% endraw %}
 {% endhighlight %}
 
-For this example, the main plugin route would be similar to `{{ site.clientDomain }}/workspaces/123/myplugin/`. The added route for the templates with a dynamic `page` param would be `{{ site.clientDomain }}/workspaces/123/myplugin/index` or `{{ site.clientDomain }}/workspaces/123/myplugin/view`
+For this example, the main plugin route would be similar to `{{ site.clientDomain }}/workspaces/123/myplugin/`.
+The additional route set on the first `interfaces` object for templates with a dynamic `page` param would be accessible by `{{ site.clientDomain }}/workspaces/123/myplugin/index` or `{{ site.clientDomain }}/workspaces/123/myplugin/view`
+On the second `interfaces` object also an additional route is set for templates with a dynamic `config` param that would be accessible by `{{ site.clientDomain }}/workspaces/123/admin/plugin/myplugin/setting1` or `{{ site.clientDomain }}/workspaces/123/admin/plugin/myplugin/setting2`
+
