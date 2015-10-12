@@ -242,6 +242,32 @@ Another example, restricting read access only to members in the workspace and wr
 }
 {% endhighlight %}
 
+When using the znFirebase wrapper with a [Backend service]({{site.baseurl}}/plugins/development/services.html), if you have set the Firebase URL and Firebase secret in your plugin settings the znFirebase will automatically authenticate and the following data will be available with the `auth` variable in your security rules, assuming the request was made to a backend service at `{{site.pluginDomain}}/workspaces/1/testBackendService/testRoute`:
+
+{% highlight json %}
+{
+    "workspaces": {
+        1: "server"
+    }
+}
+{% endhighlight %}
+
+Similar to the frontend authentication, but instead of send the user role and each workspace it is a member of, only the workspace id which the backend service request was made against and the value `server` will be available.
+
+With this you can extend your security rules to also allow backend service access, if we take the previous example restricting read access only to members in the workspace and write access to workspaces owners but also allow read and write access to backend services the rules can be setup like this:
+
+{% highlight json %}
+{
+    "rules": {
+        "preferences": {
+            "$workspace": {
+                ".read": "auth.workspaces[$workspace] != null",
+                ".write": "auth.workspaces[$workspace] == 'owner' || auth.workspaces[$workspace] == 'server'"
+            }
+        }
+    }
+}
+{% endhighlight %}
 
 Learn more about [Firebase security rules](https://www.firebase.com/docs/security/rule-types/index.html).
 

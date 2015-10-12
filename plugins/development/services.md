@@ -167,6 +167,23 @@ eventData.response.status(200).send();
 {% endraw %}
 {% endhighlight %}
 
+### znFirebase
+
+znFirebase is an included library for connecting to Firebase. This library is a wrapper for the official Firebase [Javascript API](https://www.firebase.com/docs/web/api/) version 2.3.1.
+If you have set the Firebase URL and Firebase secret in your plugin settings, the `znFirebase` will automatically initialize an instance of your Firebase and authenticate with `authWithCustomToken` method, the custom token will be generated with following data:
+
+{% highlight json %}
+{
+    "workspaces": {
+        1: "server"
+    }
+}
+{% endhighlight %}
+
+The number `1` is the workspace id the backend service request was made against (ex: {{site.pluginDomain}}/workspaces/1/testBackendService/testRoute) and the value `server` means this is backend service access.
+
+Learn more about how to setup [Firebase security rules]({{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html#security-rules).
+
 ## Developing Locally
 
 You will need to download and install [Node.js](https://nodejs.org/){:target="_blank"} to run your service locally. Next, browse to your service directory from the command line and run `npm start`. You should see `Listening on port 3000`, indicating your service is running at `http://localhost:3000`. We recommend using the Google Chrome extension [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop){:target="_blank"} to make requests to your service. This will allow you to easily make requests and send HTTP headers you will need for offline plugins.
