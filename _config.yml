@@ -2,10 +2,11 @@ angularVersion: 1.2.21
 angularFireVersion: 0.8.0
 angularBootstrapVersion: 0.12.1
 version: 1
-baseurl: '/developers'
+baseurl: '/developers-stage'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://api.zenginehq.com"
 clientDomain: "https://platform.zenginehq.com"
+pluginDomain: "https://plugins.zenginehq.com"
 authDomain: "https://auth.zenginehq.com"
 supportDomain: "http://support.zenginehq.com"
 developerDomain: https://github.com/ZengineHQ/developers
@@ -13,6 +14,7 @@ angularDomain: "https://code.angularjs.org"
 communityUrl: "https://groups.google.com/forum/#!forum/zengine-development/"
 demoClientId: "rest-api-quick-start-demo"
 rootDomain: zenginehq.com
+githubBranch: stage
 apiKey: false
 rateLimit: 250
 rateLimitWindow: 5

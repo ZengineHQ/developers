@@ -5,7 +5,7 @@ group: intro
 
 # {{site.productName}} Plugin Documentation
 
-Plugins allow you to extend your {{site.productName}} experience by adding new screens (full screen plugins) or functionality to existing screens (inline plugins) within {{site.productName}}.  Using our [developer tool]({{site.clientDomain}}/account/developer){:target="_blank"}, you can write Javascript, HTML, and CSS to build out your own custom plugin.
+Plugins allow you to extend your {{site.productName}} experience by adding new screens (full screen plugins) or functionality to existing screens (inline plugins) within {{site.productName}}. Plugin services allow you to interact with other systems from the backend. Using our [developer tool]({{site.clientDomain}}/account/developer){:target="_blank"}, you can write Javascript, HTML, and CSS to build out your own custom plugin. From the developer tool, you can also manage and upload any plugin services.
 
 Some examples of full screen plugins are:
 
@@ -19,6 +19,14 @@ Some examples of inline plugins are:
 * New button that can send data from an existing form to Zapier
 * UPS tracking status
 * Task hotlist that follows you from screen to screen
+
+Some examples of plugin services are:
+
+* Post new records to Zapier
+* Fetch records and post them to HipChat
+* Send email newsletters with "mail merge" data from {{site.productName}}
+
+Using webhooks or scheduled webhooks, you can have these plugin services run on interval or when changes are saved.
 
 For more questions about plugins in general, take a look [here]({{site.supportDomain}}/knowledgebase/topics/51673-plugins){:target="_blank"}.
 

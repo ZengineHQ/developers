@@ -3,3 +3,5 @@ _config.yml
 Gemfile.lock
 /nbproject/
 CNAME
+
+.DS_Store
