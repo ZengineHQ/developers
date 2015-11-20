@@ -12,6 +12,8 @@ Data filters are JSON objects defining a set of matching rules for Form Records.
 
 The top level of a filter is an object with one key-value pair.  The key is an operator (`and` / `or`) and the value is an array of filtering condition objects.  Following standard boolean logic, an `and` operator will result in a set of records that match every condition, while an `or` operator will result in a set of records that match any one or more conditions.  The operator is required even if there is only one condition.
 
+Only one operator per filter is allowed; nesting/grouping of operators is not currently supported.
+
 Example format:
 {% highlight js%}
 {
@@ -51,25 +53,6 @@ An `attribute` may be either a form field or a basic property of a record.  Insp
 Likewise you can use standard attributes on records such as `created`, `modified`, `id`, and `name`.
 
 You cannot filter on related non-record objects such as activities, events, or tasks.  However you can pass a numeric id to the special `folder.id` or `createdByUser.id` attributes.
-
-### Complex Queries
-
-It is possible to create more complex queries combining both `and` and `or` by nesting additional operators and rules. You can only nest one additional level.
-
-Example format:
-{% highlight js%}
-{
-  "and": [
-    {"prefix": "", "attribute": "field1", "value": "value1"},
-	{
-		"or": [
-			{"prefix": "", "attribute": "field2", "value": "value2"},
-			{"prefix": "", "attribute": "field3", "value": "value3"}
-		]
-	}
-  ]
-}
-{% endhighlight %}
 
 ### Subfiltering
 You can set up subfilters to combine conditions across multiple forms that are linked together.  You can specify a subfilter by providing the `filter` key on a condition instead of `value`.  The `filter` key may only be used on attributes that represent a linked form.  The value of the `filter` key is an entire filter object, with the exact same format and rules as the main filter object.  However, the conditions on the subfilter apply to the linked form rather than directly to the primary form, so fields from the linked form may be specified as attributes.
