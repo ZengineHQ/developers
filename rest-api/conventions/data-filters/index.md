@@ -54,7 +54,7 @@ You cannot filter on related non-record objects such as activities, events, or t
 
 ### Complex Queries
 
-It is possible to create more complex queries combining both `and` and `or` by nesting additional rules. You can only nest one additional level.
+It is possible to create more complex queries combining both `and` and `or` by nesting additional operators and rules. You can only nest one additional level.
 
 Example format:
 {% highlight js%}
