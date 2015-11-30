@@ -11,6 +11,7 @@ Plugin services are meant to act as a go-between from our app and other services
 
 ## Service Limitations
 
+* Backend services are not supported on Zengine Vault.
 * Your zipped service must be under 5MB (including any 3rd party modules)
 * 3rd party node modules should ideally be pure Javascript. Native modules or dependencies must be built against [Amazon Linux libraries](https://aws.amazon.com/blogs/compute/nodejs-packages-in-lambda/){:target="_blank"}.  
 * The service must consume less than (1.5GB) of memory
