@@ -54,19 +54,25 @@ You cannot filter on related non-record objects such as activities, events, or t
 
 ### Complex Queries
 
-It is possible to create more complex queries combining both `and` and `or` by nesting additional operators and rules. You can only nest one additional level.
+It is possible to create more complex queries combining both `and` and `or` by nesting additional operators and rules as conditions. There is a 5 level limit of nested conditions.
 
 Example format:
 {% highlight js%}
 {
   "and": [
     {"prefix": "", "attribute": "field1", "value": "value1"},
-	{
-		"or": [
-			{"prefix": "", "attribute": "field2", "value": "value2"},
-			{"prefix": "", "attribute": "field3", "value": "value3"}
-		]
-	}
+    {
+      "or": [
+        {"prefix": "", "attribute": "field2", "value": "value2"},
+        {"prefix": "", "attribute": "field3", "value": "value3"},
+        {
+          "and": [
+            {"prefix": "", "attribute": "field4", "value": "value4"},
+            {"prefix": "", "attribute": "field5", "value": "value5"},
+          ]
+        }
+      ]
+    }
   ]
 }
 {% endhighlight %}
