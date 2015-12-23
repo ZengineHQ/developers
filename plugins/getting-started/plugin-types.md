@@ -27,7 +27,7 @@ To set up a record overlay plugin, add an object with `type: 'recordOverlay'` to
 
 ## Settings
 
-Allows your plugin to add a screen to the workspace settings area. To use plugin settings, add an object with `type: 'inline'` to the `interfaces` array in your plugin registration. 
+Allows your plugin to add a screen to the workspace settings area. To use plugin settings, add an object with `type: 'settings'` to the `interfaces` array in your plugin registration. 
 
 ## Server
 
