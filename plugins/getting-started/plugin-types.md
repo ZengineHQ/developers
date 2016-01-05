@@ -23,11 +23,11 @@ The `route` and `routes` registration options do not apply for inline plugins, a
 ## Record Overlay
 Record overlay plugins allow you to add new tabs to the record panel.
 
-To set up a record overlay plugin, add an object with `type: 'inline'` to the `interfaces` array in your plugin registration.
+To set up a record overlay plugin, add an object with `type: 'recordOverlay'` to the `interfaces` array in your plugin registration.
 
 ## Settings
 
-Allows your plugin to add a screen to the workspace settings area. To use plugin settings, add an object with `type: 'inline'` to the `interfaces` array in your plugin registration. 
+Allows your plugin to add a screen to the workspace settings area. To use plugin settings, add an object with `type: 'settings'` to the `interfaces` array in your plugin registration. 
 
 ## Server
 
