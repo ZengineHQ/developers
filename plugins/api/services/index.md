@@ -256,6 +256,8 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
                     <li><strong>filter</strong> - <code>{Object}</code> - Existing filter to open with the panel.</li>
                     <li><strong>onSave</strong> - <code>{function(filter)}</code> - A callback executed when the filter panel is saved.</li>
                     <li><strong>subfilters</strong> - <code>{boolean}</code> - Whether to allow subfiltering on related fields. Defaults to <code>true</code>.</li>
+                    <li><strong>groups</strong> - <code>{boolean}</code> - Whether to allow nested conditions. Defaults to <code>true</code>.</li>
+                    <li><strong>dynamicValues</strong> - <code>{boolean}</code> - Whether to allow dynamic values such as <code>logged-in-user</code>. Defaults to <code>true</code>.</li>
                     <li><strong>operators</strong> - <code>{array}</code> - A list of operators to allow filtering on. Defaults to <code>['and', 'or']</code> but <code>['and']</code> or <code>['or']</code> can also be passed.
                     </li>
                     <li><strong>attributeBlacklist</strong> - <code>{array}</code> - A list of specific fields to prevent the user from filtering on. The list can contain an attribute like <code>'field123'</code>, where 123 is the ID of a field belonging to the form. The list can also contain the following attributes: <code>'folder.id'</code>, <code>'createdByUser.id'</code>, <code>'created'</code>, and <code>'modified'</code>. </li>

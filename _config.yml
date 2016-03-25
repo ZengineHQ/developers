@@ -20,5 +20,7 @@ rateLimit: 250
 rateLimitWindow: 5
 kramdown:
   input: GFM # enable github flavored markdown
+gems:
+  - jekyll-gist
 productName: Zengine
 logo: <span class="logo">Zengine</span> Developers</span>
