@@ -31,6 +31,11 @@ plugin.controller('MyController', function($scope) {
 
 	// Data Filter
 	$scope.filter = {};
+
+	$scope.logFilter = function() {
+		console.log($scope.filter);
+	};
+
 });
 {% endraw %}
 {% endhighlight %}
@@ -38,6 +43,7 @@ plugin.controller('MyController', function($scope) {
 {% highlight html %}
 {% raw %}
 <div zn-inline-filter zn-inline-filter-options="inlineOptions" zn-inline-filter-model="filter"></div>
+<a href="#" ng-click="logFilter();">Log Filter</a>
 {% endraw %}
 {% endhighlight %}
 
