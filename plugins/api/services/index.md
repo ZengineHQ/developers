@@ -198,7 +198,7 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
 
 # znFiltersPanel
 
-znFiltersPanel is a service that allows you to view and build a <a href="{{site.baseurl}}/rest-api/conventions/data-filters/">data filter</a>. The filter returned from the panel can be used to query <a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">records</a>, save to a <a href="{{site.baseurl}}/rest-api/resources/#!/data_views">data view</a>, and build and run <a href="{{site.baseurl}}/rest-api/resources/#!/calculation_settings">calculations</a>.
+znFiltersPanel is a service that allows you to view and build a <a href="{{site.baseurl}}/rest-api/conventions/data-filters/">data filter</a> by opening a modal. This is different from the <a href="{{site.baseurl}}/plugins/api/directives/#zninlinefilter">znInlineFilter directive</a>, which displays the filter builder directly in the page. The filter returned from the panel can be used to query <a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">records</a>, save to a <a href="{{site.baseurl}}/rest-api/resources/#!/data_views">data view</a>, and build and run <a href="{{site.baseurl}}/rest-api/resources/#!/calculation_settings">calculations</a>.
 
 <h4><samp>znFiltersPanel.open(options)</samp></h4>
 
@@ -253,8 +253,8 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
                 <p>The object has the following properties:</p>
                 <ul>
                     <li><strong>formId</strong> - <code>{integer}</code> - Form ID of the form you want to filter on.</li>
-                    <li><strong>filter</strong> - <code>{Object}</code> - Existing filter to open with the panel.</li>
-                    <li><strong>onSave</strong> - <code>{function(filter)}</code> - A callback executed when the filter panel is saved.</li>
+                    <li><strong>filter</strong> - <code>{Object}</code> - Existing filter to open with the panel. Does not apply to <code>znInlineFilter</code> directive.</li>
+                    <li><strong>onSave</strong> - <code>{function(filter)}</code> - A callback executed when the filter panel is saved. Does not apply to <code>znInlineFilter</code> directive.</li>
                     <li><strong>subfilters</strong> - <code>{boolean}</code> - Whether to allow subfiltering on related fields. Defaults to <code>true</code>.</li>
                     <li><strong>groups</strong> - <code>{boolean}</code> - Whether to allow nested conditions. Defaults to <code>true</code>.</li>
                     <li><strong>dynamicValues</strong> - <code>{boolean}</code> - Whether to allow dynamic values such as <code>logged-in-user</code>. Defaults to <code>true</code>.</li>
