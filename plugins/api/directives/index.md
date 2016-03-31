@@ -12,9 +12,9 @@ subgroup: directives
 
 The `zn-inline-filter` directive allows you to insert a <a href="{{site.baseurl}}/rest-api/conventions/data-filters/">data filter</a> builder directly into your plugin page. This is different from the <a href="{{site.baseurl}}/plugins/api/services/#znfilterspanel">znFiltersPanel service</a>, which opens the filter builder in a modal. The filter returned can be used to query <a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">records</a>, save to a <a href="{{site.baseurl}}/rest-api/resources/#!/data_views">data view</a>, and build and run <a href="{{site.baseurl}}/rest-api/resources/#!/calculation_settings">calculations</a>.
 
-The directive has 2 required parameters: `zn-inline-filter-options` and `zn-inline-filter-model`. `zn-inline-filter-options` is an object matching the options of the <a href="{{site.baseurl}}/plugins/api/services/#znfilterspanel">znFiltersPanel</a>, excluding `filter` and `onSave` options.
+The directive has 2 required parameters: `zn-inline-filter` and `ng-model`. `zn-inline-filter` is an object matching the options of the <a href="{{site.baseurl}}/plugins/api/services/#znfilterspanel">znFiltersPanel</a>, excluding `filter` and `onSave` options.
 
-`zn-inline-filter-model` should represent the `$scope` property for the filter.
+`ng-model` should represent the `$scope` property for the filter.
 
 {% highlight javascript %}
 {% raw %}
@@ -42,7 +42,7 @@ plugin.controller('MyController', function($scope) {
 
 {% highlight html %}
 {% raw %}
-<div zn-inline-filter zn-inline-filter-options="inlineOptions" zn-inline-filter-model="filter"></div>
+<div zn-inline-filter="inlineOptions" ng-model="filter"></div>
 <a href="#" ng-click="logFilter();">Log Filter</a>
 {% endraw %}
 {% endhighlight %}
