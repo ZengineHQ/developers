@@ -597,8 +597,7 @@ The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/r
 
 The znPluginData service is used to communicate with [Plugin Services]({{site.baseurl}}/plugins/development/services.html), similar to how znData makes requests to the REST API. Instead of passing a resource name, you pass the plugin namespace and service route. The methods available are: `get`, `post`, `put`, and `delete`. The methods return an Angular promise object.
 
-The param `workspaceId` is always required and must be a workspace where the plugin is installed. All other
-params will be interpreted as query string parameters.
+The param `workspaceId` is always required and must be a workspace where the plugin is installed. Query string parameters should be passed as `params`.
 
 ---
 
@@ -608,7 +607,7 @@ Performs a `GET` request.
 
 {% highlight js %}
 // equivalent to: GET {{site.pluginDomain}}/workspaces/123/myPlugin/my-route?id=456
-znPluginData('myPlugin').get('/my-route', { workspaceId: 123, id: 456 }, function(results) {
+znPluginData('myPlugin').get('/my-route', { workspaceId: 123, params: { id: 456 }}, function(results) {
     $scope.results = results;
 });
 {% endhighlight %}
@@ -634,7 +633,7 @@ Performs a `PUT` request.
 
 {% highlight js %}
 // equivalent to: PUT {{site.pluginDomain}}/workspaces/123/myPlugin/my-route?id=456
-znPluginData('myPlugin').put('/my-route', { workspaceId: 123, id: 456 }, { email: $scope.email }, function(result) {
+znPluginData('myPlugin').put('/my-route', { workspaceId: 123, params: { id: 456 }}, { email: $scope.email }, function(result) {
     $scope.result = result;
 });
 {% endhighlight %}
@@ -647,7 +646,7 @@ Performs a `DELETE` request.
 
 {% highlight js %}
 // equivalent to: DELETE {{site.pluginDomain}}/workspaces/123/myPlugin/my-route?id=456
-znPluginData('myPlugin').delete('/my-route', { workspaceId: 123, id: 456 }, function(result) {
+znPluginData('myPlugin').delete('/my-route', { workspaceId: 123, params: { id: 456 }}, function(result) {
     // Deleted
 });
 {% endhighlight %}
