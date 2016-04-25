@@ -198,7 +198,7 @@ plugin.controller('myModalCntl', ['$scope', function($scope) {
 
 # znFiltersPanel
 
-znFiltersPanel is a service that allows you to view and build a <a href="{{site.baseurl}}/rest-api/conventions/data-filters/">data filter</a>. The filter returned from the panel can be used to query <a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">records</a>, save to a <a href="{{site.baseurl}}/rest-api/resources/#!/data_views">data view</a>, and build and run <a href="{{site.baseurl}}/rest-api/resources/#!/calculation_settings">calculations</a>.
+znFiltersPanel is a service that allows you to view and build a <a href="{{site.baseurl}}/rest-api/conventions/data-filters/">data filter</a> by opening a modal. This is different from the <a href="{{site.baseurl}}/plugins/api/directives/#zninlinefilter">znInlineFilter directive</a>, which displays the filter builder directly in the page. The filter returned from the panel can be used to query <a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">records</a>, save to a <a href="{{site.baseurl}}/rest-api/resources/#!/data_views">data view</a>, and build and run <a href="{{site.baseurl}}/rest-api/resources/#!/calculation_settings">calculations</a>.
 
 <h4><samp>znFiltersPanel.open(options)</samp></h4>
 
@@ -253,9 +253,11 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
                 <p>The object has the following properties:</p>
                 <ul>
                     <li><strong>formId</strong> - <code>{integer}</code> - Form ID of the form you want to filter on.</li>
-                    <li><strong>filter</strong> - <code>{Object}</code> - Existing filter to open with the panel.</li>
-                    <li><strong>onSave</strong> - <code>{function(filter)}</code> - A callback executed when the filter panel is saved.</li>
+                    <li><strong>filter</strong> - <code>{Object}</code> - Existing filter to open with the panel. Does not apply to <code>znInlineFilter</code> directive.</li>
+                    <li><strong>onSave</strong> - <code>{function(filter)}</code> - A callback executed when the filter panel is saved. Does not apply to <code>znInlineFilter</code> directive.</li>
                     <li><strong>subfilters</strong> - <code>{boolean}</code> - Whether to allow subfiltering on related fields. Defaults to <code>true</code>.</li>
+                    <li><strong>groups</strong> - <code>{boolean}</code> - Whether to allow nested conditions. Defaults to <code>true</code>.</li>
+                    <li><strong>dynamicValues</strong> - <code>{boolean}</code> - Whether to allow dynamic values such as <code>logged-in-user</code>. Defaults to <code>true</code>.</li>
                     <li><strong>operators</strong> - <code>{array}</code> - A list of operators to allow filtering on. Defaults to <code>['and', 'or']</code> but <code>['and']</code> or <code>['or']</code> can also be passed.
                     </li>
                     <li><strong>attributeBlacklist</strong> - <code>{array}</code> - A list of specific fields to prevent the user from filtering on. The list can contain an attribute like <code>'field123'</code>, where 123 is the ID of a field belonging to the form. The list can also contain the following attributes: <code>'folder.id'</code>, <code>'createdByUser.id'</code>, <code>'created'</code>, and <code>'modified'</code>. </li>
@@ -595,8 +597,7 @@ The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/r
 
 The znPluginData service is used to communicate with [Plugin Services]({{site.baseurl}}/plugins/development/services.html), similar to how znData makes requests to the REST API. Instead of passing a resource name, you pass the plugin namespace and service route. The methods available are: `get`, `post`, `put`, and `delete`. The methods return an Angular promise object.
 
-The param `workspaceId` is always required and must be a workspace where the plugin is installed. All other
-params will be interpreted as query string parameters.
+The param `workspaceId` is always required and must be a workspace where the plugin is installed. Query string parameters should be passed as `params`.
 
 ---
 
@@ -606,7 +607,7 @@ Performs a `GET` request.
 
 {% highlight js %}
 // equivalent to: GET {{site.pluginDomain}}/workspaces/123/myPlugin/my-route?id=456
-znPluginData('myPlugin').get('/my-route', { workspaceId: 123, id: 456 }, function(results) {
+znPluginData('myPlugin').get('/my-route', { workspaceId: 123, params: { id: 456 }}, function(results) {
     $scope.results = results;
 });
 {% endhighlight %}
@@ -632,7 +633,7 @@ Performs a `PUT` request.
 
 {% highlight js %}
 // equivalent to: PUT {{site.pluginDomain}}/workspaces/123/myPlugin/my-route?id=456
-znPluginData('myPlugin').put('/my-route', { workspaceId: 123, id: 456 }, { email: $scope.email }, function(result) {
+znPluginData('myPlugin').put('/my-route', { workspaceId: 123, params: { id: 456 }}, { email: $scope.email }, function(result) {
     $scope.result = result;
 });
 {% endhighlight %}
@@ -645,7 +646,7 @@ Performs a `DELETE` request.
 
 {% highlight js %}
 // equivalent to: DELETE {{site.pluginDomain}}/workspaces/123/myPlugin/my-route?id=456
-znPluginData('myPlugin').delete('/my-route', { workspaceId: 123, id: 456 }, function(result) {
+znPluginData('myPlugin').delete('/my-route', { workspaceId: 123, params: { id: 456 }}, function(result) {
     // Deleted
 });
 {% endhighlight %}

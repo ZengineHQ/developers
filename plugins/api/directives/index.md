@@ -8,6 +8,45 @@ subgroup: directives
 
 {{site.productName}} provides several directives for you to use in your plugin html.
 
+# znInlineFilter
+
+The `zn-inline-filter` directive allows you to insert a <a href="{{site.baseurl}}/rest-api/conventions/data-filters/">data filter</a> builder directly into your plugin page. This is different from the <a href="{{site.baseurl}}/plugins/api/services/#znfilterspanel">znFiltersPanel service</a>, which opens the filter builder in a modal. The filter returned can be used to query <a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">records</a>, save to a <a href="{{site.baseurl}}/rest-api/resources/#!/data_views">data view</a>, and build and run <a href="{{site.baseurl}}/rest-api/resources/#!/calculation_settings">calculations</a>.
+
+The directive has 2 required parameters: `zn-inline-filter` and `ng-model`. `zn-inline-filter` is an object matching the options of the <a href="{{site.baseurl}}/plugins/api/services/#znfilterspanel">znFiltersPanel</a>, excluding `filter` and `onSave` options.
+
+`ng-model` should represent the `$scope` property for the filter.
+
+{% highlight javascript %}
+{% raw %}
+plugin.controller('MyController', function($scope) {
+
+	// Must Match All Conditions, Disable Linked Fields and Nested Conditions
+	$scope.inlineOptions = {
+		formId: 123,
+		operators: ['and'],
+		subfilters: false,
+		groups: false,
+		fieldTypeBlacklist: ['linked']
+	};
+
+	// Data Filter
+	$scope.filter = {};
+
+	$scope.logFilter = function() {
+		console.log($scope.filter);
+	};
+
+});
+{% endraw %}
+{% endhighlight %}
+
+{% highlight html %}
+{% raw %}
+<div zn-inline-filter="inlineOptions" ng-model="filter"></div>
+<a href="#" ng-click="logFilter();">Log Filter</a>
+{% endraw %}
+{% endhighlight %}
+
 # znDatetimepickerWrapper
 
 The `zn-datetimepicker-wrapper` directive is a wrapper for the Angular bootstrap [datepicker](http://angular-ui.github.io/bootstrap/#/datepicker){:target="_blank"} and [timepicker](http://angular-ui.github.io/bootstrap/#/timepicker){:target="_blank"}.
