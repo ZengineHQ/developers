@@ -292,6 +292,26 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
     </tbody>
 </table>
 
+# znFilterMatcher
+
+The znFilterMatcher service lets your plugin compare a record against a filter and determine if it's a match. It uses the same matching as querying records using a filter or for conditional field rules. One case you might use this for is to filter down a list of records that have already been fetched without making an additional request to the API.
+
+For the matching to work properly, the data you are filtering on must be present in the record. Additionally, subfilters of fields on other forms and dynamic conditions, such as `logged-in-user`, are not supported.
+
+{% highlight js %}
+
+var record = { 'field123': 'Chicago', 'field456': 2015 };
+
+if (znFilterMatcher(record, { 'and': [{ 'prefix': '', 'attribute': 'field123', 'value': 'Chicago'}]})) {
+	// Record Matches field123 = Chicago
+}
+
+if (znFilterMatcher(record, { 'and': [{ 'prefix': 'min', 'attribute': 'field456', 'value': 2015}]})) {
+	// Record Matches field456 >= 2015
+}
+
+{% endhighlight %}
+
 # znData
 
 The znData service provides a [collection of resources](#available-resources) that should be used for accessing data via the {{site.productName}} [REST API]({{site.baseurl}}/rest-api/resources). After passing the name of the resource to the service, you get back an object that can use the methods described below: `get`, `query`, `save`, `update`, `delete`, `saveAll`, `updateAll` and `deleteAll`. All methods return a standard [Angular promise object]({{site.angularDomain}}/{{site.angularVersion}}/docs/api/ng/service/$q){:target="_blank"}.
