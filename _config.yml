@@ -10,6 +10,7 @@ pluginDomain: "https://stage-plugins.zenginehq.com"
 authDomain: "https://stage-auth.zenginehq.com"
 supportDomain: "http://support.zenginehq.com"
 developerDomain: https://github.com/ZengineHQ/developers-stage
+marketingDomain: "http://www.zenginehq.com"
 angularDomain: "https://code.angularjs.org"
 communityUrl: "https://groups.google.com/forum/#!forum/zengine-development/"
 demoClientId: "rest-api-quick-start-demo"

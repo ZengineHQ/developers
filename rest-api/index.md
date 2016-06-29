@@ -6,6 +6,8 @@ group: intro
 
 {{site.productName}} provides a [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer){:target="_blank"} API which maps virtually every [resource]({{site.baseurl}}/rest-api/resources) in the platform to a list of URIs. These URIs can be retrieved and manipulated with [HTTP verbs]({{site.baseurl}}/rest-api/conventions/http-verbs).
 
+Please note that all development is subject to the [API License Agreement]({{site.marketingDomain}}/terms-of-service/api).
+
 ## Audience
 
 The API is made available for a wide variety of use cases, **including** commercial applications. Some possibilities include:
