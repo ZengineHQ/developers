@@ -19,3 +19,27 @@ You can use it in your html, like any other filter.
 <span>{{'2015-04-09' | znUserDate }}</span>
 {% endraw %}
 {% endhighlight %}
+
+# znNumericValue
+
+The `znNumericValue` filter takes as input a numeric value and a field object and formats it according to the field settings. The object doesn't need to be the full field; it just needs to contain the following properties:
+
+{% highlight js %}
+
+var field = {
+    "settings": {
+        "properties": {
+            "decimal": 7,
+            "currency": "USD"
+        }
+    }
+};
+{% endhighlight %}
+
+{% highlight html%}
+{% raw %}
+<span>{{'1234.5678' | znNumericValue:field }}</span>
+{% endraw %}
+{% endhighlight %}
+
+In the example above, the filter would round the number to 2 decimals, and prepend it with a USD symbol. The final output would look like this: `$1,234.57`.

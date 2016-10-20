@@ -44,6 +44,13 @@ One `prefix` is required for every condition. A `prefix` is passed as a string. 
 * '__contains__': Contains substring
 * '__starts-with__': Starts with substring
 * '__ends-with__': Ends with substring
+* '__not-validates__': Does not match validation rule. Value must be one of the following:
+  * alpha
+  * alphaNumeric
+  * emailAddress
+  * numeric
+  * unique
+  * zipCode
 
 ### Attributes
 An `attribute` may be either a form field or a basic property of a record.  Inspect the results of a request to the form records endpoint to see attributes you can choose from.  If your record comes back with 'field123' and 'field456' keys, those may be used as attributes.

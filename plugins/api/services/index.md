@@ -261,6 +261,19 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
                     <li><strong>operators</strong> - <code>{array}</code> - A list of operators to allow filtering on. Defaults to <code>['and', 'or']</code> but <code>['and']</code> or <code>['or']</code> can also be passed.
                     </li>
                     <li><strong>attributeBlacklist</strong> - <code>{array}</code> - A list of specific fields to prevent the user from filtering on. The list can contain an attribute like <code>'field123'</code>, where 123 is the ID of a field belonging to the form. The list can also contain the following attributes: <code>'folder.id'</code>, <code>'createdByUser.id'</code>, <code>'created'</code>, and <code>'modified'</code>. </li>
+                    <li><strong>prefixBlacklist</strong> - <code>{array}</code> -  A list of prefixes to prevent the user from filtering on. The following is a list of valid prefixes:
+                        <ul>
+                            <li>""</li>
+                            <li>"not"</li>
+                            <li>"contains"</li>
+                            <li>"not-contains"</li>
+                            <li>"starts-with"</li>
+                            <li>"ends-with"</li>
+                            <li>"min"</li>
+                            <li>"max"</li>
+                            <li>"not-validates"</li>
+                        </ul>
+                    </li>
                     <li><strong>fieldTypeBlacklist</strong> - <code>{array}</code> -  A list of field types to prevent the user from filtering on. The following is a list of valid field types:
                         <ul>
                             <li>calculated-field</li>
@@ -275,6 +288,7 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
                             <li>link-counter</li>
                             <li>linked</li>
                             <li>member</li>
+                            <li>numeric</li>
                             <li>page-break</li>
                             <li>radio</li>
                             <li>spacer</li>
