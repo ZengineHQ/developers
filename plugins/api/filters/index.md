@@ -42,4 +42,4 @@ var field = {
 {% endraw %}
 {% endhighlight %}
 
-In example above, the filter would round the number to 2 decimals, and prepend it with a USD symbol. The final outpout would look like this: `$1,234.57`.
+In the example above, the filter would round the number to 2 decimals, and prepend it with a USD symbol. The final outpout would look like this: `$1,234.57`.
