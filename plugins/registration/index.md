@@ -5,7 +5,7 @@ group: registration
 
 ## Plugin Registration Options
 
-There are various plugin options you can change through the registration options. Some of the options only make sense for a particular plugin type, like full page or inline. 
+There are various plugin options you can change through the registration options. Some of the options only make sense for a particular plugin type, like full page or inline.
 
 The following is a full set of possible options for a full page and settings plugin type.
 
@@ -44,7 +44,7 @@ The following is a full set of possible options for a full page and settings plu
 {% endraw %}
 {% endhighlight %}
 
-This is a full set of options for an inline and settings plugin type: 
+This is a full set of options for an inline and settings plugin type:
 
 {% highlight javascript %}
 {% raw %}
@@ -166,7 +166,7 @@ The following table presents the `interfaces` options and their purpose.
         </tr>
         <tr>
             <td>zn-plugin-data-subheader</td>
-            <td>Above the data grid. Only available when there are records to display in the grid./td>
+            <td>Above the data grid. Only available when there are records to display in the grid.</td>
         </tr>
         <tr>
             <td>zn-plugin-panel-header</td>
