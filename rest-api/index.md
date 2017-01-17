@@ -22,9 +22,7 @@ The documentation herein is provided as a reference guide for third party develo
 
 ## Restrictions
 
-The {{site.productName}} API is in beta, which means it is still rapidly maturing. While we do not expect the conventions or resources to change in a way that prove destructive to third party integrations, we cannot makes any promises.
-
-Rate limiting in version 1 of the API is primarily considered on a per-user basis — or more accurately described, per access token. Each access token is allowed **{{site.rateLimit}} queries per {{site.rateLimitWindow}} minute** window. Additionally, these limits apply on a per-plugin basis. So one user can also make {{site.rateLimit}} requests per {{site.rateLimitWindow}} minutes per plugin. 
+Rate limiting in version 1 of the API is primarily considered on a per-user basis — or more accurately described, per access token. Each access token is allowed **{{site.rateLimit}} queries per {{site.rateLimitWindow}} minute** window. Additionally, these limits apply on a per-plugin basis. So one user can also make {{site.rateLimit}} requests per {{site.rateLimitWindow}} minutes per plugin.
 
 We expect you to be kind - only make requests which are necessary, use caching techniques whenever possible, and use the API in a way that does not have a negative impact on {{site.productName}}'s business or infrastructure. We, of course, reserve the right to suspend API access to anybody acting against the spirit of these restrictions.
 
