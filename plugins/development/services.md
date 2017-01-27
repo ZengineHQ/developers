@@ -18,7 +18,7 @@ To get started, from the [Developer tools]({{site.clientDomain}}/account/develop
 * **lib**
 	Used for organizing service code into modules. By default comes with our `znHttp` library for communicating with our REST API and our `znFirebase` library for communicating with [Firebase](https://www.firebase.com/){:target="_blank"}. You can add your own files, but **do not modify existing files**.
 * **node_modules**
-	Where 3rd party node modules live. Includes `restify` for making HTTP requests and `firebase` if you don't use our `znFirebase` library. You should use `npm install` to install additional node modules here. Pure Javascript modules are recommended. Native modules or dependencies must be built against [Amazon Linux libraries](https://aws.amazon.com/blogs/compute/nodejs-packages-in-lambda/){:target="_blank"}. Modules count against your service file size.
+	Where 3rd party node modules live. Includes `requestify` for making HTTP requests and `firebase` if you don't use our `znFirebase` library. You should use `npm install` to install additional node modules here. Pure Javascript modules are recommended. Native modules or dependencies must be built against [Amazon Linux libraries](https://aws.amazon.com/blogs/compute/nodejs-packages-in-lambda/){:target="_blank"}. Modules count against your service file size.
 * **package.json**
 	Node.js specific package file.
 * **plugin.js**
@@ -54,7 +54,7 @@ exports.run = function(eventData) {
 
 			eventData.response.status(404).send(error.getBody());
 		});
-		
+
 	} else {
 		eventData.response.status(404).send('Not found');
 	}
