@@ -1203,7 +1203,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
       }
       $('#message-bar').removeClass('message-fail');
       $('#message-bar').addClass('message-success');
-      return $('#message-bar').html(data);
+      return $('#message-bar').text(data);
     };
 
     SwaggerUi.prototype.onLoadFailure = function(data) {
@@ -1213,7 +1213,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
       }
       $('#message-bar').removeClass('message-success');
       $('#message-bar').addClass('message-fail');
-      val = $('#message-bar').html(data);
+      val = $('#message-bar').text(data);
       if (this.options.onFailure != null) {
         this.options.onFailure(data);
       }
