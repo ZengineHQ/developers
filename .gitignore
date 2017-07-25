@@ -5,3 +5,5 @@ Gemfile.lock
 CNAME
 
 .DS_Store
+
+*.sublime-*
