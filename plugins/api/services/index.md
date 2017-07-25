@@ -293,6 +293,7 @@ plugin.controller('myMainCntl', ['$scope', 'znFiltersPanel', 'znData', function(
                             <li>radio</li>
                             <li>spacer</li>
                             <li>state-select</li>
+                            <li>summary</li>
                             <li>text</li>
                             <li>text-area</li>
                             <li>text-input</li>
