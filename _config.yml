@@ -5,6 +5,7 @@ version: 1
 baseurl: '/developers'
 exclude: [README.md, Gemfile, Gemfile.lock, CNAME]
 apiDomain: "https://api.zenginehq.com"
+marketingDomain: "http://www.zenginehq.com"
 clientDomain: "https://platform.zenginehq.com"
 pluginDomain: "https://plugins.zenginehq.com"
 authDomain: "https://auth.zenginehq.com"
