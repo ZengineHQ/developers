@@ -1,0 +1,71 @@
+---
+layout: nav-bar
+group: conventions
+subgroup: counting
+---
+
+<h1>Conventions</h1>
+
+<h2>Counting</h2>
+
+<p>Resources may be counted using either of the following two methods.</p>
+
+<h3 id="path">Path</h3>
+
+<p>Counting paths are built by appending '/count' to a valid resource path:</p>
+
+<p><pre>
+{{site.apiDomain}}/v1/forms/2/records/count
+</pre></p>
+
+<p>Use the counting path via a <code>GET</code> request to retrieve the total count for the resource:</p>
+
+{% highlight json %}
+{
+	"status": 200,
+	"code": 2000,
+	"totalCount": 17
+}
+{% endhighlight %}
+
+<h3 id="within-response">Within a Response</h3>
+
+<p>You can also access the total count for a resource while looping through paged responses.  For example a <code>GET</code> request to retrieve a page of resources:</p>
+
+<p><pre>
+https://api.wizehive-dev.com/v1/forms/2/records?attributes=field88&page=0,limit=5
+</pre></p>
+
+<p>Whould return the total count within each response:</p>
+
+{% highlight json %}
+{
+  "status": 200,
+  "code": 2000,
+  "totalCount": 17,
+  "limit": 5,
+  "offset": 0,
+  "data": [
+    {
+      "id": 200000001,
+      "field88": "2100215000.00000000"
+    },
+    {
+      "id": 200000002,
+      "field88": "2108230000.00000000"
+    },
+    {
+      "id": 200000003,
+      "field88": "2100544000.00000000"
+    },
+    {
+      "id": 200000004,
+      "field88": "2101823000.00000000"
+    },
+    {
+      "id": 200000005,
+      "field88": "2103007000.00000000"
+    }
+  ]
+}
+{% endhighlight %}
