@@ -199,6 +199,18 @@ $(function(){
 							</li>
 						</ul>
 					</li>
+					<li class="divider"></li>
+					<li {% if page.subgroup == 'counting' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/rest-api/conventions/counting/">Counting</a>
+						<ul>
+							<li class="path">
+								<a href="{{site.baseurl}}/rest-api/conventions/counting/#path">Path</a>
+							</li>
+							<li class="within-response">
+								<a href="{{site.baseurl}}/rest-api/conventions/counting/#within-response">Within a Response</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</li>
 			<li class="divider"></li>
