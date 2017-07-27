@@ -254,6 +254,18 @@ $(function(){
 			<li {% if page.group == 'cors' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api/cross-origin-resource-sharing/">Cross-Origin Resource Sharing (CORS)</a>
 			</li>
+			<li class="divider"></li>
+			<li {% if page.group == 'appendix' %}class="active"{% endif %}>
+				<a href="{{site.baseurl}}/rest-api/appendix/">Appendix</a>
+				<ul>
+					<a href="{{site.baseurl}}/rest-api/appendix/">
+						<li class="divider"></li>
+					</a>
+					<li {% if page.subgroup == 'invitation-flow' %}class="active"{% endif %}>
+						<a href="{{site.baseurl}}/rest-api/appendix/custom-invitation-flow/">Custom Invitation Flow</a>
+					</li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 	<div class="large-10 columns">
