@@ -1,0 +1,155 @@
+---
+layout: nav-bar
+group: appendix
+subgroup: invitation-flow
+---
+<h1>Custom Invitation Flow</h1>
+
+<p>
+It may be desirable for an application to provide for a custom flow to invite users into a workspace.  Here is how such a flow could be implemented.
+</p>
+
+
+<p>First <code>POST</code> an invitation request to the workspace resource:</p>
+
+<p><pre>
+{{site.apiDomain}}/v1/workspace/10001/invitees
+</pre></p>
+
+<p>With parameters
+
+{% highlight json %}
+{
+  "email": "someone@example.com",
+  "role": {
+  	"id": 3
+  },
+  "notify": false
+}
+{% endhighlight %}
+
+<p>
+Where:
+</p>
+
+<table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td>workspace_id</td><td>The id of the workspace</td></tr>
+<tr><td>email</td><td>The deliverable Email address of the user you intend to invite</td></tr>
+<tr><td>role.id</td><td>The id of the access role for the workspace</td></tr>
+<tr><td>notify</td><td>False, suppresses automatic email generation</td></tr>
+</table>
+
+<p>
+Would respond with:
+</p>
+
+{% highlight json %}
+{
+  "status": 200,
+  "code": 2000,
+  "developerMessage": "Make a note of this inviteCode if you are not sending email invitations. This is the last & only time you will see it!",
+  "totalCount": 1,
+  "limit": 20,
+  "offset": 0,
+  "data": {
+    "id": 1,
+    "workspace": {
+      "id": 10001
+    },
+    "email": "someone@example.com",
+    "role": {
+      "id": 3
+    },
+    "claimedByUser": {
+      "id": null,
+      "resource": null,
+      "resourceId": null,
+      "username": null,
+      "email": null,
+      "displayName": null,
+      "created": null,
+      "modified": null,
+      "profile": {
+        "firstName": null,
+        "lastName": null,
+        "publicName": null,
+        "publicUrl": null
+      },
+      "settings": {
+        "avatarUrl": null
+      }
+    },
+    "createdByUser": {
+      "id": 11,
+      "resource": null,
+      "resourceId": null,
+      "username": "me@example.com",
+      "email": "me@example.com",
+      "displayName": "me@example.com",
+      "created": "2016-11-10T18:33:41+0000",
+      "modified": "2017-07-21T14:29:43+0000",
+      "profile": {
+        "firstName": null,
+        "lastName": null,
+        "publicName": null,
+        "publicUrl": null
+      },
+      "settings": {
+        "avatarUrl": "https://wh-current-assets.s3.amazonaws.com/filter/img_png_40_40/img/59720fcc-f344-4782-8723-5608ac110006.png?AWSAccessKeyId=AKIAJSLYTZGTFGF2OG4A&Expires=1816528857&Signature=mZ%2BbesP%2BlBoDirw8BwoEskXgAa8%3D"
+      }
+    },
+    "inviteCode": "a83b5331fc6dcd93cd9a051f114095e7",
+    "created": "2017-07-27T15:20:54+0000",
+    "modified": "2017-07-27T15:20:54+0000"
+  }
+}
+{% endhighlight %}
+
+
+<p>
+The inviteCode return in the response would be programmatically extracted and stored for completing the flow.
+</p>
+
+<p>Next, you would generate and send your own custom inviation email to the user. The invitateCode would need to be embedded in the body with a link back to your service that will process the invitation if accepted.
+<p>
+
+<p>
+For example embedded in a mime, quoted-printable mail body:
+</p>
+
+<p><pre>
+=09=09=09=09=09&lt;br&gt;&lt;br&gt;&lt;a target=3D&quot;_blank&quot; href=3D&quot;https://service=
+s.something.com?<strong style="color:#000080">inviteCode</strong><strong>=</strong><strong style="color:#d14">a83b5331fc6dcd93cd9a051f114095e7</strong>&amp;workspace.id=
+=3D10001&amp;email=someone%40example.com&quot; style=3D&quot;color: #fff; text-decorat=
+ion: none; font-weight: normal; -webkit-border-radius: 2px; -moz-border-rad=
+ius: 2px; border-radius: 2px; display: inline-block; background-color: #29b=
+2e6; margin: 0 10px 0 0; padding: 6px 40px;&quot;&gt;Accept Invitation to Join Cust=
+om Workspace&lt;/a&gt;
+</pre></p>
+
+<p>
+When you receive the request to accept the invitation in your service, extract the inviteCode. Then <code>POST</code> a members request to the original workspace resource:</p>
+
+<p><pre>
+{{site.apiDomain}}/v1/workspace/10001/members
+</pre></p>
+
+<p>With parameters
+
+{% highlight json %}
+{
+  "inviteCode": "a83b5331fc6dcd93cd9a051f114095e7"
+}
+{% endhighlight %}
+
+<p>
+Would respond with:
+</p>
+
+{% highlight json %}
+{
+  "status": 200,
+  "code": 2000
+}
+{% endhighlight %}
