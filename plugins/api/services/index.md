@@ -356,7 +356,7 @@ Performs a `GET` request on an array of objects. The id param, if passed to `par
 // Get list of workspace members
 // equivalent to: GET /workspaces/123/members?id=456
 // response will be an array
-znData('WorkspaceMembers').query({ workspaceId:123, id: 456 }, function(members) {
+znData('WorkspaceMembers').query({ 'workspace.id': 123, id: 456 }, function(members) {
     $scope.member = members[0];
 });
 {% endhighlight %}
