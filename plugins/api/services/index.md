@@ -596,6 +596,7 @@ The {{site.productName}} REST API has more [querying options]({{site.baseurl}}/r
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records-permissions">FormRecordPermissions</a></td><td>/forms/:formId/records/permissions</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-fields">FormFields</a></td><td>/forms/:formId/fields/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-folders">FormFolders</a></td><td>/forms/:formId/folders/:id</td></tr>
+        <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/form_groups">FormGroups</a></td><td>/forms_groups/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-records">FormRecords</a></td><td>/forms/:formId/records/:id</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/forms-form.id-uploads">FormUploads</a></td><td>/forms/:id/uploads</td></tr>
         <tr><td><a href="{{site.baseurl}}/rest-api/resources/#!/notes">Notes</a></td><td>/notes/:id</td></tr>
