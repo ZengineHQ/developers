@@ -188,6 +188,10 @@ Learn more about how to setup [Firebase security rules]({{site.baseurl}}/plugins
 
 You will need to download and install [Node.js](https://nodejs.org/){:target="_blank"} to run your service locally. Next, browse to your service directory from the command line and run `npm start`. You should see `Listening on port 3000`, indicating your service is running at `http://localhost:3000`. We recommend using the Google Chrome extension [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop){:target="_blank"} to make requests to your service. This will allow you to easily make requests and send HTTP headers you will need for offline plugins.
 
+### Code Changes
+
+Note that when you make code changes, you will need to stop and restart the local service runner in order for those changes to be reflected. Press Ctrl + C to stop the running service, and run `npm start` again to start it back up.
+
 ### Routes
 
 The route for plugin service requests follows a specific convention: `/workspaces/{workspaceId}/{pluginNamespace}/{serviceRoute}`
