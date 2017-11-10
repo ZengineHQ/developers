@@ -188,10 +188,26 @@ Learn more about how to setup [Firebase security rules]({{site.baseurl}}/plugins
 
 You will need to download and install [Node.js](https://nodejs.org/){:target="_blank"} to run your service locally. Next, browse to your service directory from the command line and run `npm start`. You should see `Listening on port 3000`, indicating your service is running at `http://localhost:3000`. We recommend using the Google Chrome extension [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop){:target="_blank"} to make requests to your service. This will allow you to easily make requests and send HTTP headers you will need for offline plugins.
 
+### Routes
+
+The route for plugin service requests follows a specific convention: `/workspaces/{workspaceId}/{pluginNamespace}/{serviceRoute}`
+
+So, for example, if you're using workspace `123`, your plugin namespace is `documentationPlugin`, and your plugin service's route is `do-something`, you would run this locally by making a request to `http://localhost:3000/workspaces/123/documentationPlugin/do-something` . 
+
+When you upload your service and run it in {{site.productName}}, requests would go to `{{site.pluginDomain}}/workspaces/123/documentationPlugin/do-something` .
+
+### Request headers
+
+If your plugin service uses `znHttp`, you will need to send the `Authorization` header with an API access token for `znHttp` to use when running your service locally:
+
+* `Authorization: Bearer user_access_token`
+
+Note that you can find a temporary access token here: [{{site.clientDomain}}/account/developer]({{site.clientDomain}}/account/developer)
+
 When using the znFirebase library to access data protected by security rules you will need to send two headers:
 
-* `X-Firebase-Url: your Firebase URL`
-* `X-Firebase-Secret: your Firebase Secret`
+* `X-Firebase-Url: your_firebase_url`
+* `X-Firebase-Secret: your_firebase_secret`
 
 ## Executing Draft Services
 
