@@ -15,5 +15,4 @@ group: third-party
 * **UI Sortable** 0.13.1
 * **UI Tinymce** 0.0.9
 * **jQuery UI Draggable** 1.10.3
-
-  
+* **Ng Showdown** 1.1.0
