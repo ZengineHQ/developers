@@ -86,3 +86,11 @@ myAppModule.controller('MyController', function($scope) {
   <textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel"></textarea>
 </form>
 {% endhighlight %}
+
+## Troubleshooting
+
+If you are conditionally hiding/showing the TinyMCE editor you may run into an issue where the editor's contents aren't updating to reflect `ng-model` changes. In that case you can fix it by calling:
+
+{% highlight js%}
+$scope.$broadcast('$tinymce:refresh');
+{% endhighlight %}
