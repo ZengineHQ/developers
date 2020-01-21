@@ -1,8 +1,11 @@
 
 @media (max-width: 767px) {
-	.side-nav.affix {
+	.side-nav.affix, .nav {
 		position: relative !important;
 		top: 0px !important;
+	}
+	#plugin-breadcrumb {
+		position: relative;
 	}
 }
 @media (min-width: 768px) {
@@ -10,12 +13,28 @@
 		width: 145px;
 		padding-right: 20px;
 	}
+	#plugin-breadcrumb {
+		position: fixed;
+		top:75px;
+	}
+	ol #plugin-breadcrumb {
+		margin:5px 0;
+
+	}
+	#plugin-breadcrumb.breadcrumb-collapse {
+		top:50px;
+	}
+	
 }
 
-.side-nav.affix {
+.side-nav.affix, .nav-tabs {
 	top: 75px;
+}
+.nav-tabs {
+	position:absolute;
 }
 
 pre {
 	background-color: white !important;
 }
+
