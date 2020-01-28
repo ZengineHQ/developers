@@ -25,7 +25,7 @@ The Process is defined in [Legacy Plugin Wrapper](https://github.com/ZengineHQ/l
 ## Legacy Plugins
 
 Do not have time to migrate your plugins? All of your existing plugins will still work and be deployable for the next 6-12 months, but you will not be able to take advantage of the new tech.
-If you still need to develop with the Version 1 plugins here is the documentation. [{{site.productName}} Plugins Version 1 Documentation](/plugins/)
+If you still need to develop with the Version 1 plugins here is the documentation. [{{site.productName}} Plugins Version 1 Documentation]({{site.baseurl}}/plugins/)
 
 ## Example {{site.productName}} Version 2 Plugin
 
