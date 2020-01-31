@@ -27,356 +27,364 @@ $(function(){
 });
 
 </script>
-<div class="row">
-	<div class="large-2 columns">
-		<ul class="side-nav affix">
-			<li {% if page.group == 'intro' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/">Introduction</a>
-				<ul>
-					<li {% if page.subgroup == 'getting-started' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/getting-started/">Getting Started</a>
-					</li>
-					<li {% if page.subgroup == 'plugin-types' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/getting-started/plugin-types.html">Plugin Types</a>
-					</li>
-					<li {% if page.subgroup == 'templates-routes' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/getting-started/templates-routes.html">Templates and Routes</a>
-					</li>
-					<li {% if page.subgroup == 'services' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/getting-started/services.html">Backend Services</a>
-					</li>
-					<li {% if page.subgroup == 'publishing' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/getting-started/publishing.html">Publishing</a>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'registration' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/registration/">Plugin Options</a>
-				<ul>
-					<li class="registration-options">
-						<a href="{{site.baseurl}}/plugins/registration/">Registration Options</a>
-					</li>
-					<li class="plugin-locations">
-						<a href="{{site.baseurl}}/plugins/registration/#plugin-locations">Plugin Locations</a>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'development' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/development/">Plugin Development</a>
-				<ul>
-					<li {% if page.name == 'index.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/development/">Using Angular</a>
-					</li>
-					<li {% if page.name == 'angular-services.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/development/angular-services.html">Angular Services</a>
-					</li>
-					<li {% if page.name == 'services.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/development/services.html">Backend Services</a>
-					</li>
-					<li {% if page.name == 'best-practices.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/development/best-practices.html">Best Practices</a>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'api' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/api/directives/">API Reference</a>
-				<ul>
-					<li {% if page.subgroup == 'directives' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/directives/">Directives</a>
-					</li>
-					<li {% if page.subgroup == 'filters' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/filters/">Filters</a>
-					</li>
-					<li {% if page.subgroup == 'services' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/services/">Services</a>
-						<ul>
-							<li class="znmessage">
-								<a href="{{site.baseurl}}/plugins/api/services/#znmessage">Message</a>
-							</li>
-							<li class="znconfirm">
-								<a href="{{site.baseurl}}/plugins/api/services/#znconfirm">Confirm</a>
-							</li>
-							<li class="znmodal">
-								<a href="{{site.baseurl}}/plugins/api/services/#znmodal">Modal</a>
-							</li>
-							<li class="znfilterspanel">
-								<a href="{{site.baseurl}}/plugins/api/services/#znfilterspanel">Filters Panel</a>
-							</li>
-							<li class="znfiltermatcher">
-								<a href="{{site.baseurl}}/plugins/api/services/#znfiltermatcher">Filter Matcher</a>
-							</li>
-							<li class="zndata">
-								<a href="{{site.baseurl}}/plugins/api/services/#zndata">Data</a>
-								<ul>
-									<li class="get">
-										<a href="{{site.baseurl}}/plugins/api/services/#get">Get</a>
-									</li>
-									<li class="query">
-										<a href="{{site.baseurl}}/plugins/api/services/#query">Query</a>
-									</li>
-									<li class="delete">
-										<a href="{{site.baseurl}}/plugins/api/services/#delete">Delete</a>
-									</li>
-									<li class="save">
-										<a href="{{site.baseurl}}/plugins/api/services/#save">Save</a>
-									</li>
-									<li class="available-resources">
-										<a href="{{site.baseurl}}/plugins/api/services/#available-resources">Resources</a>
-									</li>
-								</ul>
-							</li>
-							<li class="znplugindata">
-								<a href="{{site.baseurl}}/plugins/api/services/#znplugindata">Plugin Data</a>
-								<ul>
-									<li class="pluginDataGet">
-										<a href="{{site.baseurl}}/plugins/api/services/#pluginDataGet">Get</a>
-									</li>
-									<li class="pluginDataPost">
-										<a href="{{site.baseurl}}/plugins/api/services/#pluginDataPost">Post</a>
-									</li>
-									<li class="pluginDataPut">
-										<a href="{{site.baseurl}}/plugins/api/services/#pluginDataPut">Put</a>
-									</li>
-									<li class="pluginDataDelete">
-										<a href="{{site.baseurl}}/plugins/api/services/#pluginDataDelete">Delete</a>
-									</li>
-								</ul>
-							</li>
-							<li class="znpluginevents">
-								<a href="{{site.baseurl}}/plugins/api/services/#znpluginevents">Plugin Events</a>
-							</li>
-							<li class="zn-local-storage">
-								<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage">Local Storage</a>
-								<ul>
-									<li class="zn-local-storage-set">
-										<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage-set">Set</a>
-									</li>
-									<li class="zn-local-storage-get">
-										<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage-get">Get</a>
-									</li>
-									<li class="zn-local-storage-remove">
-										<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage-remove">Remove</a>
-									</li>
-									<li class="zn-local-storage-is-supported">
-										<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage-is-supported">isSupported</a>
-									</li>
-								</ul>
-							</li>
-							<li class="zn-cookies">
-								<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies">Cookies</a>
-								<ul>
-									<li class="zn-cookies-set">
-										<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies-set">Set</a>
-									</li>
-									<li class="zn-cookies-get">
-										<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies-get">Get</a>
-									</li>
-									<li class="zn-cookies-remove">
-										<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies-remove">Remove</a>
-									</li>
-									<li class="zn-cookies-is-supported">
-										<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies-is-supported">isSupported</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li {% if page.subgroup == 'query-parameters' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/api/query-parameters/">Query Parameters</a>
-						<ul>
-							<li class="record">
-								<a href="{{site.baseurl}}/plugins/api/query-parameters/#record">Record Overlay</a>
-							</li>
-							<li class="file-viewer">
-								<a href="{{site.baseurl}}/plugins/api/query-parameters/#file-viewer">File Viewer Modal</a>
-							</li>
-							<li class="lightbox">
-								<a href="{{site.baseurl}}/plugins/api/query-parameters/#lightbox">Image Lightbox</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'third-party' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/third-party/">Third Party Libraries</a>
-				<ul>
-					<li {% if page.name == 'developing-plugins-with-firebase.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html">AngularFire</a>
-					</li>
-					<li {% if page.name == 'ace-editor.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/third-party/ace-editor.html">UI Ace Editor</a>
-					</li>
-					<li {% if page.name == 'sortable.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/third-party/sortable.html">UI Sortable</a>
-					</li>
-					<li {% if page.name == 'tinymce.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/third-party/tinymce.html">UI Tinymce</a>
-					</li>
-					<li {% if page.name == 'ng-showdown.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/third-party/ng-showdown.html">Ng Showdown</a>
-					</li>
-					<li {% if page.name == 'versions.md' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/third-party/versions.html">Versions</a>
-					</li>
-				</ul>
-			</li>
-			<li class="divider"></li>
-			<li {% if page.group == 'tutorials' %}class="active"{% endif %}>
-				<a href="{{site.baseurl}}/plugins/tutorials/">Tutorials</a>
-				<ul>
-					<li {% if page.subgroup == 'record-board' or page.subgroup == 'record-board-2'%}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Record Kanban Board</a>
-						<ul>
-							<li {% if page.subgroup == 'record-board' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Part 1</a>
-								<ul>
-									<li class="prerequisites">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#prerequisites">Prerequisites</a>
-									</li>
-									<li class="current-workspace">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#current-workspace">Current Workspace</a>
-									</li>
-									<li class="workspace-forms">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#workspace-forms">Workspace Forms</a>
-									</li>
-									<li class="selecting-a-form">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#selecting-a-form">Selecting a Form</a>
-									</li>
-									<li class="loading-records">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#loading-records">Loading Records</a>
-									</li>
-									<li class="wrapping-up">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#wrapping-up">Wrapping Up</a>
-									</li>
-								</ul>
-							</li>
-							<li {% if page.subgroup == 'record-board-2' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html">Part 2</a>
-								<ul>
-									<li class="adding-folders">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#adding-folders">Adding Folders</a>
-									</li>
-									<li class="moving-records">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#moving-records">Moving Records</a>
-									</li>
-									<li class="saving-record-folders">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#saving-record-folders">Saving Record Folders</a>
-									</li>
-									<li class="wrapping-up">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#wrapping-up">Wrapping Up</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li class="divider"></li>
-					<li {% if page.subgroup == 'chat' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html">Chat Room</a>
-						<ul>
-							<li class="get-api-data">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#get-api-data">Get API Data</a>
-							</li>
-							<li class="wait-for-api-responses">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wait-for-api-responses">Wait for API responses</a>
-							</li>
-							<li class="connecting-to-firebase">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#connecting-to-firebase">Connecting to Firebase</a>
-							</li>
-							<li class="adding-chat-messages-to-firebase">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#adding-chat-messages-to-firebase">Saving to Firebase</a>
-							</li>
-							<li class="using-a-directive-to-display-each-message">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#using-a-directive-to-display-each-message">Message Display Directive</a>
-							</li>
-							<li class="add-a-directive-to-auto-scroll-messages">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#add-a-directive-to-auto-scroll-messages">Autoscroll Directive</a>
-							</li>
-							<li class="wrapping-up">
-								<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wrapping-up">Wrapping Up</a>
-							</li>
-						</ul>
-					</li>
-					<li class="divider"></li>
-					<li {% if page.subgroup == 'record-sms' or page.subgroup == 'record-sms-2'%}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html">Record SMS</a>
-						<ul>
-							<li {% if page.subgroup == 'record-sms' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html">Part 1</a>
-								<ul>
-									<li class="prerequisites">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#prerequisites">Prerequisites</a>
-									</li>
-									<li class="creating-a-backend-plugin-service">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#creating-a-backend-plugin-service">Creating a Backend Plugin Service</a>
-									</li>
-									<li class="plugin-settings">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#plugin-settings">Plugin Settings</a>
-									</li>
-									<li class="configuring-the-webhook">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#configuring-the-webhook">Configuring the Webhook</a>
-									</li>
-									<li class="using-webhook-payload-data">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#using-webhook-payload-data">Using Webhook Payload Data</a>
-									</li>
-									<li class="saving-webhook-settings-to-firebase">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#saving-webhook-settings-to-firebase">Saving to Firebase</a>
-									</li>
-									<li class="wrapping-up">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#wrapping-up">Wrapping Up</a>
-									</li>
-								</ul>
-							</li>
-							<li {% if page.subgroup == 'record-sms-2' %}class="active"{% endif %}>
-								<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html">Part 2</a>
-								<ul>
-									<li class="adding-sms-settings">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#adding-sms-settings">Adding SMS Settings</a>
-									</li>
-									<li class="adding-twillio-credentials">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#adding-twillio-credentials">Adding Twillio Credentials</a>
-									</li>
-									<li class="using-firebase-in-your-backend-service">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#using-firebase-in-your-backend-service">Using Firebase in Your Backend Service</a>
-									</li>
-									<li class="webhook-verification">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#webhook-verification">Webhook Verification</a>
-									</li>
-									<li class="wrapping-up">
-										<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#wrapping-up">Wrapping Up</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li class="divider"></li>
-					<li {% if page.subgroup == 'scheduled-service' %}class="active"{% endif %}>
-						<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html">Scheduled Plugin Service</a>
-						<ul>
-							<li class="prerequisites">
-								<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html#prerequisites">Prerequisites</a>
-							</li>
-							<li class="creating-the-plugin-service">
-								<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html#creating-the-plugin-service">Creating the Plugin Service</a>
-							</li>
-							<li class="publish-and-install">
-								<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html#publish-and-install">Publish and Install</a>
-							</li>
-							<li class="creating-a-scheduled-webhook">
-								<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html#creating-a-scheduled-webhook">Creating a Scheduled Webhook</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-        </ul>
+
+
+<div class=tab-content" class="tab-pane" id="v1">
+	<div class="row">
+		<div class="large-2 columns">
+			<ul class="side-nav affix">
+			{% if page.group == 'v2-intro' %}
+				
+			{% else %}
+				<li {% if page.group == 'intro' %}class="active"{% endif %}>
+					<a href="{{site.baseurl}}/plugins/">Introduction</a>
+					<ul>
+						<li {% if page.subgroup == 'getting-started' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/getting-started/">Getting Started</a>
+						</li>
+						<li {% if page.subgroup == 'plugin-types' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/getting-started/plugin-types.html">Plugin Types</a>
+						</li>
+						<li {% if page.subgroup == 'templates-routes' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/getting-started/templates-routes.html">Templates and Routes</a>
+						</li>
+						<li {% if page.subgroup == 'services' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/getting-started/services.html">Backend Services</a>
+						</li>
+						<li {% if page.subgroup == 'publishing' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/getting-started/publishing.html">Publishing</a>
+						</li>
+					</ul>
+				</li>
+				<li class="divider"></li>
+				<li {% if page.group == 'registration' %}class="active"{% endif %}>
+					<a href="{{site.baseurl}}/plugins/registration/">Plugin Options</a>
+					<ul>
+						<li class="registration-options">
+							<a href="{{site.baseurl}}/plugins/registration/">Registration Options</a>
+						</li>
+						<li class="plugin-locations">
+							<a href="{{site.baseurl}}/plugins/registration/#plugin-locations">Plugin Locations</a>
+						</li>
+					</ul>
+				</li>
+				<li class="divider"></li>
+				<li {% if page.group == 'development' %}class="active"{% endif %}>
+					<a href="{{site.baseurl}}/plugins/development/">Plugin Development</a>
+					<ul>
+						<li {% if page.name == 'index.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/development/">Using Angular</a>
+						</li>
+						<li {% if page.name == 'angular-services.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/development/angular-services.html">Angular Services</a>
+						</li>
+						<li {% if page.name == 'services.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/development/services.html">Backend Services</a>
+						</li>
+						<li {% if page.name == 'best-practices.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/development/best-practices.html">Best Practices</a>
+						</li>
+					</ul>
+				</li>
+				<li class="divider"></li>
+				<li {% if page.group == 'api' %}class="active"{% endif %}>
+					<a href="{{site.baseurl}}/plugins/api/directives/">API Reference</a>
+					<ul>
+						<li {% if page.subgroup == 'directives' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/api/directives/">Directives</a>
+						</li>
+						<li {% if page.subgroup == 'filters' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/api/filters/">Filters</a>
+						</li>
+						<li {% if page.subgroup == 'services' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/api/services/">Services</a>
+							<ul>
+								<li class="znmessage">
+									<a href="{{site.baseurl}}/plugins/api/services/#znmessage">Message</a>
+								</li>
+								<li class="znconfirm">
+									<a href="{{site.baseurl}}/plugins/api/services/#znconfirm">Confirm</a>
+								</li>
+								<li class="znmodal">
+									<a href="{{site.baseurl}}/plugins/api/services/#znmodal">Modal</a>
+								</li>
+								<li class="znfilterspanel">
+									<a href="{{site.baseurl}}/plugins/api/services/#znfilterspanel">Filters Panel</a>
+								</li>
+								<li class="znfiltermatcher">
+									<a href="{{site.baseurl}}/plugins/api/services/#znfiltermatcher">Filter Matcher</a>
+								</li>
+								<li class="zndata">
+									<a href="{{site.baseurl}}/plugins/api/services/#zndata">Data</a>
+									<ul>
+										<li class="get">
+											<a href="{{site.baseurl}}/plugins/api/services/#get">Get</a>
+										</li>
+										<li class="query">
+											<a href="{{site.baseurl}}/plugins/api/services/#query">Query</a>
+										</li>
+										<li class="delete">
+											<a href="{{site.baseurl}}/plugins/api/services/#delete">Delete</a>
+										</li>
+										<li class="save">
+											<a href="{{site.baseurl}}/plugins/api/services/#save">Save</a>
+										</li>
+										<li class="available-resources">
+											<a href="{{site.baseurl}}/plugins/api/services/#available-resources">Resources</a>
+										</li>
+									</ul>
+								</li>
+								<li class="znplugindata">
+									<a href="{{site.baseurl}}/plugins/api/services/#znplugindata">Plugin Data</a>
+									<ul>
+										<li class="pluginDataGet">
+											<a href="{{site.baseurl}}/plugins/api/services/#pluginDataGet">Get</a>
+										</li>
+										<li class="pluginDataPost">
+											<a href="{{site.baseurl}}/plugins/api/services/#pluginDataPost">Post</a>
+										</li>
+										<li class="pluginDataPut">
+											<a href="{{site.baseurl}}/plugins/api/services/#pluginDataPut">Put</a>
+										</li>
+										<li class="pluginDataDelete">
+											<a href="{{site.baseurl}}/plugins/api/services/#pluginDataDelete">Delete</a>
+										</li>
+									</ul>
+								</li>
+								<li class="znpluginevents">
+									<a href="{{site.baseurl}}/plugins/api/services/#znpluginevents">Plugin Events</a>
+								</li>
+								<li class="zn-local-storage">
+									<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage">Local Storage</a>
+									<ul>
+										<li class="zn-local-storage-set">
+											<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage-set">Set</a>
+										</li>
+										<li class="zn-local-storage-get">
+											<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage-get">Get</a>
+										</li>
+										<li class="zn-local-storage-remove">
+											<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage-remove">Remove</a>
+										</li>
+										<li class="zn-local-storage-is-supported">
+											<a href="{{site.baseurl}}/plugins/api/services/#zn-local-storage-is-supported">isSupported</a>
+										</li>
+									</ul>
+								</li>
+								<li class="zn-cookies">
+									<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies">Cookies</a>
+									<ul>
+										<li class="zn-cookies-set">
+											<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies-set">Set</a>
+										</li>
+										<li class="zn-cookies-get">
+											<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies-get">Get</a>
+										</li>
+										<li class="zn-cookies-remove">
+											<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies-remove">Remove</a>
+										</li>
+										<li class="zn-cookies-is-supported">
+											<a href="{{site.baseurl}}/plugins/api/services/#zn-cookies-is-supported">isSupported</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li {% if page.subgroup == 'query-parameters' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/api/query-parameters/">Query Parameters</a>
+							<ul>
+								<li class="record">
+									<a href="{{site.baseurl}}/plugins/api/query-parameters/#record">Record Overlay</a>
+								</li>
+								<li class="file-viewer">
+									<a href="{{site.baseurl}}/plugins/api/query-parameters/#file-viewer">File Viewer Modal</a>
+								</li>
+								<li class="lightbox">
+									<a href="{{site.baseurl}}/plugins/api/query-parameters/#lightbox">Image Lightbox</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="divider"></li>
+				<li {% if page.group == 'third-party' %}class="active"{% endif %}>
+					<a href="{{site.baseurl}}/plugins/third-party/">Third Party Libraries</a>
+					<ul>
+						<li {% if page.name == 'developing-plugins-with-firebase.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/third-party/developing-plugins-with-firebase.html">AngularFire</a>
+						</li>
+						<li {% if page.name == 'ace-editor.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/third-party/ace-editor.html">UI Ace Editor</a>
+						</li>
+						<li {% if page.name == 'sortable.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/third-party/sortable.html">UI Sortable</a>
+						</li>
+						<li {% if page.name == 'tinymce.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/third-party/tinymce.html">UI Tinymce</a>
+						</li>
+						<li {% if page.name == 'ng-showdown.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/third-party/ng-showdown.html">Ng Showdown</a>
+						</li>
+						<li {% if page.name == 'versions.md' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/third-party/versions.html">Versions</a>
+						</li>
+					</ul>
+				</li>
+				<li class="divider"></li>
+				<li {% if page.group == 'tutorials' %}class="active"{% endif %}>
+					<a href="{{site.baseurl}}/plugins/tutorials/">Tutorials</a>
+					<ul>
+						<li {% if page.subgroup == 'record-board' or page.subgroup == 'record-board-2'%}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Record Kanban Board</a>
+							<ul>
+								<li {% if page.subgroup == 'record-board' %}class="active"{% endif %}>
+									<a href="{{site.baseurl}}/plugins/tutorials/record-board.html">Part 1</a>
+									<ul>
+										<li class="prerequisites">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#prerequisites">Prerequisites</a>
+										</li>
+										<li class="current-workspace">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#current-workspace">Current Workspace</a>
+										</li>
+										<li class="workspace-forms">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#workspace-forms">Workspace Forms</a>
+										</li>
+										<li class="selecting-a-form">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#selecting-a-form">Selecting a Form</a>
+										</li>
+										<li class="loading-records">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#loading-records">Loading Records</a>
+										</li>
+										<li class="wrapping-up">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board.html#wrapping-up">Wrapping Up</a>
+										</li>
+									</ul>
+								</li>
+								<li {% if page.subgroup == 'record-board-2' %}class="active"{% endif %}>
+									<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html">Part 2</a>
+									<ul>
+										<li class="adding-folders">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#adding-folders">Adding Folders</a>
+										</li>
+										<li class="moving-records">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#moving-records">Moving Records</a>
+										</li>
+										<li class="saving-record-folders">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#saving-record-folders">Saving Record Folders</a>
+										</li>
+										<li class="wrapping-up">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-board-2.html#wrapping-up">Wrapping Up</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li {% if page.subgroup == 'chat' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html">Chat Room</a>
+							<ul>
+								<li class="get-api-data">
+									<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#get-api-data">Get API Data</a>
+								</li>
+								<li class="wait-for-api-responses">
+									<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wait-for-api-responses">Wait for API responses</a>
+								</li>
+								<li class="connecting-to-firebase">
+									<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#connecting-to-firebase">Connecting to Firebase</a>
+								</li>
+								<li class="adding-chat-messages-to-firebase">
+									<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#adding-chat-messages-to-firebase">Saving to Firebase</a>
+								</li>
+								<li class="using-a-directive-to-display-each-message">
+									<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#using-a-directive-to-display-each-message">Message Display Directive</a>
+								</li>
+								<li class="add-a-directive-to-auto-scroll-messages">
+									<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#add-a-directive-to-auto-scroll-messages">Autoscroll Directive</a>
+								</li>
+								<li class="wrapping-up">
+									<a href="{{site.baseurl}}/plugins/tutorials/building-a-chat-plugin.html#wrapping-up">Wrapping Up</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li {% if page.subgroup == 'record-sms' or page.subgroup == 'record-sms-2'%}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html">Record SMS</a>
+							<ul>
+								<li {% if page.subgroup == 'record-sms' %}class="active"{% endif %}>
+									<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html">Part 1</a>
+									<ul>
+										<li class="prerequisites">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#prerequisites">Prerequisites</a>
+										</li>
+										<li class="creating-a-backend-plugin-service">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#creating-a-backend-plugin-service">Creating a Backend Plugin Service</a>
+										</li>
+										<li class="plugin-settings">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#plugin-settings">Plugin Settings</a>
+										</li>
+										<li class="configuring-the-webhook">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#configuring-the-webhook">Configuring the Webhook</a>
+										</li>
+										<li class="using-webhook-payload-data">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#using-webhook-payload-data">Using Webhook Payload Data</a>
+										</li>
+										<li class="saving-webhook-settings-to-firebase">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#saving-webhook-settings-to-firebase">Saving to Firebase</a>
+										</li>
+										<li class="wrapping-up">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms.html#wrapping-up">Wrapping Up</a>
+										</li>
+									</ul>
+								</li>
+								<li {% if page.subgroup == 'record-sms-2' %}class="active"{% endif %}>
+									<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html">Part 2</a>
+									<ul>
+										<li class="adding-sms-settings">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#adding-sms-settings">Adding SMS Settings</a>
+										</li>
+										<li class="adding-twillio-credentials">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#adding-twillio-credentials">Adding Twillio Credentials</a>
+										</li>
+										<li class="using-firebase-in-your-backend-service">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#using-firebase-in-your-backend-service">Using Firebase in Your Backend Service</a>
+										</li>
+										<li class="webhook-verification">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#webhook-verification">Webhook Verification</a>
+										</li>
+										<li class="wrapping-up">
+											<a href="{{site.baseurl}}/plugins/tutorials/record-sms-2.html#wrapping-up">Wrapping Up</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="divider"></li>
+						<li {% if page.subgroup == 'scheduled-service' %}class="active"{% endif %}>
+							<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html">Scheduled Plugin Service</a>
+							<ul>
+								<li class="prerequisites">
+									<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html#prerequisites">Prerequisites</a>
+								</li>
+								<li class="creating-the-plugin-service">
+									<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html#creating-the-plugin-service">Creating the Plugin Service</a>
+								</li>
+								<li class="publish-and-install">
+									<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html#publish-and-install">Publish and Install</a>
+								</li>
+								<li class="creating-a-scheduled-webhook">
+									<a href="{{site.baseurl}}/plugins/tutorials/scheduled-service.html#creating-a-scheduled-webhook">Creating a Scheduled Webhook</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			{% endif %}
+			</ul>
+		</div>
+	  <div class="large-10 columns">
+		<div class="rest-api-docs-wrapper">
+		  {{content}}
+		</div>
+	  </div>
 	</div>
-  <div class="large-10 columns">
-    <div class="rest-api-docs-wrapper">
-      {{content}}
-    </div>
-  </div>
 </div>

@@ -3,7 +3,7 @@ layout: plugin-nav-bar
 group: intro
 ---
 
-# {{site.productName}} Plugin Documentation
+# {{site.productName}} Plugin Version 1 Documentation
 
 Plugins allow you to extend your {{site.productName}} experience by adding new screens (full screen plugins) or functionality to existing screens (inline plugins) within {{site.productName}}. Plugin services allow you to interact with other systems from the backend. Using our [developer tool]({{site.clientDomain}}/account/developer){:target="_blank"}, you can write Javascript, HTML, and CSS to build out your own custom plugin. From the developer tool, you can also manage and upload any plugin services.
 

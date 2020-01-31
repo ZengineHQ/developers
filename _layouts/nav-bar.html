@@ -30,6 +30,8 @@ $(function(){
 <div class="row">
 	<div class="large-2 columns">
 		<ul class="side-nav affix">
+		{% if page.group == 'v2-intro' %}
+		{% else %}
 			<li {% if page.group == 'intro' %}class="active"{% endif %}>
 				<a href="{{site.baseurl}}/rest-api/">Introduction</a>
 			</li>
@@ -266,6 +268,7 @@ $(function(){
 					</li>
 				</ul>
 			</li>
+		{% endif %}
 		</ul>
 	</div>
 	<div class="large-10 columns">
