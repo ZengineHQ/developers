@@ -15,7 +15,9 @@ token for a finite period of time. Additionally, </p>
 <p>You do not necessarily need to act on behalf of a user; you can 
 <span style="font-style: italic">be</span> the end user. For example, you may be creating a script to 
 run every night and extract data from your workspace. In this scenario, you must authenticate via the 
-OAuth flow, retrieve a token for your account, and hard code that token into your script.</p>
+OAuth flow, retrieve a token for your account, and hard code that token into your script. Note, however, that 
+within the normal authentication process, manual re-authentication will be required at least every 14 days: the process
+documented here will not allow a script to run indefinitely without user intervention.</p>
 
 <h2 id="registering-an-application">Registering an Application</h2>
 
@@ -86,6 +88,9 @@ redirect_uri={the redirect URI associated with your application}
 grant_type=refresh_token
 refresh_token={the refresh token you previously received from {{site.productName}}} 
 </pre></p>
+
+<p>Each refresh token is valid for 14 days. When the refresh token expires, the interactive authentication flow must be
+repeated to obtain a new access token and refresh token pair.</p>
 
 <p>A sample server-side script, written in PHP, is provided below:</p>
 
