@@ -24,4 +24,6 @@ kramdown:
 gems:
   - jekyll-gist
 productName: Zengine
+companyName: "Submittable"
+companyDomain: "https://submittable.com"
 logo: <span class="logo">Zengine</span> Developers</span>
